@@ -1,18 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/articles/</loc>
-    <lastmod>2025-02-06T12:38:04-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-02-06T12:38:04-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/articles/overview/</loc>
-    <lastmod>2025-02-06T12:38:04-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>/intro/index.html</loc>
+    <lastmod>2025-02-07T18:33:11-05:00</lastmod>
+  </url>
+  <url>
+    <loc>/intro/basic_types/index.html</loc>
+    <lastmod>2025-02-07T12:49:57-05:00</lastmod>
+  </url>
+  <url>
+    <loc>/intro/basic_types/messages/index.html</loc>
+    <lastmod>2025-02-07T18:33:11-05:00</lastmod>
+  </url>
+  <url>
+    <loc>/intro/basic_types/records/index.html</loc>
+    <lastmod>2025-02-07T16:07:28-05:00</lastmod>
+  </url>
+  <url>
+    <loc>/intro/basic_types/strings/index.html</loc>
+    <lastmod>2025-02-07T16:06:50-05:00</lastmod>
+  </url>
+  <url>
+    <loc>/intro/basic_types/booleans/index.html</loc>
+    <lastmod>2025-02-07T16:06:29-05:00</lastmod>
+  </url>
+  <url>
+    <loc>/intro/basic_types/arithmetic/index.html</loc>
+    <lastmod>2025-02-07T13:01:01-05:00</lastmod>
+  </url>
+  <url>
+    <loc>/categories/index.html</loc>
+  </url>
+  <url>
+    <loc>/tags/index.html</loc>
   </url>
 </urlset>

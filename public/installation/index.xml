@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Installation :: Gab</title>
+    <link>/installation/index.html</link>
+    <description>Installing the language Downloading binaries from releases CGab provides pre-built cross-platform binaries upon releases. They are available in both debug and release flavors (If any weird behavior or segmantation faults occur, please recreate with the debug build before filing an issue).&#xA;Installation ALl that is needed to complete the installation is this downloaded binary! The binary freshly downloaded from Github won’t be marked as executable. On Unix systems, we’ll need to fix that:</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="/installation/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

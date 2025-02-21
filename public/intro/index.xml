@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introduction :: Gab</title>
+    <link>/intro/index.html</link>
+    <description>Welcome! This guide will teach you about Gab’s fundamentals. We will discuss the basic types and ideas of the language. First, lets install the language itself.&#xA;Installing the language Downloading binaries from releases CGab provides pre-built cross-platform binaries upon releases. They are available in both debug and release flavors (If any weird behavior or segmantation faults occur, please recreate with the debug build before filing an issue).&#xA;Installation ALl that is needed to complete the installation is this downloaded binary! The binary freshly downloaded from Github won’t be marked as executable. On Unix systems, we’ll need to fix that:</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Feb 2025 12:49:57 -0500</lastBuildDate>
+    <atom:link href="/intro/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic Types</title>
+      <link>/intro/basic_types/index.html</link>
+      <pubDate>Fri, 07 Feb 2025 12:49:57 -0500</pubDate>
+      <guid>/intro/basic_types/index.html</guid>
+      <description>In this chapter, we will learn more about Gab’s basic types. It will build the foundation of how to think and program in Gab.&#xA;Numbers Numbers are represented by IEEE 64-bit floating point values. There is no distinct integer type.&#xA;1 0.2 ? # =&gt; gab\number Note: ? is the operator for getting the type of a value.&#xA;Strings Strings are just a sequence of bytes.&#xA;&#34;gab&#34; &#34;what type am I?&#34; ? # =&gt; gab\string Records Records are both dictionaries and lists.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Basic Types :: Gab</title>
+    <link>/intro/basic_types/index.html</link>
+    <description>In this chapter, we will learn more about Gab’s basic types. It will build the foundation of how to think and program in Gab.&#xA;Numbers Numbers are represented by IEEE 64-bit floating point values. There is no distinct integer type.&#xA;1 0.2 ? # =&gt; gab\number Note: ? is the operator for getting the type of a value.&#xA;Strings Strings are just a sequence of bytes.&#xA;&#34;gab&#34; &#34;what type am I?&#34; ? # =&gt; gab\string Records Records are both dictionaries and lists.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Feb 2025 18:33:11 -0500</lastBuildDate>
+    <atom:link href="/intro/basic_types/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Messages</title>
+      <link>/intro/basic_types/messages/index.html</link>
+      <pubDate>Fri, 07 Feb 2025 18:33:11 -0500</pubDate>
+      <guid>/intro/basic_types/messages/index.html</guid>
+      <description>Message Sends The only way to do anything is by sending a message to a value.&#xA;&#34;Hello world!&#34; .println # =&gt; Hello world! Earlier we saw message literals, which look like this:&#xA;println: Now we’ve seen a message send, which is like calling a method or function:&#xA;any_value .println Message literals can also respond to messages!&#xA;my_message: .println # =&gt; my_message: In fact, this is how new messages are defined in Gab!</description>
+    </item>
+    <item>
+      <title>Records</title>
+      <link>/intro/basic_types/records/index.html</link>
+      <pubDate>Fri, 07 Feb 2025 16:07:28 -0500</pubDate>
+      <guid>/intro/basic_types/records/index.html</guid>
+      <description>Records are collections of key-value pairs. They are ordered and structurally typed.&#xA;Dictionaries Between the curly brackets {}, expressions are expected in key-value pairs. Any expression is allowed as a key or value.&#xA;a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10) Records, like all values in Gab, are immutable. This means that setting values in records returns a new record.</description>
+    </item>
+    <item>
+      <title>Strings</title>
+      <link>/intro/basic_types/strings/index.html</link>
+      <pubDate>Fri, 07 Feb 2025 16:06:50 -0500</pubDate>
+      <guid>/intro/basic_types/strings/index.html</guid>
+      <description>This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they share data in memory. The string &#34;true&#34; and the message \true all the share same four bytes of memory: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation.</description>
+    </item>
+    <item>
+      <title>Booleans</title>
+      <link>/intro/basic_types/booleans/index.html</link>
+      <pubDate>Fri, 07 Feb 2025 16:06:29 -0500</pubDate>
+      <guid>/intro/basic_types/booleans/index.html</guid>
+      <description>Booleans are implemented with messages - they are not built-in keywords like in other languages!&#xA;true: false: There is no if in gab. Typically, a defcase is used instead:&#xA;my_message: .defcase! { true: (args) =&gt; do # Do something with args in the truthy case end false: (args) =&gt; do # Do something with args in the falsey case end } some_condition .my_message args For simple use cases, there are messages and:, or:, then: and else: defined in the core library.</description>
+    </item>
+    <item>
+      <title>Arithmetic</title>
+      <link>/intro/basic_types/arithmetic/index.html</link>
+      <pubDate>Fri, 07 Feb 2025 13:01:01 -0500</pubDate>
+      <guid>/intro/basic_types/arithmetic/index.html</guid>
+      <description>1 / 3</description>
+    </item>
+  </channel>
+</rss>

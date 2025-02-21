@@ -4,3 +4,6 @@
 [submodule "themes/E25DX"]
 	path = themes/E25DX
 	url = https://github.com/dumindu/E25DX.git
+[submodule "themes/hugo-theme-relearn"]
+	path = themes/hugo-theme-relearn
+	url = https://github.com/McShelby/hugo-theme-relearn.git
