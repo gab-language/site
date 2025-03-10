@@ -10,23 +10,27 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>Introduction – Gab</title>
-  <meta name="description" content="Welcome! This guide will teach you about Gab’s fundamentals. We will discuss the basic types and ideas of the language. First, lets install the language itself.
-Installing the language 1. Downloading binaries from releases cgab provides pre-built cross-platform binaries upon releases. They are available in both debug and release flavors. Select a pre-built binary that matches your system. If you don’t see one, feel free to create a Github Issue or build cgab yourself." /><link rel="canonical" href="/docs/intro/" itemprop="url" />
+<title>Strings – Gab</title>
+  <meta name="description" content="This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they share data in memory. The string &#34;true&#34; and the message true: all the share same four bytes of memory: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation." /><link rel="canonical" href="/docs/basic_types/strings/" itemprop="url" />
 
-<meta property="og:title" content="Introduction" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/docs/intro/" />
+<meta property="og:title" content="Strings" />
+<meta property="og:description" content="This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they share data in memory.
+The string &quot;true&quot; and the message true: all the share same four bytes of memory: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ].
+They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that
+converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/docs/basic_types/strings/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2025-02-07T16:06:50-05:00" />
+<meta property="article:modified_time" content="2025-02-07T16:06:50-05:00" />
 
-  <meta itemprop="name" content="Introduction">
-  <meta itemprop="description" content="Welcome! This guide will teach you about Gab’s fundamentals. We will discuss the basic types and ideas of the language. First, lets install the language itself.
-Installing the language 1. Downloading binaries from releases cgab provides pre-built cross-platform binaries upon releases. They are available in both debug and release flavors. Select a pre-built binary that matches your system. If you don’t see one, feel free to create a Github Issue or build cgab yourself.">
-  <meta itemprop="wordCount" content="607">
+  <meta itemprop="name" content="Strings">
+  <meta itemprop="description" content="This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they share data in memory. The string &#34;true&#34; and the message true: all the share same four bytes of memory: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation.">
+  <meta itemprop="datePublished" content="2025-02-07T16:06:50-05:00">
+  <meta itemprop="dateModified" content="2025-02-07T16:06:50-05:00">
+  <meta itemprop="wordCount" content="362">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Introduction">
-  <meta name="twitter:description" content="Welcome! This guide will teach you about Gab’s fundamentals. We will discuss the basic types and ideas of the language. First, lets install the language itself.
-Installing the language 1. Downloading binaries from releases cgab provides pre-built cross-platform binaries upon releases. They are available in both debug and release flavors. Select a pre-built binary that matches your system. If you don’t see one, feel free to create a Github Issue or build cgab yourself.">
+  <meta name="twitter:title" content="Strings">
+  <meta name="twitter:description" content="This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they share data in memory. The string &#34;true&#34; and the message true: all the share same four bytes of memory: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation.">
 
     <link rel="preload" href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" as="style" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
     <link href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" rel="stylesheet" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
@@ -157,36 +161,15 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
   >Docs
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
-        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col open"><a
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/intro/"
     
   >Introduction
     </a>
-  
-    <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
-              <a
-                href="#installing-the-language"
-                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              >Installing the language</a>
-            </li>
-          <li>
-              <a
-                href="#windows"
-                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              >Windows</a>
-            </li>
-          <li>
-              <a
-                href="#compiling-from-source"
-                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              >Compiling From Source</a>
-            </li>
-          </ul>
-  
               
-            </li><li class="hx-flex hx-flex-col "><a
+            </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
@@ -203,13 +186,28 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
   >Arithmetic
     </a>
               
-            </li><li class="hx-flex hx-flex-col "><a
+            </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/basic_types/strings/"
     
   >Strings
     </a>
+  
+    <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
+              <a
+                href="#strings"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >Strings</a>
+            </li>
+          <li>
+              <a
+                href="#binaries"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >Binaries</a>
+            </li>
+          </ul>
+  
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
@@ -259,14 +257,14 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
 
     <ul class="hx-flex hx-flex-col hx-gap-1 max-md:hx-hidden">
         
-          <li class="open"><a
+          <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/intro/"
     
   >Introduction
     </a></li>
-          <li class=""><a
+          <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
@@ -282,9 +280,9 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
   >Arithmetic
     </a>
               
-            </li><li class="hx-flex hx-flex-col "><a
+            </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/basic_types/strings/"
     
   >Strings
@@ -350,31 +348,11 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
 <nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
     <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4"><p class="hx-mb-4 hx-font-semibold hx-tracking-tight">On this page</p><ul>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#installing-the-language">Installing the language
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#strings">Strings
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#1-downloading-binaries-from-releases">1. Downloading binaries from releases
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#2-install-via-binary">2. Install via binary
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#windows">Windows
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#compiling-from-source">Compiling From Source
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#unix-systems">Unix Systems
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#manual-build">Manual Build
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#binaries">Binaries
         </a>
       </li></ul>
       <div class="hx-mt-8 hx-border-t hx-bg-white hx-pt-8 hx-shadow-[0_-12px_16px_white] dark:hx-bg-dark dark:hx-shadow-[0_-12px_16px_#111] hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400">
@@ -395,126 +373,60 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
   <div class="hx-mt-1.5 hx-flex hx-items-center hx-gap-1 hx-overflow-hidden hx-text-sm hx-text-gray-500 dark:hx-text-gray-400 contrast-more:hx-text-current">
         <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
           <a href="/docs/">Docs</a>
-        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Introduction</div>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
+          <a href="/docs/basic_types/">Basic Types</a>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Strings</div>
   </div>
 
         <div class="content">
-          <h1>Introduction</h1>
-          <p>Welcome!
-This guide will teach you about Gab&rsquo;s fundamentals.
-We will discuss the basic types and ideas of the language.
-First, lets install the language itself.</p>
-<h2>Installing the language<span class="hx-absolute -hx-mt-20" id="installing-the-language"></span>
-    <a href="#installing-the-language" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><h4>1. Downloading binaries from releases<span class="hx-absolute -hx-mt-20" id="1-downloading-binaries-from-releases"></span>
-    <a href="#1-downloading-binaries-from-releases" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>cgab provides pre-built cross-platform binaries upon <a href="https://github.com/gab-language/cgab/releases" target="_blank" rel="noopener">releases</a>.
-They are available in both debug and release flavors. Select a pre-built binary that matches your system. If you don&rsquo;t see one,
-feel free to create a Github Issue or build cgab yourself.</p>
-<div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-  <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Note</p>
-
-  <div class="hx-w-full hx-min-w-0 hx-leading-7">
-    <div class="hx-mt-6 hx-leading-7 first:hx-mt-0"><p>The executable you just downloaded (<code>gab</code>) won&rsquo;t be in your path. You&rsquo;ll need to invoke it directly.
-Later, Gab will recommend how to update your PATH as part of installation. Ultimately, this is up to you!</p></div>
-  </div>
-</div>
-<h4>2. Install via binary<span class="hx-absolute -hx-mt-20" id="2-install-via-binary"></span>
-    <a href="#2-install-via-binary" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p><strong>All</strong> that is needed to complete the installation is this downloaded binary!
-From this point forward lets refer to your downloaded binary as simply <code>gab</code>, just to make things easier.
-Now, you should be able to run Gab.</p>
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Try this:</span>
-</span></span><span style="display:flex;"><span>gab
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or this:</span>
-</span></span><span style="display:flex;"><span>gab help</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-  <button
-    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-    title="Copy code"
-  >
-    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
-    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
-  </button>
-</div>
-</div>
-<p>You should see a generic help message, summarazing the commands available to you.
-However, at this point trying to run any real code will fail - Gab&rsquo;s core modules still need to be installed.
-Lets go ahead and complete your installation by downloading the core modules
-that Gab requires.</p>
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Gab makes this easy:</span>
-</span></span><span style="display:flex;"><span>gab get</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-  <button
-    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-    title="Copy code"
-  >
-    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
-    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
-  </button>
-</div>
-</div>
-<p>This command downloads the gab binary and modules to Gab&rsquo;s installation prefix on your machine. You should see some logs detailing this process.
-Lastly, complete your installation as instructed by the message in your terminal.</p>
-<div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-  <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Note</p>
-
-  <div class="hx-w-full hx-min-w-0 hx-leading-7">
-    <div class="hx-mt-6 hx-leading-7 first:hx-mt-0"><p><code>gab</code> calls out to the operating system for <code>curl</code> and <code>tar</code> in order to perform this installation. They should be widely available by default on most machines,
-including any Windows machine with Windows 10 or later. However, you may see an error message indicating that one of the two is unavailable - in that case installation will fail.</p></div>
-  </div>
-</div>
-<h2>Windows<span class="hx-absolute -hx-mt-20" id="windows"></span>
-    <a href="#windows" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Unforunately, windows is not supported at the moment. There is currently a <a href="https://github.com/ziglang/zig/issues/18799" target="_blank" rel="noopener">bug</a> in <code>zig cc</code> causing miscompilations on Windows which break the <strong>c abi</strong>. The features of c which cause this bug to appear
-are used heavily in cgab. Until this bug is fixed in <code>zig</code>, Gab will not support windows.</p>
-<h2>Compiling From Source<span class="hx-absolute -hx-mt-20" id="compiling-from-source"></span>
-    <a href="#compiling-from-source" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>cgab is a C project built with Zig&rsquo;s c-compiler toolchain. <code>zig cc</code> is chosen specifically for its cross-compiling superpowers. This enables
-linux developers to cross-compile for Windows and run via <code>wine</code>, among other amazing things. As a result, a limitation placed on <code>cgab</code> is that there
-shall be <strong>no runtime dependencies other than libc</strong>. This constraint is what makes the cross compilation possible. This goes for any c modules as well - there
-may be <em>NO</em> runtime dependencies. Any 3rd party code necessary for c modules shall be kept in git-submodules, and if it must be linked, then linked statically.</p>
-<h4>Unix Systems<span class="hx-absolute -hx-mt-20" id="unix-systems"></span>
-    <a href="#unix-systems" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>To manage the various useful scripts in the repo, cgab takes advantage of <a href="https://github.com/TeddyRandby/clide" target="_blank" rel="noopener">clide</a>.
-After installing <code>clide</code>, building cgab from source is as simple as running:</p>
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    clide build</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-  <button
-    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-    title="Copy code"
-  >
-    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
-    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
-  </button>
-</div>
-</div>
-<p>Clide will prompt you to select a build type and installation target. For details on how to use clide, check its readme.</p>
-<h4>Manual Build<span class="hx-absolute -hx-mt-20" id="manual-build"></span>
-    <a href="#manual-build" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>Alternatively, <code>zig cc</code> can be invoked manually. Check <code>.clide/../build.sh</code> for an example of how to invoke <code>zig cc</code>, and build the appropriate artifacts.</p>
-<div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-  <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Note</p>
-
-  <div class="hx-w-full hx-min-w-0 hx-leading-7">
-    <div class="hx-mt-6 hx-leading-7 first:hx-mt-0"><p>The additional flags <code>-DGAB_PLATFORM_UNIX</code> and <code>-D_POSIX_C_SOURCE=200809L</code> are required for unix builds.
-Clide relies on bash scripts written in the <code>.clide/</code> directory, and therefore will not work on windows.
-On Windows, <code>zig cc</code> should be invoked manually. The following is an example, but will not fully build cgab.</p></div>
-  </div>
-</div>
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    zig cc -O3 -std<span style="color:#f92672">=</span>c23 -fPIC -Wall --target<span style="color:#f92672">=</span>native -o gab -Iinclude -Ivendor -DNDEBUG -DGAB_PLATFORM_WIN src/**/*.c</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-  <button
-    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-    title="Copy code"
-  >
-    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
-    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
-  </button>
-</div>
-</div>
-
+          <h1>Strings</h1>
+          <p>This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they <strong>share data in memory</strong>.
+The string <code>&quot;true&quot;</code> and the message <code>true:</code> all the share same four bytes of memory: <code>[ 't', 'r', 'u', 'e' ]</code>.
+They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that
+converting these types into each other (eg: <code>'true'.messages\into</code>) is a constant-time operation. There is no copying, nor memory allocation.</p>
+<h2>Strings<span class="hx-absolute -hx-mt-20" id="strings"></span>
+    <a href="#strings" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Strings are sequences of UTF8-encoded bytes. Single-quoted strings support some escape sequences, including unicode.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;Hello!&quot;</span></span></span>
+<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;\tHello\n&quot;</span></span></span>
+<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;Hello \u[2502]&quot;</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><p>The <code>gab\string</code> type responds to messages respecting its UTF-8 Encoding. This means that some operations actually take linear time, when you may expect them to be constant time. For example,
+slicing a UTF-8 string at a given index requires processing the string linearly - as UTF8 is a multi-byte character encoding and codepoints may be anywhere from one to four bytes long.
+On the other hand, the <code>gab\binary</code> type is trivially convertible from <code>gab\string</code>, and respects bytes directly, without enforcing or respecting <em>any</em> encoding. Becaues of this, converting from a <code>gab\binary</code> to a <code>gab\string</code> can fail if the binary is not valid UTF-8.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>smiley = <span style='color: #a6e22e'>&#39;😀&#39;</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>smiley<span style='font-weight: bold;color: #66d9ef'>.len</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 1</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>smiley_bin = smiley<span style='font-weight: bold;color: #66d9ef'>.binaries\into</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\binary ...&gt;</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>smiley_bin<span style='font-weight: bold;color: #66d9ef'>.len</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><p>There is no syntax for string interpolation, but it is easy to construct strings out of other values using <code>make:</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>full_name = Strings<span style='font-weight: bold;color: #66d9ef'>.make</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&quot;Ada&quot;</span> <span style='color: #a6e22e'>&quot; &quot;</span> last_name<span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># The fmt package also supplies the sprintf: message</span></span></span>
+<span sytle="display:flex"><span><span style='color: #a6e22e'>&#39;Format a value: $&#39;</span><span style='font-weight: bold;color: #66d9ef'>.sprintf</span><span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&#39;bob&#39;</span> <span style='color: #f8f8f0'>}</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &#39;Format a value: { name: bob }&#39;</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><h2>Binaries<span class="hx-absolute -hx-mt-20" id="binaries"></span>
+    <a href="#binaries" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>As mentioned above, the <code>gab\binary</code> allows for operating on bytes directly - there is no encoding enforced. This means indexing/slicing operations are constant time.
+There is no syntax for constructing binary literals, but other types can be converted into binaries.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;This is a string&quot;</span> <span style='font-weight: bold;color: #66d9ef'>.slice</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>3</span> <span style='font-weight: bold;color: #e6db74'>8</span><span style='color: #f8f8f0'>)</span> <span style='font-style: italic;color: #8f908a'># Requires linearly scanning from the front of the string</span></span></span>
+<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;This will be a binary&quot;</span> <span style='font-weight: bold;color: #66d9ef'>.binaries\into</span> <span style='font-weight: bold;color: #66d9ef'>.slice</span> <span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>3</span> <span style='font-weight: bold;color: #e6db74'>8</span><span style='color: #f8f8f0'>)</span> <span style='font-style: italic;color: #8f908a'># slices from the 3rd to 8th byte in constant time</span></span></span>
+<span sytle="display:flex"><span>Binaries<span style='font-weight: bold;color: #66d9ef'>.make</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;This is also makes a binary&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div>
         </div>
         <div class="hx-mt-16"></div>
-        
+        <div class="hx-mb-8 hx-flex hx-items-center hx-border-t hx-pt-8 dark:hx-border-neutral-800 contrast-more:hx-border-neutral-400 dark:contrast-more:hx-border-neutral-400 print:hx-hidden"><a
+        href="/docs/basic_types/arithmetic/"
+        title="Arithmetic"
+        class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-pr-4 rtl:hx-pl-4"
+      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Arithmetic</a><a
+        href="/docs/basic_types/blocks/"
+        title="Blocks"
+        class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-ml-auto ltr:hx-pl-4 ltr:hx-text-right rtl:hx-mr-auto rtl:hx-pr-4 rtl:hx-text-left"
+      >Blocks<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
         
       </main>
     </article>

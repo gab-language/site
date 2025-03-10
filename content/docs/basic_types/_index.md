@@ -1,7 +1,7 @@
 +++
 date = '2025-02-07T12:49:57-05:00'
 title = 'Basic Types'
-weight = 1
+weight = 2
 +++
 In this chapter, we will learn more about Gab's basic types. At the core of any language is its values - Gab is no different. In fact - values are almost *all* there is in Gab's syntax.
 This introduction will build the foundation of how to think and program in Gab.

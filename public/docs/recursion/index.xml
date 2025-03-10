@@ -1,16 +1,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gab –  </title>
-    <link>/</link>
-    <description>Recent content in   on Gab</description>
+    <title>Gab – Recursion</title>
+    <link>/docs/recursion/</link>
+    <description>Recent content in Recursion on Gab</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 10 Mar 2025 12:13:08 -0400</lastBuildDate>
     
-	  <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="/docs/recursion/index.xml" rel="self" type="application/rss+xml" />
     
     
       
+        
       
     
     

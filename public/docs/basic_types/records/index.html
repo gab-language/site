@@ -10,23 +10,43 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>Introduction – Gab</title>
-  <meta name="description" content="Welcome! This guide will teach you about Gab’s fundamentals. We will discuss the basic types and ideas of the language. First, lets install the language itself.
-Installing the language 1. Downloading binaries from releases cgab provides pre-built cross-platform binaries upon releases. They are available in both debug and release flavors. Select a pre-built binary that matches your system. If you don’t see one, feel free to create a Github Issue or build cgab yourself." /><link rel="canonical" href="/docs/intro/" itemprop="url" />
+<title>Records – Gab</title>
+  <meta name="description" content="Records are collections of key-value pairs. They are ordered and structurally typed.
+Dictionaries Between the curly brackets {}, expressions are expected in key-value pairs. Any expression is allowed as a key or value.
+a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10) Records, like all values in Gab, are immutable. This means that setting values in records returns a new record." /><link rel="canonical" href="/docs/basic_types/records/" itemprop="url" />
 
-<meta property="og:title" content="Introduction" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/docs/intro/" />
+<meta property="og:title" content="Records" />
+<meta property="og:description" content="Records are collections of key-value pairs. They are ordered and structurally typed.
+Dictionaries
+    Between the curly brackets {}, expressions are expected in key-value pairs.
+Any expression is allowed as a key or value.
 
-  <meta itemprop="name" content="Introduction">
-  <meta itemprop="description" content="Welcome! This guide will teach you about Gab’s fundamentals. We will discuss the basic types and ideas of the language. First, lets install the language itself.
-Installing the language 1. Downloading binaries from releases cgab provides pre-built cross-platform binaries upon releases. They are available in both debug and release flavors. Select a pre-built binary that matches your system. If you don’t see one, feel free to create a Github Issue or build cgab yourself.">
-  <meta itemprop="wordCount" content="607">
+a_record = { key: &#39;value&#39; }
+
+a_record .key                    # =&gt; &#39;value&#39;
+
+another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } 
+
+another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10)
+
+Records, like all values in Gab, are immutable. This means that setting values in records returns a new record." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/docs/basic_types/records/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2025-02-07T16:07:28-05:00" />
+<meta property="article:modified_time" content="2025-02-07T16:07:28-05:00" />
+
+  <meta itemprop="name" content="Records">
+  <meta itemprop="description" content="Records are collections of key-value pairs. They are ordered and structurally typed.
+Dictionaries Between the curly brackets {}, expressions are expected in key-value pairs. Any expression is allowed as a key or value.
+a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10) Records, like all values in Gab, are immutable. This means that setting values in records returns a new record.">
+  <meta itemprop="datePublished" content="2025-02-07T16:07:28-05:00">
+  <meta itemprop="dateModified" content="2025-02-07T16:07:28-05:00">
+  <meta itemprop="wordCount" content="477">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Introduction">
-  <meta name="twitter:description" content="Welcome! This guide will teach you about Gab’s fundamentals. We will discuss the basic types and ideas of the language. First, lets install the language itself.
-Installing the language 1. Downloading binaries from releases cgab provides pre-built cross-platform binaries upon releases. They are available in both debug and release flavors. Select a pre-built binary that matches your system. If you don’t see one, feel free to create a Github Issue or build cgab yourself.">
+  <meta name="twitter:title" content="Records">
+  <meta name="twitter:description" content="Records are collections of key-value pairs. They are ordered and structurally typed.
+Dictionaries Between the curly brackets {}, expressions are expected in key-value pairs. Any expression is allowed as a key or value.
+a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10) Records, like all values in Gab, are immutable. This means that setting values in records returns a new record.">
 
     <link rel="preload" href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" as="style" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
     <link href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" rel="stylesheet" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
@@ -157,36 +177,15 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
   >Docs
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
-        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col open"><a
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/intro/"
     
   >Introduction
     </a>
-  
-    <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
-              <a
-                href="#installing-the-language"
-                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              >Installing the language</a>
-            </li>
-          <li>
-              <a
-                href="#windows"
-                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              >Windows</a>
-            </li>
-          <li>
-              <a
-                href="#compiling-from-source"
-                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              >Compiling From Source</a>
-            </li>
-          </ul>
-  
               
-            </li><li class="hx-flex hx-flex-col "><a
+            </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
@@ -235,13 +234,22 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
   >Booleans
     </a>
               
-            </li><li class="hx-flex hx-flex-col "><a
+            </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/basic_types/records/"
     
   >Records
     </a>
+  
+    <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
+              <a
+                href="#"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              ></a>
+            </li>
+          </ul>
+  
               
             </li></ul>
       </div>
@@ -259,14 +267,14 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
 
     <ul class="hx-flex hx-flex-col hx-gap-1 max-md:hx-hidden">
         
-          <li class="open"><a
+          <li class=""><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/intro/"
     
   >Introduction
     </a></li>
-          <li class=""><a
+          <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
@@ -314,9 +322,9 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
   >Booleans
     </a>
               
-            </li><li class="hx-flex hx-flex-col "><a
+            </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/basic_types/records/"
     
   >Records
@@ -350,31 +358,19 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
 <nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
     <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4"><p class="hx-mb-4 hx-font-semibold hx-tracking-tight">On this page</p><ul>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#installing-the-language">Installing the language
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#dictionaries">Dictionaries
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#1-downloading-binaries-from-releases">1. Downloading binaries from releases
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#lists">Lists
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#2-install-via-binary">2. Install via binary
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#records">Records
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#windows">Windows
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#compiling-from-source">Compiling From Source
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#unix-systems">Unix Systems
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#manual-build">Manual Build
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#shapes">Shapes
         </a>
       </li></ul>
       <div class="hx-mt-8 hx-border-t hx-bg-white hx-pt-8 hx-shadow-[0_-12px_16px_white] dark:hx-bg-dark dark:hx-shadow-[0_-12px_16px_#111] hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400">
@@ -395,126 +391,90 @@ Installing the language 1. Downloading binaries from releases cgab provides pre-
   <div class="hx-mt-1.5 hx-flex hx-items-center hx-gap-1 hx-overflow-hidden hx-text-sm hx-text-gray-500 dark:hx-text-gray-400 contrast-more:hx-text-current">
         <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
           <a href="/docs/">Docs</a>
-        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Introduction</div>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
+          <a href="/docs/basic_types/">Basic Types</a>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Records</div>
   </div>
 
         <div class="content">
-          <h1>Introduction</h1>
-          <p>Welcome!
-This guide will teach you about Gab&rsquo;s fundamentals.
-We will discuss the basic types and ideas of the language.
-First, lets install the language itself.</p>
-<h2>Installing the language<span class="hx-absolute -hx-mt-20" id="installing-the-language"></span>
-    <a href="#installing-the-language" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><h4>1. Downloading binaries from releases<span class="hx-absolute -hx-mt-20" id="1-downloading-binaries-from-releases"></span>
-    <a href="#1-downloading-binaries-from-releases" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>cgab provides pre-built cross-platform binaries upon <a href="https://github.com/gab-language/cgab/releases" target="_blank" rel="noopener">releases</a>.
-They are available in both debug and release flavors. Select a pre-built binary that matches your system. If you don&rsquo;t see one,
-feel free to create a Github Issue or build cgab yourself.</p>
-<div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-  <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Note</p>
-
-  <div class="hx-w-full hx-min-w-0 hx-leading-7">
-    <div class="hx-mt-6 hx-leading-7 first:hx-mt-0"><p>The executable you just downloaded (<code>gab</code>) won&rsquo;t be in your path. You&rsquo;ll need to invoke it directly.
-Later, Gab will recommend how to update your PATH as part of installation. Ultimately, this is up to you!</p></div>
-  </div>
-</div>
-<h4>2. Install via binary<span class="hx-absolute -hx-mt-20" id="2-install-via-binary"></span>
-    <a href="#2-install-via-binary" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p><strong>All</strong> that is needed to complete the installation is this downloaded binary!
-From this point forward lets refer to your downloaded binary as simply <code>gab</code>, just to make things easier.
-Now, you should be able to run Gab.</p>
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Try this:</span>
-</span></span><span style="display:flex;"><span>gab
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or this:</span>
-</span></span><span style="display:flex;"><span>gab help</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-  <button
-    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-    title="Copy code"
-  >
-    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
-    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
-  </button>
-</div>
-</div>
-<p>You should see a generic help message, summarazing the commands available to you.
-However, at this point trying to run any real code will fail - Gab&rsquo;s core modules still need to be installed.
-Lets go ahead and complete your installation by downloading the core modules
-that Gab requires.</p>
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Gab makes this easy:</span>
-</span></span><span style="display:flex;"><span>gab get</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-  <button
-    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-    title="Copy code"
-  >
-    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
-    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
-  </button>
-</div>
-</div>
-<p>This command downloads the gab binary and modules to Gab&rsquo;s installation prefix on your machine. You should see some logs detailing this process.
-Lastly, complete your installation as instructed by the message in your terminal.</p>
-<div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-  <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Note</p>
-
-  <div class="hx-w-full hx-min-w-0 hx-leading-7">
-    <div class="hx-mt-6 hx-leading-7 first:hx-mt-0"><p><code>gab</code> calls out to the operating system for <code>curl</code> and <code>tar</code> in order to perform this installation. They should be widely available by default on most machines,
-including any Windows machine with Windows 10 or later. However, you may see an error message indicating that one of the two is unavailable - in that case installation will fail.</p></div>
-  </div>
-</div>
-<h2>Windows<span class="hx-absolute -hx-mt-20" id="windows"></span>
-    <a href="#windows" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Unforunately, windows is not supported at the moment. There is currently a <a href="https://github.com/ziglang/zig/issues/18799" target="_blank" rel="noopener">bug</a> in <code>zig cc</code> causing miscompilations on Windows which break the <strong>c abi</strong>. The features of c which cause this bug to appear
-are used heavily in cgab. Until this bug is fixed in <code>zig</code>, Gab will not support windows.</p>
-<h2>Compiling From Source<span class="hx-absolute -hx-mt-20" id="compiling-from-source"></span>
-    <a href="#compiling-from-source" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>cgab is a C project built with Zig&rsquo;s c-compiler toolchain. <code>zig cc</code> is chosen specifically for its cross-compiling superpowers. This enables
-linux developers to cross-compile for Windows and run via <code>wine</code>, among other amazing things. As a result, a limitation placed on <code>cgab</code> is that there
-shall be <strong>no runtime dependencies other than libc</strong>. This constraint is what makes the cross compilation possible. This goes for any c modules as well - there
-may be <em>NO</em> runtime dependencies. Any 3rd party code necessary for c modules shall be kept in git-submodules, and if it must be linked, then linked statically.</p>
-<h4>Unix Systems<span class="hx-absolute -hx-mt-20" id="unix-systems"></span>
-    <a href="#unix-systems" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>To manage the various useful scripts in the repo, cgab takes advantage of <a href="https://github.com/TeddyRandby/clide" target="_blank" rel="noopener">clide</a>.
-After installing <code>clide</code>, building cgab from source is as simple as running:</p>
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    clide build</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-  <button
-    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-    title="Copy code"
-  >
-    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
-    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
-  </button>
-</div>
-</div>
-<p>Clide will prompt you to select a build type and installation target. For details on how to use clide, check its readme.</p>
-<h4>Manual Build<span class="hx-absolute -hx-mt-20" id="manual-build"></span>
-    <a href="#manual-build" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>Alternatively, <code>zig cc</code> can be invoked manually. Check <code>.clide/../build.sh</code> for an example of how to invoke <code>zig cc</code>, and build the appropriate artifacts.</p>
-<div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-  <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Note</p>
-
-  <div class="hx-w-full hx-min-w-0 hx-leading-7">
-    <div class="hx-mt-6 hx-leading-7 first:hx-mt-0"><p>The additional flags <code>-DGAB_PLATFORM_UNIX</code> and <code>-D_POSIX_C_SOURCE=200809L</code> are required for unix builds.
-Clide relies on bash scripts written in the <code>.clide/</code> directory, and therefore will not work on windows.
-On Windows, <code>zig cc</code> should be invoked manually. The following is an example, but will not fully build cgab.</p></div>
-  </div>
-</div>
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    zig cc -O3 -std<span style="color:#f92672">=</span>c23 -fPIC -Wall --target<span style="color:#f92672">=</span>native -o gab -Iinclude -Ivendor -DNDEBUG -DGAB_PLATFORM_WIN src/**/*.c</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-  <button
-    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-    title="Copy code"
-  >
-    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
-    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
-  </button>
-</div>
-</div>
-
+          <h1>Records</h1>
+          <p>Records are collections of key-value pairs. They are ordered and structurally typed.</p>
+<h3>Dictionaries<span class="hx-absolute -hx-mt-20" id="dictionaries"></span>
+    <a href="#dictionaries" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Between the curly brackets <code>{}</code>, expressions are expected in key-value pairs.
+Any expression is allowed as a key or value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>a_record = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>key:</span> <span style='color: #a6e22e'>&#39;value&#39;</span> <span style='color: #f8f8f0'>}</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>a_record <span style='font-weight: bold;color: #66d9ef'>.key</span>                    <span style='font-style: italic;color: #8f908a'># =&gt; &#39;value&#39;</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>another_record = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>key:</span> <span style='color: #a6e22e'>&#39;value&#39;</span>, <span style='color: #a6e22e'>&#39;another_key&#39;</span> <span style='font-weight: bold;color: #e6db74'>10</span> <span style='color: #f8f8f0'>}</span> </span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>another_record <span style='font-weight: bold;color: #66d9ef'>.at</span> <span style='color: #a6e22e'>&#39;another_key&#39;</span> <span style='font-style: italic;color: #8f908a'># =&gt; (ok: &#39;10)</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><p>Records, like all values in Gab, are <strong>immutable</strong>. This means that setting values in records returns a <em>new record</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>a_record = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>key:</span> <span style='color: #a6e22e'>&#39;value&#39;</span> <span style='color: #f8f8f0'>}</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>a_record = a_record <span style='font-weight: bold;color: #66d9ef'>.key</span> <span style='color: #a6e22e'>&#39;another value&#39;</span>   <span style='font-style: italic;color: #8f908a'># =&gt; When an argument is provided, this message serves as a &#39;set&#39; instead of a &#39;get&#39;.</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>a_record                                   <span style='font-style: italic;color: #8f908a'># =&gt; { key:  &#39;another value&#39; }</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>a_record = a_record <span style='font-weight: bold;color: #66d9ef'>.put</span> <span style='color: #f8f8f0'>(</span><span style='color: #ae81ff'>key:</span> <span style='color: #a6e22e'>&#39;something else&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>a_record                                   <span style='font-style: italic;color: #8f908a'># =&gt; { key: &#39;something else&#39; }</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><h3>Lists<span class="hx-absolute -hx-mt-20" id="lists"></span>
+    <a href="#lists" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Lists are constructed with the square brackets <code>[]</code>, and any number of expressions are allowed inside.
+Lists are a special kind of record - one in which all they keys are ascending integers, starting from 0.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>a_list = <span style='color: #f8f8f0'>[</span><span style='font-weight: bold;color: #e6db74'>1</span> <span style='font-weight: bold;color: #e6db74'>2</span> <span style='font-weight: bold;color: #e6db74'>3</span><span style='color: #f8f8f0'>]</span> </span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>a_list <span style='font-style: italic;color: #8f908a'># =&gt; [1, 2, 3]</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>a_list = <span style='color: #f8f8f0'>{</span> <span style='font-weight: bold;color: #e6db74'>0</span> <span style='font-weight: bold;color: #e6db74'>1</span>, <span style='font-weight: bold;color: #e6db74'>1</span> <span style='font-weight: bold;color: #e6db74'>2</span>, <span style='font-weight: bold;color: #e6db74'>2</span> <span style='font-weight: bold;color: #e6db74'>3</span> <span style='color: #f8f8f0'>}</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>a_list <span style='font-style: italic;color: #8f908a'># =&gt; [1, 2, 3]</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><h3>Records<span class="hx-absolute -hx-mt-20" id="records"></span>
+    <a href="#records" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Both <strong>Dictionaries</strong> and <strong>Lists</strong> use the same underlying datastructure, <code>gab\record</code>. In order to make these immutable data structures fast, records are implemented with a <strong>bit partitioned vector trie</strong>.
+Gab&rsquo;s implementation is very much inspired by clojure&rsquo;s immutable vectors.
+Records are able to <em>share memory</em> under the hood, to avoid copying large of data for a single key-value mutation. This is called structural sharing,
+and is a common optimization in immutable data structures.</p>
+<p>As seen above, <code>gab\record</code> implements some useful messages <code>put:</code> and <code>at:</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>some_record <span style='font-weight: bold;color: #66d9ef'>.at</span> <span style='color: #ae81ff'>key:</span> <span style='font-style: italic;color: #8f908a'># =&gt; (ok:, &#39;value&#39;)</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><h3>Shapes<span class="hx-absolute -hx-mt-20" id="shapes"></span>
+    <a href="#shapes" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>All records have an underlying shape. They determine the available keys, and their order - think of them as an implicit class.
+Records with the same keys in the same order <em>share the same shape</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>some_record = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>x:</span> <span style='font-weight: bold;color: #e6db74'>1</span> <span style='color: #ae81ff'>y:</span> <span style='font-weight: bold;color: #e6db74'>2</span> <span style='color: #f8f8f0'>}</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>shape_x_y = some_record <span style='font-weight: bold;color: #66d9ef'>?</span> <span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab.shape x: y:&gt;</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>x:</span> <span style='font-weight: bold;color: #e6db74'>2</span> <span style='color: #ae81ff'>y:</span> <span style='font-weight: bold;color: #e6db74'>3</span> <span style='color: #f8f8f0'>}</span> <span style='font-weight: bold;color: #66d9ef'>?</span><span style='color: #f8f8f0'>)</span> <span style='font-weight: bold;color: #66d9ef'>==</span> shape_x_y <span style='font-style: italic;color: #8f908a'># =&gt; true:</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><p>Shapes are useful for defining methods. When resolving which specialization to use for a given value, Gab checks in the following order:</p>
+<ul>
+<li>If the value has a <strong>super type</strong>, and it has an available specialization, use it.</li>
+<li>If available, use the <strong>type&rsquo;s</strong> specialization.</li>
+<li>If available, use the <strong>property</strong>.</li>
+<li>If available, use the <strong>general</strong> specialization.</li>
+<li>No specialization found.</li>
+</ul>
+<p>For example: <code>{ x: 1 }</code> has a <strong>super type</strong> of <code>&lt;gab\shape x:&gt;</code>, and a <strong>type</strong> of <code>gab\record</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Define the message y: in the general case.</span></span></span>
+<span sytle="display:flex"><span><span style='color: #ae81ff'>y:</span> <span style='font-weight: bold;color: #66d9ef'>.def!</span> <span style='color: #a6e22e'>&#39;general case&#39;</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Define the message z: in the case of &lt;gab.shape x:&gt;</span></span></span>
+<span sytle="display:flex"><span><span style='color: #ae81ff'>z:</span> <span style='font-weight: bold;color: #66d9ef'>.def!</span> <span style='color: #f8f8f0'>(</span></span></span>
+<span sytle="display:flex"><span>    Shapes<span style='font-weight: bold;color: #66d9ef'>.make</span> <span style='color: #ae81ff'>x:</span>,</span></span>
+<span sytle="display:flex"><span>    <span style='color: #a6e22e'>&#39;shape case&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>x:</span> <span style='font-weight: bold;color: #e6db74'>1</span> <span style='color: #f8f8f0'>}</span> <span style='font-weight: bold;color: #66d9ef'>.x</span> <span style='font-style: italic;color: #8f908a'># =&gt; 2</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>x:</span> <span style='font-weight: bold;color: #e6db74'>1</span> <span style='color: #f8f8f0'>}</span> <span style='font-weight: bold;color: #66d9ef'>.y</span> <span style='font-style: italic;color: #8f908a'># =&gt; &#39;general case&#39;</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>x:</span> <span style='font-weight: bold;color: #e6db74'>1</span> <span style='color: #f8f8f0'>}</span> <span style='font-weight: bold;color: #66d9ef'>.z</span> <span style='font-style: italic;color: #8f908a'># =&gt; &#39;shape case&#39;</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div>
         </div>
         <div class="hx-mt-16"></div>
-        
+        <div class="hx-mb-8 hx-flex hx-items-center hx-border-t hx-pt-8 dark:hx-border-neutral-800 contrast-more:hx-border-neutral-400 dark:contrast-more:hx-border-neutral-400 print:hx-hidden"><a
+        href="/docs/basic_types/booleans/"
+        title="Booleans"
+        class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-pr-4 rtl:hx-pl-4"
+      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Booleans</a></div>
         
       </main>
     </article>

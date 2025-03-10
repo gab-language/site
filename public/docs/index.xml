@@ -17,10 +17,10 @@
     
     <item>
       <title>Arithmetic</title>
-      <link>/docs/intro/basic_types/arithmetic/</link>
+      <link>/docs/basic_types/arithmetic/</link>
       <pubDate>Fri, 07 Feb 2025 13:01:01 -0500</pubDate>
       
-      <guid>/docs/intro/basic_types/arithmetic/</guid>
+      <guid>/docs/basic_types/arithmetic/</guid>
       <description>
         
         
@@ -39,10 +39,10 @@ Gab keeps it simple - numbers are just 64-bit floats. It is possible that in the
     
     <item>
       <title>Strings</title>
-      <link>/docs/intro/basic_types/strings/</link>
+      <link>/docs/basic_types/strings/</link>
       <pubDate>Fri, 07 Feb 2025 16:06:50 -0500</pubDate>
       
-      <guid>/docs/intro/basic_types/strings/</guid>
+      <guid>/docs/basic_types/strings/</guid>
       <description>
         
         
@@ -93,11 +93,83 @@ Binaries.make(&#39;This is also makes a binary&#39;)
     </item>
     
     <item>
+      <title>Blocks</title>
+      <link>/docs/basic_types/blocks/</link>
+      <pubDate>Mon, 10 Mar 2025 10:06:10 -0400</pubDate>
+      
+      <guid>/docs/basic_types/blocks/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover:&lt;/p&gt;
+&lt;h3&gt;Multiple return values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;multiple-return-values&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#multiple-return-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Blocks can return multiple values, similar to golang or lua.
+Here, &lt;code&gt;open:&lt;/code&gt; returns two values. One signals the status of the operation, and another providing value or an error.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+IO.open(&#39;my_data.csv&#39;)
+# =&gt; ok: &lt;gab\box io\stream ...&gt;
+# =&gt; err: File does not exist
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The group of values &lt;em&gt;passed to&lt;/em&gt; and &lt;em&gt;return from&lt;/em&gt; a block is called a &lt;strong&gt;tuple&lt;/strong&gt;. They can be unpacked like this:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+# Unpack the tuple here with parentheses ().
+# This is called &#39;destructuring&#39;
+(status, stream) = IO.open(&#39;my_data.csv&#39;)
+
+status.ok?.then () =&gt; do
+    # Do something with stream here.
+end
+
+# Alternatively, we can unwrap our stream:
+# This will crash if the first element in the tuple isn&#39;t ok:
+stream = IO
+    .open(&#39;my_data.csv&#39;)
+    .unwrap!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tuples are used heavily, and preferred to records wherever possible.
+While records allocate memory, tuples use the stack and require &lt;em&gt;zero&lt;/em&gt; allocation.&lt;/p&gt;
+&lt;h3&gt;Tuples&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;tuples&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tuples&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Now that we&amp;rsquo;ve been introduced to tuples, there are a few rules about them to learn.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+# Messages are sent to the FIRST element of the tuple.
+# Heres some funky syntax you *could* write:
+
+(1 2) +
+# =&gt; 3
+
+(1 2) + 3
+# Syntax error
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When the left-hand side of a send is a tuple and the right-hand side is empty, Gab emits a send to the &lt;strong&gt;whole&lt;/strong&gt; left-hand tuple.
+When the right-hand side is &lt;strong&gt;not&lt;/strong&gt; empty, Gab will emit an error.&lt;/p&gt;
+&lt;p&gt;This behavior means that you can forward the &lt;strong&gt;whole&lt;/strong&gt; tuple returned by a block into another send, without any intermediate allocation.
+In fact, this is how &lt;code&gt;unwrap!:&lt;/code&gt; is implemented!&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+unwrap!: .defcase! {
+    # If the receiver (first element of tuple) was ok:
+    #   return the result
+    ok:  (result) =&gt; result
+    # If the receiver was err:
+    #   panic!
+    err: (err) =&gt; &#39;Unwrap Failed: $&#39;.sprintf(err).panic!
+}
+
+# open: returns a tuple (ok: &lt;gab\box io\stream ...&gt;)
+# This tuple is forwarded to .unwrap!
+stream = IO
+    .open(&#39;my_data.csv&#39;)
+    .unwrap!
+&lt;/code&gt;&lt;/pre&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Messages</title>
-      <link>/docs/intro/basic_types/messages/</link>
+      <link>/docs/basic_types/messages/</link>
       <pubDate>Fri, 07 Feb 2025 18:33:11 -0500</pubDate>
       
-      <guid>/docs/intro/basic_types/messages/</guid>
+      <guid>/docs/basic_types/messages/</guid>
       <description>
         
         
@@ -169,10 +241,10 @@ age = { name: &#39;bob&#39; } .age
     
     <item>
       <title>Booleans</title>
-      <link>/docs/intro/basic_types/booleans/</link>
+      <link>/docs/basic_types/booleans/</link>
       <pubDate>Fri, 07 Feb 2025 16:06:29 -0500</pubDate>
       
-      <guid>/docs/intro/basic_types/booleans/</guid>
+      <guid>/docs/basic_types/booleans/</guid>
       <description>
         
         
@@ -238,10 +310,10 @@ However, I find that it encourages writing smaller functions and more modular co
     
     <item>
       <title>Records</title>
-      <link>/docs/intro/basic_types/records/</link>
+      <link>/docs/basic_types/records/</link>
       <pubDate>Fri, 07 Feb 2025 16:07:28 -0500</pubDate>
       
-      <guid>/docs/intro/basic_types/records/</guid>
+      <guid>/docs/basic_types/records/</guid>
       <description>
         
         
