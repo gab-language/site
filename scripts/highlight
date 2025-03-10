@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 tree-sitter highlight \
+  --config-path tree-sitter-config.json \
   --scope source.gab -H /dev/stdin | sed -z '
 s/.*<table>\n\(.*\)\n<\/table>.*/\1/
 s/<tr><td class=line-number>[0-9]\+<\/td><td class=line>\([^\n]*\)\n<\/td><\/tr>/<span sytle="display:flex"><span>\1<\/span><\/span>/g'

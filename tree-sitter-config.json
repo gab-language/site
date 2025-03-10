@@ -1,0 +1,54 @@
+{
+  "parser-directories": [
+    "./grammars"
+  ],
+  "theme": {
+    "variable.parameter": {
+      "underline": true
+    },
+    "function.builtin": {
+      "color": 26,
+      "bold": true
+    },
+    "comment": {
+      "color": "#8F908A",
+      "italic": true
+    },
+    "constructor": 136,
+    "keyword": "#f92672",
+    "number": {
+      "color": "#e6db74",
+      "bold": true
+    },
+    "variable.builtin": {
+      "bold": true
+    },
+    "attribute": {
+      "italic": true,
+      "color": 124
+    },
+    "constant.builtin": {
+      "bold": true,
+      "color": 94
+    },
+    "punctuation.delimiter": 239,
+    "property": 124,
+    "operator": {
+      "bold": true,
+      "color": "#66d9ef"
+    },
+    "function": "#ae81ff",
+    "type": 23,
+    "punctuation.bracket": "#f8f8f0",
+    "string": "#a6e22e",
+    "string.special": "#f92672",
+    "constant": 94,
+    "tag": 18,
+    "embedded": null,
+    "type.builtin": {
+      "bold": true,
+      "color": 23
+    },
+    "module": 136
+  }
+}
