@@ -62,7 +62,6 @@ jobs:
           HUGO_ENV: production
         run: |
           hugo \
-            --gc --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
           make $(shell find public -type f -name "*.html")
       - name: Upload artifact
