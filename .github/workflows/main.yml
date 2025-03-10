@@ -38,6 +38,12 @@ jobs:
         with:
           fetch-depth: 0  # fetch all history for .GitInfo and .Lastmod
           submodules: recursive
+
+      - name: Install treesitter
+        uses: baptiste0928/cargo-install@v3
+        with:
+          crate: tree-sitter-cli
+
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
