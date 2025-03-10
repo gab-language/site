@@ -62,7 +62,7 @@ jobs:
           HUGO_ENV: production
         run: |
           hugo \
-            --baseURL "https://${{ github.repository_owner }}.github.io/"
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
           make $(shell find public -type f -name "*.html")
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
