@@ -63,7 +63,7 @@ jobs:
         run: |
           hugo \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
-          make $(shell find public -type f -name "*.html")
+          make $(find public -type f -name "*.html")
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
