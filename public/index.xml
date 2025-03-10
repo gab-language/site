@@ -1,19 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gab</title>
-    <link>/index.html</link>
-    <description>This is your new home page.</description>
-    <generator>Hugo</generator>
+    <title>Gab – Gab</title>
+    <link>/</link>
+    <description>Recent content on Gab</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Feb 2025 18:33:11 -0500</lastBuildDate>
-    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Introduction</title>
-      <link>/intro/index.html</link>
-      <pubDate>Fri, 07 Feb 2025 18:33:11 -0500</pubDate>
-      <guid>/intro/index.html</guid>
-      <description>Welcome! This guide will teach you about Gab’s fundamentals. We will discuss the basic types and ideas of the language. First, lets install the language itself.&#xA;Installing the language Downloading binaries from releases CGab provides pre-built cross-platform binaries upon releases. They are available in both debug and release flavors (If any weird behavior or segmantation faults occur, please recreate with the debug build before filing an issue).&#xA;Installation ALl that is needed to complete the installation is this downloaded binary! The binary freshly downloaded from Github won’t be marked as executable. On Unix systems, we’ll need to fix that:</description>
-    </item>
+    <lastBuildDate>Mon, 10 Mar 2025 07:07:42 -0400</lastBuildDate>
+    
+	  <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+      
+    
+    
   </channel>
 </rss>

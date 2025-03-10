@@ -1,226 +1,363 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="generator" content="Hugo 0.144.1">
-    <meta name="generator" content="Relearn 7.3.2+8b70bdf31acd361aacf17a0e775504551af67b83">
-    <meta name="description" content="This is your new home page.">
-    <meta name="author" content="">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Gab">
-    <meta name="twitter:description" content="This is your new home page.">
-    <meta property="og:url" content="/index.html">
-    <meta property="og:site_name" content="Gab">
-    <meta property="og:title" content="Gab">
-    <meta property="og:description" content="This is your new home page.">
-    <meta property="og:locale" content="en_us">
-    <meta property="og:type" content="website">
-    <meta itemprop="name" content="Gab">
-    <meta itemprop="description" content="This is your new home page.">
-    <meta itemprop="datePublished" content="2025-02-07T18:33:11-05:00">
-    <meta itemprop="dateModified" content="2025-02-07T18:33:11-05:00">
-    <meta itemprop="wordCount" content="6">
-    <title>Gab</title>
-    <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Gab">
-    <link href="/css/fontawesome-all.min.css?1740158844" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1740158844" rel="stylesheet"></noscript>
-    <link href="/css/auto-complete.css?1740158844" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1740158844" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1740158844" rel="stylesheet">
-    <link href="/css/theme.min.css?1740158844" rel="stylesheet">
-    <link href="/css/format-html.min.css?1740158844" rel="stylesheet" id="R-format-style">
-    <script>
-      window.relearn = window.relearn || {};
-      window.relearn.relBasePath='.';
-      window.relearn.relBaseUri='.';
-      window.relearn.absBaseUri='';
-      window.relearn.min = `.min`;
-      window.relearn.disableAnchorCopy=false;
-      window.relearn.disableAnchorScrolling=false;
-      // variant stuff
-      window.relearn.themevariants = [ 'auto' ];
-      window.relearn.customvariantname = "my-custom-variant";
-      window.relearn.changeVariant = function(variant) {
-        var oldVariant = document.documentElement.dataset.rThemeVariant;
-        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
-        document.documentElement.dataset.rThemeVariant = variant;
-        if (oldVariant != variant) {
-          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
-        }
-      }
-      window.relearn.markVariant = function() {
-        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
-        var select = document.querySelector("#R-select-variant");
-        if (select) {
-          select.value = variant;
-        }
-      }
-      window.relearn.initVariant = function() {
-        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
-        if( variant == window.relearn.customvariantname ){
-        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
-          variant = window.relearn.themevariants[0];
-          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
-        }
-        document.documentElement.dataset.rThemeVariant = variant;
-      }
-      window.relearn.initVariant();
-      window.relearn.markVariant();
-      // translations
-      window.T_Copy_to_clipboard = `Copy to clipboard`;
-      window.T_Copied_to_clipboard = `Copied to clipboard!`;
-      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
-      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
-      window.T_Reset_view = `Reset view`;
-      window.T_View_reset = `View reset!`;
-      window.T_No_results_found = `No results found for "{0}"`;
-      window.T_N_results_found = `{1} results found for "{0}"`;
-    </script>
-  </head>
-  <body class="mobile-support html" data-url="/index.html">
-    <div id="R-body" class="default-animation">
-      <div id="R-body-overlay"></div>
-      <nav id="R-topbar">
-        <div class="topbar-wrapper">
-          <div class="topbar-sidebar-divider"></div>
-          <div class="topbar-area topbar-area-start" data-area="start">
-            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
-            </div>
-            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
-              <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
-                </div>
-              </div>
-            </div>
-          </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
-          </ol>
-          <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-left"></i></span>
-            </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="/intro/index.html" title="Introduction (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
-            </div>
-            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
-              <div class="topbar-content">
-                <div class="topbar-content-wrapper">
-                  <div class="topbar-area topbar-area-more" data-area="more">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable home" tabindex="-1">
-        <div class="flex-block-wrapper">
-<article class="home">
-  <header class="headline">
-  </header>
+<html lang="en"><head>
+	<meta name="generator" content="Hugo 0.145.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon shortcut" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+<link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
+<title>Gab</title>
+  <meta name="description" content="" /><link rel="canonical" href="/" itemprop="url" />
 
-<h1 id="gab">Gab</h1>
+<meta property="og:title" content="Gab" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/" />
 
-<p>This is your new home page.</p>
+  <meta itemprop="name" content="Gab">
+  <meta itemprop="description" content="gab [intransitive verb]
+to talk in a rapid or thoughtless manner, ie: chatter
+– Merriam Webster
+Simplicity is a feature The syntax of the language is minimal by design - it can be learned within an hour. This is entirely driven by the fact that there is only one mechanism for control flow: sending messages.
+welcome_message = [&#39;Hello&#39;, &#39; &#39;, &#39;world!&#39;] welcome_message.join.println # =&gt; Hello world! Say goodbye to if, for, and while! ( we promise you won’t miss them )">
+  <meta itemprop="datePublished" content="2025-03-10T07:07:42-04:00">
+  <meta itemprop="dateModified" content="2025-03-10T07:07:42-04:00">
+  <meta itemprop="wordCount" content="403">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gab">
+  <meta name="twitter:description" content="gab [intransitive verb]
+to talk in a rapid or thoughtless manner, ie: chatter
+– Merriam Webster
+Simplicity is a feature The syntax of the language is minimal by design - it can be learned within an hour. This is entirely driven by the fact that there is only one mechanism for control flow: sending messages.
+welcome_message = [&#39;Hello&#39;, &#39; &#39;, &#39;world!&#39;] welcome_message.join.println # =&gt; Hello world! Say goodbye to if, for, and while! ( we promise you won’t miss them )">
 
-  <footer class="footline">
-  </footer>
-</article>
+    <link rel="preload" href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" as="style" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
+    <link href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" rel="stylesheet" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
+
+
+
+  <link href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" rel="stylesheet" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU=" />
+
+
+  <script>
+     
+    const defaultTheme = 'system';
+
+    const setDarkTheme = () => {
+      document.documentElement.classList.add("dark");
+      document.documentElement.style.colorScheme = "dark";
+    }
+    const setLightTheme = () => {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.style.colorScheme = "light";
+    }
+
+    if ("color-theme" in localStorage) {
+      localStorage.getItem("color-theme") === "dark" ? setDarkTheme() : setLightTheme();
+    } else {
+      defaultTheme === "dark" ? setDarkTheme() : setLightTheme();
+      if (defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? setDarkTheme() : setLightTheme();
+      }
+    }
+  </script>
+
+  
+</head>
+<body dir="ltr"><div class="nav-container hx-sticky hx-top-0 hx-z-20 hx-w-full hx-bg-transparent print:hx-hidden">
+  <div class="nav-container-blur hx-pointer-events-none hx-absolute hx-z-[-1] hx-h-full hx-w-full hx-bg-white dark:hx-bg-dark hx-shadow-[0_2px_4px_rgba(0,0,0,.02),0_1px_0_rgba(0,0,0,.06)] contrast-more:hx-shadow-[0_0_0_1px_#000] dark:hx-shadow-[0_-1px_0_rgba(255,255,255,.1)_inset] contrast-more:dark:hx-shadow-[0_0_0_1px_#fff]"></div>
+
+  <nav class="hx-mx-auto hx-flex hx-items-center hx-justify-end hx-gap-2 hx-h-16 hx-px-6 hx-max-w-[90rem]">
+    <a class="hx-flex hx-items-center hover:hx-opacity-75 ltr:hx-mr-auto rtl:hx-ml-auto" href="/">
+        <img class="hx-mr-2 hx-block dark:hx-hidden" src="/images/logo.svg" alt="Gab" height="20" width="20" />
+        <img class="hx-mr-2 hx-hidden dark:hx-block" src="/images/logo.svg" alt="Gab" height="20" width="20" />
+        <span class="hx-mr-2 hx-font-extrabold hx-inline hx-select-none" title="Gab">Gab</span>
+    </a><a
+            title="Documentation"
+            href="/docs"
+            
+            class="hx-text-sm contrast-more:hx-text-gray-700 contrast-more:dark:hx-text-gray-100 hx-relative -hx-ml-2 hx-hidden hx-whitespace-nowrap hx-p-2 md:hx-inline-block hx-text-gray-600 hover:hx-text-gray-800 dark:hx-text-gray-400 dark:hover:hx-text-gray-200"
+          >
+            <span class="hx-text-center">Documentation</span>
+          </a><a
+            title="Blog"
+            href="/blog"
+            
+            class="hx-text-sm contrast-more:hx-text-gray-700 contrast-more:dark:hx-text-gray-100 hx-relative -hx-ml-2 hx-hidden hx-whitespace-nowrap hx-p-2 md:hx-inline-block hx-text-gray-600 hover:hx-text-gray-800 dark:hx-text-gray-400 dark:hover:hx-text-gray-200"
+          >
+            <span class="hx-text-center">Blog</span>
+          </a><div class="search-wrapper hx-relative md:hx-w-64">
+  <div class="hx-relative hx-flex hx-items-center hx-text-gray-900 contrast-more:hx-text-gray-800 dark:hx-text-gray-300 contrast-more:dark:hx-text-gray-300">
+    <input
+      placeholder="Search..."
+      class="search-input hx-block hx-w-full hx-appearance-none hx-rounded-lg hx-px-3 hx-py-2 hx-transition-colors hx-text-base hx-leading-tight md:hx-text-sm hx-bg-black/[.05] dark:hx-bg-gray-50/10 focus:hx-bg-white dark:focus:hx-bg-dark placeholder:hx-text-gray-500 dark:placeholder:hx-text-gray-400 contrast-more:hx-border contrast-more:hx-border-current"
+      type="search"
+      value=""
+      spellcheck="false"
+    />
+    <kbd
+      class="hx-absolute hx-my-1.5 hx-select-none ltr:hx-right-1.5 rtl:hx-left-1.5 hx-h-5 hx-rounded hx-bg-white hx-px-1.5 hx-font-mono hx-text-[10px] hx-font-medium hx-text-gray-500 hx-border dark:hx-border-gray-100/20 dark:hx-bg-dark/50 contrast-more:hx-border-current contrast-more:hx-text-current contrast-more:dark:hx-border-current hx-items-center hx-gap-1 hx-transition-opacity hx-pointer-events-none hx-hidden sm:hx-flex"
+    >
+      CTRL K
+    </kbd>
+  </div>
+
+  <div>
+    <ul
+      class="search-results hextra-scrollbar hx-hidden hx-border hx-border-gray-200 hx-bg-white hx-text-gray-100 dark:hx-border-neutral-800 dark:hx-bg-neutral-900 hx-absolute hx-top-full hx-z-20 hx-mt-2 hx-overflow-auto hx-overscroll-contain hx-rounded-xl hx-py-2.5 hx-shadow-xl hx-max-h-[min(calc(50vh-11rem-env(safe-area-inset-bottom)),400px)] md:hx-max-h-[min(calc(100vh-5rem-env(safe-area-inset-bottom)),400px)] hx-inset-x-0 ltr:md:hx-left-auto rtl:md:hx-right-auto contrast-more:hx-border contrast-more:hx-border-gray-900 contrast-more:dark:hx-border-gray-50 hx-w-screen hx-min-h-[100px] hx-max-w-[min(calc(100vw-2rem),calc(100%+20rem))]"
+      style="transition: max-height 0.2s ease 0s;"
+    ></ul>
+  </div>
+</div>
+
+          <a class="hx-p-2 hx-text-current" target="_blank" rel="noreferrer" href="https://github.com/gab-language/cgab" title="GitHub"><svg height=24 fill="currentColor" viewBox="3 3 18 18">
+  <path d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z"></path>
+</svg>
+<span class="hx-sr-only">GitHub</span>
+          </a><button type="button" aria-label="Menu" class="hamburger-menu -hx-mr-2 hx-rounded hx-p-2 active:hx-bg-gray-400/20 md:hx-hidden"><svg height=24 fill="none" viewBox="0 0 24 24" stroke="currentColor"><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8H20"></path></g><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16H20"></path></g></svg></button>
+  </nav>
+</div>
+
+  <div class='hx-mx-auto hx-flex hx-max-w-screen-xl'>
+    <div class="mobile-menu-overlay [transition:background-color_1.5s_ease] hx-fixed hx-inset-0 hx-z-10 hx-bg-black/80 dark:hx-bg-black/60 hx-hidden"></div>
+<aside class="sidebar-container hx-flex hx-flex-col print:hx-hidden md:hx-top-16 md:hx-shrink-0 md:hx-w-64 md:hx-self-start max-md:[transform:translate3d(0,-100%,0)] md:hx-hidden xl:hx-block">
+  
+  <div class="hx-px-4 hx-pt-4 md:hx-hidden">
+    <div class="search-wrapper hx-relative md:hx-w-64">
+  <div class="hx-relative hx-flex hx-items-center hx-text-gray-900 contrast-more:hx-text-gray-800 dark:hx-text-gray-300 contrast-more:dark:hx-text-gray-300">
+    <input
+      placeholder="Search..."
+      class="search-input hx-block hx-w-full hx-appearance-none hx-rounded-lg hx-px-3 hx-py-2 hx-transition-colors hx-text-base hx-leading-tight md:hx-text-sm hx-bg-black/[.05] dark:hx-bg-gray-50/10 focus:hx-bg-white dark:focus:hx-bg-dark placeholder:hx-text-gray-500 dark:placeholder:hx-text-gray-400 contrast-more:hx-border contrast-more:hx-border-current"
+      type="search"
+      value=""
+      spellcheck="false"
+    />
+    <kbd
+      class="hx-absolute hx-my-1.5 hx-select-none ltr:hx-right-1.5 rtl:hx-left-1.5 hx-h-5 hx-rounded hx-bg-white hx-px-1.5 hx-font-mono hx-text-[10px] hx-font-medium hx-text-gray-500 hx-border dark:hx-border-gray-100/20 dark:hx-bg-dark/50 contrast-more:hx-border-current contrast-more:hx-text-current contrast-more:dark:hx-border-current hx-items-center hx-gap-1 hx-transition-opacity hx-pointer-events-none hx-hidden sm:hx-flex"
+    >
+      CTRL K
+    </kbd>
+  </div>
+
+  <div>
+    <ul
+      class="search-results hextra-scrollbar hx-hidden hx-border hx-border-gray-200 hx-bg-white hx-text-gray-100 dark:hx-border-neutral-800 dark:hx-bg-neutral-900 hx-absolute hx-top-full hx-z-20 hx-mt-2 hx-overflow-auto hx-overscroll-contain hx-rounded-xl hx-py-2.5 hx-shadow-xl hx-max-h-[min(calc(50vh-11rem-env(safe-area-inset-bottom)),400px)] md:hx-max-h-[min(calc(100vh-5rem-env(safe-area-inset-bottom)),400px)] hx-inset-x-0 ltr:md:hx-left-auto rtl:md:hx-right-auto contrast-more:hx-border contrast-more:hx-border-gray-900 contrast-more:dark:hx-border-gray-50 hx-w-screen hx-min-h-[100px] hx-max-w-[min(calc(100vw-2rem),calc(100%+20rem))]"
+      style="transition: max-height 0.2s ease 0s;"
+    ></ul>
+  </div>
+</div>
+
+  </div>
+  <div class="hextra-scrollbar hx-overflow-y-auto hx-overflow-x-hidden hx-p-4 hx-grow md:hx-h-[calc(100vh-var(--navbar-height)-var(--menu-height))]">
+    <ul class="hx-flex hx-flex-col hx-gap-1 md:hx-hidden">
+      
+      
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/"
+    
+  >Docs
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/intro/"
+    
+  >Introduction
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a>
+              <div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/intro/basic_types/"
+    
+  >Basic Types
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a>
+              <div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/intro/basic_types/arithmetic/"
+    
+  >Arithmetic
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/intro/basic_types/strings/"
+    
+  >Strings
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/intro/basic_types/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/intro/basic_types/booleans/"
+    
+  >Booleans
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/intro/basic_types/records/"
+    
+  >Records
+    </a>
+              
+            </li></ul>
+      </div>
+            </li></ul>
+      </div>
+            </li></ul>
+      </div></li>
+    </ul>
+
+    <div class="max-xl:hx-hidden hx-h-0 hx-w-64 hx-shrink-0"></div></div>
+  
+  
+    <div class="md:hx-hidden  hx-sticky hx-bottom-0 hx-bg-white dark:hx-bg-dark hx-mx-4 hx-py-4 hx-shadow-[0_-12px_16px_#fff] hx-flex hx-items-center hx-gap-2 dark:hx-border-neutral-800 dark:hx-shadow-[0_-12px_16px_#111] contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-shadow-none hx-border-t" data-toggle-animation="show"><div class="hx-flex hx-grow hx-flex-col"><button
+  title="Change theme"
+  data-theme="light"
+  class="theme-toggle hx-group hx-h-7 hx-rounded-md hx-px-2 hx-text-left hx-text-xs hx-font-medium hx-text-gray-600 hx-transition-colors dark:hx-text-gray-400 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50"
+  type="button"
+  aria-label="Change theme"
+>
+  <div class="hx-flex hx-items-center hx-gap-2 hx-capitalize"><svg height=12 class="group-data-[theme=light]:hx-hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><span class="group-data-[theme=light]:hx-hidden">Light</span><svg height=12 class="group-data-[theme=dark]:hx-hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span class="group-data-[theme=dark]:hx-hidden">Dark</span></div>
+</button>
+</div></div></aside>
+    
+<nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
+    <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4"><p class="hx-mb-4 hx-font-semibold hx-tracking-tight">On this page</p><ul>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#simplicity-is-a-feature">Simplicity is a feature
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#concerned-with-concurrency">Concerned with concurrency
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#immutable-always">Immutable always
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#designed-for-performance">Designed for performance
+        </a>
+      </li></ul>
+      <div class="hx-mt-8 hx-border-t hx-bg-white hx-pt-8 hx-shadow-[0_-12px_16px_white] dark:hx-bg-dark dark:hx-shadow-[0_-12px_16px_#111] hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400">
+        <button aria-hidden="true" id="backToTop" onClick="scrollUp();" class="hx-transition-all hx-duration-75 hx-opacity-0 hx-text-xs hx-font-medium hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-100 contrast-more:hx-text-gray-800 contrast-more:dark:hx-text-gray-50">
+          <span>Scroll to top</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hx-inline ltr:hx-ml-1 rtl:hx-mr-1 hx-h-3.5 hx-w-3.5 hx-border hx-rounded-full hx-border-gray-500 hover:hx-border-gray-900 dark:hx-border-gray-400 dark:hover:hx-border-gray-100 contrast-more:hx-border-gray-800 contrast-more:dark:hx-border-gray-50">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+
+    <article class="hx-w-full hx-break-words hx-flex hx-min-h-[calc(100vh-var(--navbar-height))] hx-min-w-0 hx-justify-center hx-pb-8 hx-pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main class="hx-w-full hx-min-w-0 hx-max-w-6xl hx-px-6 hx-pt-4 md:hx-px-12">
+        <h1 class="hx-text-center hx-mt-2 hx-text-4xl hx-font-bold hx-tracking-tight hx-text-slate-900 dark:hx-text-slate-100">Gab</h1>
+        <div class="content">
+          <blockquote>
+  <p>gab [intransitive verb]</p>
+<p>to talk in a rapid or thoughtless manner, ie: chatter</p>
+<p>&ndash; Merriam Webster</p>
+</blockquote>
+<h4>Simplicity is a feature<span class="hx-absolute -hx-mt-20" id="simplicity-is-a-feature"></span>
+    <a href="#simplicity-is-a-feature" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>The syntax of the language is minimal <em>by design</em> - it can be learned within an hour.
+This is entirely driven by the fact that there is only one mechanism for control flow: <em>sending messages</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>welcome_message = <span style='color: #f8f8f0'>[</span><span style='color: #a6e22e'>&#39;Hello&#39;</span>, <span style='color: #a6e22e'>&#39; &#39;</span>,  <span style='color: #a6e22e'>&#39;world!&#39;</span><span style='color: #f8f8f0'>]</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>welcome_message<span style='font-weight: bold;color: #66d9ef'>.join</span><span style='font-weight: bold;color: #66d9ef'>.println</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; Hello world!</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><p>Say goodbye to <code>if</code>, <code>for</code>, and <code>while</code>! ( we promise you won&rsquo;t miss them )</p>
+<h4>Concerned with concurrency<span class="hx-absolute -hx-mt-20" id="concerned-with-concurrency"></span>
+    <a href="#concerned-with-concurrency" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>Gab&rsquo;s custom runtime environment supports hundreds of thousands of concurrent fibers. Fibers communicate with each other throuch channels -
+another core datatype to the language. Unlike Go and other implementations of CSP, Gab channels are <em>always unbuffered</em>. They serve as a synchronization point
+for fibers, as well as a way to pass around data. Which, by the way, is done with <strong>zero copying</strong> in Gab.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>print_chan = Channels<span style='font-weight: bold;color: #66d9ef'>.make</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>Ranges<span style='font-weight: bold;color: #66d9ef'>.make</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>0</span>, <span style='font-weight: bold;color: #e6db74'>10000</span><span style='color: #f8f8f0'>)</span><span style='font-weight: bold;color: #66d9ef'>.each</span> i =&gt; <span style='color: #f92672'>do</span></span></span>
+<span sytle="display:flex"><span>    Fibers<span style='font-weight: bold;color: #66d9ef'>.make</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
+<span sytle="display:flex"><span>        print_chan <span style='font-weight: bold;color: #66d9ef'>&lt;!</span> <span style='color: #a6e22e'>&#39;Hello, from fiber $!&#39;</span><span style='font-weight: bold;color: #66d9ef'>.sprintf</span><span style='color: #f8f8f0'>(</span>i<span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span>    <span style='color: #f92672'>end</span></span></span>
+<span sytle="display:flex"><span><span style='color: #f92672'>end</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>print_chan<span style='font-weight: bold;color: #66d9ef'>.each</span> <span style='color: #ae81ff'>println:</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><h4>Immutable always<span class="hx-absolute -hx-mt-20" id="immutable-always"></span>
+    <a href="#immutable-always" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>All of Gab&rsquo;s data structures are immutable (Yes, even <code>gab\channel</code>). For a language focused on concurrency, immutability is the <em>only sensible option</em>.
+Gab&rsquo;s immutable record is implemented with a custom Hash-Array-BitMapped-Vector-Trie, heavily inspired by clojure&rsquo;s persistent vector. In truth, <code>gab\record</code> is the <em>only data structure</em> in the language.
+Traditional square-bracket <code>[]</code> lists use the same data structure (and <code>gab\shape</code> principle - more on that later).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>bob = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&#39;bob&#39;</span>, <span style='color: #ae81ff'>age:</span> <span style='font-weight: bold;color: #e6db74'>44</span> <span style='color: #f8f8f0'>}</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; { name: &#39;bob&#39; age: 44 }</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>alice = bob<span style='font-weight: bold;color: #66d9ef'>.put</span><span style='color: #f8f8f0'>(</span><span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&#39;alice&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; { name: &#39;alice&#39; age: 44 }</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>bob</span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; { name: &#39;bob&#39; age: 44 }</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><h4>Designed for performance<span class="hx-absolute -hx-mt-20" id="designed-for-performance"></span>
+    <a href="#designed-for-performance" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>Many of todays dynamic or interpreted languages made decisions early in their design which have left them difficult to make fast. This is a tradeoff - these choice make the languages more
+convenient, or maybe served a purpose that has become obsolete. Gab has constrained itself in order to make competetive performance easier to achieve.
+Said tradeoffs:</p>
+<ul>
+<li>No global variables.</li>
+<li>No implicit conversions.</li>
+<li><code>gab\channel</code> is always unbuffered.</li>
+<li>No control flow - other than sending messages.</li>
+<li>Only one data structure, <code>gab\record</code>.</li>
+</ul>
+<p>Gab&rsquo;s small surface area also plays a part here. Since Gab only has one mechanism for control flow (messages) and one data-structure (<code>gab\record</code>),  that leaves only two hot code-paths in cgab&rsquo;s implementation.
+All optimization efforts can focus on improving either message dispatch or record operations.</p>
+
         </div>
       </main>
-    </div>
-    <aside id="R-sidebar" class="default-animation">
-      <div id="R-header-topbar" class="default-animation"></div>
-      <div id="R-header-wrapper" class="default-animation">
-        <div id="R-header" class="default-animation">
-          <a id="R-logo" class="R-default" href="/index.html">
-            Gab
-          </a>
-        </div>
-        <script>
-          window.index_js_url="/searchindex.en.js?1740158844";
-        </script>
-        <search><form action="/search/index.html" method="get">
-          <div class="searchbox default-animation">
-            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
-            <label class="a11y-only" for="R-search-by">Search</label>
-            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
-            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
-          </div>
-        </form></search>
-        <script>
-          var contentLangs=['en'];
-        </script>
-        <script src="/js/auto-complete.js?1740158844" defer></script>
-        <script src="/js/lunr/lunr.min.js?1740158844" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1740158844" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1740158844" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1740158844" defer></script>
-        <script src="/js/search.js?1740158844" defer></script>
-      </div>
-      <div id="R-homelinks" class="default-animation homelinks">
-        <ul>
-          <li><a class="padding" href="/index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
-        </ul>
-        <hr class="padding">
-      </div>
-      <div id="R-content-wrapper" class="highlightable">
-        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
-          <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/intro/index.html"><a class="padding" href="/intro/index.html">Introduction</a><ul id="R-subsections-58f2a84c91d5deefe8bdd3a21213404a" class="collapsible-menu"></ul></li>
-          </ul>
-        </div>
+    </article>
+  </div>
+
+      <footer class="hextra-footer hx-bg-gray-100 hx-pb-[env(safe-area-inset-bottom)] dark:hx-bg-neutral-900 print:hx-bg-transparent"><div class="hx-mx-auto hx-flex hx-gap-2 hx-py-2 hx-px-4 hx-max-w-screen-xl"><button
+  title="Change theme"
+  data-theme="light"
+  class="theme-toggle hx-group hx-h-7 hx-rounded-md hx-px-2 hx-text-left hx-text-xs hx-font-medium hx-text-gray-600 hx-transition-colors dark:hx-text-gray-400 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50"
+  type="button"
+  aria-label="Change theme"
+>
+  <div class="hx-flex hx-items-center hx-gap-2 hx-capitalize"><svg height=12 class="group-data-[theme=light]:hx-hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><span class="group-data-[theme=light]:hx-hidden">Light</span><svg height=12 class="group-data-[theme=dark]:hx-hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span class="group-data-[theme=dark]:hx-hidden">Dark</span></div>
+</button>
+</div><hr class="dark:hx-border-neutral-800" /><div
+      class="hextra-custom-footer hx-max-w-screen-xl hx-pl-[max(env(safe-area-inset-left),1.5rem)] hx-pr-[max(env(safe-area-inset-right),1.5rem)] hx-text-gray-600 dark:hx-text-gray-400"
+    ></div><div
+        class="hx-max-w-screen-xl hx-mx-auto hx-flex hx-justify-center hx-py-12 hx-pl-[max(env(safe-area-inset-left),1.5rem)] hx-pr-[max(env(safe-area-inset-right),1.5rem)] hx-text-gray-600 dark:hx-text-gray-400 md:hx-justify-start"
+      >
+        <div class="hx-flex hx-w-full hx-flex-col hx-items-center sm:hx-items-start"><div class="hx-font-semibold"><a class="hx-flex hx-text-sm hx-items-center hx-gap-1 hx-text-current" target="_blank" rel="noopener noreferrer" title="Hextra GitHub Homepage" href="https://github.com/imfing/hextra">
+    <span>Powered by Hextra<svg height=1em class="hx-inline-block ltr:hx-ml-1 rtl:hx-mr-1 hx-align-[-2.5px]" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="m 105.50024,22.224647 c -9.59169,-5.537563 -21.40871,-5.537563 -31.000093,0 L 39.054693,42.689119 C 29.463353,48.226675 23.55484,58.460531 23.55484,69.535642 v 40.928918 c 0,11.07542 5.908513,21.3092 15.499853,26.84652 l 35.445453,20.46446 c 9.591313,5.53732 21.408404,5.53732 31.000094,0 l 35.44507,-20.46446 c 9.59131,-5.53732 15.49985,-15.7711 15.49985,-26.84652 V 69.535642 c 0,-11.075111 -5.90854,-21.308967 -15.49985,-26.846523 z M 34.112797,85.737639 c -1.384445,2.397827 -1.384445,5.352099 0,7.749927 l 24.781554,42.922974 c 1.38437,2.39783 3.942853,3.87496 6.711592,3.87496 h 49.563107 c 2.76905,0 5.3273,-1.47713 6.71144,-3.87496 l 24.78194,-42.922974 c 1.38414,-2.397828 1.38414,-5.3521 0,-7.749927 L 121.88049,42.814746 c -1.38414,-2.397828 -3.94239,-3.874964 -6.71144,-3.874964 H 65.605944 c -2.768739,0 -5.327223,1.477059 -6.711592,3.874964 z" style="stroke-width:0.774993" /></svg></span>
+  </a></div></div>
+      </div></footer>
     
-        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
-        <div id="R-menu-footer">
-          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
-          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
-            <ul>
-              <li id="R-select-language-container" class="footerLangSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-language"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-language">Language</label>
-                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
-                      <option id="R-select-language-en" value="#R-select-language-en" data-url="/index.html" lang="en-us" selected></option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-              <li id="R-select-variant-container" class="footerVariantSwitch">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-paint-brush"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <label class="a11y-only" for="R-select-variant">Theme</label>
-                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
-                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
-                    </select>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-                <script>window.relearn.markVariant();</script>
-              </li>
-              <li class="footerVisitedLinks">
-                <div class="padding menu-control">
-                  <i class="fa-fw fas fa-history"></i>
-                  <span>&nbsp;</span>
-                  <div class="control-style">
-                    <button onclick="clearHistory();">Clear History</button>
-                  </div>
-                  <div class="clear"></div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div id="R-footer" class="footerFooter showFooter">
-        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-          </div>
-        </div>
-      </div>
-    </aside>
-    <script src="/js/clipboard.min.js?1740158844" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1740158844" defer></script>
-    <script src="/js/theme.js?1740158844" defer></script>
+    <script defer src="/js/main.min.0942239592f0795dc7213dd1057fd229d7edc19c0ef1a285396eb292d9ca9842.js" integrity="sha256-CUIjlZLweV3HIT3RBX/SKdftwZwO8aKFOW6yktnKmEI="></script>
+<script defer src="/lib/flexsearch/flexsearch.bundle.min.0425860527cc9968f9f049421c7a56b39327d475e2e3a8f550416be3a9134327.js" integrity="sha256-BCWGBSfMmWj58ElCHHpWs5Mn1HXi46j1UEFr46kTQyc="></script>
+    <script defer src="/en.search.min.0b444174a2d66936193755eccfb66af827ce3d9e3aa2223167ea9490ce97ace4.js" integrity="sha256-C0RBdKLWaTYZN1Xsz7Zq&#43;CfOPZ46oiIxZ&#43;qUkM6XrOQ="></script>
+
   </body>
 </html>

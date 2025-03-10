@@ -1,4 +1,28 @@
-
 languageCode = 'en-us'
 title = 'Gab'
-theme = 'hugo-theme-relearn'
+theme = 'hextra'
+
+[[menu.main]]
+name = "Documentation"
+pageRef = "/docs"
+weight = 1
+
+[[menu.main]]
+name = "Blog"
+pageRef = "/blog"
+weight = 2
+
+[[menu.main]]
+name = "Search"
+weight = 3
+
+  [menu.main.params]
+  type = "search"
+
+[[menu.main]]
+name = "GitHub"
+weight = 4
+url = "https://github.com/gab-language/cgab"
+
+  [menu.main.params]
+  icon = "github"

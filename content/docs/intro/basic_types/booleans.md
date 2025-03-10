@@ -1,7 +1,7 @@
 +++
 date = '2025-02-07T16:06:29-05:00'
 title = 'Booleans'
-weight = 2
+weight = 4
 +++
 Booleans are implemented with messages - they are not built-in keywords like in other languages!
 ```gab
@@ -34,7 +34,7 @@ truthy_values .defmodule! {
 }
 
 falsey_values .defmodule! {
-    and: _ => self
+  and: _ => self
   or: (alt[]) => alt**
 
   then: _ => self
@@ -57,3 +57,5 @@ false: .else () => do
     # Do something in the falsey case
 end
 ```
+This is is the part of Gab that some may find to be most inconvenient.
+However, I find that it encourages writing smaller functions and more modular code, as nesting lots of scopes and conditionals is impossible.

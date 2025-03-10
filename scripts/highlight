@@ -3,4 +3,4 @@
 tree-sitter highlight \
   --scope source.gab -H /dev/stdin | sed -z '
 s/.*<table>\n\(.*\)\n<\/table>.*/\1/
-s/<tr><td class=line-number>[0-9]\+<\/td><td class=line>\([^\n]*\)\n<\/td><\/tr>/\1/g'
+s/<tr><td class=line-number>[0-9]\+<\/td><td class=line>\([^\n]*\)\n<\/td><\/tr>/<span sytle="display:flex"><span>\1<\/span><\/span>/g'

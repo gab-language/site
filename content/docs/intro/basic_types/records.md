@@ -1,7 +1,7 @@
 +++
 date = '2025-02-07T16:07:28-05:00'
 title = 'Records'
-weight = 2
+weight = 5
 +++
 Records are collections of key-value pairs. They are ordered and structurally typed.
 ### Dictionaries

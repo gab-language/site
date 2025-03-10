@@ -1,47 +1,333 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Basic Types :: Gab</title>
-    <link>/intro/basic_types/index.html</link>
-    <description>In this chapter, we will learn more about Gab’s basic types. It will build the foundation of how to think and program in Gab.&#xA;Numbers Numbers are represented by IEEE 64-bit floating point values. There is no distinct integer type.&#xA;1 0.2 ? # =&gt; gab\number Note: ? is the operator for getting the type of a value.&#xA;Strings Strings are just a sequence of bytes.&#xA;&#34;gab&#34; &#34;what type am I?&#34; ? # =&gt; gab\string Records Records are both dictionaries and lists.</description>
-    <generator>Hugo</generator>
+    <title>Gab – Basic Types</title>
+    <link>/intro/basic_types/</link>
+    <description>Recent content in Basic Types on Gab</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Feb 2025 18:33:11 -0500</lastBuildDate>
-    <atom:link href="/intro/basic_types/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Messages</title>
-      <link>/intro/basic_types/messages/index.html</link>
-      <pubDate>Fri, 07 Feb 2025 18:33:11 -0500</pubDate>
-      <guid>/intro/basic_types/messages/index.html</guid>
-      <description>Message Sends The only way to do anything is by sending a message to a value.&#xA;&#34;Hello world!&#34; .println # =&gt; Hello world! Earlier we saw message literals, which look like this:&#xA;println: Now we’ve seen a message send, which is like calling a method or function:&#xA;any_value .println Message literals can also respond to messages!&#xA;my_message: .println # =&gt; my_message: In fact, this is how new messages are defined in Gab!</description>
-    </item>
-    <item>
-      <title>Records</title>
-      <link>/intro/basic_types/records/index.html</link>
-      <pubDate>Fri, 07 Feb 2025 16:07:28 -0500</pubDate>
-      <guid>/intro/basic_types/records/index.html</guid>
-      <description>Records are collections of key-value pairs. They are ordered and structurally typed.&#xA;Dictionaries Between the curly brackets {}, expressions are expected in key-value pairs. Any expression is allowed as a key or value.&#xA;a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10) Records, like all values in Gab, are immutable. This means that setting values in records returns a new record.</description>
-    </item>
-    <item>
-      <title>Strings</title>
-      <link>/intro/basic_types/strings/index.html</link>
-      <pubDate>Fri, 07 Feb 2025 16:06:50 -0500</pubDate>
-      <guid>/intro/basic_types/strings/index.html</guid>
-      <description>This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they share data in memory. The string &#34;true&#34; and the message \true all the share same four bytes of memory: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation.</description>
-    </item>
-    <item>
-      <title>Booleans</title>
-      <link>/intro/basic_types/booleans/index.html</link>
-      <pubDate>Fri, 07 Feb 2025 16:06:29 -0500</pubDate>
-      <guid>/intro/basic_types/booleans/index.html</guid>
-      <description>Booleans are implemented with messages - they are not built-in keywords like in other languages!&#xA;true: false: There is no if in gab. Typically, a defcase is used instead:&#xA;my_message: .defcase! { true: (args) =&gt; do # Do something with args in the truthy case end false: (args) =&gt; do # Do something with args in the falsey case end } some_condition .my_message args For simple use cases, there are messages and:, or:, then: and else: defined in the core library.</description>
-    </item>
+    <lastBuildDate>Fri, 07 Feb 2025 12:49:57 -0500</lastBuildDate>
+    
+	  <atom:link href="/intro/basic_types/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
     <item>
       <title>Arithmetic</title>
-      <link>/intro/basic_types/arithmetic/index.html</link>
+      <link>/intro/basic_types/arithmetic/</link>
       <pubDate>Fri, 07 Feb 2025 13:01:01 -0500</pubDate>
-      <guid>/intro/basic_types/arithmetic/index.html</guid>
-      <description>1 / 3</description>
+      
+      <guid>/intro/basic_types/arithmetic/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Lots of dynamic scripting languages make the distinction between integers and floats. Python can even upgrade numbers to the heap when they would otherwise overflow their size.
+Gab keeps it simple - numbers are just 64-bit floats. It is possible that in the future a distinct integer type will be added.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+1 / 3
+# =&gt; 0.33333
+
+2 * 2 
+# =&gt; 4
+&lt;/code&gt;&lt;/pre&gt;
+
+      </description>
     </item>
+    
+    <item>
+      <title>Strings</title>
+      <link>/intro/basic_types/strings/</link>
+      <pubDate>Fri, 07 Feb 2025 16:06:50 -0500</pubDate>
+      
+      <guid>/intro/basic_types/strings/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they &lt;strong&gt;share data in memory&lt;/strong&gt;.
+The string &lt;code&gt;&amp;quot;true&amp;quot;&lt;/code&gt; and the message &lt;code&gt;true:&lt;/code&gt; all the share same four bytes of memory: &lt;code&gt;[ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]&lt;/code&gt;.
+They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that
+converting these types into each other (eg: &lt;code&gt;&#39;true&#39;.messages\into&lt;/code&gt;) is a constant-time operation. There is no copying, nor memory allocation.&lt;/p&gt;
+&lt;h2&gt;Strings&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;strings&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#strings&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Strings are sequences of UTF8-encoded bytes. Single-quoted strings support some escape sequences, including unicode.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+&#34;Hello!&#34;
+&#34;\tHello\n&#34;
+&#34;Hello \u[2502]&#34;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;gab\string&lt;/code&gt; type responds to messages respecting its UTF-8 Encoding. This means that some operations actually take linear time, when you may expect them to be constant time. For example,
+slicing a UTF-8 string at a given index requires processing the string linearly - as UTF8 is a multi-byte character encoding and codepoints may be anywhere from one to four bytes long.
+On the other hand, the &lt;code&gt;gab\binary&lt;/code&gt; type is trivially convertible from &lt;code&gt;gab\string&lt;/code&gt;, and respects bytes directly, without enforcing or respecting &lt;em&gt;any&lt;/em&gt; encoding. Becaues of this, converting from a &lt;code&gt;gab\binary&lt;/code&gt; to a &lt;code&gt;gab\string&lt;/code&gt; can fail if the binary is not valid UTF-8.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+smiley = &#39;😀&#39;
+
+smiley.len
+# =&gt; 1
+
+smiley_bin = smiley.binaries\into
+# =&gt; &lt;gab\binary ...&gt;
+
+smiley_bin.len
+# =&gt; 4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There is no syntax for string interpolation, but it is easy to construct strings out of other values using &lt;code&gt;make:&lt;/code&gt;.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+full_name = Strings.make(&#34;Ada&#34; &#34; &#34; last_name)
+
+# The fmt package also supplies the sprintf: message
+&#39;Format a value: $&#39;.sprintf({ name: &#39;bob&#39; })
+# =&gt; &#39;Format a value: { name: bob }&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Binaries&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;binaries&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#binaries&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;As mentioned above, the &lt;code&gt;gab\binary&lt;/code&gt; allows for operating on bytes directly - there is no encoding enforced. This means indexing/slicing operations are constant time.
+There is no syntax for constructing binary literals, but other types can be converted into binaries.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+&#34;This is a string&#34; .slice(3 8) # Requires linearly scanning from the front of the string
+&#34;This will be a binary&#34; .binaries\into .slice (3 8) # slices from the 3rd to 8th byte in constant time
+Binaries.make(&#39;This is also makes a binary&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Messages</title>
+      <link>/intro/basic_types/messages/</link>
+      <pubDate>Fri, 07 Feb 2025 18:33:11 -0500</pubDate>
+      
+      <guid>/intro/basic_types/messages/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Message are the &lt;em&gt;bread and butter&lt;/em&gt; of Gab. They serve many purposes, provide control flow, as well as serving as Gab&amp;rsquo;s mechanism for &lt;strong&gt;polymorphism&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3&gt;Message Sends&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;message-sends&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#message-sends&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The only way to &lt;em&gt;do&lt;/em&gt; anything is by &lt;em&gt;sending a message to a value&lt;/em&gt;.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+&#34;Hello world!&#34; .println # =&gt; Hello world!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Earlier we saw message literals, which look like this:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+println:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we&amp;rsquo;ve seen a message &lt;em&gt;send&lt;/em&gt;, which is like calling a method or function:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+any_value .println
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Message literals can also respond to messages!&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+my_message: .println # =&gt; my_message:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In fact, this is how new messages are defined in Gab!&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+my_message:.def!(
+    myType,
+    () =&gt; do
+        self.name.println
+    end)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Messages &lt;em&gt;themselves&lt;/em&gt; respond to the &lt;code&gt;def!:&lt;/code&gt; message by adding a new implementation for the given type(s).
+There are several other messages for defining new implementations, which gab refers to as &lt;strong&gt;specializations&lt;/strong&gt;.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+# Define multiple specializations for one message, conveniently
+my_message: .defcase! {
+    nil:  () =&gt; &#34;I was nil!&#34;
+    true: () =&gt; &#34;I was true!&#34;
+    none: &#34;I was none!&#34; # Values alone can also serve as a specialization.
+}
+
+# Define the same specializations for multiple types, conveniently
+[ myType ] .defmodule! {
+    message_one: () =&gt; &#34;Sending message one&#34;
+    message_two: () =&gt; &#34;Sending message two&#34;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Message Values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;message-values&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#message-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;We&amp;rsquo;ve seen message values before, they are identifiers that end in a colon&lt;code&gt;:&lt;/code&gt;.
+They&amp;rsquo;re useful for singleton values - and in fact, Gab implements booleans and nil using messages. More on this in later chapters!
+Gab also uses message values to implement results or optionals.
+Since Gab has multiple return values, sends that can error often return multiple values like this:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+# This call may fail, if Gab can&#39;t open the file
+(ok file) = Io.open(&#39;Maybe_Exists.txt&#39;)
+
+(ok file) # =&gt; If the file exists  (ok: &lt;gab\io\stream ...&gt;)
+         # =&gt; If the file doesn&#39;t (err: &#34;File not found&#34;)
+
+# This line will crash - the record doesn&#39;t respond to age:
+age = { name: &#39;bob&#39; } .age
+
+(ok age) = { name: &#39;bob&#39; }.at(age:)
+# Now instead we will either see:
+# =&gt; (ok: 44)
+# =&gt; (none: nil:)
+&lt;/code&gt;&lt;/pre&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Booleans</title>
+      <link>/intro/basic_types/booleans/</link>
+      <pubDate>Fri, 07 Feb 2025 16:06:29 -0500</pubDate>
+      
+      <guid>/intro/basic_types/booleans/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Booleans are implemented with messages - they are not built-in keywords like in other languages!&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+true:
+false:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There is no &lt;code&gt;if&lt;/code&gt; in gab. Typically, a &lt;code&gt;defcase&lt;/code&gt; is used instead:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+my_message: .defcase! {
+    true: (args) =&gt; do
+        # Do something with args in the truthy case
+    end
+    false: (args) =&gt; do
+        # Do something with args in the falsey case
+    end
+}
+
+some_condition .my_message args
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For simple use cases, there are messages &lt;code&gt;and:&lt;/code&gt;, &lt;code&gt;or:&lt;/code&gt;, &lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt; defined in the core library.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+# Lifted from gab&#39;s core library.
+
+truthy_values .defmodule! {
+  and: (alt[]) =&gt; alt**
+  or: _ =&gt; self
+
+  then: f =&gt; f. self
+  else: _ =&gt; self
+}
+
+falsey_values .defmodule! {
+  and: _ =&gt; self
+  or: (alt[]) =&gt; alt**
+
+  then: _ =&gt; self
+  else: f =&gt; f. self
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;and:&lt;/code&gt; and &lt;code&gt;or:&lt;/code&gt; messages do what you expect for the most part, except they &lt;em&gt;don&amp;rsquo;t short circuit&lt;/em&gt;. This means the value on the right is &lt;em&gt;always evaluated&lt;/em&gt;.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+true: .and 2  # 2
+false: .and 2 # .false
+false: .or 2  # 2
+true: .or 2   # .true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt; messages &lt;strong&gt;do&lt;/strong&gt; short circuit, by accepting &lt;em&gt;blocks&lt;/em&gt; instead of values.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+true: .then () =&gt; do
+    # Do something in the truthy case
+end
+false: .else () =&gt; do
+    # Do something in the falsey case
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is is the part of Gab that some may find to be most inconvenient.
+However, I find that it encourages writing smaller functions and more modular code, as nesting lots of scopes and conditionals is impossible.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Records</title>
+      <link>/intro/basic_types/records/</link>
+      <pubDate>Fri, 07 Feb 2025 16:07:28 -0500</pubDate>
+      
+      <guid>/intro/basic_types/records/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Records are collections of key-value pairs. They are ordered and structurally typed.&lt;/p&gt;
+&lt;h3&gt;Dictionaries&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;dictionaries&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#dictionaries&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Between the curly brackets &lt;code&gt;{}&lt;/code&gt;, expressions are expected in key-value pairs.
+Any expression is allowed as a key or value.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+a_record = { key: &#39;value&#39; }
+
+a_record .key                    # =&gt; &#39;value&#39;
+
+another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } 
+
+another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Records, like all values in Gab, are &lt;strong&gt;immutable&lt;/strong&gt;. This means that setting values in records returns a &lt;em&gt;new record&lt;/em&gt;.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+a_record = { key: &#39;value&#39; }
+
+a_record = a_record .key &#39;another value&#39;   # =&gt; When an argument is provided, this message serves as a &#39;set&#39; instead of a &#39;get&#39;.
+
+a_record                                   # =&gt; { key:  &#39;another value&#39; }
+
+a_record = a_record .put (key: &#39;something else&#39;)
+
+a_record                                   # =&gt; { key: &#39;something else&#39; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Lists&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;lists&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#lists&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Lists are constructed with the square brackets &lt;code&gt;[]&lt;/code&gt;, and any number of expressions are allowed inside.
+Lists are a special kind of record - one in which all they keys are ascending integers, starting from 0.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+a_list = [1 2 3] 
+
+a_list # =&gt; [1, 2, 3]
+
+a_list = { 0 1, 1 2, 2 3 }
+
+a_list # =&gt; [1, 2, 3]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Records&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;records&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#records&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Both &lt;strong&gt;Dictionaries&lt;/strong&gt; and &lt;strong&gt;Lists&lt;/strong&gt; use the same underlying datastructure, &lt;code&gt;gab\record&lt;/code&gt;. In order to make these immutable data structures fast, records are implemented with a &lt;strong&gt;bit partitioned vector trie&lt;/strong&gt;.
+Gab&amp;rsquo;s implementation is very much inspired by clojure&amp;rsquo;s immutable vectors.
+Records are able to &lt;em&gt;share memory&lt;/em&gt; under the hood, to avoid copying large of data for a single key-value mutation. This is called structural sharing,
+and is a common optimization in immutable data structures.&lt;/p&gt;
+&lt;p&gt;As seen above, &lt;code&gt;gab\record&lt;/code&gt; implements some useful messages &lt;code&gt;put:&lt;/code&gt; and &lt;code&gt;at:&lt;/code&gt;.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+some_record .at key: # =&gt; (ok:, &#39;value&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Shapes&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;shapes&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#shapes&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;All records have an underlying shape. They determine the available keys, and their order - think of them as an implicit class.
+Records with the same keys in the same order &lt;em&gt;share the same shape&lt;/em&gt;.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+some_record = { x: 1 y: 2 }
+
+shape_x_y = some_record ? # =&gt; &lt;gab.shape x: y:&gt;
+
+({ x: 2 y: 3 } ?) == shape_x_y # =&gt; true:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Shapes are useful for defining methods. When resolving which specialization to use for a given value, Gab checks in the following order:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the value has a &lt;strong&gt;super type&lt;/strong&gt;, and it has an available specialization, use it.&lt;/li&gt;
+&lt;li&gt;If available, use the &lt;strong&gt;type&amp;rsquo;s&lt;/strong&gt; specialization.&lt;/li&gt;
+&lt;li&gt;If available, use the &lt;strong&gt;property&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;If available, use the &lt;strong&gt;general&lt;/strong&gt; specialization.&lt;/li&gt;
+&lt;li&gt;No specialization found.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example: &lt;code&gt;{ x: 1 }&lt;/code&gt; has a &lt;strong&gt;super type&lt;/strong&gt; of &lt;code&gt;&amp;lt;gab\shape x:&amp;gt;&lt;/code&gt;, and a &lt;strong&gt;type&lt;/strong&gt; of &lt;code&gt;gab\record&lt;/code&gt;.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+# Define the message y: in the general case.
+y: .def! &#39;general case&#39;
+
+# Define the message z: in the case of &lt;gab.shape x:&gt;
+z: .def! (
+    Shapes.make x:,
+    &#39;shape case&#39;)
+
+{ x: 1 } .x # =&gt; 2
+
+{ x: 1 } .y # =&gt; &#39;general case&#39;
+
+{ x: 1 } .z # =&gt; &#39;shape case&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+      </description>
+    </item>
+    
   </channel>
 </rss>

@@ -12,10 +12,10 @@ inCode == 0 && $0 !~ /^<!--gab/ {
 $0 == "</code></pre>" {
   # End of a code block
   if (inCode == 1) {
-    printf "%s", "<pre><code>" >> outfile;
+    printf "%s", "<div class=\"highlight\"><pre tabindex=\"0\" style=\"color:#f8f8f2;background-color:#272822;padding-left:2rem;\">" >> outfile;
     print code | (highlightCmd " >> " outfile);
     close(highlightCmd " >> " outfile);
-    printf "%s", "</code></pre>" >> outfile;
+    printf "%s", "</pre></div>" >> outfile;
 
     inCode = 0;
     code = "";
