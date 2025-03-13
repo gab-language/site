@@ -81,7 +81,7 @@ The calls to `doreduce:` in `reduce:` and `doreduce:` itself are *tail calls*.
 >
 > -- ChatGPT
 
-In this context, cgab is able to optimize the calls to a special `MATCH_TAIL_SEND` op code.
+In this context, cgab is able to optimize the calls to a special `MATCH_TAIL_SEND` op code. This op-code specializes the send as a pseudo-jumptable, allowing deep recursion and fast dispatch.
 
 #### A note on traditional recursion
 In functional languages which rely on recursion (such as Elixir, for example) it is

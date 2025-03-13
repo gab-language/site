@@ -26,7 +26,7 @@ Investigation: reduce To investigate this further, lets look at Gab’s implemen
 function reduce(array, f, initial) { // Setup our mutating accumulator variable let acc = initial // Iterator our array for each index for (let i = 0; i &lt; array.length; i&#43;&#43;) { // Apply f to accumulator with current value acc = f(acc, array[initial]) } return acc } sum = reduce([1 2 3 4], (acc, curr) =&gt; acc &#43; cur, 0) console.log(sum) // =&gt; 10 To recreate this in gab:">
   <meta itemprop="datePublished" content="2025-03-10T12:13:08-04:00">
   <meta itemprop="dateModified" content="2025-03-10T12:13:08-04:00">
-  <meta itemprop="wordCount" content="675">
+  <meta itemprop="wordCount" content="689">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Recursion">
   <meta name="twitter:description" content="Gab does not provide form of loop construct. Instead, we use recursion and to perform the same work and rely on the cgab runtime to make it fast.
@@ -457,7 +457,7 @@ a standard <code>reduce</code> function. In JS, it may look like this:</p>
   <p>In computer science, a tail call is a special type of function call that occurs as the last operation in a function before it returns a result. Specifically, when a function calls another function as its final action (and does not need to perform any further work after that call), the call is considered a tail call.</p>
 <p>&ndash; ChatGPT</p>
 </blockquote>
-<p>In this context, cgab is able to optimize the calls to a special <code>MATCH_TAIL_SEND</code> op code.</p>
+<p>In this context, cgab is able to optimize the calls to a special <code>MATCH_TAIL_SEND</code> op code. This op-code specializes the send as a pseudo-jumptable, allowing deep recursion and fast dispatch.</p>
 <h4>A note on traditional recursion<span class="hx-absolute -hx-mt-20" id="a-note-on-traditional-recursion"></span>
     <a href="#a-note-on-traditional-recursion" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><p>In functional languages which rely on recursion (such as Elixir, for example) it is
 common to implement recursive algorithms such as this by operating on the head of the list
