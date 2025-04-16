@@ -32,7 +32,7 @@ To recreate this in gab:
 # Our initial setup.
 # Recursion often involves a light
 # wrapper-function which initializes some state.
-reduce: .def! (
+reduce: .def (
     Records.t,
     (f, initial) => do
         # Begin iterating at 0th index
@@ -40,11 +40,11 @@ reduce: .def! (
         # Dispatch to doreduce: depending on whether or not
         # we had 'i'
         self
-            .has? i
+            .has i
             .doreduce(self, i, f, initial)
     end)
 
-doreduce: .defcase! {
+doreduce: .defcase {
 # If we had 'i', we:
 #  - get the current value
 #  - apply current value to accumulator via 'f'
@@ -52,12 +52,12 @@ doreduce: .defcase! {
 #  - Dispatch to doreduce: depending on whether or not
 #     we had 'next'
     true: (record, i, f, acc) => do
-       curr = record.at! i
+       curr = record.at i
        acc  = f.(acc, curr)
        next = i + 1
 
        record
-        .has? next
+        .has next
         .doreduce(record, next, f, acc)
     end
 

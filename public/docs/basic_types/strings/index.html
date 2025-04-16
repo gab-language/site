@@ -11,12 +11,12 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
 <title>Strings – Gab</title>
-  <meta name="description" content="This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they share data in memory. The string &#34;true&#34; and the message true: all the share same four bytes of memory: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation." /><link rel="canonical" href="/docs/basic_types/strings/" itemprop="url" />
+  <meta name="description" content="This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they share data in memory. The string &#34;true&#34; and the message true: each share the same four bytes of memory in the heap: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. The values differentiate their type by tagging themeselves slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation." /><link rel="canonical" href="/docs/basic_types/strings/" itemprop="url" />
 
 <meta property="og:title" content="Strings" />
-<meta property="og:description" content="This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they share data in memory.
-The string &quot;true&quot; and the message true: all the share same four bytes of memory: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ].
-They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that
+<meta property="og:description" content="This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they share data in memory.
+The string &quot;true&quot; and the message true: each share the same four bytes of memory in the heap: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ].
+The values differentiate their type by tagging themeselves slightly differently - but this is an implementation detail. The important note to take from this is that
 converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/basic_types/strings/" /><meta property="article:section" content="docs" />
@@ -24,13 +24,13 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
 <meta property="article:modified_time" content="2025-02-07T16:06:50-05:00" />
 
   <meta itemprop="name" content="Strings">
-  <meta itemprop="description" content="This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they share data in memory. The string &#34;true&#34; and the message true: all the share same four bytes of memory: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation.">
+  <meta itemprop="description" content="This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they share data in memory. The string &#34;true&#34; and the message true: each share the same four bytes of memory in the heap: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. The values differentiate their type by tagging themeselves slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation.">
   <meta itemprop="datePublished" content="2025-02-07T16:06:50-05:00">
   <meta itemprop="dateModified" content="2025-02-07T16:06:50-05:00">
-  <meta itemprop="wordCount" content="362">
+  <meta itemprop="wordCount" content="344">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Strings">
-  <meta name="twitter:description" content="This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they share data in memory. The string &#34;true&#34; and the message true: all the share same four bytes of memory: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation.">
+  <meta name="twitter:description" content="This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they share data in memory. The string &#34;true&#34; and the message true: each share the same four bytes of memory in the heap: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. The values differentiate their type by tagging themeselves slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation.">
 
     <link rel="preload" href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" as="style" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
     <link href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" rel="stylesheet" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
@@ -153,6 +153,24 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
     <ul class="hx-flex hx-flex-col hx-gap-1 md:hx-hidden">
       
       
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/blog/"
+    
+  >Blog
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/blog/values/"
+    
+  >Value Representation
+    </a>
+              
+            </li></ul>
+      </div></li>
           <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
@@ -381,40 +399,41 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
 
         <div class="content">
           <h1>Strings</h1>
-          <p>This chapter will discuss the four basic string-ish types. It is meaningful to group these four types together because they <strong>share data in memory</strong>.
-The string <code>&quot;true&quot;</code> and the message <code>true:</code> all the share same four bytes of memory: <code>[ 't', 'r', 'u', 'e' ]</code>.
-They differentiate their type by tagging the values slightly differently - but this is an implementation detail. The important note to take from this is that
-converting these types into each other (eg: <code>'true'.messages\into</code>) is a constant-time operation. There is no copying, nor memory allocation.</p>
+          <p>This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they <strong>share data in memory</strong>.
+The string <code>&quot;true&quot;</code> and the message <code>true:</code> each share the same four bytes of memory in the heap: <code>[ 't', 'r', 'u', 'e' ]</code>.
+The values differentiate their type by tagging themeselves slightly differently - but this is an <a href="/blog/values" >implementation detail</a>. The important note to take from this is that
+converting these types into each other (eg: <code>'true'.messages\into</code>) is a constant-time operation. There is <strong>no copying, nor memory allocation</strong>.</p>
 <h2>Strings<span class="hx-absolute -hx-mt-20" id="strings"></span>
-    <a href="#strings" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Strings are sequences of UTF8-encoded bytes. Single-quoted strings support some escape sequences, including unicode.</p>
+    <a href="#strings" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Strings are sequences of UTF8-encoded bytes. Single-quoted strings support some escape sequences, while double-quoted strings do not.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;Hello!&quot;</span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;\tHello\n&quot;</span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;Hello \u[2502]&quot;</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>The <code>gab\string</code> type responds to messages respecting its UTF-8 Encoding. This means that some operations actually take linear time, when you may expect them to be constant time. For example,
-slicing a UTF-8 string at a given index requires processing the string linearly - as UTF8 is a multi-byte character encoding and codepoints may be anywhere from one to four bytes long.
-On the other hand, the <code>gab\binary</code> type is trivially convertible from <code>gab\string</code>, and respects bytes directly, without enforcing or respecting <em>any</em> encoding. Becaues of this, converting from a <code>gab\binary</code> to a <code>gab\string</code> can fail if the binary is not valid UTF-8.</p>
+<span sytle="display:flex"><span><span style='color: #a6e22e'>&#39;\tHello\n&#39;</span></span></span>
+<span sytle="display:flex"><span><span style='color: #a6e22e'>&#39;Hello \u[2502]&#39;</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><p>The <code>gab\string</code> type <em>respects</em> its UTF-8 Encoding. Operations that would be constant time fora <code>gab\binary</code> may actually be linear time for a <code>gab\string</code>. For example,
+slicing a UTF-8 string at a given index requires processing the string linearly. This is because UTF8 is a multi-byte character encoding and codepoints may be anywhere from one to four bytes long.</p>
+<p>On the other hand, the <code>gab\binary</code> type is trivially convertible from <code>gab\string</code>, and respects bytes directly, without enforcing or respecting <em>any</em> encoding. Becaues of this, converting from a <code>gab\binary</code> to a <code>gab\string</code> can fail if the binary is not valid UTF-8.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>smiley = <span style='color: #a6e22e'>&#39;😀&#39;</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span>smiley<span style='font-weight: bold;color: #66d9ef'>.len</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 1</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>smiley_bin = smiley<span style='font-weight: bold;color: #66d9ef'>.binaries\into</span></span></span>
+<span sytle="display:flex"><span>smiley_bin = smiley<span style='font-weight: bold;color: #66d9ef'>.to\b</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\binary ...&gt;</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span>smiley_bin<span style='font-weight: bold;color: #66d9ef'>.len</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>There is no syntax for string interpolation, but it is easy to construct strings out of other values using <code>make:</code>.</p>
+<span sytle="display:flex"><span></span></span></pre></div><p>There is no syntax for string interpolation, but it is easy to construct strings out of other values using <code>make:</code> or <code>sprintf:</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>full_name = Strings<span style='font-weight: bold;color: #66d9ef'>.make</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&quot;Ada&quot;</span> <span style='color: #a6e22e'>&quot; &quot;</span> last_name<span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># The fmt package also supplies the sprintf: message</span></span></span>
 <span sytle="display:flex"><span><span style='color: #a6e22e'>&#39;Format a value: $&#39;</span><span style='font-weight: bold;color: #66d9ef'>.sprintf</span><span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&#39;bob&#39;</span> <span style='color: #f8f8f0'>}</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &#39;Format a value: { name: bob }&#39;</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><h2>Binaries<span class="hx-absolute -hx-mt-20" id="binaries"></span>
-    <a href="#binaries" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>As mentioned above, the <code>gab\binary</code> allows for operating on bytes directly - there is no encoding enforced. This means indexing/slicing operations are constant time.
+    <a href="#binaries" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>As mentioned above, the <code>gab\binary</code> operates on bytes directly - there is no encoding enforced. This means indexing/slicing operations are constant-time.
 There is no syntax for constructing binary literals, but other types can be converted into binaries.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;This is a string&quot;</span> <span style='font-weight: bold;color: #66d9ef'>.slice</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>3</span> <span style='font-weight: bold;color: #e6db74'>8</span><span style='color: #f8f8f0'>)</span> <span style='font-style: italic;color: #8f908a'># Requires linearly scanning from the front of the string</span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;This will be a binary&quot;</span> <span style='font-weight: bold;color: #66d9ef'>.binaries\into</span> <span style='font-weight: bold;color: #66d9ef'>.slice</span> <span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>3</span> <span style='font-weight: bold;color: #e6db74'>8</span><span style='color: #f8f8f0'>)</span> <span style='font-style: italic;color: #8f908a'># slices from the 3rd to 8th byte in constant time</span></span></span>
-<span sytle="display:flex"><span>Binaries<span style='font-weight: bold;color: #66d9ef'>.make</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;This is also makes a binary&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Requires linearly scanning from the front of the string</span></span></span>
+<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;This is a string&quot;</span><span style='font-weight: bold;color: #66d9ef'>.slice</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>3</span> <span style='font-weight: bold;color: #e6db74'>8</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># slices from the 3rd to 8th byte in constant time</span></span></span>
+<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;This will be a binary&quot;</span><span style='font-weight: bold;color: #66d9ef'>.to\b</span><span style='font-weight: bold;color: #66d9ef'>.slice</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>3</span> <span style='font-weight: bold;color: #e6db74'>8</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div>
         </div>
         <div class="hx-mt-16"></div>

@@ -7,7 +7,9 @@ title = 'Docs'
 Welcome to Gab's documentation. Here, we'll take you on a tour of the language and its features.
 If we've done our job, reading through the [introduction](/docs/intro) should take less than an hour.
 
-### :dragon_face: Here be dragons 
+For more of a technical and in-depth exploration of `cgab` itself the official Gab compiler and runtime,
+check out my [blog](/blog).
+
 While the language is relatively stable, Gab's runtime and libraries are still under construction.
 Expect bugs and the occasional api change as things settle down. I wouldn't consider Gab production-ready just yet.
 Additionally, documentation and developer tooling is lacking. The language may be hard to use until these become more

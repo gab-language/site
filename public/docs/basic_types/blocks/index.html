@@ -11,17 +11,17 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
 <title>Blocks – Gab</title>
-  <meta name="description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover:
+  <meta name="description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.
 Multiple return values Blocks can return multiple values, similar to golang or lua. Here, open: returns two values. One signals the status of the operation, and another providing value or an error.
-IO.open(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The group of values passed to and return from a block is called a tuple. They can be unpacked like this:" /><link rel="canonical" href="/docs/basic_types/blocks/" itemprop="url" />
+IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The group of values passed to and return from a block is called a tuple. They can be unpacked like this:" /><link rel="canonical" href="/docs/basic_types/blocks/" itemprop="url" />
 
 <meta property="og:title" content="Blocks" />
-<meta property="og:description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover:
+<meta property="og:description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.
 Multiple return values
     Blocks can return multiple values, similar to golang or lua.
 Here, open: returns two values. One signals the status of the operation, and another providing value or an error.
 
-IO.open(&#39;my_data.csv&#39;)
+IO.file(&#39;my_data.csv&#39;)
 # =&gt; ok: 
 # =&gt; err: File does not exist
 
@@ -32,17 +32,17 @@ The group of values passed to and return from a block is called a tuple. They ca
 <meta property="article:modified_time" content="2025-03-10T10:06:10-04:00" />
 
   <meta itemprop="name" content="Blocks">
-  <meta itemprop="description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover:
+  <meta itemprop="description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.
 Multiple return values Blocks can return multiple values, similar to golang or lua. Here, open: returns two values. One signals the status of the operation, and another providing value or an error.
-IO.open(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The group of values passed to and return from a block is called a tuple. They can be unpacked like this:">
+IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The group of values passed to and return from a block is called a tuple. They can be unpacked like this:">
   <meta itemprop="datePublished" content="2025-03-10T10:06:10-04:00">
   <meta itemprop="dateModified" content="2025-03-10T10:06:10-04:00">
-  <meta itemprop="wordCount" content="325">
+  <meta itemprop="wordCount" content="349">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Blocks">
-  <meta name="twitter:description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover:
+  <meta name="twitter:description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.
 Multiple return values Blocks can return multiple values, similar to golang or lua. Here, open: returns two values. One signals the status of the operation, and another providing value or an error.
-IO.open(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The group of values passed to and return from a block is called a tuple. They can be unpacked like this:">
+IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The group of values passed to and return from a block is called a tuple. They can be unpacked like this:">
 
     <link rel="preload" href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" as="style" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
     <link href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" rel="stylesheet" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
@@ -165,6 +165,24 @@ IO.open(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
     <ul class="hx-flex hx-flex-col hx-gap-1 md:hx-hidden">
       
       
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/blog/"
+    
+  >Blog
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/blog/values/"
+    
+  >Value Representation
+    </a>
+              
+            </li></ul>
+      </div></li>
           <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
@@ -387,57 +405,55 @@ IO.open(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
 
         <div class="content">
           <h1>Blocks</h1>
-          <p>Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover:</p>
+          <p>Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.</p>
 <h3>Multiple return values<span class="hx-absolute -hx-mt-20" id="multiple-return-values"></span>
     <a href="#multiple-return-values" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Blocks can return multiple values, similar to golang or lua.
 Here, <code>open:</code> returns two values. One signals the status of the operation, and another providing value or an error.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>IO<span style='font-weight: bold;color: #66d9ef'>.open</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; ok: &lt;gab\box io\stream ...&gt;</span></span></span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>IO<span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; ok: &lt;gab\box io\file ...&gt;</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; err: File does not exist</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><p>The group of values <em>passed to</em> and <em>return from</em> a block is called a <strong>tuple</strong>. They can be unpacked like this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Unpack the tuple here with parentheses ().</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This is called &#39;destructuring&#39;</span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span>status, stream<span style='color: #f8f8f0'>)</span> = IO<span style='font-weight: bold;color: #66d9ef'>.open</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span>status, stream<span style='color: #f8f8f0'>)</span> = IO<span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>status<span style='font-weight: bold;color: #66d9ef'>.ok?</span><span style='font-weight: bold;color: #66d9ef'>.then</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
+<span sytle="display:flex"><span>status<span style='font-weight: bold;color: #66d9ef'>.ok</span><span style='font-weight: bold;color: #66d9ef'>.then</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
 <span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'># Do something with stream here.</span></span></span>
 <span sytle="display:flex"><span><span style='color: #f92672'>end</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Alternatively, we can unwrap our stream:</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This will crash if the first element in the tuple isn&#39;t ok:</span></span></span>
 <span sytle="display:flex"><span>stream = IO</span></span>
-<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.open</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.unwrap!</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.unwrap</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><p>Tuples are used heavily, and preferred to records wherever possible.
-While records allocate memory, tuples use the stack and require <em>zero</em> allocation.</p>
+While records allocate memory, tuples use the interpreter&rsquo;s stack and <strong>do not</strong> require allocation.</p>
 <h3>Tuples<span class="hx-absolute -hx-mt-20" id="tuples"></span>
     <a href="#tuples" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Now that we&rsquo;ve been introduced to tuples, there are a few rules about them to learn.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Messages are sent to the FIRST element of the tuple.</span></span></span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Messages are sent to the FIRST element of a tuple.</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Heres some funky syntax you *could* write:</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>1</span> <span style='font-weight: bold;color: #e6db74'>2</span><span style='color: #f8f8f0'>)</span> <span style='font-weight: bold;color: #66d9ef'>+</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 3</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>1</span> <span style='font-weight: bold;color: #e6db74'>2</span><span style='color: #f8f8f0'>)</span> <span style='font-weight: bold;color: #66d9ef'>+</span> <span style='font-weight: bold;color: #e6db74'>3</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Syntax error</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><p>When the left-hand side of a send is a tuple and the right-hand side is empty, Gab emits a send to the <strong>whole</strong> left-hand tuple.
-When the right-hand side is <strong>not</strong> empty, Gab will emit an error.</p>
-<p>This behavior means that you can forward the <strong>whole</strong> tuple returned by a block into another send, without any intermediate allocation.
-In fact, this is how <code>unwrap!:</code> is implemented!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>unwrap!:</span> <span style='font-weight: bold;color: #66d9ef'>.defcase!</span> <span style='color: #f8f8f0'>{</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'># If the receiver (first element of tuple) was ok:</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'>#   return the result</span></span></span>
-<span sytle="display:flex"><span>    <span style='color: #ae81ff'>ok:</span>  <span style='color: #f8f8f0'>(</span>result<span style='color: #f8f8f0'>)</span> =&gt; result</span></span>
-<span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'># If the receiver was err:</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'>#   panic!</span></span></span>
-<span sytle="display:flex"><span>    <span style='color: #ae81ff'>err:</span> <span style='color: #f8f8f0'>(</span>err<span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #a6e22e'>&#39;Unwrap Failed: $&#39;</span><span style='font-weight: bold;color: #66d9ef'>.sprintf</span><span style='color: #f8f8f0'>(</span>err<span style='color: #f8f8f0'>)</span><span style='font-weight: bold;color: #66d9ef'>.panic!</span></span></span>
+When the right-hand side is <strong>not</strong> empty, Gab will <em>trim</em> the left hand side to one value, and then send the message to that value with the right-hand tuple as arguments.</p>
+<p>This behavior means that you can forward <strong>entire</strong> tuples returned by blocks into new message sends, without any intermediate allocation.
+In fact, this is how <code>unwrap:</code> is implemented!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>unwrap:</span> <span style='font-weight: bold;color: #66d9ef'>.defcase</span> <span style='color: #f8f8f0'>{</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'># If the receiver (first element of tuple) was ok: then return the result</span></span></span>
+<span sytle="display:flex"><span>    <span style='color: #ae81ff'>ok:</span>  result =&gt; result</span></span>
+<span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'># If the receiver was err: then panic</span></span></span>
+<span sytle="display:flex"><span>    <span style='color: #ae81ff'>err:</span> err =&gt; <span style='color: #a6e22e'>&#39;Unwrap Failed: $&#39;</span><span style='font-weight: bold;color: #66d9ef'>.panicf</span> err</span></span>
 <span sytle="display:flex"><span><span style='color: #f8f8f0'>}</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># open: returns a tuple (ok: &lt;gab\box io\stream ...&gt;)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This tuple is forwarded to .unwrap!</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># file: returns a tuple (ok: &lt;gab\box io\stream ...&gt;)</span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This tuple is forwarded to .unwrap</span></span></span>
 <span sytle="display:flex"><span>stream = IO</span></span>
-<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.open</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.unwrap!</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.unwrap</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div>
         </div>
         <div class="hx-mt-16"></div>

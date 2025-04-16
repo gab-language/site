@@ -43,31 +43,27 @@ Shifting left or right by a number greater than the width of the integer is unde
 4 << 65
 ```
 A lot of dynamic languages implement this by just returning 0 - which makes sense when you think about a shift conceptually. This is what Gab does.
-Additionally, it is important to note that for these bitwise or integer operations, Gab uses 32-bit integers. This is because 64-bit integers are not completely
-representable with a 64-bit float. In order to guarantee lossless conversion between the number types, Gab limits integers to 32 bits.
+Additionally, it is important to note that for these bitwise or integer operations, Gab uses 52-bit integers. This is because 64-bit integers are not completely
+representable with a 64-bit float. In order to guarantee lossless conversion between the number types, Gab limits integers to 52 bits.
 ```gab
-4 >> 65
-# => 0
-4 >> 32
-# => 0
-4 << 65
-# => 0
-4 << 32
+1 << 52
+# => -4.5036e+15
+1 << 53
 # => 0
 ```
 Notably, Javascript diverges here:
 ```javascript
-4 >> 33
-// => 2
-4 << 33
-// => 8
+1 << 31
+// => -2147483648
+1 << 32
+// => 1
 
 // If it isn't clear whats happening here:
 const INT_WIDTH = 32
-4 >> (65 % INT_WIDTH)
-// => 2
-4 << (65 % INT_WIDTH)
-// => 8
+1 << (31 % INT_WIDTH)
+// => -2147483648
+1 << (32 % INT_WIDTH)
+// => 1
 ```
 This is the most nasty of the corner cases. Bit shfiting negative integers is confusing!
 ```gab
@@ -87,8 +83,8 @@ implementation defined or undefined behavior. Lua's bit shifting works like this
 -- -8
 ```
 This is because lua performs the shift operation on *unsigned integers*, so the `-4` wraps around
-(due to udnerflow) into a really large number, which is then bitshifted to the right by one, and *then*
-converted back into a signed integer. This avoids the icky behavior of shifting signed integers in c, but does
+(due to underflow) into a really large number, which is then bitshifted to the right by one, and *then*
+converted back into a signed integer. This avoids the icky behavior of shifting signed integers in C, but does
 mean shifting positive and negative integers has  asymmetrical semantics. It is also more performant than a symmetrical implementation,
 because less checks/conversions are required. Gab chooses this route, as shifting negative integers is not a common enough operation to warrant
 the extra checks and implementaiton effort.

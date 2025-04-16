@@ -1,12 +1,10 @@
 +++
-title = "gab"
+title = "Gab"
 type = "home"
 +++
 > [intransitive verb]
 >
 > to talk in a rapid or thoughtless manner, ie: chatter
->
-> -- Merriam Webster
 
 ## Programming systems, not systems programming.
 **Gab** is a dynamic and high-level programming language which takes inspiration from all manners of languages and paradigms. 
@@ -28,8 +26,7 @@ welcome_message.join.println
 Say goodbye to `if`, `for`, and `while`! ( we promise you won't miss them )
 ## Concerned with concurrency.
 Gab's custom runtime environment supports hundreds of thousands of concurrent fibers. Fibers communicate with each other throuch channels - 
-another core datatype to the language. Unlike Go and other implementations of CSP, Gab channels are *always unbuffered*. They serve as a synchronization point
-for fibers, as well as a way to pass around data. Which, by the way, is done with **zero copying** in Gab.
+another core datatype to the language. Unlike Go and other implementations of CSP, Gab channels are *always unbuffered*. They serve as a synchronization point, as well as a way to pass around data. Which, by the way, is done with **zero copying** in Gab.
 ```gab
 print_chan = Channels.make
 
@@ -42,7 +39,7 @@ end
 print_chan.each println:
 ```
 ## Immutable always.
-All of Gab's data structures are immutable (Yes, even `gab\channel`). For a language focused on concurrency, immutability is the *only sensible option*.
+All of Gab's data structures are immutable (Yes, even `gab\channel`). For languages focused on multithreaded programming, immutability is the *only sensible option*.
 Gab's immutable record is implemented with a custom Hash-Array-BitMapped-Vector-Trie, heavily inspired by clojure's persistent vector. In truth, `gab\record` is the *only data structure* in the language.
 Traditional square-bracket `[]` lists use the same data structure (and `gab\shape` principle - more on that later).
 ```gab
@@ -63,7 +60,7 @@ Said tradeoffs:
 - No global variables.
 - No implicit conversions.
 - `gab\channel` is always unbuffered.
-- No control flow - other than sending messages.
+- No control flow other than sending messages.
 - Only one data structure, `gab\record`.
 
 Gab's small surface area also plays a part here. Since Gab only has one mechanism for control flow (messages) and one data-structure (`gab\record`),  that leaves only two hot code-paths in cgab's implementation.

@@ -154,6 +154,24 @@ function reduce(array, f, initial) { // Setup our mutating accumulator variable 
     <ul class="hx-flex hx-flex-col hx-gap-1 md:hx-hidden">
       
       
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/blog/"
+    
+  >Blog
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/blog/values/"
+    
+  >Value Representation
+    </a>
+              
+            </li></ul>
+      </div></li>
           <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
@@ -410,7 +428,7 @@ a standard <code>reduce</code> function. In JS, it may look like this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Our initial setup.</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Recursion often involves a light</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># wrapper-function which initializes some state.</span></span></span>
-<span sytle="display:flex"><span><span style='color: #ae81ff'>reduce:</span> <span style='font-weight: bold;color: #66d9ef'>.def!</span> <span style='color: #f8f8f0'>(</span></span></span>
+<span sytle="display:flex"><span><span style='color: #ae81ff'>reduce:</span> <span style='font-weight: bold;color: #66d9ef'>.def</span> <span style='color: #f8f8f0'>(</span></span></span>
 <span sytle="display:flex"><span>    Records<span style='font-weight: bold;color: #66d9ef'>.t</span>,</span></span>
 <span sytle="display:flex"><span>    <span style='color: #f8f8f0'>(</span>f, initial<span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
 <span sytle="display:flex"><span>        <span style='font-style: italic;color: #8f908a'># Begin iterating at 0th index</span></span></span>
@@ -418,11 +436,11 @@ a standard <code>reduce</code> function. In JS, it may look like this:</p>
 <span sytle="display:flex"><span>        <span style='font-style: italic;color: #8f908a'># Dispatch to doreduce: depending on whether or not</span></span></span>
 <span sytle="display:flex"><span>        <span style='font-style: italic;color: #8f908a'># we had &#39;i&#39;</span></span></span>
 <span sytle="display:flex"><span>        <span style='font-weight: bold;'>self</span></span></span>
-<span sytle="display:flex"><span>            <span style='font-weight: bold;color: #66d9ef'>.has?</span> i</span></span>
+<span sytle="display:flex"><span>            <span style='font-weight: bold;color: #66d9ef'>.has</span> i</span></span>
 <span sytle="display:flex"><span>            <span style='font-weight: bold;color: #66d9ef'>.doreduce</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;'>self</span>, i, f, initial<span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span>    <span style='color: #f92672'>end</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #ae81ff'>doreduce:</span> <span style='font-weight: bold;color: #66d9ef'>.defcase!</span> <span style='color: #f8f8f0'>{</span></span></span>
+<span sytle="display:flex"><span><span style='color: #ae81ff'>doreduce:</span> <span style='font-weight: bold;color: #66d9ef'>.defcase</span> <span style='color: #f8f8f0'>{</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># If we had &#39;i&#39;, we:</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'>#  - get the current value</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'>#  - apply current value to accumulator via &#39;f&#39;</span></span></span>
@@ -430,12 +448,12 @@ a standard <code>reduce</code> function. In JS, it may look like this:</p>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'>#  - Dispatch to doreduce: depending on whether or not</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'>#     we had &#39;next&#39;</span></span></span>
 <span sytle="display:flex"><span>    <span style='color: #ae81ff'>true:</span> <span style='color: #f8f8f0'>(</span>record, i, f, acc<span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
-<span sytle="display:flex"><span>       curr = record<span style='font-weight: bold;color: #66d9ef'>.at!</span> i</span></span>
+<span sytle="display:flex"><span>       curr = record<span style='font-weight: bold;color: #66d9ef'>.at</span> i</span></span>
 <span sytle="display:flex"><span>       acc  = f.<span style='color: #f8f8f0'>(</span>acc, curr<span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span>       next = i <span style='font-weight: bold;color: #66d9ef'>+</span> <span style='font-weight: bold;color: #e6db74'>1</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span>       record</span></span>
-<span sytle="display:flex"><span>        <span style='font-weight: bold;color: #66d9ef'>.has?</span> next</span></span>
+<span sytle="display:flex"><span>        <span style='font-weight: bold;color: #66d9ef'>.has</span> next</span></span>
 <span sytle="display:flex"><span>        <span style='font-weight: bold;color: #66d9ef'>.doreduce</span><span style='color: #f8f8f0'>(</span>record, next, f, acc<span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span>    <span style='color: #f92672'>end</span></span></span>
 <span sytle="display:flex"><span></span></span>
