@@ -5,7 +5,7 @@ weight = 2
 +++
 This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they **share data in memory**.
 The string `"true"` and the message `true:` each share the same four bytes of memory in the heap: `[ 't', 'r', 'u', 'e' ]`.
-The values differentiate their type by tagging themeselves slightly differently - but this is an [implementation detail](/blog/values). The important note to take from this is that
+The values differentiate their type by tagging themeselves slightly differently - but this is an [implementation detail](/site/blog/values). The important note to take from this is that
 converting these types into each other (eg: `'true'.messages\into`) is a constant-time operation. There is **no copying, nor memory allocation**.
 ## Strings
 Strings are sequences of UTF8-encoded bytes. Single-quoted strings support some escape sequences, while double-quoted strings do not.

@@ -401,7 +401,7 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
           <h1>Strings</h1>
           <p>This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they <strong>share data in memory</strong>.
 The string <code>&quot;true&quot;</code> and the message <code>true:</code> each share the same four bytes of memory in the heap: <code>[ 't', 'r', 'u', 'e' ]</code>.
-The values differentiate their type by tagging themeselves slightly differently - but this is an <a href="/blog/values" >implementation detail</a>. The important note to take from this is that
+The values differentiate their type by tagging themeselves slightly differently - but this is an <a href="/site/blog/values" >implementation detail</a>. The important note to take from this is that
 converting these types into each other (eg: <code>'true'.messages\into</code>) is a constant-time operation. There is <strong>no copying, nor memory allocation</strong>.</p>
 <h2>Strings<span class="hx-absolute -hx-mt-20" id="strings"></span>
     <a href="#strings" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Strings are sequences of UTF8-encoded bytes. Single-quoted strings support some escape sequences, while double-quoted strings do not.</p>

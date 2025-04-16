@@ -143,7 +143,7 @@ the extra checks and implementaiton effort.&lt;/p&gt;
         
         &lt;p&gt;This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they &lt;strong&gt;share data in memory&lt;/strong&gt;.
 The string &lt;code&gt;&amp;quot;true&amp;quot;&lt;/code&gt; and the message &lt;code&gt;true:&lt;/code&gt; each share the same four bytes of memory in the heap: &lt;code&gt;[ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]&lt;/code&gt;.
-The values differentiate their type by tagging themeselves slightly differently - but this is an &lt;a href=&#34;/blog/values&#34; &gt;implementation detail&lt;/a&gt;. The important note to take from this is that
+The values differentiate their type by tagging themeselves slightly differently - but this is an &lt;a href=&#34;/site/blog/values&#34; &gt;implementation detail&lt;/a&gt;. The important note to take from this is that
 converting these types into each other (eg: &lt;code&gt;&#39;true&#39;.messages\into&lt;/code&gt;) is a constant-time operation. There is &lt;strong&gt;no copying, nor memory allocation&lt;/strong&gt;.&lt;/p&gt;
 &lt;h2&gt;Strings&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;strings&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#strings&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Strings are sequences of UTF8-encoded bytes. Single-quoted strings support some escape sequences, while double-quoted strings do not.&lt;/p&gt;

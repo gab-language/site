@@ -5,10 +5,10 @@ title = 'Docs'
 +++
 ### :wave: Hello!
 Welcome to Gab's documentation. Here, we'll take you on a tour of the language and its features.
-If we've done our job, reading through the [introduction](/docs/intro) should take less than an hour.
+If we've done our job, reading through the [introduction](/site/docs/intro) should take less than an hour.
 
 For more of a technical and in-depth exploration of `cgab` itself the official Gab compiler and runtime,
-check out my [blog](/blog).
+check out my [blog](/site/blog).
 
 While the language is relatively stable, Gab's runtime and libraries are still under construction.
 Expect bugs and the occasional api change as things settle down. I wouldn't consider Gab production-ready just yet.
