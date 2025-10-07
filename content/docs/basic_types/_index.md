@@ -10,7 +10,7 @@ Numbers are represented by IEEE 64-bit floating point values. There is no distin
 ```gab
 1
 -42
-0.2 ? # => gab\number
+0.2? # => gab\number
 ```
 > [!NOTE]
 > Numbers less than one **require** a leading zero, as shown below.
@@ -20,7 +20,7 @@ Numbers are represented by IEEE 64-bit floating point values. There is no distin
 Strings are a sequence of bytes. They are UTF8-encoded. For working with raw un-encoded bytes, Gab provides `gab\binary`.
 ```gab
 "gab"
-"what type am I?" ?
+"what type am I?"?
 # => gab\string
 
 'Single quoted strings support escaping!\n'
@@ -50,7 +50,7 @@ the type of a message is *also itself*.
 message:      
 # => message:
 
-message: ?  
+message:?  
 # => message:
 ```
 Messages are  useful as keys in records, to indicate success or failure in returning from blocks, as enumerations, and in many other ways.
@@ -72,6 +72,10 @@ Instead of writing out a message literal like `+:` and calling it, we can use a 
 # Replace the colon `:` at the end with a dot `.` at the front,
 #  and you've got a message send!
 'Hello world!'.println
+
+# This also works for operators
+2 .+ 2
+# => 4
 ```
 ### Records
 Records are Gab's *only* data structure. They serve as both dictionaries *and* lists.

@@ -28,10 +28,16 @@
     <loc>/docs/basic_types/records/</loc>
     <lastmod>2025-02-07T16:07:28-05:00</lastmod>
   </url><url>
-    <loc>/blog/</loc>
-    <lastmod>2025-04-16T09:22:29-04:00</lastmod>
+    <loc>/blog/build/</loc>
+    <lastmod>2025-10-02T14:55:44-04:00</lastmod>
   </url><url>
     <loc>/</loc>
+    <lastmod>2025-10-02T14:55:44-04:00</lastmod>
+  </url><url>
+    <loc>/blog/io/</loc>
+    <lastmod>2025-10-02T09:57:01-04:00</lastmod>
+  </url><url>
+    <loc>/blog/</loc>
     <lastmod>2025-04-16T09:22:29-04:00</lastmod>
   </url><url>
     <loc>/blog/values/</loc>

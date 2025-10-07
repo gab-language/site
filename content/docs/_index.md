@@ -12,5 +12,5 @@ check out the blog.
 
 While the language is relatively stable, Gab's runtime and libraries are still under construction.
 Expect bugs and the occasional api change as things settle down. I wouldn't consider Gab production-ready just yet.
-Additionally, documentation and developer tooling is lacking. The language may be hard to use until these become more
+Additionally, documentation and developer tooling are works-in-progress. The language may be hard to use until these become more
 mature.
