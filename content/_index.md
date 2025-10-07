@@ -78,12 +78,12 @@ All optimization efforts can focus on improving either message dispatch or recor
 Trivial cross-platform distribution is a principle for Gab. Gab's build system allows the programmer to build standalone executables for *any supported platform from any other*. All of Gab's builtin modules support
 all of Gab's platforms out of the box (and they always will.) This means that distributing your Gab app is as simple as:
 ```bash
-gab build -t aarch_64-macos-none <my_project>
+gab build -p aarch_64-macos-none -m my,deps my_project
 
 file my_project.exe
 #> my_project.exe: Mach-O 64-bit arm64 executable, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL|NO_REEXPORTED_DYLIBS|PIE>
 
-gab build -t x86_64-linux-gnu <my_project>
+gab build -p x86_64-linux-gnu -m my,deps my_project
 
 file my_project.exe
 #> my_project.exe: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.
