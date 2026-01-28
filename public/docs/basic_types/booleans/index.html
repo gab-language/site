@@ -53,8 +53,8 @@ my_message: .defcase! { true: (args) =&gt; do # Do something with args in the tr
 true: false: There is no if in gab. Typically, a defcase is used instead:
 my_message: .defcase! { true: (args) =&gt; do # Do something with args in the truthy case end false: (args) =&gt; do # Do something with args in the falsey case end } some_condition .my_message args For simple use cases, there are messages and:, or:, then: and else: defined in the core library.">
 
-    <link rel="preload" href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" as="style" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
-    <link href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" rel="stylesheet" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
+    <link rel="preload" href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" as="style" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
+    <link href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" rel="stylesheet" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
 
 
 
@@ -418,7 +418,7 @@ my_message: .defcase! { true: (args) =&gt; do # Do something with args in the tr
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>true:</span></span></span>
 <span sytle="display:flex"><span><span style='color: #ae81ff'>false:</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><p>There is no <code>if</code> in gab. Typically, a <code>defcase</code> is used instead:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>my_message:</span> <span style='font-weight: bold;color: #66d9ef'>.defcase!</span> <span style='color: #f8f8f0'>{</span></span></span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>my_message:</span> <span style='font-weight: bold;color: #66d9ef'>.defcase</span><span style='font-weight: bold;color: #66d9ef'>!</span> <span style='color: #f8f8f0'>{</span></span></span>
 <span sytle="display:flex"><span>    <span style='color: #ae81ff'>true:</span> <span style='color: #f8f8f0'>(</span>args<span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
 <span sytle="display:flex"><span>        <span style='font-style: italic;color: #8f908a'># Do something with args in the truthy case</span></span></span>
 <span sytle="display:flex"><span>    <span style='color: #f92672'>end</span></span></span>
@@ -431,22 +431,23 @@ my_message: .defcase! { true: (args) =&gt; do # Do something with args in the tr
 <span sytle="display:flex"><span></span></span></pre></div><p>For simple use cases, there are messages <code>and:</code>, <code>or:</code>, <code>then:</code> and <code>else:</code> defined in the core library.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Lifted from gab&#39;s core library.</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>truthy_values <span style='font-weight: bold;color: #66d9ef'>.defmodule!</span> <span style='color: #f8f8f0'>{</span></span></span>
+<span sytle="display:flex"><span>truthy_values <span style='font-weight: bold;color: #66d9ef'>.defmodule</span><span style='font-weight: bold;color: #66d9ef'>!</span> <span style='color: #f8f8f0'>{</span></span></span>
 <span sytle="display:flex"><span>  <span style='color: #ae81ff'>and:</span> <span style='color: #f8f8f0'>(</span>alt<span style='color: #f8f8f0'>[</span><span style='color: #f8f8f0'>]</span><span style='color: #f8f8f0'>)</span> =&gt; alt<span style='font-weight: bold;color: #66d9ef'>**</span></span></span>
 <span sytle="display:flex"><span>  <span style='color: #ae81ff'>or:</span> _ =&gt; <span style='font-weight: bold;'>self</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>  <span style='color: #ae81ff'>then:</span> f =&gt; f. <span style='font-weight: bold;'>self</span></span></span>
+<span sytle="display:flex"><span>  <span style='color: #ae81ff'>then:</span> f =&gt; f<span style='font-weight: bold;color: #66d9ef'>.</span> <span style='font-weight: bold;'>self</span></span></span>
 <span sytle="display:flex"><span>  <span style='color: #ae81ff'>else:</span> _ =&gt; <span style='font-weight: bold;'>self</span></span></span>
 <span sytle="display:flex"><span><span style='color: #f8f8f0'>}</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>falsey_values <span style='font-weight: bold;color: #66d9ef'>.defmodule!</span> <span style='color: #f8f8f0'>{</span></span></span>
+<span sytle="display:flex"><span>falsey_values <span style='font-weight: bold;color: #66d9ef'>.defmodule</span><span style='font-weight: bold;color: #66d9ef'>!</span> <span style='color: #f8f8f0'>{</span></span></span>
 <span sytle="display:flex"><span>  <span style='color: #ae81ff'>and:</span> _ =&gt; <span style='font-weight: bold;'>self</span></span></span>
 <span sytle="display:flex"><span>  <span style='color: #ae81ff'>or:</span> <span style='color: #f8f8f0'>(</span>alt<span style='color: #f8f8f0'>[</span><span style='color: #f8f8f0'>]</span><span style='color: #f8f8f0'>)</span> =&gt; alt<span style='font-weight: bold;color: #66d9ef'>**</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span>  <span style='color: #ae81ff'>then:</span> _ =&gt; <span style='font-weight: bold;'>self</span></span></span>
-<span sytle="display:flex"><span>  <span style='color: #ae81ff'>else:</span> f =&gt; f. <span style='font-weight: bold;'>self</span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>}</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>The <code>and:</code> and <code>or:</code> messages do what you expect for the most part, except they <em>don&rsquo;t short circuit</em>. This means the value on the right is <em>always evaluated</em>.</p>
+<span sytle="display:flex"><span>  <span style='color: #ae81ff'>else:</span> f =&gt; f<span style='font-weight: bold;color: #66d9ef'>.</span> <span style='font-weight: bold;'>self</span></span></span>
+<span sytle="display:flex"><span><span style='color: #ae81ff'></span><span style='color: #f8f8f0'>}</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='color: #f8f8f0'></span></span></span></pre></div><p>The <code>and:</code> and <code>or:</code> messages do what you expect for the most part, except they <em>don&rsquo;t short circuit</em>. This means the value on the right is <em>always evaluated</em>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>true:</span> <span style='font-weight: bold;color: #66d9ef'>.and</span> <span style='font-weight: bold;color: #e6db74'>2</span>  <span style='font-style: italic;color: #8f908a'># 2</span></span></span>
 <span sytle="display:flex"><span><span style='color: #ae81ff'>false:</span> <span style='font-weight: bold;color: #66d9ef'>.and</span> <span style='font-weight: bold;color: #e6db74'>2</span> <span style='font-style: italic;color: #8f908a'># .false</span></span></span>
 <span sytle="display:flex"><span><span style='color: #ae81ff'>false:</span> <span style='font-weight: bold;color: #66d9ef'>.or</span> <span style='font-weight: bold;color: #e6db74'>2</span>  <span style='font-style: italic;color: #8f908a'># 2</span></span></span>

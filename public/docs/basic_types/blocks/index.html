@@ -44,8 +44,8 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
 Multiple return values Blocks can return multiple values, similar to golang or lua. Here, open: returns two values. One signals the status of the operation, and another providing value or an error.
 IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The group of values passed to and return from a block is called a tuple. They can be unpacked like this:">
 
-    <link rel="preload" href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" as="style" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
-    <link href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" rel="stylesheet" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
+    <link rel="preload" href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" as="style" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
+    <link href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" rel="stylesheet" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
 
 
 
@@ -425,13 +425,13 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
 <h3>Multiple return values<span class="hx-absolute -hx-mt-20" id="multiple-return-values"></span>
     <a href="#multiple-return-values" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Blocks can return multiple values, similar to golang or lua.
 Here, <code>open:</code> returns two values. One signals the status of the operation, and another providing value or an error.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>IO<span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #af8700'>IO</span><span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; ok: &lt;gab\box io\file ...&gt;</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; err: File does not exist</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><p>The group of values <em>passed to</em> and <em>return from</em> a block is called a <strong>tuple</strong>. They can be unpacked like this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Unpack the tuple here with parentheses ().</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This is called &#39;destructuring&#39;</span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span>status, stream<span style='color: #f8f8f0'>)</span> = IO<span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span>status, stream<span style='color: #f8f8f0'>)</span> = <span style='color: #af8700'>IO</span><span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span>status<span style='font-weight: bold;color: #66d9ef'>.ok</span><span style='font-weight: bold;color: #66d9ef'>.then</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
 <span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'># Do something with stream here.</span></span></span>
@@ -439,7 +439,7 @@ Here, <code>open:</code> returns two values. One signals the status of the opera
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Alternatively, we can unwrap our stream:</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This will crash if the first element in the tuple isn&#39;t ok:</span></span></span>
-<span sytle="display:flex"><span>stream = IO</span></span>
+<span sytle="display:flex"><span>stream = <span style='color: #af8700'>IO</span></span></span>
 <span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.unwrap</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><p>Tuples are used heavily, and preferred to records wherever possible.
@@ -467,7 +467,7 @@ In fact, this is how <code>unwrap:</code> is implemented!</p>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># file: returns a tuple (ok: &lt;gab\box io\stream ...&gt;)</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This tuple is forwarded to .unwrap</span></span></span>
-<span sytle="display:flex"><span>stream = IO</span></span>
+<span sytle="display:flex"><span>stream = <span style='color: #af8700'>IO</span></span></span>
 <span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.unwrap</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div>

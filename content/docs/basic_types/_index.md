@@ -10,6 +10,7 @@ Numbers are represented by IEEE 64-bit floating point values. There is no distin
 ```gab
 1
 -42
+1.2e4
 0.2? # => gab\number
 ```
 > [!NOTE]

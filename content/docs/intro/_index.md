@@ -38,7 +38,7 @@ This command downloads the gab binary and modules to Gab's installation prefix o
 Lastly, complete your installation as instructed by the message in your terminal.
 
 > [!NOTE]
-> `gab` calls out to the operating system for `curl` and `tar` in order to perform this installation. They should be widely available by default on most machines,
+> `gab` calls out to the operating system for `curl` in order to perform this installation. It should be widely available by default on most machines,
 > including any Windows machine with Windows 10 or later. However, you may see an error message indicating that one of the two is unavailable - in that case installation will fail.
 
 ## Windows
@@ -66,5 +66,5 @@ Alternatively, `zig cc` can be invoked manually. Check `.clide/../build.sh` for 
 > Clide relies on bash scripts written in the `.clide/` directory, and therefore will not work on windows.
 > On Windows, `zig cc` should be invoked manually. The following is an example, but will not fully build cgab.
 ```bash
-    zig cc -O3 -std=c23 -fPIC -Wall --target=native -o gab -Iinclude -Ivendor -DNDEBUG -DGAB_PLATFORM_WIN src/**/*.c
+    zig cc -Os -std=c23 -fPIC -Wall --target=native -o gab -Iinclude -Ivendor -DNDEBUG -DGAB_PLATFORM_WIN src/**/*.c
 ```

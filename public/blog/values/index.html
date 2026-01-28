@@ -36,8 +36,8 @@ This differs from how a language like Java, Python, or Gab work. These dynamic l
   <meta name="twitter:description" content="Why it matters In a language like C, code is compiled to run natively - values are just blocks of memory, and at runtime there is no type information. A register could hold an integer, or a pointer, or a boolean, but to the program they’re all just bits.
 This differs from how a language like Java, Python, or Gab work. These dynamic languages also carry type information about values through runtime, and use it for garbage collection, reflection, and detecting type errors.">
 
-    <link rel="preload" href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" as="style" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
-    <link href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" rel="stylesheet" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
+    <link rel="preload" href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" as="style" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
+    <link href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" rel="stylesheet" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
 
 
 
@@ -352,6 +352,7 @@ A register could hold an integer, or a pointer, or a boolean, but to the program
 These dynamic languages also carry type information about values through runtime, and use it for garbage collection, reflection, and detecting type errors.</p>
 <blockquote>
   <p>Don&rsquo;t get mad at me for calling Java dynamic. You know it is.</p>
+
 </blockquote>
 <p>At the runtime-level, dynamic languages need a type which can represent <em>any</em> value in a program. A simple (dare I say naive) way of implementing this is with
 a <em>tagged union</em>.</p>
@@ -424,6 +425,7 @@ To understand that, we need to dive a little bit deeper into how our c-interpret
 <p>Let&rsquo;s take a look at how the <em>stack</em> might look under the hood as this function is being called.</p>
 <blockquote>
   <p>Disclaimer: I am not a cpython expert. I am guessing based on what I know about it and stack vms in general.</p>
+
 </blockquote>
 <div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
 
@@ -470,8 +472,8 @@ Lets tie in our tagged-union implementation, and look at the actual <strong>memo
 <div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
 
 <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> sz <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">struct</span> value);         <span style="color:#75715e">// 9 bytes
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> alignment <span style="color:#f92672">=</span> <span style="color:#a6e22e">alignof</span>(<span style="color:#66d9ef">struct</span> value); <span style="color:#75715e">// 16 bytes
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">/* Something like this:
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> alignment <span style="color:#f92672">=</span> <span style="color:#a6e22e">alignof</span>(<span style="color:#66d9ef">struct</span> value); <span style="color:#75715e">// 16 bytes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">/* Something like this:
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> %---------%
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> | -1      | 8 byte integer value field
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> | ------- |
@@ -532,18 +534,19 @@ we can safely use the lower 50 bits to interpret however we choose. If it doesn&
 <blockquote>
   <p>There is actually another state - when the sign bit is set <em>and</em> the incantation is found, we should interpret the lower 50 bits as a pointer to the heap.
 On the other side of the pointer there will be a tag and data describing the object.</p>
+
 </blockquote>
 <p>The tag uses the same <code>gab_kind</code> enum that the rest of <code>cgab</code> uses - it describes all the types a value can possibly have.</p>
 <div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
 
 <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> gab_kind {
 </span></span><span style="display:flex;"><span>  kGAB_STRING <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#75715e">// MUST_STAY_ZERO
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  kGAB_BINARY <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
+</span></span></span><span style="display:flex;"><span>  kGAB_BINARY <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
 </span></span><span style="display:flex;"><span>  kGAB_MESSAGE <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>,
 </span></span><span style="display:flex;"><span>  kGAB_PRIMITIVE <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>,
 </span></span><span style="display:flex;"><span>  kGAB_NUMBER,
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ... Lots of others omitted for brevity
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+</span></span></span><span style="display:flex;"><span>};</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
   <button
     class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
     title="Copy code"
@@ -578,6 +581,7 @@ a string into a binary, lifted from <code>cgab</code>.</p>
 <p>It simply takes the input value (which should have <code>kGAB_STRING</code> for its NaN tag, aka 0) and bitwise-ors in the <code>kGAB_MESSAGE</code> tag instead. Just two instructions!</p>
 <blockquote>
   <p>This detail is why the kGAB_STRING enum must have the value 0!</p>
+
 </blockquote>
 <p>As promised, Here is the big doc comment lifted directly from <code>cgab</code>&rsquo;s source code.
 It describes more in depth how the floating-point trickery and short-string optimization work.</p>

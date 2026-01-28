@@ -40,8 +40,8 @@ Programming languages solve this issue in different ways. At the lowest level, l
   <meta name="twitter:description" content="Why it matters In a lot of programs that we write today, the bottleneck for performance of our applications isn’t actually the work we’re doing on the CPU. Its more likely that the IO Operations, such as sending/receiving data over the network or writing and reading files, will end up blocking the CPU from doing its work.
 Programming languages solve this issue in different ways. At the lowest level, languages need a way of telling the OS that some IO work needs to be done, without blocking the thread. NodeJS for example uses libuv, a c library which utilizes an eventloop and threadpool to perform IO. The user in Javascript issues IO requests to the libuv loop, which process them as it can with its workers. The Javascript runtime then yields that function until the IO request is complete - allowing other JS code to run on the thread. Python’s asyncio and Rust’s tokio work similarly.">
 
-    <link rel="preload" href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" as="style" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
-    <link href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" rel="stylesheet" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
+    <link rel="preload" href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" as="style" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
+    <link href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" rel="stylesheet" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
 
 
 
@@ -548,25 +548,25 @@ There are three options:</p>
 
 <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">union</span> gab_value_pair <span style="color:#a6e22e">async_socket_write</span>(<span style="color:#66d9ef">struct</span> gab_triple gab, <span style="color:#66d9ef">uint64_t</span> argc, gab_value <span style="color:#f92672">*</span>argv, <span style="color:#66d9ef">uintptr_t</span> reentrant) {
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// If the reentrant is zero, this is our first time entering this function.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>reentrant) {
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>reentrant) {
 </span></span><span style="display:flex;"><span>        qd <span style="color:#f92672">=</span> <span style="color:#a6e22e">qwrite</span>(...);
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Yield this fiber, with the qd as the reentrant.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">gab_union_ctimeout</span>(qd);
+</span></span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">gab_union_ctimeout</span>(qd);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// At this point, we have a reentrant.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// If the reentrant is done, 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">qd_status</span>(reentrant)) {
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">qd_status</span>(reentrant)) {
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Push result values onto the vm stack.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">gab_vmpush</span>(gab, gab_ok);
+</span></span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">gab_vmpush</span>(gab, gab_ok);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Let the runtime know our call is over.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">gab_union_cvalid</span>(gab_nil);
+</span></span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">gab_union_cvalid</span>(gab_nil);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// The operation isn&#39;t done yet, so simply yield again.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">gab_union_ctimeout</span>(qd);
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">gab_union_ctimeout</span>(qd);
 </span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
   <button
     class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"

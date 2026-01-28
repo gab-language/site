@@ -24,14 +24,14 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
 Numbers Numbers are represented by IEEE 64-bit floating point values. There is no distinct integer type.">
   <meta itemprop="datePublished" content="2025-02-07T12:49:57-05:00">
   <meta itemprop="dateModified" content="2025-02-07T12:49:57-05:00">
-  <meta itemprop="wordCount" content="769">
+  <meta itemprop="wordCount" content="770">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Basic Types">
   <meta name="twitter:description" content="In this chapter, we will learn more about Gab’s basic types. At the core of any language is its values - Gab is no different. In fact - values are almost all there is in Gab’s syntax. This introduction will build the foundation of how to think and program in Gab.
 Numbers Numbers are represented by IEEE 64-bit floating point values. There is no distinct integer type.">
 
-    <link rel="preload" href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" as="style" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
-    <link href="/css/compiled/main.min.9a2a4c6e602ce30f10fa86afbb1ce624db853742eeccc2e954764594ee62c18f.css" rel="stylesheet" integrity="sha256-mipMbmAs4w8Q&#43;oavuxzmJNuFN0LuzMLpVHZFlO5iwY8=" />
+    <link rel="preload" href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" as="style" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
+    <link href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" rel="stylesheet" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
 
 
 
@@ -444,6 +444,7 @@ This introduction will build the foundation of how to think and program in Gab.<
     <a href="#numbers" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Numbers are represented by IEEE 64-bit floating point values. There is no distinct integer type.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-weight: bold;color: #e6db74'>1</span></span></span>
 <span sytle="display:flex"><span><span style='font-weight: bold;color: #66d9ef'>-</span><span style='font-weight: bold;color: #e6db74'>42</span></span></span>
+<span sytle="display:flex"><span><span style='font-weight: bold;color: #e6db74'>1.2</span>e4</span></span>
 <span sytle="display:flex"><span><span style='font-weight: bold;color: #e6db74'>0.2</span><span style='font-weight: bold;color: #66d9ef'>?</span> <span style='font-style: italic;color: #8f908a'># =&gt; gab\number</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
   <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Note</p>
@@ -472,13 +473,13 @@ This introduction will build the foundation of how to think and program in Gab.<
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>square = <span style='color: #f8f8f0'>(</span>x<span style='color: #f8f8f0'>)</span> =&gt; x <span style='font-weight: bold;color: #66d9ef'>*</span> x</span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\block ...&gt;</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>square.<span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>2</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span>square<span style='font-weight: bold;color: #66d9ef'>.</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>2</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><p>Blocks always have an implicit <strong>self</strong> local. On their own, it isn&rsquo;t very useful. It will become useful later for defining message <em>specializations</em>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>get_me = <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='font-weight: bold;'>self</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\block ...&gt;</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>get_me.<span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span>get_me<span style='font-weight: bold;color: #66d9ef'>.</span><span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\block ...&gt;</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><h3>Messages<span class="hx-absolute -hx-mt-20" id="messages"></span>
     <a href="#messages" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Messages are another obscure concept, also to be explored later. In this context, think of them as <em>atoms</em> or <em>keywords</em> - values which represent themselves. Gab takes this a step further:
@@ -490,10 +491,10 @@ the type of a message is <em>also itself</em>.</p>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; message:</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><p>Messages are  useful as keys in records, to indicate success or failure in returning from blocks, as enumerations, and in many other ways.
 Messages can also be called like blocks - however, they will look up a <em>specialization</em> based on the receiver&rsquo;s type.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>+:</span>.<span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>2</span>, <span style='font-weight: bold;color: #e6db74'>2</span><span style='color: #f8f8f0'>)</span></span></span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>+:</span><span style='font-weight: bold;color: #66d9ef'>.</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>2</span>, <span style='font-weight: bold;color: #e6db74'>2</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
 <span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #ae81ff'>+:</span>.<span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;Hello &#39;</span>, <span style='color: #a6e22e'>&#39;world!&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
+<span sytle="display:flex"><span><span style='color: #ae81ff'>+:</span><span style='font-weight: bold;color: #66d9ef'>.</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;Hello &#39;</span>, <span style='color: #a6e22e'>&#39;world!&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &#39;Hello world!&#39;</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><p>Instead of writing out a message literal like <code>+:</code> and calling it, we can use a different <em>infix</em> notation. For operators like <code>+:</code>, that should look familiar!</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-weight: bold;color: #e6db74'>2</span> <span style='font-weight: bold;color: #66d9ef'>+</span> <span style='font-weight: bold;color: #e6db74'>2</span></span></span>
@@ -539,7 +540,7 @@ in Gab.</p></div>
 </div>
 <h3>Fibers<span class="hx-absolute -hx-mt-20" id="fibers"></span>
     <a href="#fibers" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p><code>gab\fiber</code> is a green thread - similar to processes on the BEAM, and goroutines in golang.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>Fibers<span style='font-weight: bold;color: #66d9ef'>.make</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #af8700'>Fibers</span><span style='font-weight: bold;color: #66d9ef'>.make</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
 <span sytle="display:flex"><span>    <span style='color: #a6e22e'>&#39;I could run on another os thread!&#39;</span></span></span>
 <span sytle="display:flex"><span><span style='color: #f92672'>end</span></span></span>
 <span sytle="display:flex"><span></span></span></pre></div><p>Fibers are created as above, and automaticaly queued up for execution. The block passed to <code>make:</code> will run, potentially on another operating-system thread.
@@ -547,10 +548,10 @@ As all Gab values are immutable, the block passed here may capture any variables
 through a <code>gab\channel</code>.</p>
 <h3>Channels<span class="hx-absolute -hx-mt-20" id="channels"></span>
     <a href="#channels" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Channels are a synchronized portal for handing off values between two <code>gab\fibers</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>ch = Channels<span style='font-weight: bold;color: #66d9ef'>.make</span></span></span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>ch = <span style='color: #af8700'>Channels</span><span style='font-weight: bold;color: #66d9ef'>.make</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># &lt;!: is a blocking operation to put a value onto a channel</span></span></span>
-<span sytle="display:flex"><span>Fibers<span style='font-weight: bold;color: #66d9ef'>.make</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; ch <span style='font-weight: bold;color: #66d9ef'>&lt;!</span> <span style='color: #a6e22e'>&#39;Hello world!&#39;</span></span></span>
+<span sytle="display:flex"><span><span style='color: #af8700'>Fibers</span><span style='font-weight: bold;color: #66d9ef'>.make</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; ch <span style='font-weight: bold;color: #66d9ef'>&lt;!</span> <span style='color: #a6e22e'>&#39;Hello world!&#39;</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># &gt;!: is the opposite - a blocking operation for taking values out.</span></span></span>
 <span sytle="display:flex"><span>ch<span style='font-weight: bold;color: #66d9ef'>.&gt;!</span><span style='font-weight: bold;color: #66d9ef'>.println</span></span></span>
