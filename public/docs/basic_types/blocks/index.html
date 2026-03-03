@@ -11,38 +11,29 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
 <title>Blocks – Gab</title>
-  <meta name="description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.
-Multiple return values Blocks can return multiple values, similar to golang or lua. Here, open: returns two values. One signals the status of the operation, and another providing value or an error.
-IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The group of values passed to and return from a block is called a tuple. They can be unpacked like this:" /><link rel="canonical" href="/docs/basic_types/blocks/" itemprop="url" />
+  <meta name="description" content="A block is a closure — a function that captures its surrounding scope. Blocks are values: they can be stored, passed as arguments, and called.
+square = (x) =&gt; x * x square.(4) # =&gt; 16 Every block has an implicit self binding. When a block is used as a message specialization via def:, self refers to the value that received the message. When called directly, self refers to the block itself." /><link rel="canonical" href="/docs/basic_types/blocks/" itemprop="url" />
 
 <meta property="og:title" content="Blocks" />
-<meta property="og:description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.
-Multiple return values
-    Blocks can return multiple values, similar to golang or lua.
-Here, open: returns two values. One signals the status of the operation, and another providing value or an error.
+<meta property="og:description" content="A block is a closure — a function that captures its surrounding scope. Blocks are values: they can be stored, passed as arguments, and called.
 
-IO.file(&#39;my_data.csv&#39;)
-# =&gt; ok: 
-# =&gt; err: File does not exist
+square = (x) =&gt; x * x
+square.(4)   # =&gt; 16
 
-The group of values passed to and return from a block is called a tuple. They can be unpacked like this:" />
+Every block has an implicit self binding. When a block is used as a message specialization via def:, self refers to the value that received the message. When called directly, self refers to the block itself." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/basic_types/blocks/" /><meta property="article:section" content="docs" />
-<meta property="article:published_time" content="2025-03-10T10:06:10-04:00" />
-<meta property="article:modified_time" content="2025-03-10T10:06:10-04:00" />
+
+
 
   <meta itemprop="name" content="Blocks">
-  <meta itemprop="description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.
-Multiple return values Blocks can return multiple values, similar to golang or lua. Here, open: returns two values. One signals the status of the operation, and another providing value or an error.
-IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The group of values passed to and return from a block is called a tuple. They can be unpacked like this:">
-  <meta itemprop="datePublished" content="2025-03-10T10:06:10-04:00">
-  <meta itemprop="dateModified" content="2025-03-10T10:06:10-04:00">
-  <meta itemprop="wordCount" content="349">
+  <meta itemprop="description" content="A block is a closure — a function that captures its surrounding scope. Blocks are values: they can be stored, passed as arguments, and called.
+square = (x) =&gt; x * x square.(4) # =&gt; 16 Every block has an implicit self binding. When a block is used as a message specialization via def:, self refers to the value that received the message. When called directly, self refers to the block itself.">
+  <meta itemprop="wordCount" content="757">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Blocks">
-  <meta name="twitter:description" content="Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.
-Multiple return values Blocks can return multiple values, similar to golang or lua. Here, open: returns two values. One signals the status of the operation, and another providing value or an error.
-IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The group of values passed to and return from a block is called a tuple. They can be unpacked like this:">
+  <meta name="twitter:description" content="A block is a closure — a function that captures its surrounding scope. Blocks are values: they can be stored, passed as arguments, and called.
+square = (x) =&gt; x * x square.(4) # =&gt; 16 Every block has an implicit self binding. When a block is used as a message specialization via def:, self refers to the value that received the message. When called directly, self refers to the block itself.">
 
     <link rel="preload" href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" as="style" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
     <link href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" rel="stylesheet" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
@@ -215,12 +206,63 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
   >Introduction
     </a>
               
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/"
+    
+  >Language Tour
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a>
+              <div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/records_and_shapes/"
+    
+  >Records &amp; Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/fibers_and_channels/"
+    
+  >Fibers &amp; Channels
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/error_handling/"
+    
+  >Error Handling
+    </a>
+              
+            </li></ul>
+      </div>
             </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
     
-  >Basic Types
+  >Types
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a>
               <div class="ltr:hx-pr-0 hx-overflow-hidden">
@@ -229,7 +271,7 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/arithmetic/"
     
-  >Arithmetic
+  >Numbers
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -237,25 +279,8 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/strings/"
     
-  >Strings
+  >Strings &amp; Binaries
     </a>
-              
-            </li><li class="hx-flex hx-flex-col open"><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
-    href="/docs/basic_types/blocks/"
-    
-  >Blocks
-    </a>
-  
-    <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
-              <a
-                href="#"
-                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              ></a>
-            </li>
-          </ul>
-  
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
@@ -268,17 +293,60 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/booleans/"
+    href="/docs/basic_types/records/"
     
-  >Booleans
+  >Records
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/records/"
+    href="/docs/basic_types/shapes/"
     
-  >Records
+  >Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col open"><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+    href="/docs/basic_types/blocks/"
+    
+  >Blocks
+    </a>
+  
+    <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
+              <a
+                href="#variadic-bindings"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >Variadic Bindings</a>
+            </li>
+          <li>
+              <a
+                href="#tuples-and-multiple-return-values"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >Tuples and Multiple Return Values</a>
+            </li>
+          <li>
+              <a
+                href="#tuple-forwarding-in-chains"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >Tuple Forwarding in Chains</a>
+            </li>
+          <li>
+              <a
+                href="#the-unwrap-pattern"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >The unwrap: Pattern</a>
+            </li>
+          </ul>
+  
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/fibers/"
+    
+  >Fibers &amp; Channels
     </a>
               
             </li></ul>
@@ -304,12 +372,62 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
     
   >Introduction
     </a></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/"
+    
+  >Language Tour
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/records_and_shapes/"
+    
+  >Records &amp; Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/fibers_and_channels/"
+    
+  >Fibers &amp; Channels
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/error_handling/"
+    
+  >Error Handling
+    </a>
+              
+            </li></ul>
+      </div></li>
           <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
     
-  >Basic Types
+  >Types
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
         <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
@@ -317,7 +435,7 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/arithmetic/"
     
-  >Arithmetic
+  >Numbers
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -325,15 +443,7 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/strings/"
     
-  >Strings
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col open"><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
-    href="/docs/basic_types/blocks/"
-    
-  >Blocks
+  >Strings &amp; Binaries
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -347,17 +457,33 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/booleans/"
+    href="/docs/basic_types/records/"
     
-  >Booleans
+  >Records
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/records/"
+    href="/docs/basic_types/shapes/"
     
-  >Records
+  >Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col open"><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+    href="/docs/basic_types/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/fibers/"
+    
+  >Fibers &amp; Channels
     </a>
               
             </li></ul>
@@ -388,11 +514,31 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
 <nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
     <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4"><p class="hx-mb-4 hx-font-semibold hx-tracking-tight">On this page</p><ul>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#multiple-return-values">Multiple return values
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#variadic-bindings">Variadic Bindings
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#tuples">Tuples
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#--list-binding">* — list binding
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#--record-binding">** — record binding
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#keyword-style-apis">Keyword-style APIs
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#tuples-and-multiple-return-values">Tuples and Multiple Return Values
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#tuple-forwarding-in-chains">Tuple Forwarding in Chains
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#the-unwrap-pattern">The unwrap: Pattern
         </a>
       </li></ul>
       <div class="hx-mt-8 hx-border-t hx-bg-white hx-pt-8 hx-shadow-[0_-12px_16px_white] dark:hx-bg-dark dark:hx-shadow-[0_-12px_16px_#111] hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400">
@@ -415,73 +561,126 @@ IO.file(&#39;my_data.csv&#39;) # =&gt; ok: # =&gt; err: File does not exist The 
           <a href="/docs/">Docs</a>
         </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
-          <a href="/docs/basic_types/">Basic Types</a>
+          <a href="/docs/basic_types/">Types</a>
         </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Blocks</div>
   </div>
 
         <div class="content">
           <h1>Blocks</h1>
-          <p>Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.</p>
-<h3>Multiple return values<span class="hx-absolute -hx-mt-20" id="multiple-return-values"></span>
-    <a href="#multiple-return-values" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Blocks can return multiple values, similar to golang or lua.
-Here, <code>open:</code> returns two values. One signals the status of the operation, and another providing value or an error.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #af8700'>IO</span><span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; ok: &lt;gab\box io\file ...&gt;</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; err: File does not exist</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>The group of values <em>passed to</em> and <em>return from</em> a block is called a <strong>tuple</strong>. They can be unpacked like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Unpack the tuple here with parentheses ().</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This is called &#39;destructuring&#39;</span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span>status, stream<span style='color: #f8f8f0'>)</span> = <span style='color: #af8700'>IO</span><span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>status<span style='font-weight: bold;color: #66d9ef'>.ok</span><span style='font-weight: bold;color: #66d9ef'>.then</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'># Do something with stream here.</span></span></span>
-<span sytle="display:flex"><span><span style='color: #f92672'>end</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Alternatively, we can unwrap our stream:</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This will crash if the first element in the tuple isn&#39;t ok:</span></span></span>
-<span sytle="display:flex"><span>stream = <span style='color: #af8700'>IO</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.unwrap</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Tuples are used heavily, and preferred to records wherever possible.
-While records allocate memory, tuples use the interpreter&rsquo;s stack and <strong>do not</strong> require allocation.</p>
-<h3>Tuples<span class="hx-absolute -hx-mt-20" id="tuples"></span>
-    <a href="#tuples" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Now that we&rsquo;ve been introduced to tuples, there are a few rules about them to learn.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Messages are sent to the FIRST element of a tuple.</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Heres some funky syntax you *could* write:</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>1</span> <span style='font-weight: bold;color: #e6db74'>2</span><span style='color: #f8f8f0'>)</span> <span style='font-weight: bold;color: #66d9ef'>+</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 3</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>1</span> <span style='font-weight: bold;color: #e6db74'>2</span><span style='color: #f8f8f0'>)</span> <span style='font-weight: bold;color: #66d9ef'>+</span> <span style='font-weight: bold;color: #e6db74'>3</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>When the left-hand side of a send is a tuple and the right-hand side is empty, Gab emits a send to the <strong>whole</strong> left-hand tuple.
-When the right-hand side is <strong>not</strong> empty, Gab will <em>trim</em> the left hand side to one value, and then send the message to that value with the right-hand tuple as arguments.</p>
-<p>This behavior means that you can forward <strong>entire</strong> tuples returned by blocks into new message sends, without any intermediate allocation.
-In fact, this is how <code>unwrap:</code> is implemented!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>unwrap:</span> <span style='font-weight: bold;color: #66d9ef'>.defcase</span> <span style='color: #f8f8f0'>{</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'># If the receiver (first element of tuple) was ok: then return the result</span></span></span>
-<span sytle="display:flex"><span>    <span style='color: #ae81ff'>ok:</span>  result =&gt; result</span></span>
-<span sytle="display:flex"><span>    <span style='font-style: italic;color: #8f908a'># If the receiver was err: then panic</span></span></span>
-<span sytle="display:flex"><span>    <span style='color: #ae81ff'>err:</span> err =&gt; <span style='color: #a6e22e'>&#39;Unwrap Failed: $&#39;</span><span style='font-weight: bold;color: #66d9ef'>.panicf</span> err</span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>}</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># file: returns a tuple (ok: &lt;gab\box io\stream ...&gt;)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This tuple is forwarded to .unwrap</span></span></span>
-<span sytle="display:flex"><span>stream = <span style='color: #af8700'>IO</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.file</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;my_data.csv&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #66d9ef'>.unwrap</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div>
+          <p>A block is a closure — a function that captures its surrounding scope. Blocks are values: they can be stored, passed as arguments, and called.</p>
+<!--gab--><pre><code>
+square = (x) => x * x
+square.(4)   # => 16
+</code></pre>
+<p>Every block has an implicit <code>self</code> binding. When a block is used as a message specialization via <code>def:</code>, <code>self</code> refers to the value that received the message. When called directly, <code>self</code> refers to the block itself.</p>
+<h2>Variadic Bindings<span class="hx-absolute -hx-mt-20" id="variadic-bindings"></span>
+    <a href="#variadic-bindings" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>There are two kinds of variadic binding, distinguished by whether the collected arguments are treated as a list or as a record.</p>
+<h3><code>*</code> — list binding<span class="hx-absolute -hx-mt-20" id="--list-binding"></span>
+    <a href="#--list-binding" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>A <code>*</code> suffix on a binding name collects a run of positional arguments into a list. Its position in the binding list determines which arguments it absorbs — the other bindings around it claim their arguments first, and <code>*</code> takes the rest:</p>
+<!--gab--><pre><code>
+first_and_rest = (first, rest*) => do
+  'First: $'.sprintf(first).println
+  'Rest: $'.sprintf(rest).println
+end
+
+first_and_rest.(1, 2, 3, 4)
+# => First: 1
+# => Rest: [2, 3, 4]
+</code></pre>
+<p>Because position determines what <code>*</code> absorbs, it can appear anywhere in the binding list:</p>
+<!--gab--><pre><code>
+(a*, b) = (1, 2, 3, 4)
+# a => [1, 2, 3],  b => 4
+
+(a, b*) = (1, 2, 3, 4)
+# a => 1,  b => [2, 3, 4]
+</code></pre>
+<p>The <code>*</code> operator inverts this — it splats a list&rsquo;s values back out into a positional tuple:</p>
+<!--gab--><pre><code>
+args = [1, 2, 3]
+args*   # => (1, 2, 3)
+</code></pre>
+<p>Together they let a block forward all its arguments unchanged:</p>
+<!--gab--><pre><code>
+forward_all = (args*) => args*
+</code></pre>
+<p>This is how <code>and:</code> is implemented for <code>true:</code> in the core library — it simply returns all its arguments as-is.</p>
+<h3><code>**</code> — record binding<span class="hx-absolute -hx-mt-20" id="--record-binding"></span>
+    <a href="#--record-binding" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>A <code>**</code> suffix collects a run of positional arguments and interprets them as <strong>alternating keys and values</strong>, constructing a record. Like <code>*</code>, it is positionally aware and can appear anywhere in the binding list:</p>
+<!--gab--><pre><code>
+(first, kwargs**, last) = (1, name: 'bob', age: 44, 99)
+# first  => 1
+# kwargs => { name: 'bob', age: 44 }
+# last   => 99
+</code></pre>
+<p>The <code>**</code> operator on a record is the inverse — it splats a record&rsquo;s key-value pairs back out as a positional sequence of alternating keys and values:</p>
+<!--gab--><pre><code>
+{ a: 'b', c: 'd' } **   # => (a: 'b', c: 'd')
+</code></pre>
+<h3>Keyword-style APIs<span class="hx-absolute -hx-mt-20" id="keyword-style-apis"></span>
+    <a href="#keyword-style-apis" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>The <code>**</code> binding is what makes keyword-argument-style APIs possible in Gab. At the call site, you write alternating message keys and values as positional arguments:</p>
+<!--gab--><pre><code>
+MyType.some_api(positional, argument, flag: true:)
+</code></pre>
+<p>The definition collects those trailing arguments into a record with <code>**</code>:</p>
+<!--gab--><pre><code>
+some_api: .def (MyType, (positional, argument, kwargs**) => do
+  # kwargs => { flag: true: }
+  positional.println
+  kwargs.at(flag:).println
+end)
+</code></pre>
+<p>There are no keyword arguments in Gab — only positional ones. The record is constructed from the raw argument sequence by the <code>**</code> binding. This means you can place a <code>**</code> binding anywhere, not just at the end, and it will absorb whichever positional arguments fall to it.</p>
+<h2>Tuples and Multiple Return Values<span class="hx-absolute -hx-mt-20" id="tuples-and-multiple-return-values"></span>
+    <a href="#tuples-and-multiple-return-values" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Blocks return multiple values using a tuple expression — parentheses containing two or more values:</p>
+<!--gab--><pre><code>
+(ok: file.read)     # Two-value tuple
+(err: 'not found')  # Two-value tuple
+</code></pre>
+<p>Commas inside a tuple terminate the preceding message send and begin a new element. They are only required where omitting them would cause an expression to be parsed as an argument to the previous send:</p>
+<!--gab--><pre><code>
+(1 + 2 3)    # => (3, 3): 2 is the argument to +, 3 is the second element
+(1 +, 2 3)   # => Runtime Error: + has no0 second argument, so gab tries to add 1 and nil:
+(ok: result) # => There is no send here, so no commas are needed.
+</code></pre>
+<p>Receiving multiple return values uses the same tuple syntax on the left side of an assignment:</p>
+<!--gab--><pre><code>
+(status, file) = IO.File.make('data.csv')
+</code></pre>
+<h2>Tuple Forwarding in Chains<span class="hx-absolute -hx-mt-20" id="tuple-forwarding-in-chains"></span>
+    <a href="#tuple-forwarding-in-chains" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>When a message is chained after a call that returns multiple values, Gab forwards the entire tuple into the next send: the first value becomes the receiver, the rest become arguments.</p>
+<!--gab--><pre><code>
+IO.File.make('data.csv').then(file => file.read.println)
+</code></pre>
+<p>Is exactly equivalent to:</p>
+<!--gab--><pre><code>
+(status, file) = IO.File.make('data.csv')
+status.then(() => file.read.println)
+</code></pre>
+<p>This allows the result of a multi-value return to be routed directly into a <code>defcase</code>-style dispatch without any intermediate binding.</p>
+<h2>The <code>unwrap:</code> Pattern<span class="hx-absolute -hx-mt-20" id="the-unwrap-pattern"></span>
+    <a href="#the-unwrap-pattern" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>A common use of tuple forwarding is <code>unwrap:</code>, which either returns the result value or panics with the error:</p>
+<!--gab--><pre><code>
+unwrap: .defcase {
+  ok:  result => result
+  err: msg    => 'Unwrap failed: $'.panicf(msg)
+}
+
+file = IO.File.make('data.csv').unwrap
+</code></pre>
+<p><code>IO.File.make</code> returns <code>(ok:, file)</code> or <code>(err:, message)</code>. The tuple is forwarded directly to <code>.unwrap</code>, which dispatches on the first element.</p>
+
         </div>
         <div class="hx-mt-16"></div>
         <div class="hx-mb-8 hx-flex hx-items-center hx-border-t hx-pt-8 dark:hx-border-neutral-800 contrast-more:hx-border-neutral-400 dark:contrast-more:hx-border-neutral-400 print:hx-hidden"><a
-        href="/docs/basic_types/strings/"
-        title="Strings"
+        href="/docs/basic_types/shapes/"
+        title="Shapes"
         class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-pr-4 rtl:hx-pl-4"
-      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Strings</a><a
-        href="/docs/basic_types/messages/"
-        title="Messages"
+      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Shapes</a><a
+        href="/docs/basic_types/fibers/"
+        title="Fibers &amp; Channels"
         class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-ml-auto ltr:hx-pl-4 ltr:hx-text-right rtl:hx-mr-auto rtl:hx-pr-4 rtl:hx-text-left"
-      >Messages<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
+      >Fibers &amp; Channels<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
         
       </main>
     </article>

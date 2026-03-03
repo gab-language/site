@@ -10,25 +10,23 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>Basic Types – Gab</title>
-  <meta name="description" content="In this chapter, we will learn more about Gab’s basic types. At the core of any language is its values - Gab is no different. In fact - values are almost all there is in Gab’s syntax. This introduction will build the foundation of how to think and program in Gab.
-Numbers Numbers are represented by IEEE 64-bit floating point values. There is no distinct integer type." /><link rel="canonical" href="/docs/basic_types/" itemprop="url" />
+<title>Types – Gab</title>
+  <meta name="description" content="Gab has a small, fixed set of built-in types. This section is a reference for each one — its behaviour, its messages, and the details that matter when writing real code.
+Type Description gab\number IEEE 754 64-bit float gab\string UTF-8 encoded byte sequence gab\binary Raw, unencoded byte sequence gab\message A self-typed atom value gab\block A closure / lambda gab\record The only data structure — serves as both list and dictionary gab\shape Describes the keys of a record; the record’s type gab\fiber A lightweight concurrent thread gab\channel A synchronised conduit between fibers gab\box An opaque wrapper around a native C value For a conceptual introduction to these types, see the Language Tour." /><link rel="canonical" href="/docs/basic_types/" itemprop="url" />
 
-<meta property="og:title" content="Basic Types" />
+<meta property="og:title" content="Types" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/docs/basic_types/" />
 
-  <meta itemprop="name" content="Basic Types">
-  <meta itemprop="description" content="In this chapter, we will learn more about Gab’s basic types. At the core of any language is its values - Gab is no different. In fact - values are almost all there is in Gab’s syntax. This introduction will build the foundation of how to think and program in Gab.
-Numbers Numbers are represented by IEEE 64-bit floating point values. There is no distinct integer type.">
-  <meta itemprop="datePublished" content="2025-02-07T12:49:57-05:00">
-  <meta itemprop="dateModified" content="2025-02-07T12:49:57-05:00">
-  <meta itemprop="wordCount" content="770">
+  <meta itemprop="name" content="Types">
+  <meta itemprop="description" content="Gab has a small, fixed set of built-in types. This section is a reference for each one — its behaviour, its messages, and the details that matter when writing real code.
+Type Description gab\number IEEE 754 64-bit float gab\string UTF-8 encoded byte sequence gab\binary Raw, unencoded byte sequence gab\message A self-typed atom value gab\block A closure / lambda gab\record The only data structure — serves as both list and dictionary gab\shape Describes the keys of a record; the record’s type gab\fiber A lightweight concurrent thread gab\channel A synchronised conduit between fibers gab\box An opaque wrapper around a native C value For a conceptual introduction to these types, see the Language Tour.">
+  <meta itemprop="wordCount" content="111">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Basic Types">
-  <meta name="twitter:description" content="In this chapter, we will learn more about Gab’s basic types. At the core of any language is its values - Gab is no different. In fact - values are almost all there is in Gab’s syntax. This introduction will build the foundation of how to think and program in Gab.
-Numbers Numbers are represented by IEEE 64-bit floating point values. There is no distinct integer type.">
+  <meta name="twitter:title" content="Types">
+  <meta name="twitter:description" content="Gab has a small, fixed set of built-in types. This section is a reference for each one — its behaviour, its messages, and the details that matter when writing real code.
+Type Description gab\number IEEE 754 64-bit float gab\string UTF-8 encoded byte sequence gab\binary Raw, unencoded byte sequence gab\message A self-typed atom value gab\block A closure / lambda gab\record The only data structure — serves as both list and dictionary gab\shape Describes the keys of a record; the record’s type gab\fiber A lightweight concurrent thread gab\channel A synchronised conduit between fibers gab\box An opaque wrapper around a native C value For a conceptual introduction to these types, see the Language Tour.">
 
     <link rel="preload" href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" as="style" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
     <link href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" rel="stylesheet" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
@@ -201,28 +199,65 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
   >Introduction
     </a>
               
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/"
+    
+  >Language Tour
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a>
+              <div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/records_and_shapes/"
+    
+  >Records &amp; Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/fibers_and_channels/"
+    
+  >Fibers &amp; Channels
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/error_handling/"
+    
+  >Error Handling
+    </a>
+              
+            </li></ul>
+      </div>
             </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/basic_types/"
     
-  >Basic Types
+  >Types
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a>
-  
-    <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
-              <a
-                href="#"
-                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              ></a>
-            </li>
-          <li>
-              <a
-                href="#conclusion"
-                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              >Conclusion</a>
-            </li>
-          </ul>
   
               <div class="ltr:hx-pr-0 hx-overflow-hidden">
         <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
@@ -230,7 +265,7 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/arithmetic/"
     
-  >Arithmetic
+  >Numbers
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -238,15 +273,7 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/strings/"
     
-  >Strings
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col "><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/blocks/"
-    
-  >Blocks
+  >Strings &amp; Binaries
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -260,17 +287,33 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/booleans/"
+    href="/docs/basic_types/records/"
     
-  >Booleans
+  >Records
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/records/"
+    href="/docs/basic_types/shapes/"
     
-  >Records
+  >Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/fibers/"
+    
+  >Fibers &amp; Channels
     </a>
               
             </li></ul>
@@ -296,12 +339,62 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
     
   >Introduction
     </a></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/"
+    
+  >Language Tour
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/records_and_shapes/"
+    
+  >Records &amp; Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/fibers_and_channels/"
+    
+  >Fibers &amp; Channels
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/error_handling/"
+    
+  >Error Handling
+    </a>
+              
+            </li></ul>
+      </div></li>
           <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/basic_types/"
     
-  >Basic Types
+  >Types
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
         <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
@@ -309,7 +402,7 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/arithmetic/"
     
-  >Arithmetic
+  >Numbers
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -317,15 +410,7 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/strings/"
     
-  >Strings
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col "><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/blocks/"
-    
-  >Blocks
+  >Strings &amp; Binaries
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -339,17 +424,33 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/booleans/"
+    href="/docs/basic_types/records/"
     
-  >Booleans
+  >Records
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/records/"
+    href="/docs/basic_types/shapes/"
     
-  >Records
+  >Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/fibers/"
+    
+  >Fibers &amp; Channels
     </a>
               
             </li></ul>
@@ -378,44 +479,8 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
 </div></div></aside>
     
 <nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
-    <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4"><p class="hx-mb-4 hx-font-semibold hx-tracking-tight">On this page</p><ul>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#numbers">Numbers
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#strings">Strings
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#blocks">Blocks
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#messages">Messages
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#records">Records
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#shapes">Shapes
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#fibers">Fibers
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#channels">Channels
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#conclusion">Conclusion
-        </a>
-      </li></ul>
-      <div class="hx-mt-8 hx-border-t hx-bg-white hx-pt-8 hx-shadow-[0_-12px_16px_white] dark:hx-bg-dark dark:hx-shadow-[0_-12px_16px_#111] hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400">
+    <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4">
+      <div class=" hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400">
         <button aria-hidden="true" id="backToTop" onClick="scrollUp();" class="hx-transition-all hx-duration-75 hx-opacity-0 hx-text-xs hx-font-medium hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-100 contrast-more:hx-text-gray-800 contrast-more:dark:hx-text-gray-50">
           <span>Scroll to top</span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hx-inline ltr:hx-ml-1 rtl:hx-mr-1 hx-h-3.5 hx-w-3.5 hx-border hx-rounded-full hx-border-gray-500 hover:hx-border-gray-900 dark:hx-border-gray-400 dark:hover:hx-border-gray-100 contrast-more:hx-border-gray-800 contrast-more:dark:hx-border-gray-50">
@@ -433,140 +498,63 @@ Numbers Numbers are represented by IEEE 64-bit floating point values. There is n
   <div class="hx-mt-1.5 hx-flex hx-items-center hx-gap-1 hx-overflow-hidden hx-text-sm hx-text-gray-500 dark:hx-text-gray-400 contrast-more:hx-text-current">
         <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
           <a href="/docs/">Docs</a>
-        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Basic Types</div>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Types</div>
   </div>
 
         <div class="content">
-          <h1>Basic Types</h1>
-          <p>In this chapter, we will learn more about Gab&rsquo;s basic types. At the core of any language is its values - Gab is no different. In fact - values are almost <em>all</em> there is in Gab&rsquo;s syntax.
-This introduction will build the foundation of how to think and program in Gab.</p>
-<h3>Numbers<span class="hx-absolute -hx-mt-20" id="numbers"></span>
-    <a href="#numbers" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Numbers are represented by IEEE 64-bit floating point values. There is no distinct integer type.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-weight: bold;color: #e6db74'>1</span></span></span>
-<span sytle="display:flex"><span><span style='font-weight: bold;color: #66d9ef'>-</span><span style='font-weight: bold;color: #e6db74'>42</span></span></span>
-<span sytle="display:flex"><span><span style='font-weight: bold;color: #e6db74'>1.2</span>e4</span></span>
-<span sytle="display:flex"><span><span style='font-weight: bold;color: #e6db74'>0.2</span><span style='font-weight: bold;color: #66d9ef'>?</span> <span style='font-style: italic;color: #8f908a'># =&gt; gab\number</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-  <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Note</p>
-
-  <div class="hx-w-full hx-min-w-0 hx-leading-7">
-    <div class="hx-mt-6 hx-leading-7 first:hx-mt-0"><p>Numbers less than one <strong>require</strong> a leading zero, as shown below.</p>
-<p>This is because the plain <code>.</code> would conflict with another element of Gab&rsquo;s syntax (a message send).</p></div>
-  </div>
-</div>
-<h3>Strings<span class="hx-absolute -hx-mt-20" id="strings"></span>
-    <a href="#strings" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Strings are a sequence of bytes. They are UTF8-encoded. For working with raw un-encoded bytes, Gab provides <code>gab\binary</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;gab&quot;</span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;what type am I?&quot;</span><span style='font-weight: bold;color: #66d9ef'>?</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; gab\string</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&#39;Single quoted strings support escaping!\n&#39;</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-  <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>As seen above, the operator for inspecting the type of a value is the question mark.</p>
-
-  <div class="hx-w-full hx-min-w-0 hx-leading-7">
-    <div class="hx-mt-6 hx-leading-7 first:hx-mt-0"></div>
-  </div>
-</div>
-<h3>Blocks<span class="hx-absolute -hx-mt-20" id="blocks"></span>
-    <a href="#blocks" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Blocks are Gab&rsquo;s closures or functions. They use the familiar <code>=&gt;</code> syntax:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>square = <span style='color: #f8f8f0'>(</span>x<span style='color: #f8f8f0'>)</span> =&gt; x <span style='font-weight: bold;color: #66d9ef'>*</span> x</span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\block ...&gt;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>square<span style='font-weight: bold;color: #66d9ef'>.</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>2</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Blocks always have an implicit <strong>self</strong> local. On their own, it isn&rsquo;t very useful. It will become useful later for defining message <em>specializations</em>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>get_me = <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='font-weight: bold;'>self</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\block ...&gt;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>get_me<span style='font-weight: bold;color: #66d9ef'>.</span><span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\block ...&gt;</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h3>Messages<span class="hx-absolute -hx-mt-20" id="messages"></span>
-    <a href="#messages" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Messages are another obscure concept, also to be explored later. In this context, think of them as <em>atoms</em> or <em>keywords</em> - values which represent themselves. Gab takes this a step further:
-the type of a message is <em>also itself</em>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>message:</span>      </span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; message:</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #ae81ff'>message:</span><span style='font-weight: bold;color: #66d9ef'>?</span>  </span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; message:</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Messages are  useful as keys in records, to indicate success or failure in returning from blocks, as enumerations, and in many other ways.
-Messages can also be called like blocks - however, they will look up a <em>specialization</em> based on the receiver&rsquo;s type.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #ae81ff'>+:</span><span style='font-weight: bold;color: #66d9ef'>.</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>2</span>, <span style='font-weight: bold;color: #e6db74'>2</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #ae81ff'>+:</span><span style='font-weight: bold;color: #66d9ef'>.</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&#39;Hello &#39;</span>, <span style='color: #a6e22e'>&#39;world!&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &#39;Hello world!&#39;</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Instead of writing out a message literal like <code>+:</code> and calling it, we can use a different <em>infix</em> notation. For operators like <code>+:</code>, that should look familiar!</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-weight: bold;color: #e6db74'>2</span> <span style='font-weight: bold;color: #66d9ef'>+</span> <span style='font-weight: bold;color: #e6db74'>2</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># We&#39;ve already seen another syntax for sending messages</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'>#  (ones that aren&#39;t operators)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Replace the colon `:` at the end with a dot `.` at the front,</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'>#  and you&#39;ve got a message send!</span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&#39;Hello world!&#39;</span><span style='font-weight: bold;color: #66d9ef'>.println</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># This also works for operators</span></span></span>
-<span sytle="display:flex"><span><span style='font-weight: bold;color: #e6db74'>2</span> <span style='font-weight: bold;color: #66d9ef'>.+</span> <span style='font-weight: bold;color: #e6db74'>2</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h3>Records<span class="hx-absolute -hx-mt-20" id="records"></span>
-    <a href="#records" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Records are Gab&rsquo;s <em>only</em> data structure. They serve as both dictionaries <em>and</em> lists.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>msg:</span> <span style='color: #a6e22e'>&#39;hi&#39;</span> <span style='color: #f8f8f0'>}</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>[</span><span style='font-weight: bold;color: #e6db74'>1</span>, <span style='font-weight: bold;color: #e6db74'>2</span>, <span style='font-weight: bold;color: #e6db74'>3</span><span style='color: #f8f8f0'>]</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&quot;Joe&quot;</span> <span style='color: #f8f8f0'>}</span><span style='font-weight: bold;color: #66d9ef'>?</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\shape name:&gt;</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h3>Shapes<span class="hx-absolute -hx-mt-20" id="shapes"></span>
-    <a href="#shapes" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Shapes are one of the more obscure concepts in Gab. We&rsquo;ll explore them further later. For now, know that all records with the same set of keys (in the same order) share the same <em>shape</em>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>a = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&quot;Joe&quot;</span> <span style='color: #f8f8f0'>}</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>a <span style='font-weight: bold;color: #66d9ef'>?</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\shape name:&gt;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>b = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&quot;Rich&quot;</span> <span style='color: #f8f8f0'>}</span></span></span>
-<span sytle="display:flex"><span>b <span style='font-weight: bold;color: #66d9ef'>?</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\shape name:&gt;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span>a <span style='font-weight: bold;color: #66d9ef'>?</span><span style='color: #f8f8f0'>)</span> <span style='font-weight: bold;color: #66d9ef'>==</span> <span style='color: #f8f8f0'>(</span>b <span style='font-weight: bold;color: #66d9ef'>?</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; true:</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-  <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Note</p>
-
-  <div class="hx-w-full hx-min-w-0 hx-leading-7">
-    <div class="hx-mt-6 hx-leading-7 first:hx-mt-0"><p>A space is required between <code>a</code> and <code>?</code>. Identifiers like <code>a</code> are allowed to end with either a question mark <code>?</code> or an exclamation point <code>!</code>. This serves various conventions
-in Gab.</p></div>
-  </div>
-</div>
-<h3>Fibers<span class="hx-absolute -hx-mt-20" id="fibers"></span>
-    <a href="#fibers" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p><code>gab\fiber</code> is a green thread - similar to processes on the BEAM, and goroutines in golang.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #af8700'>Fibers</span><span style='font-weight: bold;color: #66d9ef'>.make</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
-<span sytle="display:flex"><span>    <span style='color: #a6e22e'>&#39;I could run on another os thread!&#39;</span></span></span>
-<span sytle="display:flex"><span><span style='color: #f92672'>end</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Fibers are created as above, and automaticaly queued up for execution. The block passed to <code>make:</code> will run, potentially on another operating-system thread.
-As all Gab values are immutable, the block passed here may capture any variables it likes. However, communicating to this fiber once its created is only possible
-through a <code>gab\channel</code>.</p>
-<h3>Channels<span class="hx-absolute -hx-mt-20" id="channels"></span>
-    <a href="#channels" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Channels are a synchronized portal for handing off values between two <code>gab\fibers</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>ch = <span style='color: #af8700'>Channels</span><span style='font-weight: bold;color: #66d9ef'>.make</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># &lt;!: is a blocking operation to put a value onto a channel</span></span></span>
-<span sytle="display:flex"><span><span style='color: #af8700'>Fibers</span><span style='font-weight: bold;color: #66d9ef'>.make</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; ch <span style='font-weight: bold;color: #66d9ef'>&lt;!</span> <span style='color: #a6e22e'>&#39;Hello world!&#39;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># &gt;!: is the opposite - a blocking operation for taking values out.</span></span></span>
-<span sytle="display:flex"><span>ch<span style='font-weight: bold;color: #66d9ef'>.&gt;!</span><span style='font-weight: bold;color: #66d9ef'>.println</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>A fiber waiting on a channel operation may not continue executing until either the operation completes or the channel closes.
-To prevent fibers from hogging the CPU while they wait, they may yield the CPU to other fibers and will retry their operation at a later time.</p>
-<div class="hx-overflow-x-auto hx-mt-6 hx-flex hx-flex-col hx-rounded-lg hx-border hx-py-4 hx-px-4 contrast-more:hx-border-current contrast-more:dark:hx-border-current hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200">
-  <p class="hx-flex hx-items-center hx-font-medium"><svg height=16px class="hx-inline-block hx-align-middle hx-mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Note</p>
-
-  <div class="hx-w-full hx-min-w-0 hx-leading-7">
-    <div class="hx-mt-6 hx-leading-7 first:hx-mt-0"><p>Even the put message <code>&lt;!:</code> must block until a receiver arrives to become responsible for the passing value.
-This is required by Gab&rsquo;s runtime, as the <code>gab\channel</code> value is immutable and cannot hold references to other values.</p></div>
-  </div>
-</div>
-<h2>Conclusion<span class="hx-absolute -hx-mt-20" id="conclusion"></span>
-    <a href="#conclusion" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>And thats it! Gab is meant to be small and composable - the core concepts are few, but they compose in powerful ways. The chapters that follow will explore these types further!</p>
+          <h1>Types</h1>
+          <p>Gab has a small, fixed set of built-in types. This section is a reference for each one — its behaviour, its messages, and the details that matter when writing real code.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>gab\number</code></td>
+          <td>IEEE 754 64-bit float</td>
+      </tr>
+      <tr>
+          <td><code>gab\string</code></td>
+          <td>UTF-8 encoded byte sequence</td>
+      </tr>
+      <tr>
+          <td><code>gab\binary</code></td>
+          <td>Raw, unencoded byte sequence</td>
+      </tr>
+      <tr>
+          <td><code>gab\message</code></td>
+          <td>A self-typed atom value</td>
+      </tr>
+      <tr>
+          <td><code>gab\block</code></td>
+          <td>A closure / lambda</td>
+      </tr>
+      <tr>
+          <td><code>gab\record</code></td>
+          <td>The only data structure — serves as both list and dictionary</td>
+      </tr>
+      <tr>
+          <td><code>gab\shape</code></td>
+          <td>Describes the keys of a record; the record&rsquo;s type</td>
+      </tr>
+      <tr>
+          <td><code>gab\fiber</code></td>
+          <td>A lightweight concurrent thread</td>
+      </tr>
+      <tr>
+          <td><code>gab\channel</code></td>
+          <td>A synchronised conduit between fibers</td>
+      </tr>
+      <tr>
+          <td><code>gab\box</code></td>
+          <td>An opaque wrapper around a native C value</td>
+      </tr>
+  </tbody>
+</table>
+<p>For a conceptual introduction to these types, see the <a href="/docs/tour" >Language Tour</a>.</p>
 
         </div>
         <div class="hx-mt-16"></div>

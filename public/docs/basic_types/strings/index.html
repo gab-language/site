@@ -10,27 +10,27 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>Strings – Gab</title>
-  <meta name="description" content="This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they share data in memory. The string &#34;true&#34; and the message true: each share the same four bytes of memory in the heap: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. The values differentiate their type by tagging themeselves slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation." /><link rel="canonical" href="/docs/basic_types/strings/" itemprop="url" />
+<title>Strings &amp; Binaries – Gab</title>
+  <meta name="description" content="Gab has two string-like types: gab\string and gab\binary. A third type, gab\message, also belongs to this family. All three share their character data in memory — the bytes [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ] are stored once on the heap, shared between the string &#34;true&#34; and the message true:. Converting between these types is therefore a constant-time operation with no allocation.
+gab\string Strings are UTF-8 encoded byte sequences. Single-quoted strings support escape sequences; double-quoted strings do not." /><link rel="canonical" href="/docs/basic_types/strings/" itemprop="url" />
 
-<meta property="og:title" content="Strings" />
-<meta property="og:description" content="This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they share data in memory.
-The string &quot;true&quot; and the message true: each share the same four bytes of memory in the heap: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ].
-The values differentiate their type by tagging themeselves slightly differently - but this is an implementation detail. The important note to take from this is that
-converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation." />
+<meta property="og:title" content="Strings &amp; Binaries" />
+<meta property="og:description" content="Gab has two string-like types: gab\string and gab\binary. A third type, gab\message, also belongs to this family. All three share their character data in memory — the bytes [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ] are stored once on the heap, shared between the string &quot;true&quot; and the message true:. Converting between these types is therefore a constant-time operation with no allocation.
+gab\string
+    Strings are UTF-8 encoded byte sequences. Single-quoted strings support escape sequences; double-quoted strings do not." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/basic_types/strings/" /><meta property="article:section" content="docs" />
-<meta property="article:published_time" content="2025-02-07T16:06:50-05:00" />
-<meta property="article:modified_time" content="2025-02-07T16:06:50-05:00" />
 
-  <meta itemprop="name" content="Strings">
-  <meta itemprop="description" content="This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they share data in memory. The string &#34;true&#34; and the message true: each share the same four bytes of memory in the heap: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. The values differentiate their type by tagging themeselves slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation.">
-  <meta itemprop="datePublished" content="2025-02-07T16:06:50-05:00">
-  <meta itemprop="dateModified" content="2025-02-07T16:06:50-05:00">
-  <meta itemprop="wordCount" content="344">
+
+
+  <meta itemprop="name" content="Strings & Binaries">
+  <meta itemprop="description" content="Gab has two string-like types: gab\string and gab\binary. A third type, gab\message, also belongs to this family. All three share their character data in memory — the bytes [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ] are stored once on the heap, shared between the string &#34;true&#34; and the message true:. Converting between these types is therefore a constant-time operation with no allocation.
+gab\string Strings are UTF-8 encoded byte sequences. Single-quoted strings support escape sequences; double-quoted strings do not.">
+  <meta itemprop="wordCount" content="334">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Strings">
-  <meta name="twitter:description" content="This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they share data in memory. The string &#34;true&#34; and the message true: each share the same four bytes of memory in the heap: [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]. The values differentiate their type by tagging themeselves slightly differently - but this is an implementation detail. The important note to take from this is that converting these types into each other (eg: &#39;true&#39;.messages\into) is a constant-time operation. There is no copying, nor memory allocation.">
+  <meta name="twitter:title" content="Strings & Binaries">
+  <meta name="twitter:description" content="Gab has two string-like types: gab\string and gab\binary. A third type, gab\message, also belongs to this family. All three share their character data in memory — the bytes [ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ] are stored once on the heap, shared between the string &#34;true&#34; and the message true:. Converting between these types is therefore a constant-time operation with no allocation.
+gab\string Strings are UTF-8 encoded byte sequences. Single-quoted strings support escape sequences; double-quoted strings do not.">
 
     <link rel="preload" href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" as="style" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
     <link href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" rel="stylesheet" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
@@ -203,12 +203,63 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
   >Introduction
     </a>
               
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/"
+    
+  >Language Tour
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a>
+              <div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/records_and_shapes/"
+    
+  >Records &amp; Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/fibers_and_channels/"
+    
+  >Fibers &amp; Channels
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/error_handling/"
+    
+  >Error Handling
+    </a>
+              
+            </li></ul>
+      </div>
             </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
     
-  >Basic Types
+  >Types
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a>
               <div class="ltr:hx-pr-0 hx-overflow-hidden">
@@ -217,7 +268,7 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/arithmetic/"
     
-  >Arithmetic
+  >Numbers
     </a>
               
             </li><li class="hx-flex hx-flex-col open"><a
@@ -225,31 +276,29 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
       sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/basic_types/strings/"
     
-  >Strings
+  >Strings &amp; Binaries
     </a>
   
     <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
               <a
-                href="#strings"
+                href="#gabstring"
                 class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              >Strings</a>
+              >gab\string</a>
             </li>
           <li>
               <a
-                href="#binaries"
+                href="#gabbinary"
                 class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              >Binaries</a>
+              >gab\binary</a>
+            </li>
+          <li>
+              <a
+                href="#shared-memory-with-gabmessage"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >Shared Memory with gab\message</a>
             </li>
           </ul>
   
-              
-            </li><li class="hx-flex hx-flex-col "><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/blocks/"
-    
-  >Blocks
-    </a>
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
@@ -262,17 +311,33 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/booleans/"
+    href="/docs/basic_types/records/"
     
-  >Booleans
+  >Records
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/records/"
+    href="/docs/basic_types/shapes/"
     
-  >Records
+  >Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/fibers/"
+    
+  >Fibers &amp; Channels
     </a>
               
             </li></ul>
@@ -298,12 +363,62 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
     
   >Introduction
     </a></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/"
+    
+  >Language Tour
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/records_and_shapes/"
+    
+  >Records &amp; Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/fibers_and_channels/"
+    
+  >Fibers &amp; Channels
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/error_handling/"
+    
+  >Error Handling
+    </a>
+              
+            </li></ul>
+      </div></li>
           <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
     
-  >Basic Types
+  >Types
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
         <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
@@ -311,7 +426,7 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/arithmetic/"
     
-  >Arithmetic
+  >Numbers
     </a>
               
             </li><li class="hx-flex hx-flex-col open"><a
@@ -319,15 +434,7 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
       sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/docs/basic_types/strings/"
     
-  >Strings
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col "><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/blocks/"
-    
-  >Blocks
+  >Strings &amp; Binaries
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -341,17 +448,33 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/booleans/"
+    href="/docs/basic_types/records/"
     
-  >Booleans
+  >Records
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/records/"
+    href="/docs/basic_types/shapes/"
     
-  >Records
+  >Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/fibers/"
+    
+  >Fibers &amp; Channels
     </a>
               
             </li></ul>
@@ -382,11 +505,15 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
 <nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
     <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4"><p class="hx-mb-4 hx-font-semibold hx-tracking-tight">On this page</p><ul>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#strings">Strings
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#gabstring">gab\string
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#binaries">Binaries
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#gabbinary">gab\binary
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#shared-memory-with-gabmessage">Shared Memory with gab\message
         </a>
       </li></ul>
       <div class="hx-mt-8 hx-border-t hx-bg-white hx-pt-8 hx-shadow-[0_-12px_16px_white] dark:hx-bg-dark dark:hx-shadow-[0_-12px_16px_#111] hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400">
@@ -409,59 +536,72 @@ converting these types into each other (eg: &#39;true&#39;.messages\into) is a c
           <a href="/docs/">Docs</a>
         </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
-          <a href="/docs/basic_types/">Basic Types</a>
-        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Strings</div>
+          <a href="/docs/basic_types/">Types</a>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Strings &amp; Binaries</div>
   </div>
 
         <div class="content">
-          <h1>Strings</h1>
-          <p>This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they <strong>share data in memory</strong>.
-The string <code>&quot;true&quot;</code> and the message <code>true:</code> each share the same four bytes of memory in the heap: <code>[ 't', 'r', 'u', 'e' ]</code>.
-The values differentiate their type by tagging themeselves slightly differently - but this is an implementation detail. The important note to take from this is that
-converting these types into each other (eg: <code>'true'.messages\into</code>) is a constant-time operation. There is <strong>no copying, nor memory allocation</strong>.</p>
-<h2>Strings<span class="hx-absolute -hx-mt-20" id="strings"></span>
-    <a href="#strings" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Strings are sequences of UTF8-encoded bytes. Single-quoted strings support some escape sequences, while double-quoted strings do not.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;Hello!&quot;</span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&#39;\tHello\n&#39;</span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&#39;Hello \u[2502]&#39;</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>The <code>gab\string</code> type <em>respects</em> its UTF-8 Encoding. Operations that would be constant time fora <code>gab\binary</code> may actually be linear time for a <code>gab\string</code>. For example,
-slicing a UTF-8 string at a given index requires processing the string linearly. This is because UTF8 is a multi-byte character encoding and codepoints may be anywhere from one to four bytes long.</p>
-<p>On the other hand, the <code>gab\binary</code> type is trivially convertible from <code>gab\string</code>, and respects bytes directly, without enforcing or respecting <em>any</em> encoding. Becaues of this, converting from a <code>gab\binary</code> to a <code>gab\string</code> can fail if the binary is not valid UTF-8.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>smiley = <span style='color: #a6e22e'>&#39;😀&#39;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>smiley<span style='font-weight: bold;color: #66d9ef'>.len</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 1</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>smiley_bin = smiley<span style='font-weight: bold;color: #66d9ef'>.to\b</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\binary ...&gt;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>smiley_bin<span style='font-weight: bold;color: #66d9ef'>.len</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; 4</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>There is no syntax for string interpolation, but it is easy to construct strings out of other values using <code>make:</code> or <code>sprintf:</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>full_name = <span style='color: #af8700'>Strings</span><span style='font-weight: bold;color: #66d9ef'>.make</span><span style='color: #f8f8f0'>(</span><span style='color: #a6e22e'>&quot;Ada&quot;</span> <span style='color: #a6e22e'>&quot; &quot;</span> last_name<span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&#39;Format a value: $&#39;</span><span style='font-weight: bold;color: #66d9ef'>.sprintf</span><span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&#39;bob&#39;</span> <span style='color: #f8f8f0'>}</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; &#39;Format a value: { name: bob }&#39;</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h2>Binaries<span class="hx-absolute -hx-mt-20" id="binaries"></span>
-    <a href="#binaries" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>As mentioned above, the <code>gab\binary</code> operates on bytes directly - there is no encoding enforced. This means indexing/slicing operations are constant-time.
-There is no syntax for constructing binary literals, but other types can be converted into binaries.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Requires linearly scanning from the front of the string</span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;This is a string&quot;</span><span style='font-weight: bold;color: #66d9ef'>.slice</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>3</span> <span style='font-weight: bold;color: #e6db74'>8</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># slices from the 3rd to 8th byte in constant time</span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e22e'>&quot;This will be a binary&quot;</span><span style='font-weight: bold;color: #66d9ef'>.to\b</span><span style='font-weight: bold;color: #66d9ef'>.slice</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>3</span> <span style='font-weight: bold;color: #e6db74'>8</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div>
+          <h1>Strings &amp; Binaries</h1>
+          <p>Gab has two string-like types: <code>gab\string</code> and <code>gab\binary</code>. A third type, <code>gab\message</code>, also belongs to this family. All three <strong>share their character data in memory</strong> — the bytes <code>[ 't', 'r', 'u', 'e' ]</code> are stored once on the heap, shared between the string <code>&quot;true&quot;</code> and the message <code>true:</code>. Converting between these types is therefore a constant-time operation with no allocation.</p>
+<h2><code>gab\string</code><span class="hx-absolute -hx-mt-20" id="gabstring"></span>
+    <a href="#gabstring" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Strings are UTF-8 encoded byte sequences. Single-quoted strings support escape sequences; double-quoted strings do not.</p>
+<!--gab--><pre><code>
+"Hello!"
+'\tHello\n'
+'Hello \u[2502]'
+</code></pre>
+<p>Because Gab respects UTF-8 encoding, operations that are trivial on raw bytes may be linear-time on strings. Slicing a string at a given index requires scanning from the start, since utf8 codepoints are 1–4 bytes wide.</p>
+<!--gab--><pre><code>
+smiley = '😀'
+
+smiley.len    # => 1  (one codepoint)
+</code></pre>
+<p><strong>Constructing strings:</strong></p>
+<!--gab--><pre><code>
+Strings.make('Ada', ' ', last_name)
+
+'Format a value: $'.sprintf({ name: 'bob' })
+# => 'Format a value: { name: bob }'
+</code></pre>
+<p><code>sprintf</code> replaces each <code>$</code> in the format string with the corresponding argument, in order.</p>
+<h2><code>gab\binary</code><span class="hx-absolute -hx-mt-20" id="gabbinary"></span>
+    <a href="#gabbinary" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><code>gab\binary</code> operates on raw bytes with no encoding enforced. Indexing and slicing are constant-time because there are no multi-byte codepoints to account for.</p>
+<p>There is no literal syntax for binaries. Convert a string with <code>to\b</code>:</p>
+<!--gab--><pre><code>
+smiley     = '😀'
+smiley_bin = smiley.to\b
+
+smiley.len      # => 1  (codepoints)
+smiley_bin.len  # => 4  (bytes)
+</code></pre>
+<p>Slicing a binary is constant-time:</p>
+<!--gab--><pre><code>
+"This is a string".slice(3, 8)        # Linear — scans from start
+"This is a string".to\b.slice(3, 8)   # Constant time — byte offset
+</code></pre>
+<p>Converting a binary back to a string can fail if the bytes are not valid UTF-8:</p>
+<!--gab--><pre><code>
+(status, str) = some_binary.as\s
+</code></pre>
+<h2>Shared Memory with <code>gab\message</code><span class="hx-absolute -hx-mt-20" id="shared-memory-with-gabmessage"></span>
+    <a href="#shared-memory-with-gabmessage" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Because <code>gab\string</code>, <code>gab\binary</code>, and <code>gab\message</code> all share the same underlying character data, converting between them is zero-cost. The string <code>'true'</code> and the message <code>true:</code> occupy the same bytes — they differ only in their type tag.</p>
+<!--gab--><pre><code>
+'true'.to\m   # => true:   (no allocation)
+true:.to\s    # => 'true'  (no allocation)
+</code></pre>
+<p>This design means message values are just as efficient as strings in any context where they appear as keys or identifiers.</p>
+
         </div>
         <div class="hx-mt-16"></div>
         <div class="hx-mb-8 hx-flex hx-items-center hx-border-t hx-pt-8 dark:hx-border-neutral-800 contrast-more:hx-border-neutral-400 dark:contrast-more:hx-border-neutral-400 print:hx-hidden"><a
         href="/docs/basic_types/arithmetic/"
-        title="Arithmetic"
+        title="Numbers"
         class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-pr-4 rtl:hx-pl-4"
-      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Arithmetic</a><a
-        href="/docs/basic_types/blocks/"
-        title="Blocks"
+      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Numbers</a><a
+        href="/docs/basic_types/messages/"
+        title="Messages"
         class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-ml-auto ltr:hx-pl-4 ltr:hx-text-right rtl:hx-mr-auto rtl:hx-pr-4 rtl:hx-text-left"
-      >Blocks<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
+      >Messages<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
         
       </main>
     </article>

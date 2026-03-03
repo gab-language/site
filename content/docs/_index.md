@@ -3,7 +3,7 @@ date = '2025-03-10T07:07:42-04:00'
 draft = false
 title = 'Docs'
 +++
-### :wave: Hello!
+# :wave: Hello!
 Welcome to Gab's documentation. Here, we'll take you on a tour of the language and its features.
 If we've done our job, reading through the introduction should take less than an hour.
 
@@ -15,16 +15,12 @@ Expect bugs and the occasional api change as things settle down. I wouldn't cons
 Additionally, documentation and developer tooling are works-in-progress. The language may be hard to use until these become more
 mature.
 
----
-
-# Your First Gab Program
+## Your First Gab Program
 
 Welcome! Let's write and run your first Gab program. This short tutorial will show you how to use the Gab runtime, REPL,
 and some of the language’s most important ideas: message sends, immutability, fibers, and channels.
 
----
-
-## 1. Creating Your First File
+### 1. Creating Your First File
 
 Create a new file named `hello.gab`:
 

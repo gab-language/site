@@ -1,71 +1,112 @@
-+++
-date = '2025-02-07T18:33:11-05:00'
-title = 'Messages'
-weight = 3
-+++
-Message are the bread and butter of Gab. They serve many purposes. Mainly they provide control flow, or act as enums or sentinel values. However, They also serve as Gab's mechanism for **polymorphism**.
-### Message Sends
-The only way to *do* anything is by *sending a message to a value*.
+---
+title: Messages
+weight: 3
+---
+
+A message is an identifier ending in a colon. Its type is itself.
+
 ```gab
-"Hello world!" .println # => Hello world!
-```
-Earlier we saw message literals, which look like this:
-```gab
-println:
+ok:?      # => ok:
+true:?    # => true:
+my_msg:?  # => my_msg:
 ```
 
-Now we've seen a message *send*, which is like calling a method or function:
+Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are Gab's implementation of booleans, nil, and result values — there are no built-in keywords for any of these.
+
+## Defining Specializations
+
+A message responds to `def:` to add a new **specialization** — an implementation for a specific receiver type:
+
 ```gab
-any_value .println
+greet: .def (Strings.t, () => do
+  'Hello, $!'.sprintf(self).println
+end)
+
+'Alice'.greet   # => Hello, Alice!
 ```
 
-Message literals can also respond to messages!
+There are three definition messages, each suited to different situations.
+
+### `def:`
+
+Defines a single specialization for a single type:
+
 ```gab
-my_message: .println # => my_message:
-```
-In fact, this is how new messages are defined in Gab!
-```gab
-my_message:.def(
-    myType,
-    () => do
-        self.name.println
-    end)
+birthday: .def (Person, () => do
+  self.put(age: self.age + 1)
+end)
 ```
 
-Messages *themselves* respond to the `def:` message by adding a new implementation for the given type(s).
-There are several other messages for defining new implementations, which Gab refers to as **specializations**.
+### `defcase:`
+
+Defines multiple specializations for one message at once, using a record as a dispatch table:
+
 ```gab
-# Define multiple specializations for one message, conveniently
-my_message: .defcase {
-    nil:  () => "I was nil!"
-    true: () => "I was true!"
-    none: "I was none!" # Values alone can also serve as a specialization.
+describe: .defcase {
+  ok:   result => 'Success: $'.sprintf(result).println
+  err:  msg    => 'Error: $'.sprintf(msg).println
+  nil:          => 'Nothing here.'.println
 }
+```
 
-# Define the same specializations for multiple types, conveniently
-[ myType, myOtherType ] .defmodule {
-    message_one: () => "Sending message one"
-    message_two: () => "Sending message two"
+Each key in the record is a receiver type; each value is the block to call when that type receives the message. Values alone (without a block) are also valid — they are returned directly.
+
+### `defmodule:`
+
+Defines multiple messages for multiple receiver types at once:
+
+```gab
+[Point, Vector] .defmodule {
+  scale: (factor) => self.put(x: self.x * factor, y: self.y * factor)
+  zero:  ()       => self.put(x: 0, y: 0)
 }
 ```
-### Message Values
-We've seen message values before. They are identifiers that end in a colon`:`.
-They're useful for singleton or sentinel values - and in fact, Gab implements booleans and nil using messages. More on this in later chapters!
-Gab also uses message values to implement results or optionals.
-Since Gab has multiple return values, sends that can error often return multiple values like this:
+
+## Dispatch Resolution Order
+
+When a message is sent to a value, Gab resolves the specialization in this order:
+
+1. **Super type** — if the value's type (e.g. a `gab\shape`) has a specialization, use it.
+2. **Type** — use the specialization defined for the value's `gab\` type (e.g. `gab\record`).
+3. **Property** — if the receiver is a record and the message name matches one of its keys, return that value. This is how field access works: `{ name: 'bob' }.name` returns `'bob'` without any explicit `def:`.
+4. **General** — use a specialization defined with no specific type.
+
 ```gab
-# This call may fail, if Gab can't open the file
-(ok file) = IO.file('Maybe_Exists.txt')
+y: .def 'general case'
 
-(ok file) # => If the file exists  (ok: <gab\box io\file ...>)
-          # => If the file doesn't (err: "File not found")
+z: .def (Shapes.make(x:), 'shape case')
 
-# This line will crash - the record doesn't respond to age:
-age = { name: 'bob' } .age
-
-(ok age) = { name: 'bob' }.at(age:)
-# Now instead we will either see:
-# => (ok: <whatever we saw in the record>)
-# => (none: nil:)
-
+{ x: 1 }.y   # => 'general case'  (general)
+{ x: 1 }.z   # => 'shape case'    (super type — the shape <x:>)
+{ x: 1 }.x   # => 1               (property)
 ```
+
+## `and:`, `or:`, `then:`, `else:`
+
+These messages are defined on `true:` and `false:` in the core library. Their semantics differ in one important way:
+
+`and:` and `or:` accept **values** — the argument is always evaluated before the message is sent:
+
+```gab
+true:  .and 2    # => 2
+false: .and 2    # => false:
+false: .or  2    # => 2
+true:  .or  2    # => true:
+```
+
+`then:` and `else:` accept **blocks** — only the appropriate branch is invoked:
+
+```gab
+true: .then  () => 'yes'.println   # => yes
+true: .else  () => 'no'.println    # (block is never called)
+```
+
+## `nil:` and `none:`
+
+`nil:` is the value Gab binds to names that have no corresponding value — for example, if a binding list is longer than the tuple being destructured:
+
+```gab
+(a, b) = 1   # a => 1, b => nil:
+```
+
+`none:` is used by certain APIs to signal the absence of a result (as opposed to an error). Both are plain message values with no special runtime treatment.

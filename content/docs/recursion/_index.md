@@ -2,7 +2,7 @@
 date = '2025-03-10T12:13:08-04:00'
 draft = false
 title = 'Recursion'
-weight = 3
+weight = 4
 +++
 Gab does not provide form of loop construct.
 Instead, we use recursion and to perform the same work and rely on the cgab runtime to make it fast.

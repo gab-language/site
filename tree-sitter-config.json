@@ -6,49 +6,46 @@
     "variable.parameter": {
       "underline": true
     },
-    "function.builtin": {
-      "color": 26,
-      "bold": true
+    "variable.builtin": {
+      "color": "#f38ba9"
     },
     "comment": {
-      "color": "#8F908A",
+      "color": "#9399b3",
       "italic": true
     },
     "constructor": 136,
-    "keyword": "#f92672",
-    "number": {
-      "color": "#e6db74",
-      "bold": true
-    },
-    "variable.builtin": {
-      "bold": true
-    },
-    "attribute": {
-      "italic": true,
-      "color": 124
-    },
-    "constant.builtin": {
+    "keyword": { 
       "bold": true,
-      "color": 94
+      "color": "#cba6f8"
     },
-    "punctuation.delimiter": 239,
-    "property": 124,
+    "number": {
+      "bold": true,
+      "color": "#fab388"
+    },
+    "punctuation.delimiter": "#9399b3",
+    "property":  "#89dcec",
     "operator": {
       "bold": true,
-      "color": "#66d9ef"
+      "color": "#89dcec"
     },
-    "function": "#ae81ff",
-    "type": 23,
-    "punctuation.bracket": "#f8f8f0",
-    "string": "#a6e22e",
-    "string.special": "#f92672",
-    "constant": 94,
-    "tag": 18,
+    "function": {
+      "bold": true,
+      "color": "#89b4fb"
+    },
+    "type": "#f9e2b0",
+    "punctuation.bracket": "#9399b3",
+    "string": "#a6e3a2",
+    "string.special": "#f5c2e8",
+    "constant": "#fab388",
+    "tag": "#89b4fb",
     "embedded": null,
     "type.builtin": {
       "bold": true,
-      "color": 23
+      "color": "#cba6f8"
     },
-    "module": 136
+    "module": {
+      "bold": true,
+      "color": "#f5c2e8"
+    }
   }
 }

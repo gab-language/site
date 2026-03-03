@@ -2,31 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/docs/basic_types/arithmetic/</loc>
-    <lastmod>2025-02-07T13:01:01-05:00</lastmod>
-  </url><url>
     <loc>/docs/intro/</loc>
   </url><url>
+    <loc>/docs/tour/</loc>
+  </url><url>
+    <loc>/docs/tour/messages/</loc>
+  </url><url>
+    <loc>/docs/basic_types/arithmetic/</loc>
+  </url><url>
+    <loc>/docs/tour/records_and_shapes/</loc>
+  </url><url>
     <loc>/docs/basic_types/strings/</loc>
-    <lastmod>2025-02-07T16:06:50-05:00</lastmod>
+  </url><url>
+    <loc>/docs/tour/blocks/</loc>
+  </url><url>
+    <loc>/docs/basic_types/messages/</loc>
+  </url><url>
+    <loc>/docs/basic_types/records/</loc>
   </url><url>
     <loc>/docs/basic_types/</loc>
-    <lastmod>2025-02-07T12:49:57-05:00</lastmod>
   </url><url>
     <loc>/docs/recursion/</loc>
     <lastmod>2025-03-10T12:13:08-04:00</lastmod>
   </url><url>
+    <loc>/docs/tour/fibers_and_channels/</loc>
+  </url><url>
+    <loc>/docs/tour/error_handling/</loc>
+  </url><url>
+    <loc>/docs/basic_types/shapes/</loc>
+  </url><url>
     <loc>/docs/basic_types/blocks/</loc>
-    <lastmod>2025-03-10T10:06:10-04:00</lastmod>
   </url><url>
-    <loc>/docs/basic_types/messages/</loc>
-    <lastmod>2025-02-07T18:33:11-05:00</lastmod>
-  </url><url>
-    <loc>/docs/basic_types/booleans/</loc>
-    <lastmod>2025-02-07T16:06:29-05:00</lastmod>
-  </url><url>
-    <loc>/docs/basic_types/records/</loc>
-    <lastmod>2025-02-07T16:07:28-05:00</lastmod>
+    <loc>/docs/basic_types/fibers/</loc>
   </url><url>
     <loc>/blog/build/</loc>
     <lastmod>2025-10-02T14:55:44-04:00</lastmod>

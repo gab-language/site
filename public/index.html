@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-	<meta name="generator" content="Hugo 0.154.5">
+	<meta name="generator" content="Hugo 0.157.0">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
@@ -20,19 +20,17 @@
 <meta property="og:url" content="/" />
 
   <meta itemprop="name" content="Gab">
-  <meta itemprop="description" content="[intransitive verb]
-to talk in a rapid or thoughtless manner, ie: chatter
-Programming systems, not systems programming. Gab is a dynamic and high-level programming language which takes inspiration from all manners of languages and paradigms. It does so with a single goal in mind: to make building systems easier. Gab provides the minimal set of abstractions necessary for building a modern concurrent system.
-Below you’ll find a list of principles core to the language which help to achieve this goal. If you like what you see, head to the docs to get started.">
+  <meta itemprop="description" content="[intransitive verb] — to talk in a rapid or thoughtless manner
+Programming systems, not systems programming. Gab is a small, dynamic language built for writing concurrent systems. Gab gives you the minimal set of abstractions that actually matter, and gets out of your way.
+Install Gab Language Tour Simple. Gab has one mechanism for control flow: sending messages. No if. No for. No while. No special forms to memorise.">
   <meta itemprop="datePublished" content="2025-10-02T14:55:44-04:00">
   <meta itemprop="dateModified" content="2025-10-02T14:55:44-04:00">
-  <meta itemprop="wordCount" content="637">
+  <meta itemprop="wordCount" content="400">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Gab">
-  <meta name="twitter:description" content="[intransitive verb]
-to talk in a rapid or thoughtless manner, ie: chatter
-Programming systems, not systems programming. Gab is a dynamic and high-level programming language which takes inspiration from all manners of languages and paradigms. It does so with a single goal in mind: to make building systems easier. Gab provides the minimal set of abstractions necessary for building a modern concurrent system.
-Below you’ll find a list of principles core to the language which help to achieve this goal. If you like what you see, head to the docs to get started.">
+  <meta name="twitter:description" content="[intransitive verb] — to talk in a rapid or thoughtless manner
+Programming systems, not systems programming. Gab is a small, dynamic language built for writing concurrent systems. Gab gives you the minimal set of abstractions that actually matter, and gets out of your way.
+Install Gab Language Tour Simple. Gab has one mechanism for control flow: sending messages. No if. No for. No while. No special forms to memorise.">
 
     <link rel="preload" href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" as="style" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
     <link href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" rel="stylesheet" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
@@ -208,9 +206,60 @@ Below you’ll find a list of principles core to the language which help to achi
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/"
+    
+  >Language Tour
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a>
+              <div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/records_and_shapes/"
+    
+  >Records &amp; Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/fibers_and_channels/"
+    
+  >Fibers &amp; Channels
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/error_handling/"
+    
+  >Error Handling
+    </a>
+              
+            </li></ul>
+      </div>
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
     
-  >Basic Types
+  >Types
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a>
               <div class="ltr:hx-pr-0 hx-overflow-hidden">
@@ -219,7 +268,7 @@ Below you’ll find a list of principles core to the language which help to achi
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/arithmetic/"
     
-  >Arithmetic
+  >Numbers
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -227,15 +276,7 @@ Below you’ll find a list of principles core to the language which help to achi
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/strings/"
     
-  >Strings
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col "><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/blocks/"
-    
-  >Blocks
+  >Strings &amp; Binaries
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -249,17 +290,33 @@ Below you’ll find a list of principles core to the language which help to achi
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/booleans/"
+    href="/docs/basic_types/records/"
     
-  >Booleans
+  >Records
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/records/"
+    href="/docs/basic_types/shapes/"
     
-  >Records
+  >Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/fibers/"
+    
+  >Fibers &amp; Channels
     </a>
               
             </li></ul>
@@ -290,42 +347,7 @@ Below you’ll find a list of principles core to the language which help to achi
 </button>
 </div></div></aside>
     
-<nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
-    <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4"><p class="hx-mb-4 hx-font-semibold hx-tracking-tight">On this page</p><ul>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#programming-systems-not-systems-programming">Programming systems, not systems programming.
-        </a>
-      </li></ul><ul>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#simple">Simple.
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#concurrent">Concurrent.
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#immutable">Immutable.
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#performant">Performant.
-        </a>
-      </li>
-      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#distrubition">Distrubition.
-        </a>
-      </li></ul>
-      <div class="hx-mt-8 hx-border-t hx-bg-white hx-pt-8 hx-shadow-[0_-12px_16px_white] dark:hx-bg-dark dark:hx-shadow-[0_-12px_16px_#111] hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400">
-        <button aria-hidden="true" id="backToTop" onClick="scrollUp();" class="hx-transition-all hx-duration-75 hx-opacity-0 hx-text-xs hx-font-medium hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-100 contrast-more:hx-text-gray-800 contrast-more:dark:hx-text-gray-50">
-          <span>Scroll to top</span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hx-inline ltr:hx-ml-1 rtl:hx-mr-1 hx-h-3.5 hx-w-3.5 hx-border hx-rounded-full hx-border-gray-500 hover:hx-border-gray-900 dark:hx-border-gray-400 dark:hover:hx-border-gray-100 contrast-more:hx-border-gray-800 contrast-more:dark:hx-border-gray-50">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </nav>
+<nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents"></nav>
 
 
     <article class="hx-w-full hx-break-words hx-flex hx-min-h-[calc(100vh-var(--navbar-height))] hx-min-w-0 hx-justify-center hx-pb-8 hx-pr-[calc(env(safe-area-inset-right)-1.5rem)]">
@@ -333,85 +355,62 @@ Below you’ll find a list of principles core to the language which help to achi
         <h1 class="hx-text-center hx-mt-2 hx-text-4xl hx-font-bold hx-tracking-tight hx-text-slate-900 dark:hx-text-slate-100">Gab</h1>
         <div class="content">
           <blockquote>
-  <p>[intransitive verb]</p>
-<p>to talk in a rapid or thoughtless manner, ie: chatter</p>
+  <p>[intransitive verb] — to talk in a rapid or thoughtless manner</p>
 
 </blockquote>
 <h2>Programming systems, not systems programming.<span class="hx-absolute -hx-mt-20" id="programming-systems-not-systems-programming"></span>
-    <a href="#programming-systems-not-systems-programming" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><strong>Gab</strong> is a dynamic and high-level programming language which takes inspiration from all manners of languages and paradigms.
-It does so with a single goal in mind: to <em>make building systems easier</em>. Gab provides the minimal set of abstractions necessary for building
-a modern concurrent system.</p>
-<p>Below you&rsquo;ll find a list of principles core to the language which help to achieve this goal.
-If you like what you see, head to the docs to get started.</p>
-<h1>Why Gab?</h1><p>There are countless options when choosing a programming language today. What does Gab offer that makes it unique?</p>
-<ul>
-<li>The language is simple.</li>
-<li>Concurrent from the start.</li>
-<li>Fast and small.</li>
-<li>Cross-platform distribution.</li>
-</ul>
+    <a href="#programming-systems-not-systems-programming" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><strong>Gab</strong> is a small, dynamic language built for writing concurrent systems.
+Gab gives you the minimal set of abstractions that actually matter, and gets out of your way.</p>
+<div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 3;">
+  <a
+    class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-transparent hx-shadow-sm dark:hx-border-neutral-800 hover:hx-bg-slate-50 hover:hx-shadow-md dark:hover:hx-border-neutral-700 dark:hover:hx-bg-neutral-900"href="docs/installation"
+      ><span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-p-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Install Gab</span></a>
+  <a
+    class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-transparent hx-shadow-sm dark:hx-border-neutral-800 hover:hx-bg-slate-50 hover:hx-shadow-md dark:hover:hx-border-neutral-700 dark:hover:hx-bg-neutral-900"href="docs/tour"
+      ><span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-p-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>Language Tour</span></a>
+</div>
+
 <h2>Simple.<span class="hx-absolute -hx-mt-20" id="simple"></span>
-    <a href="#simple" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Gab is objectively simple because it objectively has few features. There is a single method for control flow: sending messages.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>welcome_message = <span style='color: #f8f8f0'>[</span><span style='color: #a6e22e'>&#39;Hello&#39;</span>, <span style='color: #a6e22e'>&#39; &#39;</span>,  <span style='color: #a6e22e'>&#39;world!&#39;</span><span style='color: #f8f8f0'>]</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>welcome_message<span style='font-weight: bold;color: #66d9ef'>.join</span><span style='font-weight: bold;color: #66d9ef'>.println</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; Hello world!</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Say goodbye to <code>if</code>, <code>for</code>, and <code>while</code>! ( we promise you won&rsquo;t miss them )</p>
+    <a href="#simple" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Gab has one mechanism for control flow: sending messages. No <code>if</code>. No <code>for</code>. No <code>while</code>. No special forms to memorise.</p>
+<!--gab--><pre><code>
+welcome = ['Hello', ' ', 'world!']
+welcome.join.println
+# => Hello world!
+</code></pre>
+<p>This isn&rsquo;t a constraint to work around, it&rsquo;s a feature of the language. When everything is a message send, there&rsquo;s nothing hidden in the language. Behaviour you don&rsquo;t understand is behaviour you haven&rsquo;t read yet.</p>
 <h2>Concurrent.<span class="hx-absolute -hx-mt-20" id="concurrent"></span>
-    <a href="#concurrent" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Gab&rsquo;s custom runtime environment supports hundreds of thousands of concurrent fibers. Fibers are small units of execution - similar to processes on the BEAM, goroutines in Go.
-Fibers communicate with each other throuch channels - another core datatype to the language.
-They are the sole way that fibers can communicate with one another. Golang also has channels, and the BEAM has mailboxes where processes receive messages.
-In both of these implementations, messages are <strong>copied</strong> from the sender into the receiver.
-Gab is designed such that messages can be sent between fibers <strong>without copying</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>print_chan = <span style='color: #af8700'>Channels</span><span style='font-weight: bold;color: #66d9ef'>.make</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #af8700'>Ranges</span><span style='font-weight: bold;color: #66d9ef'>.make</span><span style='color: #f8f8f0'>(</span><span style='font-weight: bold;color: #e6db74'>0</span>, <span style='font-weight: bold;color: #e6db74'>10000</span><span style='color: #f8f8f0'>)</span><span style='font-weight: bold;color: #66d9ef'>.each</span> i =&gt; <span style='color: #f92672'>do</span></span></span>
-<span sytle="display:flex"><span>    <span style='color: #af8700'>Fibers</span><span style='font-weight: bold;color: #66d9ef'>.make</span> <span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>)</span> =&gt; <span style='color: #f92672'>do</span></span></span>
-<span sytle="display:flex"><span>        print_chan <span style='font-weight: bold;color: #66d9ef'>&lt;!</span> <span style='color: #a6e22e'>&#39;Hello, from fiber $!&#39;</span><span style='font-weight: bold;color: #66d9ef'>.sprintf</span><span style='color: #f8f8f0'>(</span>i<span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span>    <span style='color: #f92672'>end</span></span></span>
-<span sytle="display:flex"><span><span style='color: #f92672'>end</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>print_chan<span style='font-weight: bold;color: #66d9ef'>.each</span> <span style='color: #ae81ff'>println:</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h2>Immutable.<span class="hx-absolute -hx-mt-20" id="immutable"></span>
-    <a href="#immutable" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>All of Gab&rsquo;s data structures are immutable (Yes, even <code>gab\channel</code>). For languages focused on multithreaded programming, immutability is the <em>only sensible option</em>.
-Gab&rsquo;s immutable record is implemented with a custom Hash-Array-BitMapped-Vector-Trie, heavily inspired by clojure&rsquo;s persistent vector. In truth, <code>gab\record</code> is the <em>only data structure</em> in the language.
-Traditional square-bracket <code>[]</code> lists use the same data structure (and <code>gab\shape</code> principle - more on that later).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>bob = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&#39;bob&#39;</span>, <span style='color: #ae81ff'>age:</span> <span style='font-weight: bold;color: #e6db74'>44</span> <span style='color: #f8f8f0'>}</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; { name: &#39;bob&#39; age: 44 }</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>alice = bob<span style='font-weight: bold;color: #66d9ef'>.put</span><span style='color: #f8f8f0'>(</span><span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&#39;alice&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; { name: &#39;alice&#39; age: 44 }</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>bob</span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; { name: &#39;bob&#39; age: 44 }</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h2>Performant.<span class="hx-absolute -hx-mt-20" id="performant"></span>
-    <a href="#performant" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Many of todays dynamic or interpreted languages made decisions early in their design which have left them difficult to make fast. This is a tradeoff - these choice make the languages more
-convenient, or maybe served a purpose that has become obsolete. Gab has constrained itself in order to make competetive performance easier to achieve.
-Said tradeoffs include:</p>
-<ul>
-<li>No global variables.</li>
-<li>No implicit conversions.</li>
-<li><code>gab\channel</code> is unbuffered.</li>
-<li>No control flow other than sending messages.</li>
-<li>Only one data structure, <code>gab\record</code>.</li>
-</ul>
-<p>Gab&rsquo;s small surface area also plays a part here. Since Gab only has one mechanism for control flow (messages) and one data-structure (<code>gab\record</code>),  that leaves only two hot code-paths in cgab&rsquo;s implementation.
-All optimization efforts can focus on improving either message dispatch or record operations.</p>
-<h2>Distrubition.<span class="hx-absolute -hx-mt-20" id="distrubition"></span>
-    <a href="#distrubition" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Trivial cross-platform distribution is a principle for Gab. Gab&rsquo;s build system allows the programmer to build standalone executables for <em>any supported platform from any other</em>. All of Gab&rsquo;s builtin modules support
-all of Gab&rsquo;s platforms out of the box (and they always will.) This means that distributing your Gab app is as simple as:</p>
+    <a href="#concurrent" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Gab&rsquo;s runtime supports hundreds of thousands of concurrent fibers. Fibers are lightweight and far cheaper than OS threads. They communicate between each other exclusively through channels.</p>
+<!--gab--><pre><code>
+print_chan = Channels.make
+
+Ranges.make(0, 10000).each i => do
+  Fibers.make () => do
+    print_chan <! 'Hello from fiber $!'.sprintf(i)
+  end
+end
+
+print_chan.each (msg) => msg.println
+</code></pre>
+<p>Because all values in Gab are immutable, passing data between fibers requires <strong>no copying</strong>. A large record sent across a channel costs the same as sending an integer.</p>
+<h2>Immutable.<span class="hx-absolute -hx-mt-20" id="immutable"></span>
+    <a href="#immutable" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Every value in Gab is immutable. You never update a value in place, you produce a new one.</p>
+<!--gab--><pre><code>
+bob   = { name: 'bob',   age: 44 }
+alice = bob.put(name: 'alice')
+
+bob    # => { name: 'bob',   age: 44 }
+alice  # => { name: 'alice', age: 44 }
+</code></pre>
+<p>For concurrent code, immutability isn&rsquo;t a trade-off — it&rsquo;s the only sensible default. Share anything, anywhere, safely.</p>
+<h2>Ship anywhere.<span class="hx-absolute -hx-mt-20" id="ship-anywhere"></span>
+    <a href="#ship-anywhere" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Build a standalone executable for any supported platform — from any other:</p>
 <div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
 
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gab build -p aarch_64-macos-none -m my,deps my_project
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>file my_project.exe
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; my_project.exe: Mach-O 64-bit arm64 executable, flags:&lt;NOUNDEFS|DYLDLINK|TWOLEVEL|NO_REEXPORTED_DYLIBS|PIE&gt;</span>
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>gab build -p aarch64-macos-none -m my,deps my_project
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># =&gt; my_project  (runs on Apple Silicon, no Gab installation required)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>gab build -p x86_64-linux-gnu -m my,deps my_project
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>file my_project.exe
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt; my_project.exe: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#  so.2, for GNU/Linux 2.0.0, with debug_info, not stripped</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># =&gt; my_project  (runs on Linux x86_64, no Gab installation required)</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
   <button
     class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
     title="Copy code"
@@ -421,7 +420,22 @@ all of Gab&rsquo;s platforms out of the box (and they always will.) This means t
   </button>
 </div>
 </div>
-<p>This single file includes the entire gab runtime, as well as all dependencies necessary to run your project.</p>
+<p>The output is a single file containing your code, your dependencies, and the entire Gab runtime. Send it to a server, bundle it in a container, hand it to a colleague — it just runs.</p>
+<h2>Embeddable.<span class="hx-absolute -hx-mt-20" id="embeddable"></span>
+    <a href="#embeddable" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Gab is designed to live inside larger applications. A stable C API (<code>gab.h</code>) and a static library (<code>libcgab.a</code>) are provided with every release. Call Gab from C, expose C functions to Gab, or write native modules.</p>
+<p>If Lua is your current scripting layer, Gab is a direct, concurrent-ready alternative.</p>
+<div class="hextra-cards hx-mt-4 hx-gap-4 hx-grid not-prose" style="--hextra-cards-grid-cols: 3;">
+  <a
+    class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-transparent hx-shadow-sm dark:hx-border-neutral-800 hover:hx-bg-slate-50 hover:hx-shadow-md dark:hover:hx-border-neutral-700 dark:hover:hx-bg-neutral-900"href="docs/installation"
+      ><span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-p-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Install Gab</span></a>
+  <a
+    class="hextra-card hx-group hx-flex hx-flex-col hx-justify-start hx-overflow-hidden hx-rounded-lg hx-border hx-border-gray-200 hx-text-current hx-no-underline dark:hx-shadow-none hover:hx-shadow-gray-100 dark:hover:hx-shadow-none hx-shadow-gray-100 active:hx-shadow-sm active:hx-shadow-gray-200 hx-transition-all hx-duration-200 hover:hx-border-gray-300 hx-bg-transparent hx-shadow-sm dark:hx-border-neutral-800 hover:hx-bg-slate-50 hover:hx-shadow-md dark:hover:hx-border-neutral-700 dark:hover:hx-bg-neutral-900"href="https://github.com/gab-language/cgab"
+      target="_blank" rel="noreferrer"><span class="hextra-card-icon hx-flex hx-font-semibold hx-items-start hx-gap-2 hx-p-4 hx-text-gray-700 hover:hx-text-gray-900 dark:hx-text-neutral-200 dark:hover:hx-text-neutral-50"><svg fill="currentColor" viewBox="3 3 18 18">
+    <path d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z"></path>
+  </svg>
+  View on GitHub</span></a>
+</div>
+
 
         </div>
       </main>

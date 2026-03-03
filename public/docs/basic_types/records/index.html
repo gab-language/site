@@ -11,47 +11,34 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
 <title>Records – Gab</title>
-  <meta name="description" content="Records are collections of key-value pairs. They are ordered and structurally typed. In Gab they come in two flavors - Dictionaries and Lists.
-Dictionaries Dictionaries are Gab records which allow arbitrary values as keys. They are denoted with {}.
-Between the curly brackets, expressions are expected in key-value pairs. Any expression is allowed as either a key or value.
-a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10) Lists Lists are records which allow only monotonically-increasing-integer values as keys. This is some fancy talk for saying it only allows for keys 0-n." /><link rel="canonical" href="/docs/basic_types/records/" itemprop="url" />
+  <meta name="description" content="gab\record is the only data structure in Gab. It serves as both a dictionary and a list. All records are immutable.
+Lists List-style records use integer keys starting from zero. They are constructed with []:
+a_list = [1, 2, 3] a_list # =&gt; [1, 2, 3] A list can also be constructed using explicit integer keys in dictionary syntax — Gab recognises the shape and displays it as a list:" /><link rel="canonical" href="/docs/basic_types/records/" itemprop="url" />
 
 <meta property="og:title" content="Records" />
-<meta property="og:description" content="Records are collections of key-value pairs. They are ordered and structurally typed. In Gab they come in two flavors - Dictionaries and Lists.
-Dictionaries
-    Dictionaries are Gab records which allow arbitrary values as keys. They are denoted with {}.
-Between the curly brackets, expressions are expected in key-value pairs.
-Any expression is allowed as either a key or value.
-
-a_record = { key: &#39;value&#39; }
-
-a_record .key                    # =&gt; &#39;value&#39;
-
-another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } 
-
-another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10)
-
+<meta property="og:description" content="gab\record is the only data structure in Gab. It serves as both a dictionary and a list. All records are immutable.
 Lists
-    Lists are records which allow only monotonically-increasing-integer values as keys. This is some fancy talk for saying it only allows for keys 0-n." />
+    List-style records use integer keys starting from zero. They are constructed with []:
+
+a_list = [1, 2, 3]
+a_list   # =&gt; [1, 2, 3]
+
+A list can also be constructed using explicit integer keys in dictionary syntax — Gab recognises the shape and displays it as a list:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/basic_types/records/" /><meta property="article:section" content="docs" />
-<meta property="article:published_time" content="2025-02-07T16:07:28-05:00" />
-<meta property="article:modified_time" content="2025-02-07T16:07:28-05:00" />
+
+
 
   <meta itemprop="name" content="Records">
-  <meta itemprop="description" content="Records are collections of key-value pairs. They are ordered and structurally typed. In Gab they come in two flavors - Dictionaries and Lists.
-Dictionaries Dictionaries are Gab records which allow arbitrary values as keys. They are denoted with {}.
-Between the curly brackets, expressions are expected in key-value pairs. Any expression is allowed as either a key or value.
-a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10) Lists Lists are records which allow only monotonically-increasing-integer values as keys. This is some fancy talk for saying it only allows for keys 0-n.">
-  <meta itemprop="datePublished" content="2025-02-07T16:07:28-05:00">
-  <meta itemprop="dateModified" content="2025-02-07T16:07:28-05:00">
-  <meta itemprop="wordCount" content="585">
+  <meta itemprop="description" content="gab\record is the only data structure in Gab. It serves as both a dictionary and a list. All records are immutable.
+Lists List-style records use integer keys starting from zero. They are constructed with []:
+a_list = [1, 2, 3] a_list # =&gt; [1, 2, 3] A list can also be constructed using explicit integer keys in dictionary syntax — Gab recognises the shape and displays it as a list:">
+  <meta itemprop="wordCount" content="359">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Records">
-  <meta name="twitter:description" content="Records are collections of key-value pairs. They are ordered and structurally typed. In Gab they come in two flavors - Dictionaries and Lists.
-Dictionaries Dictionaries are Gab records which allow arbitrary values as keys. They are denoted with {}.
-Between the curly brackets, expressions are expected in key-value pairs. Any expression is allowed as either a key or value.
-a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10) Lists Lists are records which allow only monotonically-increasing-integer values as keys. This is some fancy talk for saying it only allows for keys 0-n.">
+  <meta name="twitter:description" content="gab\record is the only data structure in Gab. It serves as both a dictionary and a list. All records are immutable.
+Lists List-style records use integer keys starting from zero. They are constructed with []:
+a_list = [1, 2, 3] a_list # =&gt; [1, 2, 3] A list can also be constructed using explicit integer keys in dictionary syntax — Gab recognises the shape and displays it as a list:">
 
     <link rel="preload" href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" as="style" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
     <link href="/css/compiled/main.min.be56ec629fdfe7569502c7dfe214689a2336e822326f4e4254eeceaf964fed38.css" rel="stylesheet" integrity="sha256-vlbsYp/f51aVAsff4hRomiM26CIyb05CVO7Or5ZP7Tg=" />
@@ -224,12 +211,63 @@ a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; anothe
   >Introduction
     </a>
               
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/"
+    
+  >Language Tour
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a>
+              <div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/records_and_shapes/"
+    
+  >Records &amp; Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/fibers_and_channels/"
+    
+  >Fibers &amp; Channels
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/error_handling/"
+    
+  >Error Handling
+    </a>
+              
+            </li></ul>
+      </div>
             </li><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
     
-  >Basic Types
+  >Types
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a>
               <div class="ltr:hx-pr-0 hx-overflow-hidden">
@@ -238,7 +276,7 @@ a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; anothe
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/arithmetic/"
     
-  >Arithmetic
+  >Numbers
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -246,7 +284,64 @@ a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; anothe
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/strings/"
     
-  >Strings
+  >Strings &amp; Binaries
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col open"><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+    href="/docs/basic_types/records/"
+    
+  >Records
+    </a>
+  
+    <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
+              <a
+                href="#lists"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >Lists</a>
+            </li>
+          <li>
+              <a
+                href="#dictionaries"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >Dictionaries</a>
+            </li>
+          <li>
+              <a
+                href="#accessing-values"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >Accessing Values</a>
+            </li>
+          <li>
+              <a
+                href="#immutability-and-put"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >Immutability and put:</a>
+            </li>
+          <li>
+              <a
+                href="#list-to-dictionary-transitions"
+                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
+              >List-to-Dictionary Transitions</a>
+            </li>
+          </ul>
+  
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/shapes/"
+    
+  >Shapes
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -260,35 +355,10 @@ a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; anothe
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/messages/"
+    href="/docs/basic_types/fibers/"
     
-  >Messages
+  >Fibers &amp; Channels
     </a>
-              
-            </li><li class="hx-flex hx-flex-col "><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/booleans/"
-    
-  >Booleans
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col open"><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
-    href="/docs/basic_types/records/"
-    
-  >Records
-    </a>
-  
-    <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
-              <a
-                href="#"
-                class="hx-flex hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [word-break:break-word] hx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:hx-border hx-gap-2 before:hx-opacity-25 before:hx-content-['#'] hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:hx-text-gray-900 contrast-more:dark:hx-text-gray-50 contrast-more:hx-border-transparent contrast-more:hover:hx-border-gray-900 contrast-more:dark:hover:hx-border-gray-50"
-              ></a>
-            </li>
-          </ul>
-  
               
             </li></ul>
       </div>
@@ -313,12 +383,62 @@ a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; anothe
     
   >Introduction
     </a></li>
+          <li class=""><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/"
+    
+  >Language Tour
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
+    </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/records_and_shapes/"
+    
+  >Records &amp; Shapes
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/blocks/"
+    
+  >Blocks
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/fibers_and_channels/"
+    
+  >Fibers &amp; Channels
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/tour/error_handling/"
+    
+  >Error Handling
+    </a>
+              
+            </li></ul>
+      </div></li>
           <li class="open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/"
     
-  >Basic Types
+  >Types
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
         <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
@@ -326,7 +446,7 @@ a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; anothe
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/arithmetic/"
     
-  >Arithmetic
+  >Numbers
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -334,7 +454,31 @@ a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; anothe
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/docs/basic_types/strings/"
     
-  >Strings
+  >Strings &amp; Binaries
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/messages/"
+    
+  >Messages
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col open"><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+    href="/docs/basic_types/records/"
+    
+  >Records
+    </a>
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/docs/basic_types/shapes/"
+    
+  >Shapes
     </a>
               
             </li><li class="hx-flex hx-flex-col "><a
@@ -348,25 +492,9 @@ a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; anothe
             </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
       hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/messages/"
+    href="/docs/basic_types/fibers/"
     
-  >Messages
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col "><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
-    href="/docs/basic_types/booleans/"
-    
-  >Booleans
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col open"><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
-    href="/docs/basic_types/records/"
-    
-  >Records
+  >Fibers &amp; Channels
     </a>
               
             </li></ul>
@@ -397,19 +525,23 @@ a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; anothe
 <nav class="hextra-toc hx-order-last hx-hidden hx-w-64 hx-shrink-0 xl:hx-block print:hx-hidden hx-px-4" aria-label="table of contents">
     <div class="hextra-scrollbar hx-sticky hx-top-16 hx-overflow-y-auto hx-pr-4 hx-pt-6 hx-text-sm [hyphens:auto] hx-max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] ltr:hx--mr-4 rtl:hx--ml-4"><p class="hx-mb-4 hx-font-semibold hx-tracking-tight">On this page</p><ul>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#dictionaries">Dictionaries
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#lists">Lists
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#lists">Lists
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#dictionaries">Dictionaries
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#records">Records
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#accessing-values">Accessing Values
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-4 rtl:hx-pr-4 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#shapes">Shapes
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#immutability-and-put">Immutability and put:
+        </a>
+      </li>
+      <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
+        <a class="hx-font-semibold hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#list-to-dictionary-transitions">List-to-Dictionary Transitions
         </a>
       </li></ul>
       <div class="hx-mt-8 hx-border-t hx-bg-white hx-pt-8 hx-shadow-[0_-12px_16px_white] dark:hx-bg-dark dark:hx-shadow-[0_-12px_16px_#111] hx-sticky hx-bottom-0 hx-flex hx-flex-col hx-items-start hx-gap-2 hx-pb-8 dark:hx-border-neutral-800 contrast-more:hx-border-t contrast-more:hx-border-neutral-400 contrast-more:hx-shadow-none contrast-more:dark:hx-border-neutral-400">
@@ -432,99 +564,70 @@ a_record = { key: &#39;value&#39; } a_record .key # =&gt; &#39;value&#39; anothe
           <a href="/docs/">Docs</a>
         </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
-          <a href="/docs/basic_types/">Basic Types</a>
+          <a href="/docs/basic_types/">Types</a>
         </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Records</div>
   </div>
 
         <div class="content">
           <h1>Records</h1>
-          <p>Records are collections of key-value pairs. They are ordered and structurally typed. In Gab they come in two flavors - Dictionaries and Lists.</p>
-<h3>Dictionaries<span class="hx-absolute -hx-mt-20" id="dictionaries"></span>
-    <a href="#dictionaries" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Dictionaries are Gab records which allow arbitrary values as keys. They are denoted with <code>{}</code>.</p>
-<p>Between the curly brackets, expressions are expected in key-value pairs.
-Any expression is allowed as either a key or value.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>a_record = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>key:</span> <span style='color: #a6e22e'>&#39;value&#39;</span> <span style='color: #f8f8f0'>}</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>a_record <span style='font-weight: bold;color: #66d9ef'>.key</span>                    <span style='font-style: italic;color: #8f908a'># =&gt; &#39;value&#39;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>another_record = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>key:</span> <span style='color: #a6e22e'>&#39;value&#39;</span>, <span style='color: #a6e22e'>&#39;another_key&#39;</span> <span style='font-weight: bold;color: #e6db74'>10</span> <span style='color: #f8f8f0'>}</span> </span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>another_record <span style='font-weight: bold;color: #66d9ef'>.at</span> <span style='color: #a6e22e'>&#39;another_key&#39;</span> <span style='font-style: italic;color: #8f908a'># =&gt; (ok: &#39;10)</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h3>Lists<span class="hx-absolute -hx-mt-20" id="lists"></span>
-    <a href="#lists" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Lists are records which allow only monotonically-increasing-integer values as keys. This is some fancy talk for saying it only allows for keys <code>0-n</code>.</p>
-<p>Lists are constructed with the square brackets <code>[]</code>, and any number of expressions are allowed inside.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>a_list = <span style='color: #f8f8f0'>[</span><span style='font-weight: bold;color: #e6db74'>1</span> <span style='font-weight: bold;color: #e6db74'>2</span> <span style='font-weight: bold;color: #e6db74'>3</span><span style='color: #f8f8f0'>]</span> </span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>a_list <span style='font-style: italic;color: #8f908a'># =&gt; [1, 2, 3]</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>a_list = <span style='color: #f8f8f0'>{</span> <span style='font-weight: bold;color: #e6db74'>0</span> <span style='font-weight: bold;color: #e6db74'>1</span>, <span style='font-weight: bold;color: #e6db74'>1</span> <span style='font-weight: bold;color: #e6db74'>2</span>, <span style='font-weight: bold;color: #e6db74'>2</span> <span style='font-weight: bold;color: #e6db74'>3</span> <span style='color: #f8f8f0'>}</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>a_list <span style='font-style: italic;color: #8f908a'># =&gt; [1, 2, 3]</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><blockquote>
-  <p>Note - you can construct a list with the same syntax as a dictionary by typing in those integer keys yourself.
-Gab will still consider it a list-type record.</p>
+          <p><code>gab\record</code> is the only data structure in Gab. It serves as both a dictionary and a list. All records are immutable.</p>
+<h2>Lists<span class="hx-absolute -hx-mt-20" id="lists"></span>
+    <a href="#lists" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>List-style records use integer keys starting from zero. They are constructed with <code>[]</code>:</p>
+<!--gab--><pre><code>
+a_list = [1, 2, 3]
+a_list   # => [1, 2, 3]
+</code></pre>
+<p>A list can also be constructed using explicit integer keys in dictionary syntax — Gab recognises the shape and displays it as a list:</p>
+<!--gab--><pre><code>
+a_list = { 0 1, 1 2, 2 3 }
+a_list   # => [1, 2, 3]
+</code></pre>
+<h2>Dictionaries<span class="hx-absolute -hx-mt-20" id="dictionaries"></span>
+    <a href="#dictionaries" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Dictionary-style records allow arbitrary keys. They are constructed with <code>{}</code>, with keys and values in pairs:</p>
+<!--gab--><pre><code>
+a_record = { name: 'bob', age: 44 }
+another  = { key: 'value', 'another_key' 10 }
+</code></pre>
+<h2>Accessing Values<span class="hx-absolute -hx-mt-20" id="accessing-values"></span>
+    <a href="#accessing-values" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Record keys that are message values can be accessed directly as a message send. This works through the property step of dispatch resolution — no <code>def:</code> required:</p>
+<!--gab--><pre><code>
+{ name: 'bob' }.name   # => 'bob'
+</code></pre>
+<p>For keys that are not message values, or when you need a safe access that won&rsquo;t crash on a missing key, use <code>at:</code>:</p>
+<!--gab--><pre><code>
+record.at(key:)   # => (ok:, 'value')  or  (none:, nil:)
+</code></pre>
+<p>Direct property access on a missing key will raise an error. <code>at:</code> returns a tuple and lets you handle the missing case explicitly.</p>
+<h2>Immutability and <code>put:</code><span class="hx-absolute -hx-mt-20" id="immutability-and-put"></span>
+    <a href="#immutability-and-put" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Records cannot be modified in place. <code>put:</code> returns a new record with the given key set to the given value:</p>
+<!--gab--><pre><code>
+bob   = { name: 'bob',   age: 44 }
+alice = bob.put(name: 'alice')
 
-</blockquote>
-<p>While you <em>are</em> allowed to set any key on a list, keep in mind that Gab will transition the list <em>into</em> a dictionary.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>a_list = <span style='color: #f8f8f0'>[</span><span style='font-weight: bold;color: #e6db74'>1</span> <span style='font-weight: bold;color: #e6db74'>2</span> <span style='font-weight: bold;color: #e6db74'>3</span><span style='color: #f8f8f0'>]</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># =&gt; [1, 2, 3]</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>a_list = a_list<span style='font-weight: bold;color: #66d9ef'>.put</span><span style='color: #f8f8f0'>(</span><span style='color: #ae81ff'>name:</span> <span style='color: #a6e22e'>&#39;bob&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'>#=&gt; { 0 1, 1 2, 2 3, name: bob }</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h3>Records<span class="hx-absolute -hx-mt-20" id="records"></span>
-    <a href="#records" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>The rest of this chapter is about <code>gab\record</code> itself, and therefore applies to both dictionary and list flavors.</p>
-<p>Records, like all values in Gab, are <strong>immutable</strong>. This means that setting values in records returns a <em>new record</em>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>a_record = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>key:</span> <span style='color: #a6e22e'>&#39;value&#39;</span> <span style='color: #f8f8f0'>}</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>a_record                                   <span style='font-style: italic;color: #8f908a'># =&gt; { key:  &#39;another value&#39; }</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>a_record = a_record <span style='font-weight: bold;color: #66d9ef'>.put</span> <span style='color: #f8f8f0'>(</span><span style='color: #ae81ff'>key:</span> <span style='color: #a6e22e'>&#39;something else&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>a_record                                   <span style='font-style: italic;color: #8f908a'># =&gt; { key: &#39;something else&#39; }</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Both <strong>Dictionaries</strong> and <strong>Lists</strong> use the same underlying datastructure, <code>gab\record</code>. In order to make these immutable data structures fast, records are implemented with a <strong>bit partitioned vector trie</strong>.
-Gab&rsquo;s implementation is very much inspired by clojure&rsquo;s immutable vectors.
-Because of this implementation, records are able to <em>share memory</em> under the hood, to avoid copying large of data for a single key-value mutation. This is called structural sharing,
-and is a common optimization among immutable data structures.</p>
-<p>As seen above, <code>gab\record</code> implements some useful messages <code>put:</code> and <code>at:</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>some_record <span style='font-weight: bold;color: #66d9ef'>.at</span> <span style='color: #ae81ff'>key:</span> <span style='font-style: italic;color: #8f908a'># =&gt; (ok:, &#39;value&#39;)</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h3>Shapes<span class="hx-absolute -hx-mt-20" id="shapes"></span>
-    <a href="#shapes" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>All records have an underlying shape. Shapes determine what the available keys are, and their order. It might be useful to think of shapes as an implicit class.
-Records with the same keys in the same order <em>share the same shape</em>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>some_record = <span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>x:</span> <span style='font-weight: bold;color: #e6db74'>1</span> <span style='color: #ae81ff'>y:</span> <span style='font-weight: bold;color: #e6db74'>2</span> <span style='color: #f8f8f0'>}</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>shape_x_y = some_record<span style='font-weight: bold;color: #66d9ef'>?</span> <span style='font-style: italic;color: #8f908a'># =&gt; &lt;gab\shape x: y:&gt;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>(</span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>x:</span> <span style='font-weight: bold;color: #e6db74'>2</span> <span style='color: #ae81ff'>y:</span> <span style='font-weight: bold;color: #e6db74'>3</span> <span style='color: #f8f8f0'>}</span><span style='font-weight: bold;color: #66d9ef'>?</span><span style='color: #f8f8f0'>)</span> <span style='font-weight: bold;color: #66d9ef'>==</span> shape_x_y <span style='font-style: italic;color: #8f908a'># =&gt; true:</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Shapes are useful for defining specializations. When resolving which specialization to use for a given value, Gab checks in the following order:</p>
-<ul>
-<li>If the value has a <strong>super type</strong>, and said <strong>super type</strong> has an available specialization, use it.</li>
-<li>If available, use the <strong>type&rsquo;s</strong> specialization.</li>
-<li>If available, use the <strong>property</strong>.</li>
-<li>If available, use the <strong>general</strong> specialization.</li>
-<li>No specialization found.</li>
-</ul>
-<p>For example: <code>{ x: 1 }</code> has a <strong>super type</strong> of <code>&lt;gab\shape x:&gt;</code>, and a <strong>type</strong> of <code>gab\record</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Define the message y: in the general case.</span></span></span>
-<span sytle="display:flex"><span><span style='color: #ae81ff'>y:</span> <span style='font-weight: bold;color: #66d9ef'>.def</span> <span style='color: #a6e22e'>&#39;general case&#39;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #8f908a'># Define the message z: in the case of &lt;gab\shape x:&gt;</span></span></span>
-<span sytle="display:flex"><span><span style='color: #ae81ff'>z:</span> <span style='font-weight: bold;color: #66d9ef'>.def</span> <span style='color: #f8f8f0'>(</span></span></span>
-<span sytle="display:flex"><span>    <span style='color: #af8700'>Shapes</span><span style='font-weight: bold;color: #66d9ef'>.make</span> <span style='color: #ae81ff'>x:</span>,</span></span>
-<span sytle="display:flex"><span>    <span style='color: #a6e22e'>&#39;shape case&#39;</span><span style='color: #f8f8f0'>)</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>x:</span> <span style='font-weight: bold;color: #e6db74'>1</span> <span style='color: #f8f8f0'>}</span><span style='font-weight: bold;color: #66d9ef'>.x</span> <span style='font-style: italic;color: #8f908a'># =&gt; 1</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>x:</span> <span style='font-weight: bold;color: #e6db74'>1</span> <span style='color: #f8f8f0'>}</span><span style='font-weight: bold;color: #66d9ef'>.y</span> <span style='font-style: italic;color: #8f908a'># =&gt; &#39;general case&#39;</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #f8f8f0'>{</span> <span style='color: #ae81ff'>x:</span> <span style='font-weight: bold;color: #e6db74'>1</span> <span style='color: #f8f8f0'>}</span><span style='font-weight: bold;color: #66d9ef'>.z</span> <span style='font-style: italic;color: #8f908a'># =&gt; &#39;shape case&#39;</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div>
+bob    # => { name: 'bob',   age: 44 }
+alice  # => { name: 'alice', age: 44 }
+</code></pre>
+<p>Records are implemented as a <strong>bit-partitioned vector trie</strong>, inspired by Clojure&rsquo;s persistent data structures. This means <code>put:</code> uses <strong>structural sharing</strong> — the new record shares most of its memory with the original, so large records can be updated efficiently without copying all their data.</p>
+<h2>List-to-Dictionary Transitions<span class="hx-absolute -hx-mt-20" id="list-to-dictionary-transitions"></span>
+    <a href="#list-to-dictionary-transitions" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Adding a non-integer key to a list produces a dictionary:</p>
+<!--gab--><pre><code>
+a_list = [1, 2, 3]
+a_list = a_list.put(name: 'bob')
+# => { 0: 1, 1: 2, 2: 3, name: 'bob' }
+</code></pre>
+<p>The transition is explicit and immediate — the shape changes and the value is no longer displayed as a list.</p>
+
         </div>
         <div class="hx-mt-16"></div>
         <div class="hx-mb-8 hx-flex hx-items-center hx-border-t hx-pt-8 dark:hx-border-neutral-800 contrast-more:hx-border-neutral-400 dark:contrast-more:hx-border-neutral-400 print:hx-hidden"><a
-        href="/docs/basic_types/booleans/"
-        title="Booleans"
+        href="/docs/basic_types/messages/"
+        title="Messages"
         class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-pr-4 rtl:hx-pl-4"
-      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Booleans</a></div>
+      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Messages</a><a
+        href="/docs/basic_types/shapes/"
+        title="Shapes"
+        class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-ml-auto ltr:hx-pl-4 ltr:hx-text-right rtl:hx-mr-auto rtl:hx-pr-4 rtl:hx-text-left"
+      >Shapes<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
         
       </main>
     </article>

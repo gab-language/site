@@ -1,90 +1,74 @@
-+++
-date = '2025-02-07T13:01:01-05:00'
-title = 'Arithmetic'
-weight = 1
-+++
-Lots of dynamic scripting languages make the distinction between integers and floats. Python can even upgrade numbers to the heap when they would otherwise overflow their size.
-Gab keeps it simple - numbers are just 64-bit floats. It is possible that in the future a distinct integer type will be added.
-```gab
-1 / 3
-# => 0.33333
+---
+title: Numbers
+weight: 1
+---
 
-2 * 2 
-# => 4
-```
-### A note on bit-shifting
-The bit-shift operators `<<` and `>>` are particularly interesting to implement. Dynamic languages do this slightly differently.
-In the normal case, shifting does divisions or multiplications by 2.
-```gab
-4 << 1
-# => 8
+All numbers in Gab are IEEE 754 64-bit floating point values. There is no distinct integer type.
 
-4 >> 1
-# => 2
-```
-However, there are some corner cases which are actually *undefined behavior* in c. Dynamic languages implemented on top of c need to *define* this behavior.
-Shifting left or right by a negative amount is undefined behavior
 ```gab
-4 << -1
-4 >> -1
-```
-Most dynamic languages replace these with an equal shift in the opposite direction (Javascript, python, lua, ruby). Gab matches this behavior.
-```gab
-4 >> -1
-# => 8
+1
+-42
+1.2e4
+0.2
 
-4 << -1
-# => 2
+3.14?   # => gab\number
 ```
-Shifting left or right by a number greater than the width of the integer is undefined behavior.
-```gab
-# What does this mean?
-4 >> 65
-4 << 65
-```
-A lot of dynamic languages implement this by just returning 0 - which makes sense when you think about a shift conceptually. This is what Gab does.
-Additionally, it is important to note that for these bitwise or integer operations, Gab uses 52-bit integers. This is because 64-bit integers are not completely
-representable with a 64-bit float. In order to guarantee lossless conversion between the number types, Gab limits integers to 52 bits.
-```gab
-1 << 52
-# => -4.5036e+15
-1 << 53
-# => 0
-```
-Notably, Javascript diverges here:
-```javascript
-1 << 31
-// => -2147483648
-1 << 32
-// => 1
 
-// If it isn't clear whats happening here:
-const INT_WIDTH = 32
-1 << (31 % INT_WIDTH)
-// => -2147483648
-1 << (32 % INT_WIDTH)
-// => 1
-```
-This is the most nasty of the corner cases. Bit shfiting negative integers is confusing!
-```gab
-# left-shifting a negative integer is undefined behavior
--1 << 1
+> Numbers less than one require a leading zero: `0.5`, not `.5`. A bare `.` is the empty message send in Gab.
 
-# right-shifting a negative integer is implementation defined
--1 >> 1
+## Arithmetic
+
+The standard arithmetic operators are all message sends:
+
+```gab
+10 + 3   # => 13
+10 - 3   # => 7
+10 * 3   # => 30
+10 / 3   # => 3.33333
+10 % 3   # => 1
 ```
-Python, Javascript, and Ruby maintain the divide/multiply by two semantics that work on positive integers.
-However, this isn't behavior that you would actually see in the hardware. As mentioned above, shifting negative integers is either
-implementation defined or undefined behavior. Lua's bit shifting works like this:
-```lua
--4 >> 1
--- 9223372036854775806
--4 << 1
--- -8
+
+## Bitwise Operations and 52-bit Integers
+
+For bitwise operations, Gab uses **52-bit integers**. This is because 64-bit floats can only represent integers losslessly up to 2^52. Limiting integers to 52 bits guarantees that Gab can convert freely between its float representation and integer operations without loss.
+
+```gab
+1 << 52   # => -4.5036e+15
+1 << 53   # => 0
 ```
-This is because lua performs the shift operation on *unsigned integers*, so the `-4` wraps around
-(due to underflow) into a really large number, which is then bitshifted to the right by one, and *then*
-converted back into a signed integer. This avoids the icky behavior of shifting signed integers in C, but does
-mean shifting positive and negative integers has  asymmetrical semantics. It is also more performant than a symmetrical implementation,
-because less checks/conversions are required. Gab chooses this route, as shifting negative integers is not a common enough operation to warrant
-the extra checks and implementaiton effort.
+
+The standard bitwise operators:
+
+```gab
+4 & 6    # => 4   (AND)
+4 | 2    # => 6   (OR)
+4 << 1   # => 8   (left shift)
+4 >> 1   # => 2   (right shift)
+```
+
+## Bit-Shifting Edge Cases
+
+Gab defines behaviour for several cases that are undefined or implementation-defined in C.
+
+**Shifting by a negative amount** is treated as a shift in the opposite direction:
+
+```gab
+4 >> -1   # => 8
+4 << -1   # => 2
+```
+
+**Shifting by more than 52** returns zero:
+
+```gab
+4 >> 65   # => 0
+4 << 65   # => 0
+```
+
+**Shifting negative integers** follows Lua's semantics: the shift is performed on the unsigned bit representation, then converted back. This means right-shifting a negative number does not preserve the sign bit — it produces a large positive number:
+
+```gab
+-4 >> 1   # => 9223372036854775806
+-4 << 1   # => -8
+```
+
+This is asymmetric but is the most efficient implementation, and shifting negative integers is uncommon enough that the trade-off is worthwhile.

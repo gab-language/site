@@ -16,244 +16,423 @@
     
     
     <item>
-      <title>Arithmetic</title>
-      <link>/docs/basic_types/arithmetic/</link>
-      <pubDate>Fri, 07 Feb 2025 13:01:01 -0500</pubDate>
+      <title>Messages</title>
+      <link>/docs/tour/messages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/basic_types/arithmetic/</guid>
+      <guid>/docs/tour/messages/</guid>
       <description>
         
         
-        &lt;p&gt;Lots of dynamic scripting languages make the distinction between integers and floats. Python can even upgrade numbers to the heap when they would otherwise overflow their size.
-Gab keeps it simple - numbers are just 64-bit floats. It is possible that in the future a distinct integer type will be added.&lt;/p&gt;
+        &lt;p&gt;In most languages, control flow is driven by keywords: &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;, &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;switch&lt;/code&gt;. Gab has none of these. Instead, &lt;strong&gt;everything&lt;/strong&gt; is accomplished by sending messages to values.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve used Ruby or Smalltalk, this will feel familiar. If you haven&amp;rsquo;t, don&amp;rsquo;t worry — it&amp;rsquo;s a simple idea with surprisingly deep consequences.&lt;/p&gt;
+&lt;h2&gt;Sending a Message&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;sending-a-message&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#sending-a-message&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;You send a message to a value using dot syntax:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-1 / 3
-# =&gt; 0.33333
+&#39;hello&#39;.println
+# =&gt; hello
 
-2 * 2 
-# =&gt; 4
+[&#39;cat&#39;, &#39;dog&#39;, &#39;bird&#39;].len
+# =&gt; 3
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;A note on bit-shifting&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;a-note-on-bit-shifting&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#a-note-on-bit-shifting&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The bit-shift operators &lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; and &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; are particularly interesting to implement. Dynamic languages do this slightly differently.
-In the normal case, shifting does divisions or multiplications by 2.&lt;/p&gt;
+&lt;p&gt;The value on the left receives the message on the right. The message may produce a result, which you can immediately send another message to. This is called &lt;strong&gt;chaining&lt;/strong&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-4 &lt;&lt; 1
-# =&gt; 8
+[&#39;Hello&#39;, &#39; &#39;, &#39;world!&#39;].join.println
+# =&gt; Hello world!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Two Forms of Message Send&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;two-forms-of-message-send&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#two-forms-of-message-send&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are exactly two kinds of message send in Gab.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;named send&lt;/strong&gt; is a &lt;code&gt;.&lt;/code&gt; followed by one or more letters, underscores, or numbers:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+&#39;hello&#39;.println
+[&#39;cat&#39;, &#39;dog&#39;, &#39;bird&#39;].len
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;An &lt;strong&gt;operator send&lt;/strong&gt; uses a sequence of operator characters (&lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, &lt;code&gt;*&lt;/code&gt;, &lt;code&gt;/&lt;/code&gt;, &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;!&lt;/code&gt;, &lt;code&gt;&amp;lt;!&lt;/code&gt;, and others):&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+10 + 5      # =&gt; 15
+channel &lt;! &#39;value&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That&amp;rsquo;s the complete syntax for invoking behaviour. There is no special function-call form, no keywords for control flow — only these two kinds of send.&lt;/p&gt;
+&lt;h2&gt;Messages with Arguments&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;messages-with-arguments&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#messages-with-arguments&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Some messages take arguments. Arguments are passed inside parentheses, after the message name:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+&#39;Hello, $!&#39;.sprintf(&#39;world&#39;).println
+# =&gt; Hello, world
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here, &lt;code&gt;sprintf&lt;/code&gt; is a message sent to the string &lt;code&gt;&#39;Hello, $!&#39;&lt;/code&gt;. It replaces each &lt;code&gt;$&lt;/code&gt; in the string with the corresponding argument. The result is then sent the &lt;code&gt;println&lt;/code&gt; message.&lt;/p&gt;
+&lt;p&gt;You can pass multiple arguments by separating them with commas:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+result = Strings.make(&#39;Hello&#39;, &#39;, &#39;, &#39;world!&#39;)
+result.println
+# =&gt; Hello, world!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Defining a Message&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;defining-a-message&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#defining-a-message&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Message names are &lt;strong&gt;message values&lt;/strong&gt;, written with a trailing colon: &lt;code&gt;greet:&lt;/code&gt;, &lt;code&gt;println:&lt;/code&gt;, &lt;code&gt;def:&lt;/code&gt;. The colon is part of the value itself.&lt;/p&gt;
+&lt;p&gt;You define a new message by sending &lt;code&gt;def:&lt;/code&gt; to a message value:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+greet: .def (Strings.t, () =&gt; do
+  &#39;Hello, $!!&#39;.sprintf(self).println
+end)
 
-4 &gt;&gt; 1
-# =&gt; 2
+&#39;Alice&#39;.greet
+# =&gt; Hello, Alice!
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;However, there are some corner cases which are actually &lt;em&gt;undefined behavior&lt;/em&gt; in c. Dynamic languages implemented on top of c need to &lt;em&gt;define&lt;/em&gt; this behavior.
-Shifting left or right by a negative amount is undefined behavior&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;def:&lt;/code&gt; takes two arguments: the &lt;strong&gt;receiver type&lt;/strong&gt; and a &lt;strong&gt;block&lt;/strong&gt; containing the implementation. Here, &lt;code&gt;Strings.t&lt;/code&gt; is the conventional way to refer to the string type — it is a message sent to the &lt;code&gt;Strings&lt;/code&gt; module that returns the type upon which new string messages should be defined. Using &lt;code&gt;Strings.t&lt;/code&gt; rather than a bare type name is a convention you&amp;rsquo;ll see throughout Gab&amp;rsquo;s standard library, and one you should follow in your own modules.&lt;/p&gt;
+&lt;p&gt;Inside the block, &lt;code&gt;self&lt;/code&gt; refers to the value that received the message.&lt;/p&gt;
+&lt;p&gt;Message definitions are &lt;strong&gt;specializations&lt;/strong&gt; — the same message name can have completely different implementations depending on the type of the receiver. This is how Gab achieves polymorphism without classes or interfaces. More on this in the &lt;a href=&#34;/docs/tour/records-and-shapes&#34; &gt;Records &amp;amp; Shapes&lt;/a&gt; section.&lt;/p&gt;
+&lt;h2&gt;Control Flow via Messages&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;control-flow-via-messages&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#control-flow-via-messages&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Because Gab has no &lt;code&gt;if&lt;/code&gt; keyword, branching is done by sending messages. Boolean values respond to messages like &lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-4 &lt;&lt; -1
-4 &gt;&gt; -1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Most dynamic languages replace these with an equal shift in the opposite direction (Javascript, python, lua, ruby). Gab matches this behavior.&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-4 &gt;&gt; -1
-# =&gt; 8
+age = 20
 
-4 &lt;&lt; -1
-# =&gt; 2
+(age &gt; 18)
+  .then(() =&gt; &#39;You may enter.&#39;.println)
+  .else(() =&gt; &#39;Come back in a few years.&#39;.println)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Shifting left or right by a number greater than the width of the integer is undefined behavior.&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-# What does this mean?
-4 &gt;&gt; 65
-4 &lt;&lt; 65
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A lot of dynamic languages implement this by just returning 0 - which makes sense when you think about a shift conceptually. This is what Gab does.
-Additionally, it is important to note that for these bitwise or integer operations, Gab uses 52-bit integers. This is because 64-bit integers are not completely
-representable with a 64-bit float. In order to guarantee lossless conversion between the number types, Gab limits integers to 52 bits.&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-1 &lt;&lt; 52
-# =&gt; -4.5036e+15
-1 &lt;&lt; 53
-# =&gt; 0
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Notably, Javascript diverges here:&lt;/p&gt;
-&lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
-
-&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;31&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// =&amp;gt; -2147483648
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// =&amp;gt; 1
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// If it isn&amp;#39;t clear whats happening here:
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;INT_WIDTH&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; (&lt;span style=&#34;color:#ae81ff&#34;&gt;31&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;INT_WIDTH&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// =&amp;gt; -2147483648
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; (&lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;INT_WIDTH&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// =&amp;gt; 1
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0&#34;&gt;
-  &lt;button
-    class=&#34;hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50&#34;
-    title=&#34;Copy code&#34;
-  &gt;
-    &lt;div class=&#34;copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4&#34;&gt;&lt;/div&gt;
-    &lt;div class=&#34;success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4&#34;&gt;&lt;/div&gt;
-  &lt;/button&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;This is the most nasty of the corner cases. Bit shfiting negative integers is confusing!&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-# left-shifting a negative integer is undefined behavior
--1 &lt;&lt; 1
-
-# right-shifting a negative integer is implementation defined
--1 &gt;&gt; 1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Python, Javascript, and Ruby maintain the divide/multiply by two semantics that work on positive integers.
-However, this isn&amp;rsquo;t behavior that you would actually see in the hardware. As mentioned above, shifting negative integers is either
-implementation defined or undefined behavior. Lua&amp;rsquo;s bit shifting works like this:&lt;/p&gt;
-&lt;div class=&#34;hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code&#34;&gt;
-
-&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-lua&#34; data-lang=&#34;lua&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;-- 9223372036854775806&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;-- -8&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0&#34;&gt;
-  &lt;button
-    class=&#34;hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50&#34;
-    title=&#34;Copy code&#34;
-  &gt;
-    &lt;div class=&#34;copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4&#34;&gt;&lt;/div&gt;
-    &lt;div class=&#34;success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4&#34;&gt;&lt;/div&gt;
-  &lt;/button&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;This is because lua performs the shift operation on &lt;em&gt;unsigned integers&lt;/em&gt;, so the &lt;code&gt;-4&lt;/code&gt; wraps around
-(due to underflow) into a really large number, which is then bitshifted to the right by one, and &lt;em&gt;then&lt;/em&gt;
-converted back into a signed integer. This avoids the icky behavior of shifting signed integers in C, but does
-mean shifting positive and negative integers has  asymmetrical semantics. It is also more performant than a symmetrical implementation,
-because less checks/conversions are required. Gab chooses this route, as shifting negative integers is not a common enough operation to warrant
-the extra checks and implementaiton effort.&lt;/p&gt;
+&lt;p&gt;At first this looks unfamiliar, but it&amp;rsquo;s the same idea: send a message to a value (the boolean result of &lt;code&gt;age &amp;gt; 18&lt;/code&gt;), and pass blocks as arguments for each branch. The boolean decides which block to invoke — which it does by sending it the empty message, &lt;code&gt;.&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This means branching, looping, and every other form of control flow are just messages — there&amp;rsquo;s nothing special about them syntactically.&lt;/p&gt;
+&lt;h2&gt;Why Messages?&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;why-messages&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#why-messages&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Constraining the language to a single dispatch mechanism is a deliberate trade. You give up some familiarity, and in return you get:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Consistency.&lt;/strong&gt; There&amp;rsquo;s one way to invoke behaviour. No need to distinguish between method calls, function calls, operators, and special forms.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extensibility.&lt;/strong&gt; You can define new messages for any type, including built-in types, without modifying their source.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Performance.&lt;/strong&gt; With a single dispatch path, the runtime can focus all optimization work on making message sends fast.&lt;/li&gt;
+&lt;/ul&gt;
 
       </description>
     </item>
     
     <item>
-      <title>Strings</title>
+      <title>Numbers</title>
+      <link>/docs/basic_types/arithmetic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/basic_types/arithmetic/</guid>
+      <description>
+        
+        
+        &lt;p&gt;All numbers in Gab are IEEE 754 64-bit floating point values. There is no distinct integer type.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+1
+-42
+1.2e4
+0.2
+
+3.14?   # =&gt; gab\number
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Numbers less than one require a leading zero: &lt;code&gt;0.5&lt;/code&gt;, not &lt;code&gt;.5&lt;/code&gt;. A bare &lt;code&gt;.&lt;/code&gt; is the empty message send in Gab.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+&lt;h2&gt;Arithmetic&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;arithmetic&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#arithmetic&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The standard arithmetic operators are all message sends:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+10 + 3   # =&gt; 13
+10 - 3   # =&gt; 7
+10 * 3   # =&gt; 30
+10 / 3   # =&gt; 3.33333
+10 % 3   # =&gt; 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Bitwise Operations and 52-bit Integers&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;bitwise-operations-and-52-bit-integers&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#bitwise-operations-and-52-bit-integers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;For bitwise operations, Gab uses &lt;strong&gt;52-bit integers&lt;/strong&gt;. This is because 64-bit floats can only represent integers losslessly up to 2^52. Limiting integers to 52 bits guarantees that Gab can convert freely between its float representation and integer operations without loss.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+1 &lt;&lt; 52   # =&gt; -4.5036e+15
+1 &lt;&lt; 53   # =&gt; 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The standard bitwise operators:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+4 &amp; 6    # =&gt; 4   (AND)
+4 | 2    # =&gt; 6   (OR)
+4 &lt;&lt; 1   # =&gt; 8   (left shift)
+4 &gt;&gt; 1   # =&gt; 2   (right shift)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Bit-Shifting Edge Cases&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;bit-shifting-edge-cases&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#bit-shifting-edge-cases&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Gab defines behaviour for several cases that are undefined or implementation-defined in C.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Shifting by a negative amount&lt;/strong&gt; is treated as a shift in the opposite direction:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+4 &gt;&gt; -1   # =&gt; 8
+4 &lt;&lt; -1   # =&gt; 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Shifting by more than 52&lt;/strong&gt; returns zero:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+4 &gt;&gt; 65   # =&gt; 0
+4 &lt;&lt; 65   # =&gt; 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Shifting negative integers&lt;/strong&gt; follows Lua&amp;rsquo;s semantics: the shift is performed on the unsigned bit representation, then converted back. This means right-shifting a negative number does not preserve the sign bit — it produces a large positive number:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+-4 &gt;&gt; 1   # =&gt; 9223372036854775806
+-4 &lt;&lt; 1   # =&gt; -8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is asymmetric but is the most efficient implementation, and shifting negative integers is uncommon enough that the trade-off is worthwhile.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Records &amp; Shapes</title>
+      <link>/docs/tour/records_and_shapes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/tour/records_and_shapes/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Gab has exactly one data structure: &lt;code&gt;gab\record&lt;/code&gt;. Everything else — lists, named objects, tuples — is built on top of it. This constraint is intentional: a single data structure means a single hot path to optimize, and a single mental model to carry around.&lt;/p&gt;
+&lt;h2&gt;Records&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;records&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#records&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A record is a collection of key-value pairs. You create one using curly braces:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+bob = { name: &#39;bob&#39;, age: 44 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Access values using dot notation and a message:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+bob.name  # =&gt; &#39;bob&#39;
+bob.age   # =&gt; 44
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Square-bracket syntax creates &lt;strong&gt;list-style&lt;/strong&gt; records, where the keys are implicit integer indices:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+colors = [&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]
+colors.at(0)  # =&gt; &#39;red&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Both forms are the same underlying type.&lt;/p&gt;
+&lt;h2&gt;Immutability&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;immutability&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#immutability&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;All records in Gab are &lt;strong&gt;immutable&lt;/strong&gt;. You cannot change a record in place. Instead, messages like &lt;code&gt;put&lt;/code&gt; return a new record with the updated value, leaving the original untouched:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+bob = { name: &#39;bob&#39;, age: 44 }
+
+alice = bob.put(name: &#39;alice&#39;)
+
+bob    # =&gt; { name: &#39;bob&#39;, age: 44 }
+alice  # =&gt; { name: &#39;alice&#39;, age: 44 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is not a limitation — it&amp;rsquo;s what makes concurrent programming in Gab safe. When values can never change, two fibers sharing a value is always safe. No locks, no races.&lt;/p&gt;
+&lt;p&gt;Gab&amp;rsquo;s immutable record is implemented as a Hash-Array-Mapped Trie, the same persistent data structure used by Clojure. &lt;code&gt;put&lt;/code&gt; operations share structure with the original, so they are efficient even on large records.&lt;/p&gt;
+&lt;h2&gt;Types and Shapes&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;types-and-shapes&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#types-and-shapes&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Every value in Gab has a &lt;strong&gt;type&lt;/strong&gt;, which you can inspect with the &lt;code&gt;?&lt;/code&gt; message. For most values, &lt;code&gt;?&lt;/code&gt; returns a string describing the type:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+&#39;hello&#39; ?  # =&gt; &#39;gab\string&#39;
+44 ?       # =&gt; &#39;gab\number&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Message values are their own type — &lt;code&gt;?&lt;/code&gt; on a message returns the message itself:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+ok: ?  # =&gt; ok:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For records, the type is their &lt;strong&gt;shape&lt;/strong&gt; — a value that describes the record&amp;rsquo;s keys:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+{ name: &#39;bob&#39;, age: 44 } ?
+# =&gt; &lt;gab\shape name: age:&gt;
+
+[&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;] ?
+# =&gt; &lt;gab\shape 0: 1: 2:&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Two records have the same type (the same shape) if and only if they have the same keys, regardless of their values.&lt;/p&gt;
+&lt;h2&gt;Defining Messages for Shapes&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;defining-messages-for-shapes&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#defining-messages-for-shapes&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This is where shapes become powerful. When you define a message, you specialize it for a particular type — either a built-in type via &lt;code&gt;Module.t&lt;/code&gt;, or a shape you&amp;rsquo;ve captured with &lt;code&gt;?&lt;/code&gt;:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+# Capture the shape of a &#34;Person-like&#34; record
+Person = { name: &#39;bob&#39;, age: 0 } ?
+
+birthday: .def (Person, () =&gt; do
+  &#39;Happy Birthday, $!&#39;.sprintf(self.name).println
+  self.put(age: self.age + 1)
+end)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here &lt;code&gt;birthday:&lt;/code&gt; is a &lt;strong&gt;message value&lt;/strong&gt; — the trailing colon is part of the value, not punctuation. Sending &lt;code&gt;def:&lt;/code&gt; to &lt;code&gt;birthday:&lt;/code&gt; registers a new specialization: whenever a record with the &lt;code&gt;Person&lt;/code&gt; shape receives &lt;code&gt;birthday:&lt;/code&gt;, this block runs.&lt;/p&gt;
+&lt;p&gt;It is a convention in Gab to define a &lt;code&gt;t:&lt;/code&gt; message on your own modules that returns the type others should specialize against. For built-in types, the standard library already follows this convention — &lt;code&gt;Strings.t&lt;/code&gt; returns the string type, so you never need to write a bare type name directly.&lt;/p&gt;
+&lt;p&gt;Now any record with the keys &lt;code&gt;name:&lt;/code&gt; and &lt;code&gt;age:&lt;/code&gt; responds to &lt;code&gt;birthday:&lt;/code&gt;:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+bob = { name: &#39;bob&#39;, age: 44 }
+bob = bob.birthday
+# =&gt; Happy Birthday, bob!
+
+bob.age  # =&gt; 45
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice that &lt;code&gt;birthday&lt;/code&gt; returns a new record (with &lt;code&gt;age&lt;/code&gt; incremented) — it doesn&amp;rsquo;t mutate &lt;code&gt;bob&lt;/code&gt; in place. To &amp;ldquo;update&amp;rdquo; bob, you simply rebind the name.&lt;/p&gt;
+&lt;h2&gt;Shapes as Types&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;shapes-as-types&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#shapes-as-types&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;You can think of shapes the way you&amp;rsquo;d think of types or interfaces in other languages — but without a separate type declaration syntax. The shape of a record &lt;em&gt;is&lt;/em&gt; its type, and it falls out naturally from the keys you give it.&lt;/p&gt;
+&lt;p&gt;This means:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No &lt;code&gt;class&lt;/code&gt; declarations.&lt;/li&gt;
+&lt;li&gt;No &lt;code&gt;interface&lt;/code&gt; definitions.&lt;/li&gt;
+&lt;li&gt;No &lt;code&gt;struct&lt;/code&gt; boilerplate.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You define a record with the right keys, capture its shape, and define messages for that shape. That&amp;rsquo;s the full pattern.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Point   = { x: 0, y: 0 } ?
+Circle  = { center: {x:0, y:0}, radius: 0 } ?
+
+area: .def (Circle, () =&gt; do
+  3.14159 * self.radius * self.radius
+end)
+
+c = { center: { x: 10, y: 20 }, radius: 5 }
+c.area
+# =&gt; 78.53975
+&lt;/code&gt;&lt;/pre&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Strings &amp; Binaries</title>
       <link>/docs/basic_types/strings/</link>
-      <pubDate>Fri, 07 Feb 2025 16:06:50 -0500</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/docs/basic_types/strings/</guid>
       <description>
         
         
-        &lt;p&gt;This chapter will discuss the three basic string-ish types. It is meaningful to group these three types together because they &lt;strong&gt;share data in memory&lt;/strong&gt;.
-The string &lt;code&gt;&amp;quot;true&amp;quot;&lt;/code&gt; and the message &lt;code&gt;true:&lt;/code&gt; each share the same four bytes of memory in the heap: &lt;code&gt;[ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]&lt;/code&gt;.
-The values differentiate their type by tagging themeselves slightly differently - but this is an implementation detail. The important note to take from this is that
-converting these types into each other (eg: &lt;code&gt;&#39;true&#39;.messages\into&lt;/code&gt;) is a constant-time operation. There is &lt;strong&gt;no copying, nor memory allocation&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2&gt;Strings&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;strings&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#strings&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Strings are sequences of UTF8-encoded bytes. Single-quoted strings support some escape sequences, while double-quoted strings do not.&lt;/p&gt;
+        &lt;p&gt;Gab has two string-like types: &lt;code&gt;gab\string&lt;/code&gt; and &lt;code&gt;gab\binary&lt;/code&gt;. A third type, &lt;code&gt;gab\message&lt;/code&gt;, also belongs to this family. All three &lt;strong&gt;share their character data in memory&lt;/strong&gt; — the bytes &lt;code&gt;[ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]&lt;/code&gt; are stored once on the heap, shared between the string &lt;code&gt;&amp;quot;true&amp;quot;&lt;/code&gt; and the message &lt;code&gt;true:&lt;/code&gt;. Converting between these types is therefore a constant-time operation with no allocation.&lt;/p&gt;
+&lt;h2&gt;&lt;code&gt;gab\string&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;gabstring&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#gabstring&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Strings are UTF-8 encoded byte sequences. Single-quoted strings support escape sequences; double-quoted strings do not.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 &#34;Hello!&#34;
 &#39;\tHello\n&#39;
 &#39;Hello \u[2502]&#39;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;gab\string&lt;/code&gt; type &lt;em&gt;respects&lt;/em&gt; its UTF-8 Encoding. Operations that would be constant time fora &lt;code&gt;gab\binary&lt;/code&gt; may actually be linear time for a &lt;code&gt;gab\string&lt;/code&gt;. For example,
-slicing a UTF-8 string at a given index requires processing the string linearly. This is because UTF8 is a multi-byte character encoding and codepoints may be anywhere from one to four bytes long.&lt;/p&gt;
-&lt;p&gt;On the other hand, the &lt;code&gt;gab\binary&lt;/code&gt; type is trivially convertible from &lt;code&gt;gab\string&lt;/code&gt;, and respects bytes directly, without enforcing or respecting &lt;em&gt;any&lt;/em&gt; encoding. Becaues of this, converting from a &lt;code&gt;gab\binary&lt;/code&gt; to a &lt;code&gt;gab\string&lt;/code&gt; can fail if the binary is not valid UTF-8.&lt;/p&gt;
+&lt;p&gt;Because Gab respects UTF-8 encoding, operations that are trivial on raw bytes may be linear-time on strings. Slicing a string at a given index requires scanning from the start, since utf8 codepoints are 1–4 bytes wide.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 smiley = &#39;😀&#39;
 
-smiley.len
-# =&gt; 1
-
-smiley_bin = smiley.to\b
-# =&gt; &lt;gab\binary ...&gt;
-
-smiley_bin.len
-# =&gt; 4
+smiley.len    # =&gt; 1  (one codepoint)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;There is no syntax for string interpolation, but it is easy to construct strings out of other values using &lt;code&gt;make:&lt;/code&gt; or &lt;code&gt;sprintf:&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Constructing strings:&lt;/strong&gt;&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-full_name = Strings.make(&#34;Ada&#34; &#34; &#34; last_name)
+Strings.make(&#39;Ada&#39;, &#39; &#39;, last_name)
 
 &#39;Format a value: $&#39;.sprintf({ name: &#39;bob&#39; })
 # =&gt; &#39;Format a value: { name: bob }&#39;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Binaries&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;binaries&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#binaries&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;As mentioned above, the &lt;code&gt;gab\binary&lt;/code&gt; operates on bytes directly - there is no encoding enforced. This means indexing/slicing operations are constant-time.
-There is no syntax for constructing binary literals, but other types can be converted into binaries.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sprintf&lt;/code&gt; replaces each &lt;code&gt;$&lt;/code&gt; in the format string with the corresponding argument, in order.&lt;/p&gt;
+&lt;h2&gt;&lt;code&gt;gab\binary&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;gabbinary&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#gabbinary&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;gab\binary&lt;/code&gt; operates on raw bytes with no encoding enforced. Indexing and slicing are constant-time because there are no multi-byte codepoints to account for.&lt;/p&gt;
+&lt;p&gt;There is no literal syntax for binaries. Convert a string with &lt;code&gt;to\b&lt;/code&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-# Requires linearly scanning from the front of the string
-&#34;This is a string&#34;.slice(3 8)
+smiley     = &#39;😀&#39;
+smiley_bin = smiley.to\b
 
-# slices from the 3rd to 8th byte in constant time
-&#34;This will be a binary&#34;.to\b.slice(3 8)
+smiley.len      # =&gt; 1  (codepoints)
+smiley_bin.len  # =&gt; 4  (bytes)
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Slicing a binary is constant-time:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+&#34;This is a string&#34;.slice(3, 8)        # Linear — scans from start
+&#34;This is a string&#34;.to\b.slice(3, 8)   # Constant time — byte offset
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Converting a binary back to a string can fail if the bytes are not valid UTF-8:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(status, str) = some_binary.as\s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Shared Memory with &lt;code&gt;gab\message&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;shared-memory-with-gabmessage&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#shared-memory-with-gabmessage&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Because &lt;code&gt;gab\string&lt;/code&gt;, &lt;code&gt;gab\binary&lt;/code&gt;, and &lt;code&gt;gab\message&lt;/code&gt; all share the same underlying character data, converting between them is zero-cost. The string &lt;code&gt;&#39;true&#39;&lt;/code&gt; and the message &lt;code&gt;true:&lt;/code&gt; occupy the same bytes — they differ only in their type tag.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+&#39;true&#39;.to\m   # =&gt; true:   (no allocation)
+true:.to\s    # =&gt; &#39;true&#39;  (no allocation)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This design means message values are just as efficient as strings in any context where they appear as keys or identifiers.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Blocks</title>
-      <link>/docs/basic_types/blocks/</link>
-      <pubDate>Mon, 10 Mar 2025 10:06:10 -0400</pubDate>
+      <link>/docs/tour/blocks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/basic_types/blocks/</guid>
+      <guid>/docs/tour/blocks/</guid>
       <description>
         
         
-        &lt;p&gt;Blocks are simply functions, as seen before. But there are some additional, useful tidbits to cover in this chapter.&lt;/p&gt;
-&lt;h3&gt;Multiple return values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;multiple-return-values&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#multiple-return-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Blocks can return multiple values, similar to golang or lua.
-Here, &lt;code&gt;open:&lt;/code&gt; returns two values. One signals the status of the operation, and another providing value or an error.&lt;/p&gt;
+        &lt;p&gt;A &lt;strong&gt;block&lt;/strong&gt; is Gab&amp;rsquo;s name for a lambda — an anonymous function that can capture values from its surrounding scope. Blocks are values: you can store them in records, pass them as arguments to messages, and call them.&lt;/p&gt;
+&lt;h2&gt;Block Syntax&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;block-syntax&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#block-syntax&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The &lt;code&gt;=&amp;gt;&lt;/code&gt; operator creates a block. The left-hand side is the &lt;strong&gt;binding&lt;/strong&gt; (the parameter list), and the right-hand side is the &lt;strong&gt;expression&lt;/strong&gt; that becomes the return value.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-IO.file(&#39;my_data.csv&#39;)
-# =&gt; ok: &lt;gab\box io\file ...&gt;
-# =&gt; err: File does not exist
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The group of values &lt;em&gt;passed to&lt;/em&gt; and &lt;em&gt;return from&lt;/em&gt; a block is called a &lt;strong&gt;tuple&lt;/strong&gt;. They can be unpacked like this:&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-# Unpack the tuple here with parentheses ().
-# This is called &#39;destructuring&#39;
-(status, stream) = IO.file(&#39;my_data.csv&#39;)
+double = (x) =&gt; x * 2
 
-status.ok.then () =&gt; do
-    # Do something with stream here.
+double.(5)
+# =&gt; 10
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Blocks are called with an &lt;strong&gt;empty message send&lt;/strong&gt; — a bare &lt;code&gt;.&lt;/code&gt; followed by the argument list in parentheses. This is consistent with how all message sending works in Gab: &lt;code&gt;.&lt;/code&gt; followed by a name is a named send; &lt;code&gt;.&lt;/code&gt; alone is an anonymous send that invokes a block.&lt;/p&gt;
+&lt;p&gt;For multi-line blocks, use &lt;code&gt;do ... end&lt;/code&gt; on the right-hand side. A &lt;code&gt;do ... end&lt;/code&gt; evaluates to its last expression:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+describe = (name, age) =&gt; do
+  line1 = &#39;Name: $!&#39;.sprintf(name)
+  line2 = &#39;Age: $!&#39;.sprintf(age)
+  Strings.make(line1, &#39;\n&#39;, line2)
 end
 
-# Alternatively, we can unwrap our stream:
-# This will crash if the first element in the tuple isn&#39;t ok:
-stream = IO
-    .file(&#39;my_data.csv&#39;)
-    .unwrap
+describe.(&#39;Alice&#39;, 30).println
+# =&gt; Name: Alice
+# =&gt; Age: 30
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Tuples are used heavily, and preferred to records wherever possible.
-While records allocate memory, tuples use the interpreter&amp;rsquo;s stack and &lt;strong&gt;do not&lt;/strong&gt; require allocation.&lt;/p&gt;
-&lt;h3&gt;Tuples&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;tuples&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#tuples&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Now that we&amp;rsquo;ve been introduced to tuples, there are a few rules about them to learn.&lt;/p&gt;
+&lt;h2&gt;Blocks with No Parameters&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;blocks-with-no-parameters&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#blocks-with-no-parameters&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;If a block takes no arguments, use empty parentheses on both sides — in the definition and in the call:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-# Messages are sent to the FIRST element of a tuple.
-# Heres some funky syntax you *could* write:
+greet = () =&gt; &#39;Hello!&#39;.println
 
-(1 2) +
-# =&gt; 3
-
-(1 2) + 3
-# =&gt; 4
+greet.()
+# =&gt; Hello!
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When the left-hand side of a send is a tuple and the right-hand side is empty, Gab emits a send to the &lt;strong&gt;whole&lt;/strong&gt; left-hand tuple.
-When the right-hand side is &lt;strong&gt;not&lt;/strong&gt; empty, Gab will &lt;em&gt;trim&lt;/em&gt; the left hand side to one value, and then send the message to that value with the right-hand tuple as arguments.&lt;/p&gt;
-&lt;p&gt;This behavior means that you can forward &lt;strong&gt;entire&lt;/strong&gt; tuples returned by blocks into new message sends, without any intermediate allocation.
-In fact, this is how &lt;code&gt;unwrap:&lt;/code&gt; is implemented!&lt;/p&gt;
+&lt;h2&gt;Blocks as Arguments&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;blocks-as-arguments&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#blocks-as-arguments&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks are most commonly passed as arguments to messages. This is how all control flow is expressed in Gab. You&amp;rsquo;ve already seen this with boolean branching:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-unwrap: .defcase {
-    # If the receiver (first element of tuple) was ok: then return the result
-    ok:  result =&gt; result
-    # If the receiver was err: then panic
-    err: err =&gt; &#39;Unwrap Failed: $&#39;.panicf err
-}
-
-# file: returns a tuple (ok: &lt;gab\box io\stream ...&gt;)
-# This tuple is forwarded to .unwrap
-stream = IO
-    .file(&#39;my_data.csv&#39;)
-    .unwrap
+(temperature &gt; 100)
+  .then(() =&gt; &#39;Too hot!&#39;.println)
+  .else(() =&gt; &#39;Just right.&#39;.println)
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Collection messages like &lt;code&gt;each&lt;/code&gt; and &lt;code&gt;map&lt;/code&gt; also take blocks:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+[&#39;alice&#39;, &#39;bob&#39;, &#39;carol&#39;].each (name) =&gt; do
+  &#39;Hello, $!&#39;.sprintf(name).println
+end
+
+# =&gt; Hello, alice
+# =&gt; Hello, bob
+# =&gt; Hello, carol
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Multiple Return Values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;multiple-return-values&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#multiple-return-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks can return more than one value using a &lt;strong&gt;tuple expression&lt;/strong&gt; — parentheses containing two or more values:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+minmax = (a, b) =&gt; do
+  (a &lt; b)
+    .then(() =&gt; (a, b))
+    .else(() =&gt; (b, a))
+end
+
+(lo, hi) = minmax.(7, 3)
+
+lo  # =&gt; 3
+hi  # =&gt; 7
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The comma between &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; is required here — without it, &lt;code&gt;a b&lt;/code&gt; would be parsed as sending message &lt;code&gt;b&lt;/code&gt; to &lt;code&gt;a&lt;/code&gt;. In general, a comma inside a tuple terminates the preceding message send and starts a new element. This makes commas meaningful rather than decorative:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(1 + 2 3)   # =&gt; (3, 3)  — `2` is the argument to `+`, `3` is the second element
+(1 +, 2 3)  # =&gt; Error   — the comma cuts off `+` before it gets an argument
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Multiple return values become especially important when combined with message chaining. When you chain a message send, &lt;strong&gt;all return values&lt;/strong&gt; from the left side are forwarded as the receiver and arguments of the next message. Given:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+IO.File.make(self).my_message
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is exactly equivalent to:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(status, file) = IO.File.make(self)
+status.my_message(file)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first return value becomes the receiver; subsequent return values become arguments. This is why the error-handling pattern in Gab is so fluid — &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; can each respond differently to the same chained message, routing the remaining values accordingly. You&amp;rsquo;ll see this in detail in &lt;a href=&#34;/docs/tour/error-handling&#34; &gt;Error Handling&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Closures&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;closures&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#closures&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks close over their surrounding scope. Any name visible where the block is defined is accessible inside it:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+prefix = &#39;Hello&#39;
+
+greet = (name) =&gt; do
+  &#39;$!, $!&#39;.sprintf(prefix, name).println
+end
+
+greet.(&#39;world&#39;)
+# =&gt; Hello, world
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The block captures &lt;code&gt;prefix&lt;/code&gt; at the time it is defined. If you rebind &lt;code&gt;prefix&lt;/code&gt; later, the block still holds onto the original value — Gab&amp;rsquo;s immutability makes this safe and predictable.&lt;/p&gt;
+&lt;h2&gt;Blocks and Fibers&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;blocks-and-fibers&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#blocks-and-fibers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs concurrently in its own lightweight thread of execution. See &lt;a href=&#34;/docs/tour/fibers-and-channels&#34; &gt;Fibers &amp;amp; Channels&lt;/a&gt; for the full picture.&lt;/p&gt;
 
       </description>
     </item>
@@ -261,143 +440,91 @@ stream = IO
     <item>
       <title>Messages</title>
       <link>/docs/basic_types/messages/</link>
-      <pubDate>Fri, 07 Feb 2025 18:33:11 -0500</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/docs/basic_types/messages/</guid>
       <description>
         
         
-        &lt;p&gt;Message are the bread and butter of Gab. They serve many purposes. Mainly they provide control flow, or act as enums or sentinel values. However, They also serve as Gab&amp;rsquo;s mechanism for &lt;strong&gt;polymorphism&lt;/strong&gt;.&lt;/p&gt;
-&lt;h3&gt;Message Sends&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;message-sends&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#message-sends&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The only way to &lt;em&gt;do&lt;/em&gt; anything is by &lt;em&gt;sending a message to a value&lt;/em&gt;.&lt;/p&gt;
+        &lt;p&gt;A message is an identifier ending in a colon. Its type is itself.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-&#34;Hello world!&#34; .println # =&gt; Hello world!
+ok:?      # =&gt; ok:
+true:?    # =&gt; true:
+my_msg:?  # =&gt; my_msg:
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Earlier we saw message literals, which look like this:&lt;/p&gt;
+&lt;p&gt;Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are Gab&amp;rsquo;s implementation of booleans, nil, and result values — there are no built-in keywords for any of these.&lt;/p&gt;
+&lt;h2&gt;Defining Specializations&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;defining-specializations&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#defining-specializations&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A message responds to &lt;code&gt;def:&lt;/code&gt; to add a new &lt;strong&gt;specialization&lt;/strong&gt; — an implementation for a specific receiver type:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-println:
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now we&amp;rsquo;ve seen a message &lt;em&gt;send&lt;/em&gt;, which is like calling a method or function:&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-any_value .println
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Message literals can also respond to messages!&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-my_message: .println # =&gt; my_message:
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In fact, this is how new messages are defined in Gab!&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-my_message:.def(
-    myType,
-    () =&gt; do
-        self.name.println
-    end)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Messages &lt;em&gt;themselves&lt;/em&gt; respond to the &lt;code&gt;def:&lt;/code&gt; message by adding a new implementation for the given type(s).
-There are several other messages for defining new implementations, which Gab refers to as &lt;strong&gt;specializations&lt;/strong&gt;.&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-# Define multiple specializations for one message, conveniently
-my_message: .defcase {
-    nil:  () =&gt; &#34;I was nil!&#34;
-    true: () =&gt; &#34;I was true!&#34;
-    none: &#34;I was none!&#34; # Values alone can also serve as a specialization.
-}
+greet: .def (Strings.t, () =&gt; do
+  &#39;Hello, $!&#39;.sprintf(self).println
+end)
 
-# Define the same specializations for multiple types, conveniently
-[ myType, myOtherType ] .defmodule {
-    message_one: () =&gt; &#34;Sending message one&#34;
-    message_two: () =&gt; &#34;Sending message two&#34;
+&#39;Alice&#39;.greet   # =&gt; Hello, Alice!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are three definition messages, each suited to different situations.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;def:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;def&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#def&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Defines a single specialization for a single type:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+birthday: .def (Person, () =&gt; do
+  self.put(age: self.age + 1)
+end)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;&lt;code&gt;defcase:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;defcase&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#defcase&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Defines multiple specializations for one message at once, using a record as a dispatch table:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+describe: .defcase {
+  ok:   result =&gt; &#39;Success: $&#39;.sprintf(result).println
+  err:  msg    =&gt; &#39;Error: $&#39;.sprintf(msg).println
+  nil:          =&gt; &#39;Nothing here.&#39;.println
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Message Values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;message-values&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#message-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;We&amp;rsquo;ve seen message values before. They are identifiers that end in a colon&lt;code&gt;:&lt;/code&gt;.
-They&amp;rsquo;re useful for singleton or sentinel values - and in fact, Gab implements booleans and nil using messages. More on this in later chapters!
-Gab also uses message values to implement results or optionals.
-Since Gab has multiple return values, sends that can error often return multiple values like this:&lt;/p&gt;
+&lt;p&gt;Each key in the record is a receiver type; each value is the block to call when that type receives the message. Values alone (without a block) are also valid — they are returned directly.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;defmodule:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;defmodule&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#defmodule&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Defines multiple messages for multiple receiver types at once:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-# This call may fail, if Gab can&#39;t open the file
-(ok file) = IO.file(&#39;Maybe_Exists.txt&#39;)
-
-(ok file) # =&gt; If the file exists  (ok: &lt;gab\box io\file ...&gt;)
-          # =&gt; If the file doesn&#39;t (err: &#34;File not found&#34;)
-
-# This line will crash - the record doesn&#39;t respond to age:
-age = { name: &#39;bob&#39; } .age
-
-(ok age) = { name: &#39;bob&#39; }.at(age:)
-# Now instead we will either see:
-# =&gt; (ok: &lt;whatever we saw in the record&gt;)
-# =&gt; (none: nil:)
-&lt;/code&gt;&lt;/pre&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Booleans</title>
-      <link>/docs/basic_types/booleans/</link>
-      <pubDate>Fri, 07 Feb 2025 16:06:29 -0500</pubDate>
-      
-      <guid>/docs/basic_types/booleans/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Booleans are implemented with messages - they are not built-in keywords like in other languages!&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-true:
-false:
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;There is no &lt;code&gt;if&lt;/code&gt; in gab. Typically, a &lt;code&gt;defcase&lt;/code&gt; is used instead:&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-my_message: .defcase! {
-    true: (args) =&gt; do
-        # Do something with args in the truthy case
-    end
-    false: (args) =&gt; do
-        # Do something with args in the falsey case
-    end
-}
-
-some_condition .my_message args
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;For simple use cases, there are messages &lt;code&gt;and:&lt;/code&gt;, &lt;code&gt;or:&lt;/code&gt;, &lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt; defined in the core library.&lt;/p&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-# Lifted from gab&#39;s core library.
-
-truthy_values .defmodule! {
-  and: (alt[]) =&gt; alt**
-  or: _ =&gt; self
-
-  then: f =&gt; f. self
-  else: _ =&gt; self
-}
-
-falsey_values .defmodule! {
-  and: _ =&gt; self
-  or: (alt[]) =&gt; alt**
-
-  then: _ =&gt; self
-  else: f =&gt; f. self
+[Point, Vector] .defmodule {
+  scale: (factor) =&gt; self.put(x: self.x * factor, y: self.y * factor)
+  zero:  ()       =&gt; self.put(x: 0, y: 0)
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;and:&lt;/code&gt; and &lt;code&gt;or:&lt;/code&gt; messages do what you expect for the most part, except they &lt;em&gt;don&amp;rsquo;t short circuit&lt;/em&gt;. This means the value on the right is &lt;em&gt;always evaluated&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Dispatch Resolution Order&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;dispatch-resolution-order&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#dispatch-resolution-order&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;When a message is sent to a value, Gab resolves the specialization in this order:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Super type&lt;/strong&gt; — if the value&amp;rsquo;s type (e.g. a &lt;code&gt;gab\shape&lt;/code&gt;) has a specialization, use it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Type&lt;/strong&gt; — use the specialization defined for the value&amp;rsquo;s &lt;code&gt;gab\&lt;/code&gt; type (e.g. &lt;code&gt;gab\record&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Property&lt;/strong&gt; — if the receiver is a record and the message name matches one of its keys, return that value. This is how field access works: &lt;code&gt;{ name: &#39;bob&#39; }.name&lt;/code&gt; returns &lt;code&gt;&#39;bob&#39;&lt;/code&gt; without any explicit &lt;code&gt;def:&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;General&lt;/strong&gt; — use a specialization defined with no specific type.&lt;/li&gt;
+&lt;/ol&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-true: .and 2  # 2
-false: .and 2 # .false
-false: .or 2  # 2
-true: .or 2   # .true
+y: .def &#39;general case&#39;
+
+z: .def (Shapes.make(x:), &#39;shape case&#39;)
+
+{ x: 1 }.y   # =&gt; &#39;general case&#39;  (general)
+{ x: 1 }.z   # =&gt; &#39;shape case&#39;    (super type — the shape &lt;x:&gt;)
+{ x: 1 }.x   # =&gt; 1               (property)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt; messages &lt;strong&gt;do&lt;/strong&gt; short circuit, by accepting &lt;em&gt;blocks&lt;/em&gt; instead of values.&lt;/p&gt;
+&lt;h2&gt;&lt;code&gt;and:&lt;/code&gt;, &lt;code&gt;or:&lt;/code&gt;, &lt;code&gt;then:&lt;/code&gt;, &lt;code&gt;else:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;and-or-then-else&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#and-or-then-else&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;These messages are defined on &lt;code&gt;true:&lt;/code&gt; and &lt;code&gt;false:&lt;/code&gt; in the core library. Their semantics differ in one important way:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;and:&lt;/code&gt; and &lt;code&gt;or:&lt;/code&gt; accept &lt;strong&gt;values&lt;/strong&gt; — the argument is always evaluated before the message is sent:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-true: .then () =&gt; do
-    # Do something in the truthy case
-end
-false: .else () =&gt; do
-    # Do something in the falsey case
-end
+true:  .and 2    # =&gt; 2
+false: .and 2    # =&gt; false:
+false: .or  2    # =&gt; 2
+true:  .or  2    # =&gt; true:
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is is the part of Gab that some may find to be most inconvenient.
-However, I find that it encourages writing smaller functions and more modular code, as nesting lots of scopes and conditionals is impossible.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt; accept &lt;strong&gt;blocks&lt;/strong&gt; — only the appropriate branch is invoked:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+true: .then  () =&gt; &#39;yes&#39;.println   # =&gt; yes
+true: .else  () =&gt; &#39;no&#39;.println    # (block is never called)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;&lt;code&gt;nil:&lt;/code&gt; and &lt;code&gt;none:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;nil-and-none&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#nil-and-none&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;nil:&lt;/code&gt; is the value Gab binds to names that have no corresponding value — for example, if a binding list is longer than the tuple being destructured:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(a, b) = 1   # a =&gt; 1, b =&gt; nil:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;none:&lt;/code&gt; is used by certain APIs to signal the absence of a result (as opposed to an error). Both are plain message values with no special runtime treatment.&lt;/p&gt;
 
       </description>
     </item>
@@ -405,104 +532,497 @@ However, I find that it encourages writing smaller functions and more modular co
     <item>
       <title>Records</title>
       <link>/docs/basic_types/records/</link>
-      <pubDate>Fri, 07 Feb 2025 16:07:28 -0500</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/docs/basic_types/records/</guid>
       <description>
         
         
-        &lt;p&gt;Records are collections of key-value pairs. They are ordered and structurally typed. In Gab they come in two flavors - Dictionaries and Lists.&lt;/p&gt;
-&lt;h3&gt;Dictionaries&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;dictionaries&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#dictionaries&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Dictionaries are Gab records which allow arbitrary values as keys. They are denoted with &lt;code&gt;{}&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Between the curly brackets, expressions are expected in key-value pairs.
-Any expression is allowed as either a key or value.&lt;/p&gt;
+        &lt;p&gt;&lt;code&gt;gab\record&lt;/code&gt; is the only data structure in Gab. It serves as both a dictionary and a list. All records are immutable.&lt;/p&gt;
+&lt;h2&gt;Lists&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;lists&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#lists&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;List-style records use integer keys starting from zero. They are constructed with &lt;code&gt;[]&lt;/code&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-a_record = { key: &#39;value&#39; }
-
-a_record .key                    # =&gt; &#39;value&#39;
-
-another_record = { key: &#39;value&#39;, &#39;another_key&#39; 10 } 
-
-another_record .at &#39;another_key&#39; # =&gt; (ok: &#39;10)
+a_list = [1, 2, 3]
+a_list   # =&gt; [1, 2, 3]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Lists&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;lists&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#lists&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Lists are records which allow only monotonically-increasing-integer values as keys. This is some fancy talk for saying it only allows for keys &lt;code&gt;0-n&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Lists are constructed with the square brackets &lt;code&gt;[]&lt;/code&gt;, and any number of expressions are allowed inside.&lt;/p&gt;
+&lt;p&gt;A list can also be constructed using explicit integer keys in dictionary syntax — Gab recognises the shape and displays it as a list:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-a_list = [1 2 3] 
-
-a_list # =&gt; [1, 2, 3]
-
 a_list = { 0 1, 1 2, 2 3 }
+a_list   # =&gt; [1, 2, 3]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Dictionaries&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;dictionaries&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#dictionaries&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Dictionary-style records allow arbitrary keys. They are constructed with &lt;code&gt;{}&lt;/code&gt;, with keys and values in pairs:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+a_record = { name: &#39;bob&#39;, age: 44 }
+another  = { key: &#39;value&#39;, &#39;another_key&#39; 10 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Accessing Values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;accessing-values&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#accessing-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Record keys that are message values can be accessed directly as a message send. This works through the property step of dispatch resolution — no &lt;code&gt;def:&lt;/code&gt; required:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+{ name: &#39;bob&#39; }.name   # =&gt; &#39;bob&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For keys that are not message values, or when you need a safe access that won&amp;rsquo;t crash on a missing key, use &lt;code&gt;at:&lt;/code&gt;:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+record.at(key:)   # =&gt; (ok:, &#39;value&#39;)  or  (none:, nil:)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Direct property access on a missing key will raise an error. &lt;code&gt;at:&lt;/code&gt; returns a tuple and lets you handle the missing case explicitly.&lt;/p&gt;
+&lt;h2&gt;Immutability and &lt;code&gt;put:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;immutability-and-put&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#immutability-and-put&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Records cannot be modified in place. &lt;code&gt;put:&lt;/code&gt; returns a new record with the given key set to the given value:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+bob   = { name: &#39;bob&#39;,   age: 44 }
+alice = bob.put(name: &#39;alice&#39;)
 
-a_list # =&gt; [1, 2, 3]
+bob    # =&gt; { name: &#39;bob&#39;,   age: 44 }
+alice  # =&gt; { name: &#39;alice&#39;, age: 44 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Records are implemented as a &lt;strong&gt;bit-partitioned vector trie&lt;/strong&gt;, inspired by Clojure&amp;rsquo;s persistent data structures. This means &lt;code&gt;put:&lt;/code&gt; uses &lt;strong&gt;structural sharing&lt;/strong&gt; — the new record shares most of its memory with the original, so large records can be updated efficiently without copying all their data.&lt;/p&gt;
+&lt;h2&gt;List-to-Dictionary Transitions&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;list-to-dictionary-transitions&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#list-to-dictionary-transitions&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Adding a non-integer key to a list produces a dictionary:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+a_list = [1, 2, 3]
+a_list = a_list.put(name: &#39;bob&#39;)
+# =&gt; { 0: 1, 1: 2, 2: 3, name: &#39;bob&#39; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The transition is explicit and immediate — the shape changes and the value is no longer displayed as a list.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Fibers &amp; Channels</title>
+      <link>/docs/tour/fibers_and_channels/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/tour/fibers_and_channels/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Concurrency is not an add-on in Gab — it is a first-class feature of the language and runtime. The two primitives are &lt;strong&gt;fibers&lt;/strong&gt; and &lt;strong&gt;channels&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Fibers&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;fibers&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#fibers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A fiber is a lightweight unit of execution, similar to a goroutine in Go or a process on the BEAM (Erlang/Elixir). Fibers are cheap: Gab&amp;rsquo;s runtime is designed to support hundreds of thousands of them running concurrently.&lt;/p&gt;
+&lt;p&gt;You spawn a fiber by passing a block to &lt;code&gt;Fibers.make&lt;/code&gt;:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Fibers.make () =&gt; do
+  &#39;Hello from a fiber!&#39;.println
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The block runs concurrently. The fiber is scheduled by Gab&amp;rsquo;s runtime — you don&amp;rsquo;t manage threads or thread pools.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s a more complete example that spawns 20,000 fibers:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+spawn_task = (i) =&gt; do
+  Fibers.make () =&gt; do
+    &#39;Hello from fiber $!&#39;.sprintf(i).println
+  end
+end
+
+Ranges.make(0, 20000).each spawn_task
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Channels&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;channels&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#channels&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Fibers communicate with each other through &lt;strong&gt;channels&lt;/strong&gt;. A channel is the &lt;em&gt;only&lt;/em&gt; way for two fibers to exchange data — there is no shared mutable state, no global variables, and no locks.&lt;/p&gt;
+&lt;p&gt;Create a channel with &lt;code&gt;Channels.make&lt;/code&gt;:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+ch = Channels.make
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Send&lt;/strong&gt; a value into a channel with the &lt;code&gt;&amp;lt;!&lt;/code&gt; operator:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+ch &lt;! &#39;a message&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Receive&lt;/strong&gt; a value from a channel with the &lt;code&gt;&amp;gt;!&lt;/code&gt; operator:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+value = ch &gt;!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Gab&amp;rsquo;s channels are &lt;strong&gt;unbuffered&lt;/strong&gt;: a send blocks until a receiver is ready, and a receive blocks until a sender is ready. This keeps communication explicit and synchronised, and eliminates an entire class of concurrency bugs.&lt;/p&gt;
+&lt;h2&gt;Putting it Together&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;putting-it-together&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#putting-it-together&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Here is a pipeline where many fibers produce values, and a single consumer reads them all:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+print_chan = Channels.make
+
+Ranges.make(0, 10000).each i =&gt; do
+  Fibers.make () =&gt; do
+    print_chan &lt;! &#39;Hello from fiber $!&#39;.sprintf(i)
+  end
+end
+
+print_chan.each (msg) =&gt; msg.println
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Each fiber sends one message into the channel, then exits. The &lt;code&gt;each&lt;/code&gt; message reads values from the channel and passes each one to the block.&lt;/p&gt;
+&lt;h2&gt;Zero-Copy Message Passing&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;zero-copy-message-passing&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#zero-copy-message-passing&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A common cost in concurrent systems is &lt;strong&gt;copying&lt;/strong&gt;: when you send data to another thread, the runtime must copy it to keep both sides safe. Gab eliminates this cost.&lt;/p&gt;
+&lt;p&gt;Because all of Gab&amp;rsquo;s data structures are immutable, a value cannot change after it is created. This means it is always safe to share a reference to a value across fiber boundaries — no copying is needed. In practice, passing a large record between 10,000 fibers is no more expensive than passing an integer.&lt;/p&gt;
+&lt;p&gt;This is a deliberate design choice that makes Gab&amp;rsquo;s concurrency both safe and fast.&lt;/p&gt;
+&lt;h2&gt;Channels are Immutable Too&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;channels-are-immutable-too&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#channels-are-immutable-too&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Even &lt;code&gt;gab\channel&lt;/code&gt; is immutable. A channel reference can be passed freely between fibers without any synchronisation overhead. The runtime handles the scheduling of sends and receives internally.&lt;/p&gt;
+&lt;h2&gt;Atoms: Safe Shared State&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;atoms-safe-shared-state&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#atoms-safe-shared-state&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Channels and fibers can implement any concurrency abstraction. Here is a complete implementation of an &lt;strong&gt;atom&lt;/strong&gt; — a value that can be read and updated safely from any fiber, similar to Clojure&amp;rsquo;s &lt;code&gt;atom&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The design: a dedicated fiber holds the current state privately in its own local scope. Other fibers send commands to it over a channel — each command is a tuple of a reply channel and a function to apply. The atom fiber applies the function, sends the new state back on the reply channel, and recurses with the updated state. Because all reads and writes go through a single fiber, no two updates can race.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Atom = gab\atom:
+
+make: .def (Atom, (initial) =&gt; do
+  ch = Channels.make
+
+  loop = (state) =&gt; do
+    (reply, f) = ch &gt;!
+    new_state   = f.(state)
+    reply &lt;! new_state
+    self.(new_state)
+  end
+
+  Fibers.make () =&gt; loop.(initial)
+
+  { chan: ch }
+end)
+
+t: .def (Atom, () =&gt; { chan: nil: }?)
+
+[Atom.t] .defmodule {
+  deref: () =&gt; do
+    reply = Channels.make
+    self.chan &lt;! (reply, (x) =&gt; x)
+    reply &gt;!
+  end
+
+  swap!: (f) =&gt; do
+    reply = Channels.make
+    self.chan &lt;! (reply, f)
+    reply &gt;!
+  end
+
+  reset!: (val) =&gt; self.swap!(() =&gt; val)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Usage:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+counter = Atom.make(0)
+
+counter.deref         # =&gt; 0
+
+counter.swap!((n) =&gt; n + 1)
+counter.swap!((n) =&gt; n + 1)
+
+counter.deref         # =&gt; 2
+
+counter.reset!(100)
+counter.deref         # =&gt; 100
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A few things worth noting in the implementation:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Recursive blocks via &lt;code&gt;self&lt;/code&gt;.&lt;/strong&gt; &lt;code&gt;loop&lt;/code&gt; calls &lt;code&gt;self.(new_state)&lt;/code&gt; to recurse. When a block is invoked directly rather than as a message specialization, &lt;code&gt;self&lt;/code&gt; refers to the block itself — making this a clean tail-recursive loop with no stack growth.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tuples over channels.&lt;/strong&gt; &lt;code&gt;ch &amp;lt;! (reply, f)&lt;/code&gt; sends both the reply channel and the function as a single tuple. The atom fiber receives and destructures them in one step with &lt;code&gt;(reply, f) = ch &amp;gt;!&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;t:&lt;/code&gt; provides the shape for &lt;code&gt;defmodule&lt;/code&gt;.&lt;/strong&gt; &lt;code&gt;Atom.t&lt;/code&gt; returns the shape of atom records — &lt;code&gt;&amp;lt;gab\shape chan:&amp;gt;&lt;/code&gt; — so that &lt;code&gt;defmodule&lt;/code&gt; has a concrete type to attach messages to. &lt;code&gt;self.chan&lt;/code&gt; inside the module accesses the channel field via property dispatch.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;deref&lt;/code&gt; is just &lt;code&gt;swap!&lt;/code&gt; with the identity function.&lt;/strong&gt; There&amp;rsquo;s no separate read mechanism — the same serialised path handles both reads and writes, which guarantees that a &lt;code&gt;deref&lt;/code&gt; sees all preceding &lt;code&gt;swap!&lt;/code&gt; calls.&lt;/p&gt;
+&lt;h2&gt;Typical Patterns&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;typical-patterns&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#typical-patterns&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Worker pool.&lt;/strong&gt; Spawn N fibers, all reading from the same input channel and writing results to an output channel.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pipeline.&lt;/strong&gt; Chain channels together — one fiber&amp;rsquo;s output channel is the next fiber&amp;rsquo;s input channel.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fan-out.&lt;/strong&gt; One fiber sends work to many channels, each consumed by a dedicated fiber.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Buffered producer.&lt;/strong&gt; Use &lt;code&gt;Channels.buffered&lt;/code&gt; when a producer bursts faster than its consumer, to absorb the difference without stalling the producer on every value.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Shared mutable state.&lt;/strong&gt; Use the atom pattern when multiple fibers need to read and update a shared value safely, without locks.&lt;/p&gt;
+&lt;p&gt;These patterns emerge naturally from the two primitives. There are no higher-level concurrency abstractions to learn.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Error Handling</title>
+      <link>/docs/tour/error_handling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/tour/error_handling/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Gab does not have exceptions. There is no &lt;code&gt;try/catch&lt;/code&gt;, no &lt;code&gt;throw&lt;/code&gt;, and no stack unwinding. Instead, operations that can fail &lt;strong&gt;return their errors as values&lt;/strong&gt;. You handle errors the same way you handle any other result: by sending messages.&lt;/p&gt;
+&lt;h2&gt;Errors as Return Values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;errors-as-return-values&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#errors-as-return-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A message that can fail returns multiple values. The first is a status — either &lt;code&gt;ok:&lt;/code&gt; or &lt;code&gt;err:&lt;/code&gt; — and the second is either the result or an explanation of what went wrong.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(status, file) = IO.File.make(&#39;my_file.txt&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If the file is opened successfully, &lt;code&gt;status&lt;/code&gt; is &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;file&lt;/code&gt; is a &lt;code&gt;gab\box IO.File&lt;/code&gt; you can read from or write to.&lt;/p&gt;
+&lt;p&gt;If something went wrong — the file doesn&amp;rsquo;t exist, permissions are denied — &lt;code&gt;status&lt;/code&gt; is &lt;code&gt;err:&lt;/code&gt; and &lt;code&gt;file&lt;/code&gt; is a string describing the error.&lt;/p&gt;
+&lt;h2&gt;Handling the Result&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;handling-the-result&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#handling-the-result&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Because &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; are just values, you handle them with messages. The verbose approach binds each return value and branches explicitly:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(status, file) = IO.File.make(&#39;my_file.txt&#39;)
+
+status
+  .then(() =&gt; file.read.println)
+  .else(() =&gt; &#39;Failed to open file: $!&#39;.sprintf(file).println)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But recall how message chaining works with multiple return values: when you chain a message after a call that returns multiple values, the first return value becomes the receiver and the rest become arguments. This means you can write the same thing as a single chain:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+IO.File.make(&#39;my_file.txt&#39;)
+  .then((file) =&gt; file.read.println)
+  .else((msg)  =&gt; &#39;Failed to open file: $!&#39;.sprintf(msg).println)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; respond differently to &lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt; — &lt;code&gt;ok:&lt;/code&gt; calls its &lt;code&gt;then:&lt;/code&gt; block and passes the file through; &lt;code&gt;err:&lt;/code&gt; calls its &lt;code&gt;else:&lt;/code&gt; block and passes the error message through. The branching is built into the types, not into special syntax.&lt;/p&gt;
+&lt;p&gt;This is the same branching mechanism used everywhere in Gab. There is no special syntax for error handling — the language stays consistent.&lt;/p&gt;
+&lt;h2&gt;Why Not Exceptions?&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;why-not-exceptions&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#why-not-exceptions&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Exceptions make control flow invisible. An exception thrown inside a deeply nested call can unwind the entire stack, landing in a &lt;code&gt;catch&lt;/code&gt; block far removed from where the problem occurred. This makes programs harder to reason about, and harder to write reliable concurrent code with.&lt;/p&gt;
+&lt;p&gt;Returning errors as values keeps the failure path explicit. When a message can fail, its type signature says so. You can&amp;rsquo;t accidentally ignore the error and proceed as if everything succeeded — the status value is right there in the binding.&lt;/p&gt;
+&lt;p&gt;This approach is familiar if you&amp;rsquo;ve used Go, Rust&amp;rsquo;s &lt;code&gt;Result&lt;/code&gt; type, or Erlang&amp;rsquo;s &lt;code&gt;{:ok, value} | {:error, reason}&lt;/code&gt; convention. Gab follows the same discipline.&lt;/p&gt;
+&lt;h2&gt;Propagating Errors&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;propagating-errors&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#propagating-errors&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;If you want to pass an error up to the caller, return a tuple:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+read_config: .def (gab\string, () =&gt; do
+  IO.File.make(self)
+    .then((file) =&gt; (ok: file.read))
+    .else((msg)  =&gt; (err: &#39;Could not open config: $!&#39;.sprintf(msg)))
+end)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No comma is needed between &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;file.read&lt;/code&gt; — a message literal like &lt;code&gt;ok:&lt;/code&gt; doesn&amp;rsquo;t consume the next expression as an argument, so the parser correctly treats &lt;code&gt;file.read&lt;/code&gt; as the second tuple element. The caller receives &lt;code&gt;ok:&lt;/code&gt; and the file contents, or &lt;code&gt;err:&lt;/code&gt; and an error string — and can chain or bind those values however it likes.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Shapes</title>
+      <link>/docs/basic_types/shapes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/basic_types/shapes/</guid>
+      <description>
+        
+        
+        &lt;p&gt;A shape describes the keys of a record, in order. It is the record&amp;rsquo;s type. All records with the same keys in the same order share exactly one shape value.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+a = { name: &#39;Joe&#39; }
+b = { name: &#39;Rich&#39; }
+
+a?          # =&gt; &lt;gab\shape name:&gt;
+b?          # =&gt; &lt;gab\shape name:&gt;
+(a?) == (b?)  # =&gt; true:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;Note - you can construct a list with the same syntax as a dictionary by typing in those integer keys yourself.
-Gab will still consider it a list-type record.&lt;/p&gt;
+  &lt;p&gt;A space is required between an identifier and &lt;code&gt;?&lt;/code&gt;. Names in Gab may end with &lt;code&gt;?&lt;/code&gt; or &lt;code&gt;!&lt;/code&gt;, so &lt;code&gt;a?&lt;/code&gt; would be parsed as a single identifier, not a message send.&lt;/p&gt;
 
 &lt;/blockquote&gt;
-&lt;p&gt;While you &lt;em&gt;are&lt;/em&gt; allowed to set any key on a list, keep in mind that Gab will transition the list &lt;em&gt;into&lt;/em&gt; a dictionary.&lt;/p&gt;
+&lt;h2&gt;Obtaining a Shape&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;obtaining-a-shape&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#obtaining-a-shape&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are two ways to get a shape value.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;From a record&lt;/strong&gt;, using the &lt;code&gt;?&lt;/code&gt; message:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-a_list = [1 2 3]
-# =&gt; [1, 2, 3]
-
-a_list = a_list.put(name: &#39;bob&#39;)
-#=&gt; { 0 1, 1 2, 2 3, name: bob }
+Person = { name: &#39;&#39;, age: 0 }?
+# =&gt; &lt;gab\shape name: age:&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Records&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;records&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#records&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The rest of this chapter is about &lt;code&gt;gab\record&lt;/code&gt; itself, and therefore applies to both dictionary and list flavors.&lt;/p&gt;
-&lt;p&gt;Records, like all values in Gab, are &lt;strong&gt;immutable&lt;/strong&gt;. This means that setting values in records returns a &lt;em&gt;new record&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Directly&lt;/strong&gt;, using &lt;code&gt;Shapes.make:&lt;/code&gt; with a list of keys:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-a_record = { key: &#39;value&#39; }
-
-a_record                                   # =&gt; { key:  &#39;another value&#39; }
-
-a_record = a_record .put (key: &#39;something else&#39;)
-
-a_record                                   # =&gt; { key: &#39;something else&#39; }
+Person = Shapes.make(name:, age:)
+# =&gt; &lt;gab\shape name: age:&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Both &lt;strong&gt;Dictionaries&lt;/strong&gt; and &lt;strong&gt;Lists&lt;/strong&gt; use the same underlying datastructure, &lt;code&gt;gab\record&lt;/code&gt;. In order to make these immutable data structures fast, records are implemented with a &lt;strong&gt;bit partitioned vector trie&lt;/strong&gt;.
-Gab&amp;rsquo;s implementation is very much inspired by clojure&amp;rsquo;s immutable vectors.
-Because of this implementation, records are able to &lt;em&gt;share memory&lt;/em&gt; under the hood, to avoid copying large of data for a single key-value mutation. This is called structural sharing,
-and is a common optimization among immutable data structures.&lt;/p&gt;
-&lt;p&gt;As seen above, &lt;code&gt;gab\record&lt;/code&gt; implements some useful messages &lt;code&gt;put:&lt;/code&gt; and &lt;code&gt;at:&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Both produce the same shape value. The &lt;code&gt;?&lt;/code&gt; approach is convenient when you already have an example record; &lt;code&gt;Shapes.make&lt;/code&gt; is useful when you want to define the shape without constructing a record first.&lt;/p&gt;
+&lt;h2&gt;Shapes as Specialization Targets&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;shapes-as-specialization-targets&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#shapes-as-specialization-targets&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Shapes are most useful as receiver types in &lt;code&gt;def:&lt;/code&gt;, &lt;code&gt;defcase:&lt;/code&gt;, and &lt;code&gt;defmodule:&lt;/code&gt;. All records with a matching shape will respond to the defined message:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-some_record .at key: # =&gt; (ok:, &#39;value&#39;)
+Person = Shapes.make(name:, age:)
+
+birthday: .def (Person, () =&gt; do
+  &#39;Happy Birthday, $!&#39;.sprintf(self.name).println
+  self.put(age: self.age + 1)
+end)
+
+bob = { name: &#39;bob&#39;, age: 44 }
+bob = bob.birthday
+# =&gt; Happy Birthday, bob!
+
+bob.age   # =&gt; 45
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Shapes&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;shapes&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#shapes&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;All records have an underlying shape. Shapes determine what the available keys are, and their order. It might be useful to think of shapes as an implicit class.
-Records with the same keys in the same order &lt;em&gt;share the same shape&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Shapes in Dispatch&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;shapes-in-dispatch&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#shapes-in-dispatch&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;When Gab resolves a message send, the shape is checked as the &lt;strong&gt;super type&lt;/strong&gt; before the record&amp;rsquo;s base type (&lt;code&gt;gab\record&lt;/code&gt;). This means shape-specialised messages take precedence over general record behaviour:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-some_record = { x: 1 y: 2 }
+z: .def (Shapes.make(x:), &#39;shape case&#39;)
+z: .def &#39;general case&#39;
 
-shape_x_y = some_record? # =&gt; &lt;gab\shape x: y:&gt;
-
-({ x: 2 y: 3 }?) == shape_x_y # =&gt; true:
+{ x: 1 }.z   # =&gt; &#39;shape case&#39;   (shape wins over general)
+{ y: 1 }.z   # =&gt; &#39;general case&#39;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Shapes are useful for defining specializations. When resolving which specialization to use for a given value, Gab checks in the following order:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;If the value has a &lt;strong&gt;super type&lt;/strong&gt;, and said &lt;strong&gt;super type&lt;/strong&gt; has an available specialization, use it.&lt;/li&gt;
-&lt;li&gt;If available, use the &lt;strong&gt;type&amp;rsquo;s&lt;/strong&gt; specialization.&lt;/li&gt;
-&lt;li&gt;If available, use the &lt;strong&gt;property&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;If available, use the &lt;strong&gt;general&lt;/strong&gt; specialization.&lt;/li&gt;
-&lt;li&gt;No specialization found.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For example: &lt;code&gt;{ x: 1 }&lt;/code&gt; has a &lt;strong&gt;super type&lt;/strong&gt; of &lt;code&gt;&amp;lt;gab\shape x:&amp;gt;&lt;/code&gt;, and a &lt;strong&gt;type&lt;/strong&gt; of &lt;code&gt;gab\record&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;/docs/types/messages#dispatch-resolution-order&#34; &gt;Messages — Dispatch Resolution Order&lt;/a&gt; for the full sequence.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Blocks</title>
+      <link>/docs/basic_types/blocks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/basic_types/blocks/</guid>
+      <description>
+        
+        
+        &lt;p&gt;A block is a closure — a function that captures its surrounding scope. Blocks are values: they can be stored, passed as arguments, and called.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-# Define the message y: in the general case.
-y: .def &#39;general case&#39;
+square = (x) =&gt; x * x
+square.(4)   # =&gt; 16
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Every block has an implicit &lt;code&gt;self&lt;/code&gt; binding. When a block is used as a message specialization via &lt;code&gt;def:&lt;/code&gt;, &lt;code&gt;self&lt;/code&gt; refers to the value that received the message. When called directly, &lt;code&gt;self&lt;/code&gt; refers to the block itself.&lt;/p&gt;
+&lt;h2&gt;Variadic Bindings&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;variadic-bindings&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#variadic-bindings&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are two kinds of variadic binding, distinguished by whether the collected arguments are treated as a list or as a record.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;*&lt;/code&gt; — list binding&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;--list-binding&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#--list-binding&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A &lt;code&gt;*&lt;/code&gt; suffix on a binding name collects a run of positional arguments into a list. Its position in the binding list determines which arguments it absorbs — the other bindings around it claim their arguments first, and &lt;code&gt;*&lt;/code&gt; takes the rest:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+first_and_rest = (first, rest*) =&gt; do
+  &#39;First: $&#39;.sprintf(first).println
+  &#39;Rest: $&#39;.sprintf(rest).println
+end
 
-# Define the message z: in the case of &lt;gab\shape x:&gt;
-z: .def (
-    Shapes.make x:,
-    &#39;shape case&#39;)
+first_and_rest.(1, 2, 3, 4)
+# =&gt; First: 1
+# =&gt; Rest: [2, 3, 4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Because position determines what &lt;code&gt;*&lt;/code&gt; absorbs, it can appear anywhere in the binding list:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(a*, b) = (1, 2, 3, 4)
+# a =&gt; [1, 2, 3],  b =&gt; 4
 
-{ x: 1 }.x # =&gt; 1
+(a, b*) = (1, 2, 3, 4)
+# a =&gt; 1,  b =&gt; [2, 3, 4]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;*&lt;/code&gt; operator inverts this — it splats a list&amp;rsquo;s values back out into a positional tuple:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+args = [1, 2, 3]
+args*   # =&gt; (1, 2, 3)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Together they let a block forward all its arguments unchanged:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+forward_all = (args*) =&gt; args*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is how &lt;code&gt;and:&lt;/code&gt; is implemented for &lt;code&gt;true:&lt;/code&gt; in the core library — it simply returns all its arguments as-is.&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;**&lt;/code&gt; — record binding&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;--record-binding&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#--record-binding&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A &lt;code&gt;**&lt;/code&gt; suffix collects a run of positional arguments and interprets them as &lt;strong&gt;alternating keys and values&lt;/strong&gt;, constructing a record. Like &lt;code&gt;*&lt;/code&gt;, it is positionally aware and can appear anywhere in the binding list:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(first, kwargs**, last) = (1, name: &#39;bob&#39;, age: 44, 99)
+# first  =&gt; 1
+# kwargs =&gt; { name: &#39;bob&#39;, age: 44 }
+# last   =&gt; 99
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;**&lt;/code&gt; operator on a record is the inverse — it splats a record&amp;rsquo;s key-value pairs back out as a positional sequence of alternating keys and values:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+{ a: &#39;b&#39;, c: &#39;d&#39; } **   # =&gt; (a: &#39;b&#39;, c: &#39;d&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Keyword-style APIs&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;keyword-style-apis&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#keyword-style-apis&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The &lt;code&gt;**&lt;/code&gt; binding is what makes keyword-argument-style APIs possible in Gab. At the call site, you write alternating message keys and values as positional arguments:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+MyType.some_api(positional, argument, flag: true:)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The definition collects those trailing arguments into a record with &lt;code&gt;**&lt;/code&gt;:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+some_api: .def (MyType, (positional, argument, kwargs**) =&gt; do
+  # kwargs =&gt; { flag: true: }
+  positional.println
+  kwargs.at(flag:).println
+end)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are no keyword arguments in Gab — only positional ones. The record is constructed from the raw argument sequence by the &lt;code&gt;**&lt;/code&gt; binding. This means you can place a &lt;code&gt;**&lt;/code&gt; binding anywhere, not just at the end, and it will absorb whichever positional arguments fall to it.&lt;/p&gt;
+&lt;h2&gt;Tuples and Multiple Return Values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;tuples-and-multiple-return-values&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tuples-and-multiple-return-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks return multiple values using a tuple expression — parentheses containing two or more values:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(ok: file.read)     # Two-value tuple
+(err: &#39;not found&#39;)  # Two-value tuple
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Commas inside a tuple terminate the preceding message send and begin a new element. They are only required where omitting them would cause an expression to be parsed as an argument to the previous send:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(1 + 2 3)    # =&gt; (3, 3): 2 is the argument to +, 3 is the second element
+(1 +, 2 3)   # =&gt; Runtime Error: + has no0 second argument, so gab tries to add 1 and nil:
+(ok: result) # =&gt; There is no send here, so no commas are needed.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Receiving multiple return values uses the same tuple syntax on the left side of an assignment:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(status, file) = IO.File.make(&#39;data.csv&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Tuple Forwarding in Chains&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;tuple-forwarding-in-chains&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tuple-forwarding-in-chains&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;When a message is chained after a call that returns multiple values, Gab forwards the entire tuple into the next send: the first value becomes the receiver, the rest become arguments.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+IO.File.make(&#39;data.csv&#39;).then(file =&gt; file.read.println)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Is exactly equivalent to:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(status, file) = IO.File.make(&#39;data.csv&#39;)
+status.then(() =&gt; file.read.println)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This allows the result of a multi-value return to be routed directly into a &lt;code&gt;defcase&lt;/code&gt;-style dispatch without any intermediate binding.&lt;/p&gt;
+&lt;h2&gt;The &lt;code&gt;unwrap:&lt;/code&gt; Pattern&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;the-unwrap-pattern&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-unwrap-pattern&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A common use of tuple forwarding is &lt;code&gt;unwrap:&lt;/code&gt;, which either returns the result value or panics with the error:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+unwrap: .defcase {
+  ok:  result =&gt; result
+  err: msg    =&gt; &#39;Unwrap failed: $&#39;.panicf(msg)
+}
 
-{ x: 1 }.y # =&gt; &#39;general case&#39;
+file = IO.File.make(&#39;data.csv&#39;).unwrap
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;IO.File.make&lt;/code&gt; returns &lt;code&gt;(ok:, file)&lt;/code&gt; or &lt;code&gt;(err:, message)&lt;/code&gt;. The tuple is forwarded directly to &lt;code&gt;.unwrap&lt;/code&gt;, which dispatches on the first element.&lt;/p&gt;
 
-{ x: 1 }.z # =&gt; &#39;shape case&#39;
+      </description>
+    </item>
+    
+    <item>
+      <title>Fibers &amp; Channels</title>
+      <link>/docs/basic_types/fibers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/basic_types/fibers/</guid>
+      <description>
+        
+        
+        &lt;p&gt;For a conceptual introduction to fibers and channels, see &lt;a href=&#34;/docs/tour/fibers-and-channels&#34; &gt;the Language Tour&lt;/a&gt;. This page covers the specifics.&lt;/p&gt;
+&lt;h2&gt;&lt;code&gt;gab\fiber&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;gabfiber&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#gabfiber&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Fibers are created with &lt;code&gt;Fibers.make:&lt;/code&gt;, which takes a block and immediately queues it for execution. The fiber may run on any OS thread managed by Gab&amp;rsquo;s runtime.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Fibers.make () =&gt; do
+  &#39;Hello from a fiber!&#39;.println
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Because all Gab values are immutable, a block passed to a fiber can safely capture any variables from its enclosing scope — no copying or synchronisation is required.&lt;/p&gt;
+&lt;p&gt;The only way for two fibers to exchange values at runtime is through a channel.&lt;/p&gt;
+&lt;h2&gt;&lt;code&gt;gab\channel&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;gabchannel&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#gabchannel&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Channels are created with &lt;code&gt;Channels.make&lt;/code&gt;:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+ch = Channels.make
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Send&lt;/strong&gt; a value with &lt;code&gt;&amp;lt;!&lt;/code&gt;:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+ch &lt;! &#39;hello&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Receive&lt;/strong&gt; a value with &lt;code&gt;&amp;gt;!&lt;/code&gt;:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+value = ch &gt;!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Both operations are &lt;strong&gt;blocking&lt;/strong&gt;: a send blocks until a receiver is ready, and a receive blocks until a sender is ready. A fiber waiting on a channel yields the CPU to other fibers rather than spinning, and retries when scheduled again.&lt;/p&gt;
+&lt;p&gt;Channels are unbuffered — there is no internal queue. Every send and receive are a direct handoff. This keeps communication explicit and eliminates an entire class of race conditions.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Even &lt;code&gt;&amp;lt;!&lt;/code&gt; must block until a receiver arrives. Because &lt;code&gt;gab\channel&lt;/code&gt; is immutable, it cannot hold a reference to a queued value — every value must be handed directly from sender to receiver.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+&lt;h2&gt;Buffered Channels&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;buffered-channels&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#buffered-channels&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Gab&amp;rsquo;s channels are unbuffered — every send blocks until a receiver is ready. &lt;code&gt;Channels.buffered&lt;/code&gt; provides N-slot buffering by spawning N slot fibers that each hold one value in transit between an input and output channel:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+buffered: .def (Channels, (n) =&gt; do
+  input  = Channels.make
+  output = Channels.make
+
+  Ranges.make(0, n).each () =&gt; do
+    Fibers.make () =&gt; do
+      input.each (val) =&gt; output &lt;! val
+    end
+  end
+
+  (input, output)
+end)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(input, output) = Channels.buffered(10)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The sender writes to &lt;code&gt;input&lt;/code&gt; and can race N values ahead before blocking. The consumer reads from &lt;code&gt;output&lt;/code&gt;. The N slot fibers sit between them, each capable of holding one value in flight.&lt;/p&gt;
+&lt;p&gt;A relay chain — one fiber forwarding to the next — does not work: when fiber 1 blocks on its forward, fiber 0 also blocks, jamming the chain after a single value. Independent slot fibers sharing two channels are what produces genuine N-slot buffering.&lt;/p&gt;
+&lt;h2&gt;&lt;code&gt;each:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;each&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#each&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;each:&lt;/code&gt; reads values from a channel in a loop, calling a block for each one:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+ch.each (msg) =&gt; msg.println
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;each:&lt;/code&gt; blocks until the channel is closed.&lt;/p&gt;
+&lt;h2&gt;Operator Precedence Note&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;operator-precedence-note&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#operator-precedence-note&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;&amp;lt;!&lt;/code&gt; and &lt;code&gt;&amp;gt;!&lt;/code&gt; are operator sends. The &lt;code&gt;.&lt;/code&gt; prefix is optional but changes precedence — named sends (&lt;code&gt;.name&lt;/code&gt;) bind tighter than bare operators:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+ch &lt;! value       # operator form
+ch.&gt;! .println    # dot prefix — binds tighter, result chains into .println
 &lt;/code&gt;&lt;/pre&gt;
 
       </description>

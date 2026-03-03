@@ -1,100 +1,73 @@
-+++
-date = '2025-02-07T16:07:28-05:00'
-title = 'Records'
-weight = 5
-+++
-Records are collections of key-value pairs. They are ordered and structurally typed. In Gab they come in two flavors - Dictionaries and Lists.
-### Dictionaries
-Dictionaries are Gab records which allow arbitrary values as keys. They are denoted with `{}`.
+---
+title: Records
+weight: 3
+---
 
-Between the curly brackets, expressions are expected in key-value pairs.
-Any expression is allowed as either a key or value.
+`gab\record` is the only data structure in Gab. It serves as both a dictionary and a list. All records are immutable.
+
+## Lists
+
+List-style records use integer keys starting from zero. They are constructed with `[]`:
+
 ```gab
-a_record = { key: 'value' }
-
-a_record .key                    # => 'value'
-
-another_record = { key: 'value', 'another_key' 10 } 
-
-another_record .at 'another_key' # => (ok: '10)
+a_list = [1, 2, 3]
+a_list   # => [1, 2, 3]
 ```
-### Lists
-Lists are records which allow only monotonically-increasing-integer values as keys. This is some fancy talk for saying it only allows for keys `0-n`.
 
-Lists are constructed with the square brackets `[]`, and any number of expressions are allowed inside.
+A list can also be constructed using explicit integer keys in dictionary syntax — Gab recognises the shape and displays it as a list:
+
 ```gab
-a_list = [1 2 3] 
-
-a_list # => [1, 2, 3]
-
 a_list = { 0 1, 1 2, 2 3 }
-
-a_list # => [1, 2, 3]
+a_list   # => [1, 2, 3]
 ```
-> Note - you can construct a list with the same syntax as a dictionary by typing in those integer keys yourself.
-> Gab will still consider it a list-type record.
 
-While you *are* allowed to set any key on a list, keep in mind that Gab will transition the list *into* a dictionary.
+## Dictionaries
+
+Dictionary-style records allow arbitrary keys. They are constructed with `{}`, with keys and values in pairs:
+
 ```gab
-a_list = [1 2 3]
-# => [1, 2, 3]
+a_record = { name: 'bob', age: 44 }
+another  = { key: 'value', 'another_key' 10 }
+```
 
+## Accessing Values
+
+Record keys that are message values can be accessed directly as a message send. This works through the property step of dispatch resolution — no `def:` required:
+
+```gab
+{ name: 'bob' }.name   # => 'bob'
+```
+
+For keys that are not message values, or when you need a safe access that won't crash on a missing key, use `at:`:
+
+```gab
+record.at(key:)   # => (ok:, 'value')  or  (none:, nil:)
+```
+
+Direct property access on a missing key will raise an error. `at:` returns a tuple and lets you handle the missing case explicitly.
+
+## Immutability and `put:`
+
+Records cannot be modified in place. `put:` returns a new record with the given key set to the given value:
+
+```gab
+bob   = { name: 'bob',   age: 44 }
+alice = bob.put(name: 'alice')
+
+bob    # => { name: 'bob',   age: 44 }
+alice  # => { name: 'alice', age: 44 }
+```
+
+Records are implemented as a **bit-partitioned vector trie**, inspired by Clojure's persistent data structures. This means `put:` uses **structural sharing** — the new record shares most of its memory with the original, so large records can be updated efficiently without copying all their data.
+
+## List-to-Dictionary Transitions
+
+Adding a non-integer key to a list produces a dictionary:
+
+```gab
+a_list = [1, 2, 3]
 a_list = a_list.put(name: 'bob')
-#=> { 0 1, 1 2, 2 3, name: bob }
+# => { 0: 1, 1: 2, 2: 3, name: 'bob' }
 ```
-### Records
-The rest of this chapter is about `gab\record` itself, and therefore applies to both dictionary and list flavors.
 
-Records, like all values in Gab, are **immutable**. This means that setting values in records returns a *new record*.
-```gab
-a_record = { key: 'value' }
-
-a_record                                   # => { key:  'another value' }
-
-a_record = a_record .put (key: 'something else')
-
-a_record                                   # => { key: 'something else' }
-```
-Both **Dictionaries** and **Lists** use the same underlying datastructure, `gab\record`. In order to make these immutable data structures fast, records are implemented with a **bit partitioned vector trie**.
-Gab's implementation is very much inspired by clojure's immutable vectors.
-Because of this implementation, records are able to *share memory* under the hood, to avoid copying large of data for a single key-value mutation. This is called structural sharing,
-and is a common optimization among immutable data structures.
-
-As seen above, `gab\record` implements some useful messages `put:` and `at:`.
-```gab
-some_record .at key: # => (ok:, 'value')
-```
-### Shapes
-All records have an underlying shape. Shapes determine what the available keys are, and their order. It might be useful to think of shapes as an implicit class.
-Records with the same keys in the same order *share the same shape*.
-```gab
-some_record = { x: 1 y: 2 }
-
-shape_x_y = some_record? # => <gab\shape x: y:>
-
-({ x: 2 y: 3 }?) == shape_x_y # => true:
-```
-Shapes are useful for defining specializations. When resolving which specialization to use for a given value, Gab checks in the following order:
-
- - If the value has a **super type**, and said **super type** has an available specialization, use it.
- - If available, use the **type's** specialization.
- - If available, use the **property**.
- - If available, use the **general** specialization.
- - No specialization found.
-
-For example: `{ x: 1 }` has a **super type** of `<gab\shape x:>`, and a **type** of `gab\record`.
-```gab
-# Define the message y: in the general case.
-y: .def 'general case'
-
-# Define the message z: in the case of <gab\shape x:>
-z: .def (
-    Shapes.make x:,
-    'shape case')
-
-{ x: 1 }.x # => 1
-
-{ x: 1 }.y # => 'general case'
-
-{ x: 1 }.z # => 'shape case'
-```
+The transition is explicit and immediate — the shape changes and the value is no longer displayed as a list.
