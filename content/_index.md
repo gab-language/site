@@ -11,7 +11,7 @@ toc: false
 Gab gives you the minimal set of abstractions that actually matter, and gets out of your way.
 
 {{< cards >}}
-  {{< card link="docs/installation" title="Install Gab" icon="download" >}}
+  {{< card link="docs/intro" title="Install Gab" icon="download" >}}
   {{< card link="docs/tour" title="Language Tour" icon="book-open" >}}
 {{< /cards >}}
 
@@ -80,6 +80,6 @@ Gab is designed to live inside larger applications. A stable C API (`gab.h`) and
 If Lua is your current scripting layer, Gab is a direct, concurrent-ready alternative.
 
 {{< cards >}}
-  {{< card link="docs/installation" title="Install Gab" icon="download" >}}
+  {{< card link="docs/intro" title="Install Gab" icon="download" >}}
   {{< card link="https://github.com/gab-language/cgab" title="View on GitHub" icon="github" >}}
 {{< /cards >}}
