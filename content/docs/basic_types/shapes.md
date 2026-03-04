@@ -67,4 +67,4 @@ z: .def 'general case'
 { y: 1 }.z   # => 'general case'
 ```
 
-See [Messages — Dispatch Resolution Order](/docs/types/messages#dispatch-resolution-order) for the full sequence.
+See [Messages — Dispatch Resolution Order](/docs/basic_types/messages#dispatch-resolution-order) for the full sequence.

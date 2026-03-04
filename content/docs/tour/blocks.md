@@ -102,7 +102,7 @@ This is exactly equivalent to:
 status.my_message(file)
 ```
 
-The first return value becomes the receiver; subsequent return values become arguments. This is why the error-handling pattern in Gab is so fluid — `ok:` and `err:` can each respond differently to the same chained message, routing the remaining values accordingly. You'll see this in detail in [Error Handling](/docs/tour/error-handling).
+The first return value becomes the receiver; subsequent return values become arguments. This is why the error-handling pattern in Gab is so fluid — `ok:` and `err:` can each respond differently to the same chained message, routing the remaining values accordingly. You'll see this in detail in [Error Handling](/docs/tour/error_handling).
 
 ## Closures
 
@@ -123,4 +123,4 @@ The block captures `prefix` at the time it is defined. If you rebind `prefix` la
 
 ## Blocks and Fibers
 
-A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs concurrently in its own lightweight thread of execution. See [Fibers & Channels](/docs/tour/fibers-and-channels) for the full picture.
+A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs concurrently in its own lightweight thread of execution. See [Fibers & Channels](/docs/tour/fibers_and_channels) for the full picture.

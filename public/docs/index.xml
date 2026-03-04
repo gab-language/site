@@ -16,6 +16,227 @@
     
     
     <item>
+      <title>Key-Value Store</title>
+      <link>/docs/examples/kv_store/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/kv_store/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This example builds a concurrent in-memory key-value store. It is a complete, useful program and demonstrates how Gab&amp;rsquo;s core features compose in practice.&lt;/p&gt;
+&lt;p&gt;By the end you&amp;rsquo;ll have a store that can be safely read and written from any number of concurrent fibers.&lt;/p&gt;
+&lt;h2&gt;The Design&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-design&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-design&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The store is a single fiber. It owns a record which it privately threads through recursive calls. No other fiber can touch that record directly.&lt;/p&gt;
+&lt;p&gt;The store&amp;rsquo;s public face is a &lt;strong&gt;channel&lt;/strong&gt;. Callers send command tuples into it; the store fiber reads them, processes each one, and sends the result back on a reply channel included in the command. The command name comes first in the tuple so it can be forwarded directly as the receiver of &lt;code&gt;handle:&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;caller fiber                   store fiber
+    |                               |
+    |-- (store\set: reply k v) ---------&amp;gt; ch
+    |                               |-- state = state.put(k, v)
+    |                               |-- reply &amp;lt;! ok:
+    | &amp;lt;----------- ok: ------------ |&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+    aria-label=&#34;Copy code&#34;
+    data-copied-label=&#34;Copied!&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Because all state lives inside one fiber, concurrent callers are automatically serialised. The design makes races structurally impossible. There is nowhere for two fibers to conflict.&lt;/p&gt;
+&lt;h2&gt;The Store Actor&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-store-actor&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-store-actor&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;make:&lt;/code&gt; creates a channel, spawns the store fiber, and returns the channel directly. The store &lt;strong&gt;is&lt;/strong&gt; the channel. Callers hold a channel value and send commands into it.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Store = store:
+
+make: .def (Store, () =&gt; do
+  ch = Channels.make
+
+  loop = (state) =&gt; do
+    (cmd, reply, args*) = ch &gt;! .unwrap
+    next_state = (cmd, reply, state, args*) .handle
+    self.(next_state)
+  end
+
+  Fibers.make () =&gt; loop.({})
+
+  ch
+end)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The fiber loops by recursing with &lt;code&gt;self.(next_state)&lt;/code&gt;. &lt;code&gt;self&lt;/code&gt; is the &lt;code&gt;loop&lt;/code&gt; block receiving the empty message. Each iteration receives the next command with &lt;code&gt;ch &amp;gt;! .unwrap&lt;/code&gt;, destructures it, injects &lt;code&gt;state&lt;/code&gt; after &lt;code&gt;reply&lt;/code&gt;, then forwards the whole tuple to &lt;code&gt;handle:&lt;/code&gt;. Because &lt;code&gt;cmd&lt;/code&gt; is first, it becomes the receiver of &lt;code&gt;handle:&lt;/code&gt; naturally via tuple forwarding — no explicit dispatch required.&lt;/p&gt;
+&lt;p&gt;The command handlers each receive &lt;code&gt;(reply, state, args*)&lt;/code&gt; and return the next state:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+handle: .defcase {
+  store\get: (reply, state, k) =&gt; do
+    reply &lt;! (state.at k)
+    state
+  end
+
+  store\set: (reply, state, k, v) =&gt; do
+    reply &lt;! ok:
+    state.put(k, v)
+  end
+
+  store\delete: (reply, state, k) =&gt; do
+    reply &lt;! (state.at k)
+    state.take(k)
+  end
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;store\get:&lt;/code&gt; forwards the result of &lt;code&gt;state.at&lt;/code&gt; directly — if the key exists the caller receives &lt;code&gt;(ok: value)&lt;/code&gt;, otherwise &lt;code&gt;(none: nil:)&lt;/code&gt;. &lt;code&gt;store\set:&lt;/code&gt; replies with &lt;code&gt;ok:&lt;/code&gt; and returns the updated state. &lt;code&gt;store\delete:&lt;/code&gt; replies with the same result as &lt;code&gt;at&lt;/code&gt; — telling the caller what was there — then returns the state with the key removed via &lt;code&gt;take:&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;The Public API&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-public-api&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-public-api&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The module is defined on the channel type directly, since the store is a channel:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+t: .def (Store, Channels.t)
+
+[Store.t] .defmodule {
+  store\get: (k) =&gt; do
+    reply = Channels.make
+    self &lt;! (store\get: reply k)
+    reply &gt;! .unwrap
+  end
+
+  store\set: (k, v) =&gt; do
+    reply = Channels.make
+    self &lt;! (store\set: reply k v)
+    reply &gt;! .unwrap
+  end
+
+  store\delete: (k) =&gt; do
+    reply = Channels.make
+    self &lt;! (store\delete: reply k)
+    reply &gt;! .unwrap
+  end
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;t:&lt;/code&gt; returns &lt;code&gt;Channels.t&lt;/code&gt; — the store type is the channel type. &lt;code&gt;defmodule&lt;/code&gt; attaches messages directly to that type, so &lt;code&gt;self&lt;/code&gt; inside each method is the channel itself. Each method creates a reply channel, sends the command, and blocks on &lt;code&gt;reply &amp;gt;! .unwrap&lt;/code&gt; until the store responds.&lt;/p&gt;
+&lt;h2&gt;Putting it Together&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;putting-it-together&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#putting-it-together&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Here is an example of how we&amp;rsquo;d expect to use this api:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+store = Store.make
+
+# Set some values
+store.store\set(&#39;name&#39;, &#39;Gab&#39;)
+store.store\set(&#39;version&#39;, &#39;0.0.5&#39;)
+
+# Get a value
+store.store\get(&#39;name&#39;)
+  .then((val) =&gt; &#39;name is: $&#39;.sprintf(val).println)
+  .else(()    =&gt; &#39;not found&#39;.println)
+# =&gt; name is: Gab
+
+# Overwrite
+store.store\set(&#39;name&#39;, &#39;cgab&#39;)
+store.store\get(&#39;name&#39;)
+  .then((val) =&gt; val.println)
+# =&gt; cgab
+
+# Delete
+store.store\delete(&#39;version&#39;)
+store.store\get(&#39;version&#39;)
+  .else(() =&gt; &#39;not found&#39;.println)
+# =&gt; not found
+
+# Missing key
+store.store\get(&#39;missing&#39;)
+  .else(() =&gt; &#39;not found&#39;.println)
+# =&gt; not found
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Concurrent Access&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;concurrent-access&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#concurrent-access&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The store is safe to use from any number of fibers simultaneously. Because all state is owned by the store fiber, and all access goes through the channel, operations are automatically serialised:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+store = Store.make
+
+fibers = Ranges.make(0, 1000).map (i) =&gt; do
+  Fibers.make () =&gt; do
+    key = &#39;fiber-$&#39;.sprintf(i)
+    store.store\set(key, i)
+    store.store\get(key)
+      .then((val) =&gt; &#39;$: $&#39;.sprintf(key, val).println)
+  end
+end
+
+fibers.each f =&gt; f.await
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The store is the only path to the state. Serialisation is a consequence of the topology, not something enforced by the programmer.&lt;/p&gt;
+&lt;h2&gt;The Full Program&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-full-program&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-full-program&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Here is a final, full example of our key-value store.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Store = store:
+
+make: .def (Store, () =&gt; do
+  ch = Channels.make
+
+  loop = (state) =&gt; do
+    (cmd, reply, args*) = ch &gt;! .unwrap
+    next_state = (cmd, reply, state, args*) .handle
+    self.(next_state)
+  end
+
+  Fibers.make () =&gt; loop.({})
+
+  ch
+end)
+
+handle: .defcase {
+  store\get: (reply, state, k) =&gt; do
+    reply &lt;! (state.at k)
+    state
+  end
+
+  store\set: (reply, state, k, v) =&gt; do
+    reply &lt;! ok:
+    state.put(k, v)
+  end
+
+  store\delete: (reply, state, k) =&gt; do
+    reply &lt;! (state.at k)
+    state.take(k)
+  end
+}
+
+t: .def (Store, Channels.t)
+
+[Store.t] .defmodule {
+  store\get: (k) =&gt; do
+    reply = Channels.make
+    self &lt;! (store\get: reply k)
+    reply &gt;! .unwrap
+  end
+
+  store\set: (k, v) =&gt; do
+    reply = Channels.make
+    self &lt;! (store\set: reply k v)
+    reply &gt;! .unwrap
+  end
+
+  store\delete: (k) =&gt; do
+    reply = Channels.make
+    self &lt;! (store\delete: reply k)
+    reply &gt;! .unwrap
+  end
+}
+
+Store
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2&gt;What to Notice&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;what-to-notice&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#what-to-notice&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;The store is a channel.&lt;/strong&gt; &lt;code&gt;make:&lt;/code&gt; returns &lt;code&gt;ch&lt;/code&gt; directly — there is no wrapper record. This means the store participates in the channel type system naturally. Any message defined on channels is available on the store, and the store can be passed anywhere a channel is expected.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;State is never stored in a variable.&lt;/strong&gt; It exists only as an argument threaded through recursive calls. There is no mutable global, no shared reference — just a value flowing forward through each iteration of the loop.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tuple forwarding eliminates dispatch boilerplate.&lt;/strong&gt; Placing the command name first in every tuple means &lt;code&gt;(cmd, reply, state, args*) .handle&lt;/code&gt; routes itself. No &lt;code&gt;if&lt;/code&gt;/&lt;code&gt;switch&lt;/code&gt;, no explicit pattern match on the command. The structure of the data is the dispatch.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The store is open for extension.&lt;/strong&gt; &lt;code&gt;handle:&lt;/code&gt; is a message like any other — new command types can be added by defining new specializations anywhere, without touching the store&amp;rsquo;s core loop. A &lt;code&gt;keys:&lt;/code&gt; command that returns all keys, a &lt;code&gt;flush:&lt;/code&gt; command that clears the store — all are one &lt;code&gt;defcase&lt;/code&gt; entry away.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;If the store fiber crashes, state is lost.&lt;/strong&gt; The store holds no persistent state. This is appropriate for an in-memory cache, but worth knowing if you build on this pattern for something that needs durability.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Error handling is consistent.&lt;/strong&gt; Every operation returns &lt;code&gt;(ok:, ...)&lt;/code&gt; or &lt;code&gt;(none:, ...)&lt;/code&gt;, following the same conventions as the rest of Gab&amp;rsquo;s standard library. Callers chain &lt;code&gt;.then&lt;/code&gt; and &lt;code&gt;.else&lt;/code&gt; without any special syntax.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Messages</title>
       <link>/docs/tour/messages/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -26,7 +247,7 @@
         
         &lt;p&gt;In most languages, control flow is driven by keywords: &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;, &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;switch&lt;/code&gt;. Gab has none of these. Instead, &lt;strong&gt;everything&lt;/strong&gt; is accomplished by sending messages to values.&lt;/p&gt;
 &lt;p&gt;If you&amp;rsquo;ve used Ruby or Smalltalk, this will feel familiar. If you haven&amp;rsquo;t, don&amp;rsquo;t worry — it&amp;rsquo;s a simple idea with surprisingly deep consequences.&lt;/p&gt;
-&lt;h2&gt;Sending a Message&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;sending-a-message&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Sending a Message&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;sending-a-message&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#sending-a-message&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;You send a message to a value using dot syntax:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 &#39;hello&#39;.println
@@ -40,7 +261,7 @@
 [&#39;Hello&#39;, &#39; &#39;, &#39;world!&#39;].join.println
 # =&gt; Hello world!
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Two Forms of Message Send&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;two-forms-of-message-send&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Two Forms of Message Send&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;two-forms-of-message-send&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#two-forms-of-message-send&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are exactly two kinds of message send in Gab.&lt;/p&gt;
 &lt;p&gt;A &lt;strong&gt;named send&lt;/strong&gt; is a &lt;code&gt;.&lt;/code&gt; followed by one or more letters, underscores, or numbers:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -53,7 +274,7 @@
 channel &lt;! &#39;value&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That&amp;rsquo;s the complete syntax for invoking behaviour. There is no special function-call form, no keywords for control flow — only these two kinds of send.&lt;/p&gt;
-&lt;h2&gt;Messages with Arguments&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;messages-with-arguments&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Messages with Arguments&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;messages-with-arguments&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#messages-with-arguments&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Some messages take arguments. Arguments are passed inside parentheses, after the message name:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 &#39;Hello, $!&#39;.sprintf(&#39;world&#39;).println
@@ -66,7 +287,7 @@ result = Strings.make(&#39;Hello&#39;, &#39;, &#39;, &#39;world!&#39;)
 result.println
 # =&gt; Hello, world!
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Defining a Message&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;defining-a-message&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Defining a Message&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;defining-a-message&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#defining-a-message&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Message names are &lt;strong&gt;message values&lt;/strong&gt;, written with a trailing colon: &lt;code&gt;greet:&lt;/code&gt;, &lt;code&gt;println:&lt;/code&gt;, &lt;code&gt;def:&lt;/code&gt;. The colon is part of the value itself.&lt;/p&gt;
 &lt;p&gt;You define a new message by sending &lt;code&gt;def:&lt;/code&gt; to a message value:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -79,8 +300,8 @@ end)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;def:&lt;/code&gt; takes two arguments: the &lt;strong&gt;receiver type&lt;/strong&gt; and a &lt;strong&gt;block&lt;/strong&gt; containing the implementation. Here, &lt;code&gt;Strings.t&lt;/code&gt; is the conventional way to refer to the string type — it is a message sent to the &lt;code&gt;Strings&lt;/code&gt; module that returns the type upon which new string messages should be defined. Using &lt;code&gt;Strings.t&lt;/code&gt; rather than a bare type name is a convention you&amp;rsquo;ll see throughout Gab&amp;rsquo;s standard library, and one you should follow in your own modules.&lt;/p&gt;
 &lt;p&gt;Inside the block, &lt;code&gt;self&lt;/code&gt; refers to the value that received the message.&lt;/p&gt;
-&lt;p&gt;Message definitions are &lt;strong&gt;specializations&lt;/strong&gt; — the same message name can have completely different implementations depending on the type of the receiver. This is how Gab achieves polymorphism without classes or interfaces. More on this in the &lt;a href=&#34;/docs/tour/records-and-shapes&#34; &gt;Records &amp;amp; Shapes&lt;/a&gt; section.&lt;/p&gt;
-&lt;h2&gt;Control Flow via Messages&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;control-flow-via-messages&#34;&gt;&lt;/span&gt;
+&lt;p&gt;Message definitions are &lt;strong&gt;specializations&lt;/strong&gt; — the same message name can have completely different implementations depending on the type of the receiver. This is how Gab achieves polymorphism without classes or interfaces. More on this in the &lt;a href=&#34;/docs/tour/records-and-shapes&#34;&gt;Records &amp;amp; Shapes&lt;/a&gt; section.&lt;/p&gt;
+&lt;h2&gt;Control Flow via Messages&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;control-flow-via-messages&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#control-flow-via-messages&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Because Gab has no &lt;code&gt;if&lt;/code&gt; keyword, branching is done by sending messages. Boolean values respond to messages like &lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 age = 20
@@ -91,7 +312,7 @@ age = 20
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;At first this looks unfamiliar, but it&amp;rsquo;s the same idea: send a message to a value (the boolean result of &lt;code&gt;age &amp;gt; 18&lt;/code&gt;), and pass blocks as arguments for each branch. The boolean decides which block to invoke — which it does by sending it the empty message, &lt;code&gt;.&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;This means branching, looping, and every other form of control flow are just messages — there&amp;rsquo;s nothing special about them syntactically.&lt;/p&gt;
-&lt;h2&gt;Why Messages?&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;why-messages&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Why Messages?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;why-messages&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#why-messages&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Constraining the language to a single dispatch mechanism is a deliberate trade. You give up some familiarity, and in return you get:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Consistency.&lt;/strong&gt; There&amp;rsquo;s one way to invoke behaviour. No need to distinguish between method calls, function calls, operators, and special forms.&lt;/li&gt;
@@ -124,7 +345,7 @@ age = 20
   &lt;p&gt;Numbers less than one require a leading zero: &lt;code&gt;0.5&lt;/code&gt;, not &lt;code&gt;.5&lt;/code&gt;. A bare &lt;code&gt;.&lt;/code&gt; is the empty message send in Gab.&lt;/p&gt;
 
 &lt;/blockquote&gt;
-&lt;h2&gt;Arithmetic&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;arithmetic&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Arithmetic&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;arithmetic&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#arithmetic&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The standard arithmetic operators are all message sends:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 10 + 3   # =&gt; 13
@@ -133,7 +354,7 @@ age = 20
 10 / 3   # =&gt; 3.33333
 10 % 3   # =&gt; 1
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Bitwise Operations and 52-bit Integers&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;bitwise-operations-and-52-bit-integers&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Bitwise Operations and 52-bit Integers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;bitwise-operations-and-52-bit-integers&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#bitwise-operations-and-52-bit-integers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;For bitwise operations, Gab uses &lt;strong&gt;52-bit integers&lt;/strong&gt;. This is because 64-bit floats can only represent integers losslessly up to 2^52. Limiting integers to 52 bits guarantees that Gab can convert freely between its float representation and integer operations without loss.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 1 &lt;&lt; 52   # =&gt; -4.5036e+15
@@ -146,7 +367,7 @@ age = 20
 4 &lt;&lt; 1   # =&gt; 8   (left shift)
 4 &gt;&gt; 1   # =&gt; 2   (right shift)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Bit-Shifting Edge Cases&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;bit-shifting-edge-cases&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Bit-Shifting Edge Cases&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;bit-shifting-edge-cases&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#bit-shifting-edge-cases&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Gab defines behaviour for several cases that are undefined or implementation-defined in C.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Shifting by a negative amount&lt;/strong&gt; is treated as a shift in the opposite direction:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -169,6 +390,296 @@ age = 20
     </item>
     
     <item>
+      <title>Networked Key-Value Store</title>
+      <link>/docs/examples/networked_kv_store/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/networked_kv_store/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This example extends the &lt;a href=&#34;/docs/examples/kv_store/&#34;&gt;in-memory key-value store&lt;/a&gt; with a TCP server. Clients connect and send text commands; the server parses each line, dispatches it to the store actor, and writes a response.&lt;/p&gt;
+&lt;h2&gt;The Protocol&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-protocol&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-protocol&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Each request is a single newline-terminated line. Each response is a single newline-terminated line.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Request&lt;/th&gt;
+          &lt;th&gt;Response&lt;/th&gt;
+          &lt;th&gt;No key response&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;GET key&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;OK value&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;NONE&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;SET key value&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;OK&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;DELETE key&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;OK value&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;NONE&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2&gt;Handling a Connection&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;handling-a-connection&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#handling-a-connection&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Each accepted connection gets its own fiber. The fiber reads one line, dispatches to the store, writes the response, and recurses until the client disconnects:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+serve_client: .def (IO.Sockets.t, (store) =&gt; do
+  sock = self
+
+  &#39;Connected $&#39;.sprintf(sock).println
+
+  loop = () =&gt; do
+    recurse = self
+
+    sock
+      .until(&#39;\n&#39;.to\b)
+      .then(line =&gt; do
+        (cmd, args*) = line.as\s.unwrap.trim.split(&#39; &#39;)
+        response = cmd.to\m.run_command(sock, store, args*)
+        sock.write(&#39;$\n&#39;.sprintf(response).to\b)
+        recurse.()
+      end)
+      .else(() =&gt; do
+        &#39;Disconnected $&#39;.sprintf(sock).println
+      end)
+  end
+
+  loop.()
+end)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that &lt;code&gt;self&lt;/code&gt; is captured as &lt;code&gt;sock&lt;/code&gt; immediately. Inside the nested &lt;code&gt;then:&lt;/code&gt; block, &lt;code&gt;self&lt;/code&gt; would refer to the block rather than the socket. Similarly, &lt;code&gt;recurse = self&lt;/code&gt; inside &lt;code&gt;loop&lt;/code&gt; captures the &lt;code&gt;loop&lt;/code&gt; block so the &lt;code&gt;then:&lt;/code&gt; branch can recurse after writing the response.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sock.until(&#39;\n&#39;.to\b)&lt;/code&gt; blocks until a newline arrives or the connection closes. On success, the line is converted from binary to string, trimmed, and split on spaces.&lt;code&gt;cmd&lt;/code&gt; takes the first token, &lt;code&gt;args*&lt;/code&gt; collects the rest. &lt;code&gt;cmd.to\m&lt;/code&gt; converts the command string to a message value, which dispatches through &lt;code&gt;run_command:&lt;/code&gt;. On failure the disconnection is logged and the fiber exits.&lt;/p&gt;
+&lt;p&gt;The command handlers receive the socket, the store, and any remaining arguments:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+run_command: .defcase {
+  GET: (socket, store, key, rest*) =&gt; do
+    store.store\get key
+      .then((val) =&gt; &#39;OK $&#39;.sprintf(val))
+      .else(()    =&gt; &#39;NONE&#39;)
+  end
+
+  SET: (socket, store, key, val, rest*) =&gt; do
+    store.store\set (key val)
+      .then(() =&gt; &#39;OK&#39;)
+  end
+
+  DELETE: (socket, store, key, rest*) =&gt; do
+    store.store\delete key
+      .then((val) =&gt; &#39;OK $&#39;.sprintf(val))
+      .else(()    =&gt; &#39;NONE&#39;)
+  end
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;defcase&lt;/code&gt; keys are &lt;code&gt;GET:&lt;/code&gt;, &lt;code&gt;SET:&lt;/code&gt;, and &lt;code&gt;DELETE:&lt;/code&gt;. They explicitly match what &lt;code&gt;to\m&lt;/code&gt; produces from the wire protocol strings. &lt;code&gt;rest*&lt;/code&gt; absorbs any extra tokens so malformed commands don&amp;rsquo;t crash the handler. Missing arguments arrive as &lt;code&gt;nil:&lt;/code&gt;, which the store returns &lt;code&gt;none:&lt;/code&gt; for, propagating back to the client as &lt;code&gt;NONE&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;The Accept Loop&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-accept-loop&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-accept-loop&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The server accepts connections one at a time, immediately spawning a fiber for each and looping:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+accept_loop: .def (IO.Sockets.t, (store) =&gt; do
+  server = self
+
+  self.accept
+    .then((client) =&gt; do
+      Fibers.make () =&gt; client.serve_client(store)
+      server.accept_loop(store)
+    end)
+    .else(() =&gt; &#39;server closed&#39;.println)
+end)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;server = self&lt;/code&gt; captures the socket before the &lt;code&gt;then:&lt;/code&gt; block, where &lt;code&gt;self&lt;/code&gt; would refer to the block. &lt;code&gt;accept&lt;/code&gt; blocks until a client connects; a new fiber is spawned immediately and the loop recurses without waiting for that client to finish.&lt;/p&gt;
+&lt;h2&gt;Starting the Server&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;starting-the-server&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#starting-the-server&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;start:&lt;/code&gt; is defined on the store type. It creates the socket, binds, listens, and launches the accept loop in a fiber:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+[Store.t] .defmodule {
+  start: (host, port) =&gt; do
+    server = Socket.make(tcp:).unwrap
+    server.bind(host port).unwrap
+    server.listen(128).unwrap
+    &#39;Listening on $:$&#39;.sprintf(host port).println
+    store = self
+    Fibers.make () =&gt; server.accept_loop(store)
+  end
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Inside the fiber, &lt;code&gt;self&lt;/code&gt; would refer to the fiber&amp;rsquo;s own block. Because of this, we capture the &lt;code&gt;self&lt;/code&gt; as &lt;code&gt;store&lt;/code&gt; beforehand.&lt;/p&gt;
+&lt;h2&gt;Putting it Together&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;putting-it-together&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#putting-it-together&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Here is how you can now use the store:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+store  = Store.make
+server = store.start(&#39;::1&#39; 6379)
+server.await
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Connect with any TCP client:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SET name Gab&amp;#34;&lt;/span&gt; | nc ::1 &lt;span style=&#34;color:#ae81ff&#34;&gt;6379&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;OK
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;GET name&amp;#34;&lt;/span&gt; | nc ::1 &lt;span style=&#34;color:#ae81ff&#34;&gt;6379&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;OK Gab
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DELETE name&amp;#34;&lt;/span&gt; | nc ::1 &lt;span style=&#34;color:#ae81ff&#34;&gt;6379&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;OK Gab
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;GET name&amp;#34;&lt;/span&gt; | nc ::1 &lt;span style=&#34;color:#ae81ff&#34;&gt;6379&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;NONE&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+    aria-label=&#34;Copy code&#34;
+    data-copied-label=&#34;Copied!&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;The Full Program&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-full-program&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-full-program&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The full store module now looks like this:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Socket = IO.Sockets
+Store  = store:
+
+# --- Store actor ---
+
+make: .def (Store, () =&gt; do
+  ch = Channels.make
+
+  loop = (state) =&gt; do
+    (cmd, reply, args*) = ch &gt;! .unwrap
+    next_state = (cmd, reply, state, args*) .handle
+    self.(next_state)
+  end
+
+  Fibers.make () =&gt; loop.({})
+
+  ch
+end)
+
+handle: .defcase {
+  store\get: (reply, state, k) =&gt; do
+    reply &lt;! (state.at k)
+    state
+  end
+
+  store\set: (reply, state, k, v) =&gt; do
+    reply &lt;! ok:
+    state.put(k, v)
+  end
+
+  store\delete: (reply, state, k) =&gt; do
+    reply &lt;! (state.at k)
+    state.take(k)
+  end
+}
+
+t: .def (Store, Channels.t)
+
+[Store.t] .defmodule {
+  store\get: (k) =&gt; do
+    reply = Channels.make
+    self &lt;! (store\get: reply k)
+    reply &gt;! .unwrap
+  end
+
+  store\set: (k, v) =&gt; do
+    reply = Channels.make
+    self &lt;! (store\set: reply k v)
+    reply &gt;! .unwrap
+  end
+
+  store\delete: (k) =&gt; do
+    reply = Channels.make
+    self &lt;! (store\delete: reply k)
+    reply &gt;! .unwrap
+  end
+
+  start: (host, port) =&gt; do
+    server = Socket.make(tcp:).unwrap
+    server.bind(host port).unwrap
+    server.listen(128).unwrap
+    &#39;Listing on $:$&#39;.sprintf(host port).println
+    store = self
+    Fibers.make () =&gt; server.accept_loop(store)
+  end
+}
+
+run_command: .defcase {
+  GET: (socket, store, key, rest*) =&gt; do
+    store.store\get key
+      .then((val) =&gt; &#39;OK $&#39;.sprintf(val))
+      .else(()    =&gt; &#39;NONE&#39;)
+  end
+
+  SET: (socket, store, key, val, rest*) =&gt; do
+    store.store\set (key val)
+      .then(() =&gt; &#39;OK&#39;)
+  end
+
+  DELETE: (socket, store, key, rest*) =&gt; do
+    store.store\delete key
+      .then((val) =&gt; &#39;OK $&#39;.sprintf(val))
+      .else(()    =&gt; &#39;NONE&#39;)
+  end
+}
+
+serve_client: .def (IO.Sockets.t, (store) =&gt; do
+  sock = self
+
+  &#39;Connected $&#39;.sprintf(sock).println
+
+  loop = () =&gt; do
+    recurse = self
+
+    sock
+      .until(&#39;\n&#39;.to\b)
+      .then(line =&gt; do
+        (cmd, args*) = line.as\s.unwrap.trim.split(&#39; &#39;)
+        response = cmd.to\m.run_command(sock, store, args*)
+        sock.write(&#39;$\n&#39;.sprintf(response).to\b)
+        recurse.()
+      end)
+      .else(() =&gt; do
+        &#39;Disconnected $&#39;.sprintf(sock).println
+      end)
+  end
+
+  loop.()
+end)
+
+accept_loop: .def (IO.Sockets.t, (store) =&gt; do
+  server = self
+
+  self.accept
+    .then((client) =&gt; do
+      Fibers.make () =&gt; client.serve_client(store)
+      server.accept_loop(store)
+    end)
+    .else(() =&gt; &#39;server closed&#39;.println)
+end)
+
+store  = Store.make
+server = store.start(&#39;::1&#39; 6379)
+server.await
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;What to Notice&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;what-to-notice&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#what-to-notice&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;self&lt;/code&gt; must be captured before nested blocks.&lt;/strong&gt; This appears three times in the program: &lt;code&gt;sock = self&lt;/code&gt; in &lt;code&gt;serve_client&lt;/code&gt;, &lt;code&gt;recurse = self&lt;/code&gt; inside &lt;code&gt;loop&lt;/code&gt;, and &lt;code&gt;store = self&lt;/code&gt; in &lt;code&gt;start:&lt;/code&gt;. In each case, a nested block would shadow &lt;code&gt;self&lt;/code&gt; with its own receiver. Capturing early is the standard pattern whenever &lt;code&gt;self&lt;/code&gt; needs to outlive the block it was introduced in.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;to\m&lt;/code&gt; makes strings dispatchable.&lt;/strong&gt; &lt;code&gt;cmd.to\m&lt;/code&gt; converts the wire protocol string &lt;code&gt;&#39;GET&#39;&lt;/code&gt; to the message &lt;code&gt;GET:&lt;/code&gt;, which &lt;code&gt;defcase&lt;/code&gt; can route on. The conversion is trivial at runtime and it means the command routing table is just a &lt;code&gt;defcase&lt;/code&gt;, consistent with how dispatch works everywhere else in Gab.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The accept loop is a fiber, not a primitive.&lt;/strong&gt; There&amp;rsquo;s no built-in server loop.&lt;code&gt;accept_loop&lt;/code&gt; is a recursive function that calls &lt;code&gt;accept&lt;/code&gt;, hands the connection off, and calls itself. The structure is identical to the store&amp;rsquo;s command loop. The same pattern appears everywhere in Gab: a fiber owns a resource, loops by recursing, and delegates work to other fibers.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;One store, many clients.&lt;/strong&gt; Every connection fiber holds a reference to the same store channel.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;rest*&lt;/code&gt; absorbs noise.&lt;/strong&gt; Extra tokens in a command are silently ignored. Missing arguments arrive as &lt;code&gt;nil:&lt;/code&gt;, which the store returns &lt;code&gt;none:&lt;/code&gt; for, propagating back as &lt;code&gt;NONE&lt;/code&gt;. The server never crashes on malformed input.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Records &amp; Shapes</title>
       <link>/docs/tour/records_and_shapes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -178,7 +689,7 @@ age = 20
         
         
         &lt;p&gt;Gab has exactly one data structure: &lt;code&gt;gab\record&lt;/code&gt;. Everything else — lists, named objects, tuples — is built on top of it. This constraint is intentional: a single data structure means a single hot path to optimize, and a single mental model to carry around.&lt;/p&gt;
-&lt;h2&gt;Records&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;records&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Records&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;records&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#records&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A record is a collection of key-value pairs. You create one using curly braces:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 bob = { name: &#39;bob&#39;, age: 44 }
@@ -194,7 +705,7 @@ colors = [&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]
 colors.at(0)  # =&gt; &#39;red&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Both forms are the same underlying type.&lt;/p&gt;
-&lt;h2&gt;Immutability&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;immutability&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Immutability&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;immutability&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#immutability&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;All records in Gab are &lt;strong&gt;immutable&lt;/strong&gt;. You cannot change a record in place. Instead, messages like &lt;code&gt;put&lt;/code&gt; return a new record with the updated value, leaving the original untouched:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 bob = { name: &#39;bob&#39;, age: 44 }
@@ -206,7 +717,7 @@ alice  # =&gt; { name: &#39;alice&#39;, age: 44 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This is not a limitation — it&amp;rsquo;s what makes concurrent programming in Gab safe. When values can never change, two fibers sharing a value is always safe. No locks, no races.&lt;/p&gt;
 &lt;p&gt;Gab&amp;rsquo;s immutable record is implemented as a Hash-Array-Mapped Trie, the same persistent data structure used by Clojure. &lt;code&gt;put&lt;/code&gt; operations share structure with the original, so they are efficient even on large records.&lt;/p&gt;
-&lt;h2&gt;Types and Shapes&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;types-and-shapes&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Types and Shapes&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;types-and-shapes&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#types-and-shapes&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Every value in Gab has a &lt;strong&gt;type&lt;/strong&gt;, which you can inspect with the &lt;code&gt;?&lt;/code&gt; message. For most values, &lt;code&gt;?&lt;/code&gt; returns a string describing the type:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 &#39;hello&#39; ?  # =&gt; &#39;gab\string&#39;
@@ -225,7 +736,7 @@ ok: ?  # =&gt; ok:
 # =&gt; &lt;gab\shape 0: 1: 2:&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Two records have the same type (the same shape) if and only if they have the same keys, regardless of their values.&lt;/p&gt;
-&lt;h2&gt;Defining Messages for Shapes&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;defining-messages-for-shapes&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Defining Messages for Shapes&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;defining-messages-for-shapes&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#defining-messages-for-shapes&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This is where shapes become powerful. When you define a message, you specialize it for a particular type — either a built-in type via &lt;code&gt;Module.t&lt;/code&gt;, or a shape you&amp;rsquo;ve captured with &lt;code&gt;?&lt;/code&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 # Capture the shape of a &#34;Person-like&#34; record
@@ -247,7 +758,7 @@ bob = bob.birthday
 bob.age  # =&gt; 45
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Notice that &lt;code&gt;birthday&lt;/code&gt; returns a new record (with &lt;code&gt;age&lt;/code&gt; incremented) — it doesn&amp;rsquo;t mutate &lt;code&gt;bob&lt;/code&gt; in place. To &amp;ldquo;update&amp;rdquo; bob, you simply rebind the name.&lt;/p&gt;
-&lt;h2&gt;Shapes as Types&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;shapes-as-types&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Shapes as Types&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;shapes-as-types&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#shapes-as-types&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;You can think of shapes the way you&amp;rsquo;d think of types or interfaces in other languages — but without a separate type declaration syntax. The shape of a record &lt;em&gt;is&lt;/em&gt; its type, and it falls out naturally from the keys you give it.&lt;/p&gt;
 &lt;p&gt;This means:&lt;/p&gt;
 &lt;ul&gt;
@@ -282,7 +793,7 @@ c.area
         
         
         &lt;p&gt;Gab has two string-like types: &lt;code&gt;gab\string&lt;/code&gt; and &lt;code&gt;gab\binary&lt;/code&gt;. A third type, &lt;code&gt;gab\message&lt;/code&gt;, also belongs to this family. All three &lt;strong&gt;share their character data in memory&lt;/strong&gt; — the bytes &lt;code&gt;[ &#39;t&#39;, &#39;r&#39;, &#39;u&#39;, &#39;e&#39; ]&lt;/code&gt; are stored once on the heap, shared between the string &lt;code&gt;&amp;quot;true&amp;quot;&lt;/code&gt; and the message &lt;code&gt;true:&lt;/code&gt;. Converting between these types is therefore a constant-time operation with no allocation.&lt;/p&gt;
-&lt;h2&gt;&lt;code&gt;gab\string&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;gabstring&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;&lt;code&gt;gab\string&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;gabstring&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#gabstring&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Strings are UTF-8 encoded byte sequences. Single-quoted strings support escape sequences; double-quoted strings do not.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 &#34;Hello!&#34;
@@ -303,7 +814,7 @@ Strings.make(&#39;Ada&#39;, &#39; &#39;, last_name)
 # =&gt; &#39;Format a value: { name: bob }&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;sprintf&lt;/code&gt; replaces each &lt;code&gt;$&lt;/code&gt; in the format string with the corresponding argument, in order.&lt;/p&gt;
-&lt;h2&gt;&lt;code&gt;gab\binary&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;gabbinary&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;&lt;code&gt;gab\binary&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;gabbinary&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#gabbinary&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;gab\binary&lt;/code&gt; operates on raw bytes with no encoding enforced. Indexing and slicing are constant-time because there are no multi-byte codepoints to account for.&lt;/p&gt;
 &lt;p&gt;There is no literal syntax for binaries. Convert a string with &lt;code&gt;to\b&lt;/code&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -322,7 +833,7 @@ smiley_bin.len  # =&gt; 4  (bytes)
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (status, str) = some_binary.as\s
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Shared Memory with &lt;code&gt;gab\message&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;shared-memory-with-gabmessage&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Shared Memory with &lt;code&gt;gab\message&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;shared-memory-with-gabmessage&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#shared-memory-with-gabmessage&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Because &lt;code&gt;gab\string&lt;/code&gt;, &lt;code&gt;gab\binary&lt;/code&gt;, and &lt;code&gt;gab\message&lt;/code&gt; all share the same underlying character data, converting between them is zero-cost. The string &lt;code&gt;&#39;true&#39;&lt;/code&gt; and the message &lt;code&gt;true:&lt;/code&gt; occupy the same bytes — they differ only in their type tag.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 &#39;true&#39;.to\m   # =&gt; true:   (no allocation)
@@ -343,7 +854,7 @@ true:.to\s    # =&gt; &#39;true&#39;  (no allocation)
         
         
         &lt;p&gt;A &lt;strong&gt;block&lt;/strong&gt; is Gab&amp;rsquo;s name for a lambda — an anonymous function that can capture values from its surrounding scope. Blocks are values: you can store them in records, pass them as arguments to messages, and call them.&lt;/p&gt;
-&lt;h2&gt;Block Syntax&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;block-syntax&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Block Syntax&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;block-syntax&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#block-syntax&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The &lt;code&gt;=&amp;gt;&lt;/code&gt; operator creates a block. The left-hand side is the &lt;strong&gt;binding&lt;/strong&gt; (the parameter list), and the right-hand side is the &lt;strong&gt;expression&lt;/strong&gt; that becomes the return value.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 double = (x) =&gt; x * 2
@@ -364,7 +875,7 @@ describe.(&#39;Alice&#39;, 30).println
 # =&gt; Name: Alice
 # =&gt; Age: 30
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Blocks with No Parameters&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;blocks-with-no-parameters&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Blocks with No Parameters&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;blocks-with-no-parameters&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#blocks-with-no-parameters&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;If a block takes no arguments, use empty parentheses on both sides — in the definition and in the call:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 greet = () =&gt; &#39;Hello!&#39;.println
@@ -372,7 +883,7 @@ greet = () =&gt; &#39;Hello!&#39;.println
 greet.()
 # =&gt; Hello!
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Blocks as Arguments&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;blocks-as-arguments&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Blocks as Arguments&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;blocks-as-arguments&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#blocks-as-arguments&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks are most commonly passed as arguments to messages. This is how all control flow is expressed in Gab. You&amp;rsquo;ve already seen this with boolean branching:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (temperature &gt; 100)
@@ -389,7 +900,7 @@ end
 # =&gt; Hello, bob
 # =&gt; Hello, carol
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Multiple Return Values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;multiple-return-values&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Multiple Return Values&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;multiple-return-values&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#multiple-return-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks can return more than one value using a &lt;strong&gt;tuple expression&lt;/strong&gt; — parentheses containing two or more values:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 minmax = (a, b) =&gt; do
@@ -417,8 +928,8 @@ IO.File.make(self).my_message
 (status, file) = IO.File.make(self)
 status.my_message(file)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The first return value becomes the receiver; subsequent return values become arguments. This is why the error-handling pattern in Gab is so fluid — &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; can each respond differently to the same chained message, routing the remaining values accordingly. You&amp;rsquo;ll see this in detail in &lt;a href=&#34;/docs/tour/error-handling&#34; &gt;Error Handling&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;Closures&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;closures&#34;&gt;&lt;/span&gt;
+&lt;p&gt;The first return value becomes the receiver; subsequent return values become arguments. This is why the error-handling pattern in Gab is so fluid — &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; can each respond differently to the same chained message, routing the remaining values accordingly. You&amp;rsquo;ll see this in detail in &lt;a href=&#34;/docs/tour/error_handling/&#34;&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Closures&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;closures&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#closures&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks close over their surrounding scope. Any name visible where the block is defined is accessible inside it:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 prefix = &#39;Hello&#39;
@@ -431,8 +942,8 @@ greet.(&#39;world&#39;)
 # =&gt; Hello, world
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The block captures &lt;code&gt;prefix&lt;/code&gt; at the time it is defined. If you rebind &lt;code&gt;prefix&lt;/code&gt; later, the block still holds onto the original value — Gab&amp;rsquo;s immutability makes this safe and predictable.&lt;/p&gt;
-&lt;h2&gt;Blocks and Fibers&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;blocks-and-fibers&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#blocks-and-fibers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs concurrently in its own lightweight thread of execution. See &lt;a href=&#34;/docs/tour/fibers-and-channels&#34; &gt;Fibers &amp;amp; Channels&lt;/a&gt; for the full picture.&lt;/p&gt;
+&lt;h2&gt;Blocks and Fibers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;blocks-and-fibers&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#blocks-and-fibers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs concurrently in its own lightweight thread of execution. See &lt;a href=&#34;/docs/tour/fibers_and_channels/&#34;&gt;Fibers &amp;amp; Channels&lt;/a&gt; for the full picture.&lt;/p&gt;
 
       </description>
     </item>
@@ -453,7 +964,7 @@ true:?    # =&gt; true:
 my_msg:?  # =&gt; my_msg:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are Gab&amp;rsquo;s implementation of booleans, nil, and result values — there are no built-in keywords for any of these.&lt;/p&gt;
-&lt;h2&gt;Defining Specializations&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;defining-specializations&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Defining Specializations&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;defining-specializations&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#defining-specializations&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A message responds to &lt;code&gt;def:&lt;/code&gt; to add a new &lt;strong&gt;specialization&lt;/strong&gt; — an implementation for a specific receiver type:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 greet: .def (Strings.t, () =&gt; do
@@ -463,14 +974,14 @@ end)
 &#39;Alice&#39;.greet   # =&gt; Hello, Alice!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;There are three definition messages, each suited to different situations.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;def:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;def&#34;&gt;&lt;/span&gt;
+&lt;h3&gt;&lt;code&gt;def:&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;def&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#def&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Defines a single specialization for a single type:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 birthday: .def (Person, () =&gt; do
   self.put(age: self.age + 1)
 end)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;&lt;code&gt;defcase:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;defcase&#34;&gt;&lt;/span&gt;
+&lt;h3&gt;&lt;code&gt;defcase:&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;defcase&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#defcase&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Defines multiple specializations for one message at once, using a record as a dispatch table:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 describe: .defcase {
@@ -480,7 +991,7 @@ describe: .defcase {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Each key in the record is a receiver type; each value is the block to call when that type receives the message. Values alone (without a block) are also valid — they are returned directly.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;defmodule:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;defmodule&#34;&gt;&lt;/span&gt;
+&lt;h3&gt;&lt;code&gt;defmodule:&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;defmodule&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#defmodule&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Defines multiple messages for multiple receiver types at once:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [Point, Vector] .defmodule {
@@ -488,7 +999,7 @@ describe: .defcase {
   zero:  ()       =&gt; self.put(x: 0, y: 0)
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Dispatch Resolution Order&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;dispatch-resolution-order&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Dispatch Resolution Order&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;dispatch-resolution-order&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#dispatch-resolution-order&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;When a message is sent to a value, Gab resolves the specialization in this order:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Super type&lt;/strong&gt; — if the value&amp;rsquo;s type (e.g. a &lt;code&gt;gab\shape&lt;/code&gt;) has a specialization, use it.&lt;/li&gt;
@@ -505,7 +1016,7 @@ z: .def (Shapes.make(x:), &#39;shape case&#39;)
 { x: 1 }.z   # =&gt; &#39;shape case&#39;    (super type — the shape &lt;x:&gt;)
 { x: 1 }.x   # =&gt; 1               (property)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;&lt;code&gt;and:&lt;/code&gt;, &lt;code&gt;or:&lt;/code&gt;, &lt;code&gt;then:&lt;/code&gt;, &lt;code&gt;else:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;and-or-then-else&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;&lt;code&gt;and:&lt;/code&gt;, &lt;code&gt;or:&lt;/code&gt;, &lt;code&gt;then:&lt;/code&gt;, &lt;code&gt;else:&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;and-or-then-else&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#and-or-then-else&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;These messages are defined on &lt;code&gt;true:&lt;/code&gt; and &lt;code&gt;false:&lt;/code&gt; in the core library. Their semantics differ in one important way:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;and:&lt;/code&gt; and &lt;code&gt;or:&lt;/code&gt; accept &lt;strong&gt;values&lt;/strong&gt; — the argument is always evaluated before the message is sent:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -519,12 +1030,253 @@ true:  .or  2    # =&gt; true:
 true: .then  () =&gt; &#39;yes&#39;.println   # =&gt; yes
 true: .else  () =&gt; &#39;no&#39;.println    # (block is never called)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;&lt;code&gt;nil:&lt;/code&gt; and &lt;code&gt;none:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;nil-and-none&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;&lt;code&gt;nil:&lt;/code&gt; and &lt;code&gt;none:&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;nil-and-none&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#nil-and-none&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;nil:&lt;/code&gt; is the value Gab binds to names that have no corresponding value — for example, if a binding list is longer than the tuple being destructured:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (a, b) = 1   # a =&gt; 1, b =&gt; nil:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;none:&lt;/code&gt; is used by certain APIs to signal the absence of a result (as opposed to an error). Both are plain message values with no special runtime treatment.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Pub/Sub Broker</title>
+      <link>/docs/examples/pubsub/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/pubsub/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This example builds a publish/subscribe message broker. Publishers send events to a topic; all subscribers to that topic receive them. The broker is a single actor fiber — the same pattern as the key-value store, with more interesting state.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;The Design&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-design&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-design&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The broker owns a record mapping topic names to subscriber lists. Each subscriber list is a record used as a growable list of channels.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;state = {
+  news:  [ chan_a, chan_b ],
+  sport: [ chan_c ]
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+    aria-label=&#34;Copy code&#34;
+    data-copied-label=&#34;Copied!&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Three commands:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;broker\subscribe:&lt;/code&gt;&lt;/strong&gt; — add a channel to a topic&amp;rsquo;s subscriber list&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;broker\unsubscribe:&lt;/code&gt;&lt;/strong&gt; — remove a channel from a topic&amp;rsquo;s subscriber list&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;broker\publish:&lt;/code&gt;&lt;/strong&gt; — send an event to every subscriber on a topic&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Fan-out spawns one fiber per subscriber, so a slow subscriber never stalls the broker or other subscribers.&lt;/p&gt;
+&lt;h2&gt;The Broker Actor&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-broker-actor&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-broker-actor&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The broker channel carries &lt;code&gt;(cmd, args*)&lt;/code&gt; tuples. No reply channel is needed since callers don&amp;rsquo;t wait for a result from any of the three commands.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Broker = broker:
+
+make: .def (Broker, () =&gt; do
+  ch = Channels.make
+
+  loop = (state) =&gt; do
+    (cmd, args*) = ch &gt;! .unwrap
+    next_state = (cmd, state, args*) .handle
+    self.(next_state)
+  end
+
+  Fibers.make () =&gt; loop.({})
+
+  ch
+end)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;The Command Handlers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-command-handlers&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-command-handlers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;broker\subscribe:&lt;/code&gt;&lt;/strong&gt; uses &lt;code&gt;put_via_by:&lt;/code&gt; to append the new channel to the topic&amp;rsquo;s subscriber list with &lt;code&gt;cons:&lt;/code&gt;. If the topic doesn&amp;rsquo;t exist yet, &lt;code&gt;put_via_by:&lt;/code&gt; initialises it automatically.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;broker\unsubscribe:&lt;/code&gt;&lt;/strong&gt; checks the topic exists with &lt;code&gt;at:&lt;/code&gt;, then uses &lt;code&gt;put_by:&lt;/code&gt; with a transformation block to rebuild the subscriber list in place. &lt;code&gt;filter:&lt;/code&gt; keeps every channel where &lt;code&gt;c == ch !&lt;/code&gt; is true (the &lt;code&gt;!&lt;/code&gt; negates, so channels that are &lt;em&gt;not&lt;/em&gt; &lt;code&gt;ch&lt;/code&gt; are kept). &lt;code&gt;.or(state)&lt;/code&gt; returns &lt;code&gt;state&lt;/code&gt; unchanged if the topic doesn&amp;rsquo;t exist.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;broker\publish:&lt;/code&gt;&lt;/strong&gt; iterates over subscribers and spawns a fiber per delivery. &lt;code&gt;state&lt;/code&gt; is returned unconditionally after the &lt;code&gt;then:&lt;/code&gt; chain.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+handle: .defcase {
+  broker\subscribe: (state, topic, ch) =&gt; do
+    state.put_via_by(topic subs =&gt; subs.cons ch)
+  end
+
+  broker\unsubscribe: (state, topic, ch) =&gt; do
+    state.at(topic)
+      .then(() =&gt; do
+        after = state.put_by(topic, subs =&gt; subs.filter(c =&gt; c == ch !))
+        after
+      end)
+      .or(state)
+  end
+
+  broker\publish: (state, topic, event) =&gt; do
+    state.at(topic)
+      .then(subs =&gt; do
+        subs.each sub =&gt; do
+          Fibers.make () =&gt; sub &lt;! event
+        end
+      end)
+
+    state
+  end
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;The Public API&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-public-api&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-public-api&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;All three methods are fire-and-forget. &lt;code&gt;broker\unsubscribe:&lt;/code&gt; takes both the topic and the channel. The topic is needed to locate the subscriber list.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+t: .def (Broker, Channels.t)
+
+[Broker.t] .defmodule {
+  broker\subscribe: (topic, ch) =&gt; do
+    self &lt;! (broker\subscribe: topic ch)
+  end
+
+  broker\unsubscribe: (topic, ch) =&gt; do
+    self &lt;! (broker\unsubscribe: topic ch)
+  end
+
+  broker\publish: (topic, event) =&gt; do
+    self &lt;! (broker\publish: topic event)
+  end
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Putting it Together&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;putting-it-together&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#putting-it-together&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Because the broker processes commands asynchronously, subscribers must confirm they have registered before the publisher starts sending, and the publisher must wait for unsubscription to complete before sending to a topic the subscriber has left. A shared &lt;code&gt;done&lt;/code&gt; channel coordinates all of this:&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+broker = Broker.make
+done   = Channels.make
+
+Fibers.make () =&gt; do
+  inbox = Channels.make
+  broker.broker\subscribe(news: inbox)
+
+  done &lt;!         # signal: subscribed
+
+  inbox.each (event) =&gt; do
+    &#39;NEWS: $&#39;.sprintf(event).println
+  end
+end
+
+done &gt;!           # wait for news subscriber
+
+Fibers.make () =&gt; do
+  inbox = Channels.make
+  broker.broker\subscribe(sport: inbox)
+
+  done &lt;!         # signal: subscribed
+
+  inbox.each (event) =&gt; do
+    &#39;SPORT: $&#39;.sprintf(event).println
+
+    broker.broker\unsubscribe(sport: inbox)
+    done &lt;!       # signal: unsubscribed
+  end
+end
+
+done &gt;!           # wait for sport subscriber
+
+broker.broker\publish(news:  &#39;Gab 1.0 released&#39;)
+broker.broker\publish(sport: &#39;Final score: 3-1&#39;)
+broker.broker\publish(news:  &#39;Another story&#39;)
+
+done &gt;!           # wait for sport subscriber to unsubscribe
+
+# This event has no subscribers — the sport listener
+# unsubscribed itself after receiving the first event.
+broker.broker\publish(sport: &#39;Final score: 6-7&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The sport subscriber unsubscribes after receiving its first event, then signals &lt;code&gt;done&lt;/code&gt; to tell the main fiber it is safe to send the second sport event. The final publish is silently dropped — no subscribers remain on the &lt;code&gt;sport:&lt;/code&gt; topic.&lt;/p&gt;
+&lt;h2&gt;The Full Program&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-full-program&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-full-program&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The full broker module is below.&lt;/p&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Broker = broker:
+
+make: .def (Broker, () =&gt; do
+  ch = Channels.make
+
+  loop = (state) =&gt; do
+    (cmd, args*) = ch &gt;! .unwrap
+    next_state = (cmd, state, args*) .handle
+    self.(next_state)
+  end
+
+  Fibers.make () =&gt; loop.({})
+
+  ch
+end)
+
+handle: .defcase {
+  broker\subscribe: (state, topic, ch) =&gt; do
+    state.put_via_by(topic subs =&gt; subs.cons ch)
+  end
+
+  broker\unsubscribe: (state, topic, ch) =&gt; do
+    state.at(topic)
+      .then(() =&gt; do
+        after = state.put_by(topic, subs =&gt; subs.filter(c =&gt; c == ch !))
+        after
+      end)
+      .or(state)
+  end
+
+  broker\publish: (state, topic, event) =&gt; do
+    state.at(topic)
+      .then(subs =&gt; do
+        subs.each sub =&gt; do
+          Fibers.make () =&gt; ok = sub &lt;! event
+        end
+      end)
+
+    state
+  end
+}
+
+t: .def (Broker, Channels.t)
+
+[Broker.t] .defmodule {
+  broker\subscribe: (topic, ch) =&gt; do
+    self &lt;! (broker\subscribe: topic ch)
+  end
+
+  broker\unsubscribe: (topic, ch) =&gt; do
+    self &lt;! (broker\unsubscribe: topic ch)
+  end
+
+  broker\publish: (topic, event) =&gt; do
+    self &lt;! (broker\publish: topic event)
+  end
+}
+
+Broker
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;What to Notice&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;what-to-notice&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#what-to-notice&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;put_via_by:&lt;/code&gt; and &lt;code&gt;put_by:&lt;/code&gt; update nested state cleanly.&lt;/strong&gt; &lt;code&gt;put_via_by:&lt;/code&gt;
+initialises missing keys and applies a transformation in one step.
+&lt;code&gt;put_by:&lt;/code&gt; applies a transformation block to an existing value at a key.
+Together they eliminate the fetch-transform-put pattern that would otherwise appear throughout actor state management.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Subscribers can unsubscribe themselves.&lt;/strong&gt;
+The sport subscriber calls &lt;code&gt;broker.broker\unsubscribe(sport: inbox)&lt;/code&gt; after its first event, and
+the channel itself is the unsubscription token.
+After unsubscribing it signals &lt;code&gt;done&lt;/code&gt; so the main fiber knows the subscription has been removed before sending again.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;or:&lt;/code&gt; for fallback values.&lt;/strong&gt;
+&lt;code&gt;.or(state)&lt;/code&gt; returns &lt;code&gt;state&lt;/code&gt; directly if the preceding result is &lt;code&gt;none:&lt;/code&gt;. This is a concise shorthand for defaulting a missing value without &lt;code&gt;.else(() =&amp;gt; ...)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The &lt;code&gt;done&lt;/code&gt; channel carries ordering guarantees.&lt;/strong&gt;
+Each &lt;code&gt;done &amp;gt;!&lt;/code&gt; in the main fiber corresponds to a specific event in a subscriber fiber.
+The channel  enforces a happens-before relationship.
+The second sport publish cannot run until the sport subscriber has finished unsubscribing, which cannot happen until it has received the first sport event.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;No reply channels.&lt;/strong&gt;
+None of the broker&amp;rsquo;s commands return a value to the caller.
+Commands are processed asynchronously. Ordering guarantees, where needed, are expressed through separate synchronisation channels rather than blocking on command replies.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fan-out via fibers.&lt;/strong&gt;
+&lt;code&gt;publish:&lt;/code&gt; spawns one fiber per subscriber.
+The broker returns &lt;code&gt;state&lt;/code&gt; immediately, and does not wait for any delivery to complete.
+A slow or unresponsive subscriber cannot stall the broker or delay others.&lt;/p&gt;
 
       </description>
     </item>
@@ -539,7 +1291,7 @@ true: .else  () =&gt; &#39;no&#39;.println    # (block is never called)
         
         
         &lt;p&gt;&lt;code&gt;gab\record&lt;/code&gt; is the only data structure in Gab. It serves as both a dictionary and a list. All records are immutable.&lt;/p&gt;
-&lt;h2&gt;Lists&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;lists&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Lists&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;lists&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#lists&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;List-style records use integer keys starting from zero. They are constructed with &lt;code&gt;[]&lt;/code&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 a_list = [1, 2, 3]
@@ -550,13 +1302,13 @@ a_list   # =&gt; [1, 2, 3]
 a_list = { 0 1, 1 2, 2 3 }
 a_list   # =&gt; [1, 2, 3]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Dictionaries&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;dictionaries&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Dictionaries&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;dictionaries&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#dictionaries&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Dictionary-style records allow arbitrary keys. They are constructed with &lt;code&gt;{}&lt;/code&gt;, with keys and values in pairs:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 a_record = { name: &#39;bob&#39;, age: 44 }
 another  = { key: &#39;value&#39;, &#39;another_key&#39; 10 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Accessing Values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;accessing-values&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Accessing Values&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;accessing-values&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#accessing-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Record keys that are message values can be accessed directly as a message send. This works through the property step of dispatch resolution — no &lt;code&gt;def:&lt;/code&gt; required:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 { name: &#39;bob&#39; }.name   # =&gt; &#39;bob&#39;
@@ -566,7 +1318,7 @@ another  = { key: &#39;value&#39;, &#39;another_key&#39; 10 }
 record.at(key:)   # =&gt; (ok:, &#39;value&#39;)  or  (none:, nil:)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Direct property access on a missing key will raise an error. &lt;code&gt;at:&lt;/code&gt; returns a tuple and lets you handle the missing case explicitly.&lt;/p&gt;
-&lt;h2&gt;Immutability and &lt;code&gt;put:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;immutability-and-put&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Immutability and &lt;code&gt;put:&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;immutability-and-put&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#immutability-and-put&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Records cannot be modified in place. &lt;code&gt;put:&lt;/code&gt; returns a new record with the given key set to the given value:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 bob   = { name: &#39;bob&#39;,   age: 44 }
@@ -576,7 +1328,7 @@ bob    # =&gt; { name: &#39;bob&#39;,   age: 44 }
 alice  # =&gt; { name: &#39;alice&#39;, age: 44 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Records are implemented as a &lt;strong&gt;bit-partitioned vector trie&lt;/strong&gt;, inspired by Clojure&amp;rsquo;s persistent data structures. This means &lt;code&gt;put:&lt;/code&gt; uses &lt;strong&gt;structural sharing&lt;/strong&gt; — the new record shares most of its memory with the original, so large records can be updated efficiently without copying all their data.&lt;/p&gt;
-&lt;h2&gt;List-to-Dictionary Transitions&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;list-to-dictionary-transitions&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;List-to-Dictionary Transitions&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;list-to-dictionary-transitions&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#list-to-dictionary-transitions&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Adding a non-integer key to a list produces a dictionary:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 a_list = [1, 2, 3]
@@ -598,7 +1350,7 @@ a_list = a_list.put(name: &#39;bob&#39;)
         
         
         &lt;p&gt;Concurrency is not an add-on in Gab — it is a first-class feature of the language and runtime. The two primitives are &lt;strong&gt;fibers&lt;/strong&gt; and &lt;strong&gt;channels&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2&gt;Fibers&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;fibers&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Fibers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;fibers&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#fibers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A fiber is a lightweight unit of execution, similar to a goroutine in Go or a process on the BEAM (Erlang/Elixir). Fibers are cheap: Gab&amp;rsquo;s runtime is designed to support hundreds of thousands of them running concurrently.&lt;/p&gt;
 &lt;p&gt;You spawn a fiber by passing a block to &lt;code&gt;Fibers.make&lt;/code&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -617,7 +1369,7 @@ end
 
 Ranges.make(0, 20000).each spawn_task
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Channels&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;channels&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Channels&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;channels&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#channels&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Fibers communicate with each other through &lt;strong&gt;channels&lt;/strong&gt;. A channel is the &lt;em&gt;only&lt;/em&gt; way for two fibers to exchange data — there is no shared mutable state, no global variables, and no locks.&lt;/p&gt;
 &lt;p&gt;Create a channel with &lt;code&gt;Channels.make&lt;/code&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -632,7 +1384,7 @@ ch &lt;! &#39;a message&#39;
 value = ch &gt;!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Gab&amp;rsquo;s channels are &lt;strong&gt;unbuffered&lt;/strong&gt;: a send blocks until a receiver is ready, and a receive blocks until a sender is ready. This keeps communication explicit and synchronised, and eliminates an entire class of concurrency bugs.&lt;/p&gt;
-&lt;h2&gt;Putting it Together&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;putting-it-together&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Putting it Together&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;putting-it-together&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#putting-it-together&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Here is a pipeline where many fibers produce values, and a single consumer reads them all:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 print_chan = Channels.make
@@ -646,13 +1398,13 @@ end
 print_chan.each (msg) =&gt; msg.println
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Each fiber sends one message into the channel, then exits. The &lt;code&gt;each&lt;/code&gt; message reads values from the channel and passes each one to the block.&lt;/p&gt;
-&lt;h2&gt;Zero-Copy Message Passing&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;zero-copy-message-passing&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Zero-Copy Message Passing&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;zero-copy-message-passing&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#zero-copy-message-passing&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A common cost in concurrent systems is &lt;strong&gt;copying&lt;/strong&gt;: when you send data to another thread, the runtime must copy it to keep both sides safe. Gab eliminates this cost.&lt;/p&gt;
 &lt;p&gt;Because all of Gab&amp;rsquo;s data structures are immutable, a value cannot change after it is created. This means it is always safe to share a reference to a value across fiber boundaries — no copying is needed. In practice, passing a large record between 10,000 fibers is no more expensive than passing an integer.&lt;/p&gt;
 &lt;p&gt;This is a deliberate design choice that makes Gab&amp;rsquo;s concurrency both safe and fast.&lt;/p&gt;
-&lt;h2&gt;Channels are Immutable Too&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;channels-are-immutable-too&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Channels are Immutable Too&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;channels-are-immutable-too&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#channels-are-immutable-too&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Even &lt;code&gt;gab\channel&lt;/code&gt; is immutable. A channel reference can be passed freely between fibers without any synchronisation overhead. The runtime handles the scheduling of sends and receives internally.&lt;/p&gt;
-&lt;h2&gt;Atoms: Safe Shared State&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;atoms-safe-shared-state&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Atoms: Safe Shared State&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;atoms-safe-shared-state&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#atoms-safe-shared-state&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Channels and fibers can implement any concurrency abstraction. Here is a complete implementation of an &lt;strong&gt;atom&lt;/strong&gt; — a value that can be read and updated safely from any fiber, similar to Clojure&amp;rsquo;s &lt;code&gt;atom&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The design: a dedicated fiber holds the current state privately in its own local scope. Other fibers send commands to it over a channel — each command is a tuple of a reply channel and a function to apply. The atom fiber applies the function, sends the new state back on the reply channel, and recurses with the updated state. Because all reads and writes go through a single fiber, no two updates can race.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -710,7 +1462,7 @@ counter.deref         # =&gt; 100
 &lt;p&gt;&lt;strong&gt;Tuples over channels.&lt;/strong&gt; &lt;code&gt;ch &amp;lt;! (reply, f)&lt;/code&gt; sends both the reply channel and the function as a single tuple. The atom fiber receives and destructures them in one step with &lt;code&gt;(reply, f) = ch &amp;gt;!&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;t:&lt;/code&gt; provides the shape for &lt;code&gt;defmodule&lt;/code&gt;.&lt;/strong&gt; &lt;code&gt;Atom.t&lt;/code&gt; returns the shape of atom records — &lt;code&gt;&amp;lt;gab\shape chan:&amp;gt;&lt;/code&gt; — so that &lt;code&gt;defmodule&lt;/code&gt; has a concrete type to attach messages to. &lt;code&gt;self.chan&lt;/code&gt; inside the module accesses the channel field via property dispatch.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;deref&lt;/code&gt; is just &lt;code&gt;swap!&lt;/code&gt; with the identity function.&lt;/strong&gt; There&amp;rsquo;s no separate read mechanism — the same serialised path handles both reads and writes, which guarantees that a &lt;code&gt;deref&lt;/code&gt; sees all preceding &lt;code&gt;swap!&lt;/code&gt; calls.&lt;/p&gt;
-&lt;h2&gt;Typical Patterns&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;typical-patterns&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Typical Patterns&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;typical-patterns&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#typical-patterns&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Worker pool.&lt;/strong&gt; Spawn N fibers, all reading from the same input channel and writing results to an output channel.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Pipeline.&lt;/strong&gt; Chain channels together — one fiber&amp;rsquo;s output channel is the next fiber&amp;rsquo;s input channel.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Fan-out.&lt;/strong&gt; One fiber sends work to many channels, each consumed by a dedicated fiber.&lt;/p&gt;
@@ -731,14 +1483,14 @@ counter.deref         # =&gt; 100
         
         
         &lt;p&gt;Gab does not have exceptions. There is no &lt;code&gt;try/catch&lt;/code&gt;, no &lt;code&gt;throw&lt;/code&gt;, and no stack unwinding. Instead, operations that can fail &lt;strong&gt;return their errors as values&lt;/strong&gt;. You handle errors the same way you handle any other result: by sending messages.&lt;/p&gt;
-&lt;h2&gt;Errors as Return Values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;errors-as-return-values&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Errors as Return Values&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;errors-as-return-values&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#errors-as-return-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A message that can fail returns multiple values. The first is a status — either &lt;code&gt;ok:&lt;/code&gt; or &lt;code&gt;err:&lt;/code&gt; — and the second is either the result or an explanation of what went wrong.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (status, file) = IO.File.make(&#39;my_file.txt&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If the file is opened successfully, &lt;code&gt;status&lt;/code&gt; is &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;file&lt;/code&gt; is a &lt;code&gt;gab\box IO.File&lt;/code&gt; you can read from or write to.&lt;/p&gt;
 &lt;p&gt;If something went wrong — the file doesn&amp;rsquo;t exist, permissions are denied — &lt;code&gt;status&lt;/code&gt; is &lt;code&gt;err:&lt;/code&gt; and &lt;code&gt;file&lt;/code&gt; is a string describing the error.&lt;/p&gt;
-&lt;h2&gt;Handling the Result&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;handling-the-result&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Handling the Result&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;handling-the-result&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#handling-the-result&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Because &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; are just values, you handle them with messages. The verbose approach binds each return value and branches explicitly:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (status, file) = IO.File.make(&#39;my_file.txt&#39;)
@@ -755,11 +1507,11 @@ IO.File.make(&#39;my_file.txt&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; respond differently to &lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt; — &lt;code&gt;ok:&lt;/code&gt; calls its &lt;code&gt;then:&lt;/code&gt; block and passes the file through; &lt;code&gt;err:&lt;/code&gt; calls its &lt;code&gt;else:&lt;/code&gt; block and passes the error message through. The branching is built into the types, not into special syntax.&lt;/p&gt;
 &lt;p&gt;This is the same branching mechanism used everywhere in Gab. There is no special syntax for error handling — the language stays consistent.&lt;/p&gt;
-&lt;h2&gt;Why Not Exceptions?&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;why-not-exceptions&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Why Not Exceptions?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;why-not-exceptions&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#why-not-exceptions&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Exceptions make control flow invisible. An exception thrown inside a deeply nested call can unwind the entire stack, landing in a &lt;code&gt;catch&lt;/code&gt; block far removed from where the problem occurred. This makes programs harder to reason about, and harder to write reliable concurrent code with.&lt;/p&gt;
 &lt;p&gt;Returning errors as values keeps the failure path explicit. When a message can fail, its type signature says so. You can&amp;rsquo;t accidentally ignore the error and proceed as if everything succeeded — the status value is right there in the binding.&lt;/p&gt;
 &lt;p&gt;This approach is familiar if you&amp;rsquo;ve used Go, Rust&amp;rsquo;s &lt;code&gt;Result&lt;/code&gt; type, or Erlang&amp;rsquo;s &lt;code&gt;{:ok, value} | {:error, reason}&lt;/code&gt; convention. Gab follows the same discipline.&lt;/p&gt;
-&lt;h2&gt;Propagating Errors&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;propagating-errors&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Propagating Errors&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;propagating-errors&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#propagating-errors&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;If you want to pass an error up to the caller, return a tuple:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 read_config: .def (gab\string, () =&gt; do
@@ -795,7 +1547,7 @@ b?          # =&gt; &lt;gab\shape name:&gt;
   &lt;p&gt;A space is required between an identifier and &lt;code&gt;?&lt;/code&gt;. Names in Gab may end with &lt;code&gt;?&lt;/code&gt; or &lt;code&gt;!&lt;/code&gt;, so &lt;code&gt;a?&lt;/code&gt; would be parsed as a single identifier, not a message send.&lt;/p&gt;
 
 &lt;/blockquote&gt;
-&lt;h2&gt;Obtaining a Shape&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;obtaining-a-shape&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Obtaining a Shape&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;obtaining-a-shape&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#obtaining-a-shape&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are two ways to get a shape value.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;From a record&lt;/strong&gt;, using the &lt;code&gt;?&lt;/code&gt; message:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -808,7 +1560,7 @@ Person = Shapes.make(name:, age:)
 # =&gt; &lt;gab\shape name: age:&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Both produce the same shape value. The &lt;code&gt;?&lt;/code&gt; approach is convenient when you already have an example record; &lt;code&gt;Shapes.make&lt;/code&gt; is useful when you want to define the shape without constructing a record first.&lt;/p&gt;
-&lt;h2&gt;Shapes as Specialization Targets&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;shapes-as-specialization-targets&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Shapes as Specialization Targets&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;shapes-as-specialization-targets&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#shapes-as-specialization-targets&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Shapes are most useful as receiver types in &lt;code&gt;def:&lt;/code&gt;, &lt;code&gt;defcase:&lt;/code&gt;, and &lt;code&gt;defmodule:&lt;/code&gt;. All records with a matching shape will respond to the defined message:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 Person = Shapes.make(name:, age:)
@@ -824,7 +1576,7 @@ bob = bob.birthday
 
 bob.age   # =&gt; 45
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Shapes in Dispatch&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;shapes-in-dispatch&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Shapes in Dispatch&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;shapes-in-dispatch&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#shapes-in-dispatch&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;When Gab resolves a message send, the shape is checked as the &lt;strong&gt;super type&lt;/strong&gt; before the record&amp;rsquo;s base type (&lt;code&gt;gab\record&lt;/code&gt;). This means shape-specialised messages take precedence over general record behaviour:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 z: .def (Shapes.make(x:), &#39;shape case&#39;)
@@ -833,7 +1585,7 @@ z: .def &#39;general case&#39;
 { x: 1 }.z   # =&gt; &#39;shape case&#39;   (shape wins over general)
 { y: 1 }.z   # =&gt; &#39;general case&#39;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;See &lt;a href=&#34;/docs/types/messages#dispatch-resolution-order&#34; &gt;Messages — Dispatch Resolution Order&lt;/a&gt; for the full sequence.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;/docs/basic_types/messages/#dispatch-resolution-order&#34;&gt;Messages — Dispatch Resolution Order&lt;/a&gt; for the full sequence.&lt;/p&gt;
 
       </description>
     </item>
@@ -853,9 +1605,9 @@ square = (x) =&gt; x * x
 square.(4)   # =&gt; 16
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Every block has an implicit &lt;code&gt;self&lt;/code&gt; binding. When a block is used as a message specialization via &lt;code&gt;def:&lt;/code&gt;, &lt;code&gt;self&lt;/code&gt; refers to the value that received the message. When called directly, &lt;code&gt;self&lt;/code&gt; refers to the block itself.&lt;/p&gt;
-&lt;h2&gt;Variadic Bindings&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;variadic-bindings&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Variadic Bindings&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;variadic-bindings&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#variadic-bindings&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are two kinds of variadic binding, distinguished by whether the collected arguments are treated as a list or as a record.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;*&lt;/code&gt; — list binding&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;--list-binding&#34;&gt;&lt;/span&gt;
+&lt;h3&gt;&lt;code&gt;*&lt;/code&gt; — list binding&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;--list-binding&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#--list-binding&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A &lt;code&gt;*&lt;/code&gt; suffix on a binding name collects a run of positional arguments into a list. Its position in the binding list determines which arguments it absorbs — the other bindings around it claim their arguments first, and &lt;code&gt;*&lt;/code&gt; takes the rest:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 first_and_rest = (first, rest*) =&gt; do
@@ -885,7 +1637,7 @@ args*   # =&gt; (1, 2, 3)
 forward_all = (args*) =&gt; args*
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This is how &lt;code&gt;and:&lt;/code&gt; is implemented for &lt;code&gt;true:&lt;/code&gt; in the core library — it simply returns all its arguments as-is.&lt;/p&gt;
-&lt;h3&gt;&lt;code&gt;**&lt;/code&gt; — record binding&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;--record-binding&#34;&gt;&lt;/span&gt;
+&lt;h3&gt;&lt;code&gt;**&lt;/code&gt; — record binding&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;--record-binding&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#--record-binding&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A &lt;code&gt;**&lt;/code&gt; suffix collects a run of positional arguments and interprets them as &lt;strong&gt;alternating keys and values&lt;/strong&gt;, constructing a record. Like &lt;code&gt;*&lt;/code&gt;, it is positionally aware and can appear anywhere in the binding list:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (first, kwargs**, last) = (1, name: &#39;bob&#39;, age: 44, 99)
@@ -897,7 +1649,7 @@ forward_all = (args*) =&gt; args*
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 { a: &#39;b&#39;, c: &#39;d&#39; } **   # =&gt; (a: &#39;b&#39;, c: &#39;d&#39;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;Keyword-style APIs&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;keyword-style-apis&#34;&gt;&lt;/span&gt;
+&lt;h3&gt;Keyword-style APIs&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;keyword-style-apis&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#keyword-style-apis&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The &lt;code&gt;**&lt;/code&gt; binding is what makes keyword-argument-style APIs possible in Gab. At the call site, you write alternating message keys and values as positional arguments:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 MyType.some_api(positional, argument, flag: true:)
@@ -911,7 +1663,7 @@ some_api: .def (MyType, (positional, argument, kwargs**) =&gt; do
 end)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;There are no keyword arguments in Gab — only positional ones. The record is constructed from the raw argument sequence by the &lt;code&gt;**&lt;/code&gt; binding. This means you can place a &lt;code&gt;**&lt;/code&gt; binding anywhere, not just at the end, and it will absorb whichever positional arguments fall to it.&lt;/p&gt;
-&lt;h2&gt;Tuples and Multiple Return Values&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;tuples-and-multiple-return-values&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Tuples and Multiple Return Values&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tuples-and-multiple-return-values&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#tuples-and-multiple-return-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks return multiple values using a tuple expression — parentheses containing two or more values:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (ok: file.read)     # Two-value tuple
@@ -927,7 +1679,7 @@ end)
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (status, file) = IO.File.make(&#39;data.csv&#39;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2&gt;Tuple Forwarding in Chains&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;tuple-forwarding-in-chains&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Tuple Forwarding in Chains&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tuple-forwarding-in-chains&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#tuple-forwarding-in-chains&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;When a message is chained after a call that returns multiple values, Gab forwards the entire tuple into the next send: the first value becomes the receiver, the rest become arguments.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 IO.File.make(&#39;data.csv&#39;).then(file =&gt; file.read.println)
@@ -938,7 +1690,7 @@ IO.File.make(&#39;data.csv&#39;).then(file =&gt; file.read.println)
 status.then(() =&gt; file.read.println)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This allows the result of a multi-value return to be routed directly into a &lt;code&gt;defcase&lt;/code&gt;-style dispatch without any intermediate binding.&lt;/p&gt;
-&lt;h2&gt;The &lt;code&gt;unwrap:&lt;/code&gt; Pattern&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;the-unwrap-pattern&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;The &lt;code&gt;unwrap:&lt;/code&gt; Pattern&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-unwrap-pattern&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#the-unwrap-pattern&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A common use of tuple forwarding is &lt;code&gt;unwrap:&lt;/code&gt;, which either returns the result value or panics with the error:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 unwrap: .defcase {
@@ -962,8 +1714,8 @@ file = IO.File.make(&#39;data.csv&#39;).unwrap
       <description>
         
         
-        &lt;p&gt;For a conceptual introduction to fibers and channels, see &lt;a href=&#34;/docs/tour/fibers-and-channels&#34; &gt;the Language Tour&lt;/a&gt;. This page covers the specifics.&lt;/p&gt;
-&lt;h2&gt;&lt;code&gt;gab\fiber&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;gabfiber&#34;&gt;&lt;/span&gt;
+        &lt;p&gt;For a conceptual introduction to fibers and channels, see &lt;a href=&#34;/docs/tour/fibers-and-channels&#34;&gt;the Language Tour&lt;/a&gt;. This page covers the specifics.&lt;/p&gt;
+&lt;h2&gt;&lt;code&gt;gab\fiber&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;gabfiber&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#gabfiber&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Fibers are created with &lt;code&gt;Fibers.make:&lt;/code&gt;, which takes a block and immediately queues it for execution. The fiber may run on any OS thread managed by Gab&amp;rsquo;s runtime.&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 Fibers.make () =&gt; do
@@ -972,7 +1724,7 @@ end
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Because all Gab values are immutable, a block passed to a fiber can safely capture any variables from its enclosing scope — no copying or synchronisation is required.&lt;/p&gt;
 &lt;p&gt;The only way for two fibers to exchange values at runtime is through a channel.&lt;/p&gt;
-&lt;h2&gt;&lt;code&gt;gab\channel&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;gabchannel&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;&lt;code&gt;gab\channel&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;gabchannel&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#gabchannel&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Channels are created with &lt;code&gt;Channels.make&lt;/code&gt;:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 ch = Channels.make
@@ -991,7 +1743,7 @@ value = ch &gt;!
   &lt;p&gt;Even &lt;code&gt;&amp;lt;!&lt;/code&gt; must block until a receiver arrives. Because &lt;code&gt;gab\channel&lt;/code&gt; is immutable, it cannot hold a reference to a queued value — every value must be handed directly from sender to receiver.&lt;/p&gt;
 
 &lt;/blockquote&gt;
-&lt;h2&gt;Buffered Channels&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;buffered-channels&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Buffered Channels&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;buffered-channels&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#buffered-channels&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Gab&amp;rsquo;s channels are unbuffered — every send blocks until a receiver is ready. &lt;code&gt;Channels.buffered&lt;/code&gt; provides N-slot buffering by spawning N slot fibers that each hold one value in transit between an input and output channel:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 buffered: .def (Channels, (n) =&gt; do
@@ -1012,13 +1764,13 @@ end)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The sender writes to &lt;code&gt;input&lt;/code&gt; and can race N values ahead before blocking. The consumer reads from &lt;code&gt;output&lt;/code&gt;. The N slot fibers sit between them, each capable of holding one value in flight.&lt;/p&gt;
 &lt;p&gt;A relay chain — one fiber forwarding to the next — does not work: when fiber 1 blocks on its forward, fiber 0 also blocks, jamming the chain after a single value. Independent slot fibers sharing two channels are what produces genuine N-slot buffering.&lt;/p&gt;
-&lt;h2&gt;&lt;code&gt;each:&lt;/code&gt;&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;each&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;&lt;code&gt;each:&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;each&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#each&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;each:&lt;/code&gt; reads values from a channel in a loop, calling a block for each one:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 ch.each (msg) =&gt; msg.println
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;each:&lt;/code&gt; blocks until the channel is closed.&lt;/p&gt;
-&lt;h2&gt;Operator Precedence Note&lt;span class=&#34;hx-absolute -hx-mt-20&#34; id=&#34;operator-precedence-note&#34;&gt;&lt;/span&gt;
+&lt;h2&gt;Operator Precedence Note&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;operator-precedence-note&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#operator-precedence-note&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;&amp;lt;!&lt;/code&gt; and &lt;code&gt;&amp;gt;!&lt;/code&gt; are operator sends. The &lt;code&gt;.&lt;/code&gt; prefix is optional but changes precedence — named sends (&lt;code&gt;.name&lt;/code&gt;) bind tighter than bare operators:&lt;/p&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 ch &lt;! value       # operator form

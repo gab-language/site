@@ -4,11 +4,15 @@
   <url>
     <loc>/docs/intro/</loc>
   </url><url>
+    <loc>/docs/examples/kv_store/</loc>
+  </url><url>
     <loc>/docs/tour/</loc>
   </url><url>
     <loc>/docs/tour/messages/</loc>
   </url><url>
     <loc>/docs/basic_types/arithmetic/</loc>
+  </url><url>
+    <loc>/docs/examples/networked_kv_store/</loc>
   </url><url>
     <loc>/docs/tour/records_and_shapes/</loc>
   </url><url>
@@ -18,12 +22,13 @@
   </url><url>
     <loc>/docs/basic_types/messages/</loc>
   </url><url>
+    <loc>/docs/examples/pubsub/</loc>
+  </url><url>
     <loc>/docs/basic_types/records/</loc>
   </url><url>
     <loc>/docs/basic_types/</loc>
   </url><url>
-    <loc>/docs/recursion/</loc>
-    <lastmod>2025-03-10T12:13:08-04:00</lastmod>
+    <loc>/docs/examples/</loc>
   </url><url>
     <loc>/docs/tour/fibers_and_channels/</loc>
   </url><url>

@@ -24,6 +24,3 @@ weight = 3
 name = "GitHub"
 weight = 4
 url = "https://github.com/gab-language/cgab"
-
-  [menu.main.params]
-  icon = "github"
