@@ -1,6 +1,5 @@
 ---
 title: Gab
-toc: false
 ---
 
 > [intransitive verb] — to talk in a rapid or thoughtless manner

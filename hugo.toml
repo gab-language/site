@@ -24,3 +24,6 @@ weight = 3
 name = "GitHub"
 weight = 4
 url = "https://github.com/gab-language/cgab"
+
+[params.page.contextMenu]
+enable = true

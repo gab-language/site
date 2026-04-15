@@ -58,7 +58,33 @@
     <loc>/docs/</loc>
     <lastmod>2025-03-10T07:07:42-04:00</lastmod>
   </url><url>
+    <loc>/docs/modules/channel/</loc>
+  </url><url>
+    <loc>/docs/modules/fiber/</loc>
+  </url><url>
+    <loc>/docs/modules/file/</loc>
+  </url><url>
+    <loc>/docs/modules/number/</loc>
+  </url><url>
+    <loc>/docs/modules/record/</loc>
+  </url><url>
+    <loc>/docs/modules/socket/</loc>
+  </url><url>
+    <loc>/docs/modules/string/</loc>
+  </url><url>
+    <loc>/docs/protocols/reduceable/</loc>
+  </url><url>
+    <loc>/docs/protocols/seqable/</loc>
+  </url><url>
+    <loc>/docs/protocols/streamable/</loc>
+  </url><url>
+    <loc>/docs/protocols/transduceable/</loc>
+  </url><url>
     <loc>/categories/</loc>
+  </url><url>
+    <loc>/docs/modules/</loc>
+  </url><url>
+    <loc>/docs/protocols/</loc>
   </url><url>
     <loc>/tags/</loc>
   </url>
