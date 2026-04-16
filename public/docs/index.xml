@@ -1,10 +1,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gab – Docs</title>
+    <title>Gab – </title>
     <link>/docs/</link>
-    <description>Recent content in Docs on Gab</description>
+    <description>Recent content on Gab</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <lastBuildDate>Mon, 10 Mar 2025 07:07:42 -0400</lastBuildDate>
     
 	  <atom:link href="/docs/index.xml" rel="self" type="application/rss+xml" />
@@ -17,10 +17,10 @@
     
     <item>
       <title>Key-Value Store</title>
-      <link>/docs/examples/kv_store/</link>
+      <link>/docs/gabonomicon/examples/kv_store/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/kv_store/</guid>
+      <guid>/docs/gabonomicon/examples/kv_store/</guid>
       <description>
         
         
@@ -244,10 +244,10 @@ Store
     
     <item>
       <title>Messages</title>
-      <link>/docs/tour/messages/</link>
+      <link>/docs/gabonomicon/tour/messages/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/tour/messages/</guid>
+      <guid>/docs/gabonomicon/tour/messages/</guid>
       <description>
         
         
@@ -339,10 +339,10 @@ age = 20
     
     <item>
       <title>Numbers</title>
-      <link>/docs/basic_types/arithmetic/</link>
+      <link>/docs/gabonomicon/basic_types/arithmetic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/basic_types/arithmetic/</guid>
+      <guid>/docs/gabonomicon/basic_types/arithmetic/</guid>
       <description>
         
         
@@ -412,14 +412,14 @@ age = 20
     
     <item>
       <title>Networked Key-Value Store</title>
-      <link>/docs/examples/networked_kv_store/</link>
+      <link>/docs/gabonomicon/examples/networked_kv_store/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/networked_kv_store/</guid>
+      <guid>/docs/gabonomicon/examples/networked_kv_store/</guid>
       <description>
         
         
-        &lt;p&gt;This example extends the &lt;a href=&#34;/docs/examples/kv_store/&#34;&gt;in-memory key-value store&lt;/a&gt; with a TCP server. Clients connect and send text commands; the server parses each line, dispatches it to the store actor, and writes a response.&lt;/p&gt;
+        &lt;p&gt;This example extends the &lt;a href=&#34;/docs/examples/kv_store&#34;&gt;in-memory key-value store&lt;/a&gt; with a TCP server. Clients connect and send text commands; the server parses each line, dispatches it to the store actor, and writes a response.&lt;/p&gt;
 &lt;h2&gt;The Protocol&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-protocol&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#the-protocol&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Each request is a single newline-terminated line. Each response is a single newline-terminated line.&lt;/p&gt;
 &lt;table&gt;
@@ -708,10 +708,10 @@ server.await
     
     <item>
       <title>Records &amp; Shapes</title>
-      <link>/docs/tour/records_and_shapes/</link>
+      <link>/docs/gabonomicon/tour/records_and_shapes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/tour/records_and_shapes/</guid>
+      <guid>/docs/gabonomicon/tour/records_and_shapes/</guid>
       <description>
         
         
@@ -822,10 +822,10 @@ c.area
     
     <item>
       <title>Strings &amp; Binaries</title>
-      <link>/docs/basic_types/strings/</link>
+      <link>/docs/gabonomicon/basic_types/strings/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/basic_types/strings/</guid>
+      <guid>/docs/gabonomicon/basic_types/strings/</guid>
       <description>
         
         
@@ -890,10 +890,10 @@ true:.to\s    # =&gt; &#39;true&#39;  (no allocation)
     
     <item>
       <title>Blocks</title>
-      <link>/docs/tour/blocks/</link>
+      <link>/docs/gabonomicon/tour/blocks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/tour/blocks/</guid>
+      <guid>/docs/gabonomicon/tour/blocks/</guid>
       <description>
         
         
@@ -981,7 +981,7 @@ IO.File.make(self).my_message
 (status, file) = IO.File.make(self)
 status.my_message(file)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The first return value becomes the receiver; subsequent return values become arguments. This is why the error-handling pattern in Gab is so fluid — &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; can each respond differently to the same chained message, routing the remaining values accordingly. You&amp;rsquo;ll see this in detail in &lt;a href=&#34;/docs/tour/error_handling/&#34;&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The first return value becomes the receiver; subsequent return values become arguments. This is why the error-handling pattern in Gab is so fluid — &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; can each respond differently to the same chained message, routing the remaining values accordingly. You&amp;rsquo;ll see this in detail in &lt;a href=&#34;/docs/tour/error_handling&#34;&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Closures&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;closures&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#closures&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks close over their surrounding scope. Any name visible where the block is defined is accessible inside it:&lt;/p&gt;
 
@@ -997,17 +997,17 @@ greet.(&#39;world&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The block captures &lt;code&gt;prefix&lt;/code&gt; at the time it is defined. If you rebind &lt;code&gt;prefix&lt;/code&gt; later, the block still holds onto the original value — Gab&amp;rsquo;s immutability makes this safe and predictable.&lt;/p&gt;
 &lt;h2&gt;Blocks and Fibers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;blocks-and-fibers&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#blocks-and-fibers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs concurrently in its own lightweight thread of execution. See &lt;a href=&#34;/docs/tour/fibers_and_channels/&#34;&gt;Fibers &amp;amp; Channels&lt;/a&gt; for the full picture.&lt;/p&gt;
+    &lt;a href=&#34;#blocks-and-fibers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs concurrently in its own lightweight thread of execution. See &lt;a href=&#34;/docs/tour/fibers_and_channels&#34;&gt;Fibers &amp;amp; Channels&lt;/a&gt; for the full picture.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Messages</title>
-      <link>/docs/basic_types/messages/</link>
+      <link>/docs/gabonomicon/basic_types/messages/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/basic_types/messages/</guid>
+      <guid>/docs/gabonomicon/basic_types/messages/</guid>
       <description>
         
         
@@ -1105,10 +1105,10 @@ true: .else  () =&gt; &#39;no&#39;.println    # (block is never called)
     
     <item>
       <title>Pub/Sub Broker</title>
-      <link>/docs/examples/pubsub/</link>
+      <link>/docs/gabonomicon/examples/pubsub/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/pubsub/</guid>
+      <guid>/docs/gabonomicon/examples/pubsub/</guid>
       <description>
         
         
@@ -1351,10 +1351,10 @@ A slow or unresponsive subscriber cannot stall the broker or delay others.&lt;/p
     
     <item>
       <title>Records</title>
-      <link>/docs/basic_types/records/</link>
+      <link>/docs/gabonomicon/basic_types/records/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/basic_types/records/</guid>
+      <guid>/docs/gabonomicon/basic_types/records/</guid>
       <description>
         
         
@@ -1417,10 +1417,10 @@ a_list = a_list.put(name: &#39;bob&#39;)
     
     <item>
       <title>Fibers &amp; Channels</title>
-      <link>/docs/tour/fibers_and_channels/</link>
+      <link>/docs/gabonomicon/tour/fibers_and_channels/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/tour/fibers_and_channels/</guid>
+      <guid>/docs/gabonomicon/tour/fibers_and_channels/</guid>
       <description>
         
         
@@ -1558,10 +1558,10 @@ counter.deref         # =&gt; 100
     
     <item>
       <title>Error Handling</title>
-      <link>/docs/tour/error_handling/</link>
+      <link>/docs/gabonomicon/tour/error_handling/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/tour/error_handling/</guid>
+      <guid>/docs/gabonomicon/tour/error_handling/</guid>
       <description>
         
         
@@ -1614,10 +1614,10 @@ end)
     
     <item>
       <title>Shapes</title>
-      <link>/docs/basic_types/shapes/</link>
+      <link>/docs/gabonomicon/basic_types/shapes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/basic_types/shapes/</guid>
+      <guid>/docs/gabonomicon/basic_types/shapes/</guid>
       <description>
         
         
@@ -1677,17 +1677,17 @@ z: .def &#39;general case&#39;
 { x: 1 }.z   # =&gt; &#39;shape case&#39;   (shape wins over general)
 { y: 1 }.z   # =&gt; &#39;general case&#39;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;See &lt;a href=&#34;/docs/basic_types/messages/#dispatch-resolution-order&#34;&gt;Messages — Dispatch Resolution Order&lt;/a&gt; for the full sequence.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;/docs/basic_types/messages#dispatch-resolution-order&#34;&gt;Messages — Dispatch Resolution Order&lt;/a&gt; for the full sequence.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Blocks</title>
-      <link>/docs/basic_types/blocks/</link>
+      <link>/docs/gabonomicon/basic_types/blocks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/basic_types/blocks/</guid>
+      <guid>/docs/gabonomicon/basic_types/blocks/</guid>
       <description>
         
         
@@ -1814,10 +1814,10 @@ file = IO.File.make(&#39;data.csv&#39;).unwrap
     
     <item>
       <title>Fibers &amp; Channels</title>
-      <link>/docs/basic_types/fibers/</link>
+      <link>/docs/gabonomicon/basic_types/fibers/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/basic_types/fibers/</guid>
+      <guid>/docs/gabonomicon/basic_types/fibers/</guid>
       <description>
         
         

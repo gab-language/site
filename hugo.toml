@@ -1,29 +1,46 @@
-languageCode = 'en-us'
-title = 'Gab'
 theme = 'hextra'
 enableEmoji = true
 
 [[menu.main]]
-name = "Documentation"
-pageRef = "/docs"
+name = "News"
+pageRef = "/blog"
 weight = 1
 
 [[menu.main]]
-name = "Blog"
-pageRef = "/blog"
+name = "Docs"
+pageRef = "/docs/modules"
 weight = 2
 
 [[menu.main]]
-name = "Search"
+name = "Gabonomicon"
+pageRef = "/docs"
 weight = 3
 
-  [menu.main.params]
-  type = "search"
+[[menu.main]]
+name = "Search"
+weight = 4
+
+[menu.main.params]
+type = "search"
 
 [[menu.main]]
 name = "GitHub"
-weight = 4
+weight = 5
 url = "https://github.com/gab-language/cgab"
+
+[[menu.main]]
+name = "Install"
+pageRef = "/docs/intro"
+weight = 6
 
 [params.page.contextMenu]
 enable = true
+
+[languages.en]
+languageName = "English"
+weight = 1
+title = "Gab"
+
+[navbar]
+displayTitle = true
+width = "wide"

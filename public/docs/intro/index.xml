@@ -1,10 +1,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gab – Introduction</title>
+    <title>Gab – Installation</title>
     <link>/docs/intro/</link>
-    <description>Recent content in Introduction on Gab</description>
+    <description>Recent content in Installation on Gab</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     
 	  <atom:link href="/docs/intro/index.xml" rel="self" type="application/rss+xml" />
     

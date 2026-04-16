@@ -8,12 +8,12 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>Docs – Gab</title>
-  <meta name="description" content="👋 Hello!Welcome to Gab’s documentation. Here, we’ll take you on a tour of the language and its features. If we’ve done our job, reading through the introduction should take less than an hour.
-For more of a technical and in-depth exploration of cgab itself the official Gab compiler and runtime, check out the blog.
-While the language is relatively stable, Gab’s runtime and libraries are still under construction. Expect bugs and the occasional api change as things settle down. I wouldn’t consider Gab production-ready just yet. Additionally, documentation and developer tooling are works-in-progress. The language may be hard to use until these become more mature." /><link rel="canonical" href="/docs/" itemprop="url" />
+<title>Gab</title>
+  <meta name="description" content="OverviewWelcome to Gab’s documentation! Here you will find a brief overview of each of the sections available to you.
+The Gabonomicon The canonical gab handbook. Everything you need to get off the ground and writing Gab lives in this section.
+Modules This section contains specifications for the modules that come with Gab - specifically, all the modules in the gab-language/cgab package. Such packages include Numbers, Strings, and Io. These pages are generated from Specs, which is itself a builtin module for defining message contracts." /><link rel="canonical" href="/docs/" itemprop="url" />
 
-<meta property="og:title" content="Docs">
+<meta property="og:title" content="">
 <meta
   property="og:description"
   content="
@@ -29,18 +29,18 @@ While the language is relatively stable, Gab’s runtime and libraries are still
 <meta property="og:url" content="/docs/">
 
 
-  <meta itemprop="name" content="Docs">
-  <meta itemprop="description" content="👋 Hello!Welcome to Gab’s documentation. Here, we’ll take you on a tour of the language and its features. If we’ve done our job, reading through the introduction should take less than an hour.
-For more of a technical and in-depth exploration of cgab itself the official Gab compiler and runtime, check out the blog.
-While the language is relatively stable, Gab’s runtime and libraries are still under construction. Expect bugs and the occasional api change as things settle down. I wouldn’t consider Gab production-ready just yet. Additionally, documentation and developer tooling are works-in-progress. The language may be hard to use until these become more mature.">
+  <meta itemprop="name" content="Gab">
+  <meta itemprop="description" content="OverviewWelcome to Gab’s documentation! Here you will find a brief overview of each of the sections available to you.
+The Gabonomicon The canonical gab handbook. Everything you need to get off the ground and writing Gab lives in this section.
+Modules This section contains specifications for the modules that come with Gab - specifically, all the modules in the gab-language/cgab package. Such packages include Numbers, Strings, and Io. These pages are generated from Specs, which is itself a builtin module for defining message contracts.">
   <meta itemprop="datePublished" content="2025-03-10T07:07:42-04:00">
   <meta itemprop="dateModified" content="2025-03-10T07:07:42-04:00">
-  <meta itemprop="wordCount" content="652">
+  <meta itemprop="wordCount" content="113">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Docs">
-  <meta name="twitter:description" content="👋 Hello!Welcome to Gab’s documentation. Here, we’ll take you on a tour of the language and its features. If we’ve done our job, reading through the introduction should take less than an hour.
-For more of a technical and in-depth exploration of cgab itself the official Gab compiler and runtime, check out the blog.
-While the language is relatively stable, Gab’s runtime and libraries are still under construction. Expect bugs and the occasional api change as things settle down. I wouldn’t consider Gab production-ready just yet. Additionally, documentation and developer tooling are works-in-progress. The language may be hard to use until these become more mature.">
+  <meta name="twitter:title" content="Gab">
+  <meta name="twitter:description" content="OverviewWelcome to Gab’s documentation! Here you will find a brief overview of each of the sections available to you.
+The Gabonomicon The canonical gab handbook. Everything you need to get off the ground and writing Gab lives in this section.
+Modules This section contains specifications for the modules that come with Gab - specifically, all the modules in the gab-language/cgab package. Such packages include Numbers, Strings, and Io. These pages are generated from Specs, which is itself a builtin module for defining message contracts.">
 
     <link rel="preload" href="/css/compiled/main.min.1a431501cdeb52323c920e7761f7d9e327b2bee53160196c4bd1d34a3fd9fbc9.css" as="style" integrity="sha256-GkMVAc3rUjI8kg53YffZ4yeyvuUxYBlsS9HTSj/Z&#43;8k=" />
     <link href="/css/compiled/main.min.1a431501cdeb52323c920e7761f7d9e327b2bee53160196c4bd1d34a3fd9fbc9.css" rel="stylesheet" integrity="sha256-GkMVAc3rUjI8kg53YffZ4yeyvuUxYBlsS9HTSj/Z&#43;8k=" />
@@ -71,16 +71,22 @@ While the language is relatively stable, Gab’s runtime and libraries are still
 </a>
 <a
   title=""
-  href="/docs"
-  
-  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:font-medium"
-><span class="hx:text-center">Documentation</span>
-</a><a
-  title=""
   href="/blog"
   
   class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
-><span class="hx:text-center">Blog</span>
+><span class="hx:text-center">News</span>
+</a><a
+  title=""
+  href="/docs/modules"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Docs</span>
+</a><a
+  title=""
+  href="/docs"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:font-medium"
+><span class="hx:text-center">Gabonomicon</span>
 </a><div class="hextra-search-wrapper hx:relative hx:md:w-64">
   <div class="hx:relative hx:flex hx:items-center hx:text-gray-900 hx:contrast-more:text-gray-800 hx:dark:text-gray-300 hx:contrast-more:dark:text-gray-300">
     <input
@@ -114,6 +120,12 @@ While the language is relatively stable, Gab’s runtime and libraries are still
   target="_blank" rel="noreferrer"
   class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
 ><span class="hx:text-center">GitHub</span>
+</a><a
+  title=""
+  href="/docs/intro"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Install</span>
 </a><button type="button" aria-label="Menu" aria-expanded="false" class="hextra-hamburger-menu hx:cursor-pointer hx:-mr-2 hx:rounded-sm hx:p-2 hx:active:bg-gray-400/20 hx:md:hidden hx:hextra-focus-visible-inset"><svg height=24 fill="none" viewBox="0 0 24 24" stroke="currentColor"><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8H20"></path></g><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16H20"></path></g></svg></button>
   </nav>
 </div>
@@ -153,6 +165,154 @@ While the language is relatively stable, Gab’s runtime and libraries are still
     <ul class="hx:flex hx:flex-col hx:gap-1 hx:md:hidden">
       
       
+          <li class=""><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/blog/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">News</span>
+    </a>
+      <button type="button" class="hextra-sidebar-collapsible-button hx:absolute hx:top-1/2 hx:-translate-y-1/2 hx:ltr:right-2 hx:rtl:left-2 hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:group-data-[active=true]:text-primary-800 hx:group-data-[active=true]:dark:text-primary-600 hx:hextra-focus-visible-inset" aria-label="Toggle section" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></button>
+  </div><div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
+        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/blog/build/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Build</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/blog/io/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">IO</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/blog/values/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Value Representation</span>
+    </a>
+  </div>
+              
+            </li></ul>
+      </div></li>
+          <li class=""><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/modules/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Docs</span>
+    </a>
+      <button type="button" class="hextra-sidebar-collapsible-button hx:absolute hx:top-1/2 hx:-translate-y-1/2 hx:ltr:right-2 hx:rtl:left-2 hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:group-data-[active=true]:text-primary-800 hx:group-data-[active=true]:dark:text-primary-600 hx:hextra-focus-visible-inset" aria-label="Toggle section" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></button>
+  </div><div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
+        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/modules/channel/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Channel</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/modules/fiber/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Fiber</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/modules/file/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">File</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/modules/number/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Number</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/modules/record/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Record</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/modules/socket/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Socket</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/modules/string/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">String</span>
+    </a>
+  </div>
+              
+            </li></ul>
+      </div></li>
           <li class="open"><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="true">
     <a
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
@@ -161,58 +321,16 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       href="/docs/"
       
     >
-      <span class="hx:min-w-0 [word-break:break-word]">Documentation</span>
+      <span class="hx:min-w-0 [word-break:break-word]">Gabonomicon</span>
     </a>
       <button type="button" class="hextra-sidebar-collapsible-button hx:absolute hx:top-1/2 hx:-translate-y-1/2 hx:ltr:right-2 hx:rtl:left-2 hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:group-data-[active=true]:text-primary-800 hx:group-data-[active=true]:dark:text-primary-600 hx:hextra-focus-visible-inset" aria-label="Toggle section" aria-expanded="true"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></button>
   </div>
   
     <ul class='hx:flex hx:flex-col hx:gap-1 hx:relative hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:dark:before:bg-neutral-800 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:pr-3 hx:rtl:before:right-0 hx:ltr:ml-3 hx:rtl:mr-3'><li>
               <a
-                href="#your-first-gab-program"
+                href="#"
                 class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >Your First Gab Program</a>
-            </li>
-          <li>
-              <a
-                href="#2-using-the-repl"
-                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >2. Using the REPL</a>
-            </li>
-          <li>
-              <a
-                href="#3-messages-everywhere"
-                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >3. Messages Everywhere</a>
-            </li>
-          <li>
-              <a
-                href="#4-imports-and-modules"
-                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >4. Imports and Modules</a>
-            </li>
-          <li>
-              <a
-                href="#5-immutability-by-default"
-                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >5. Immutability by Default</a>
-            </li>
-          <li>
-              <a
-                href="#6-fibers-lightweight-concurrency"
-                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >6. Fibers: Lightweight Concurrency</a>
-            </li>
-          <li>
-              <a
-                href="#7-channels-communicating-between-fibers"
-                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >7. Channels: Communicating Between Fibers</a>
-            </li>
-          <li>
-              <a
-                href="#8-putting-it-all-together"
-                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >8. Putting It All Together</a>
+              ></a>
             </li>
           </ul>
   <div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
@@ -221,10 +339,10 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/intro/"
+      href="/docs/installation/"
       
     >
-      <span class="hx:min-w-0 [word-break:break-word]">Introduction</span>
+      <span class="hx:min-w-0 [word-break:break-word]">Installation</span>
     </a>
   </div>
               
@@ -233,7 +351,20 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/"
+      href="/docs/gabonomicon/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Gabonomicon</span>
+    </a>
+      <button type="button" class="hextra-sidebar-collapsible-button hx:absolute hx:top-1/2 hx:-translate-y-1/2 hx:ltr:right-2 hx:rtl:left-2 hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:group-data-[active=true]:text-primary-800 hx:group-data-[active=true]:dark:text-primary-600 hx:hextra-focus-visible-inset" aria-label="Toggle section" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></button>
+  </div>
+              <div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
+        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/gabonomicon/tour/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Language Tour</span>
@@ -246,7 +377,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/messages/"
+      href="/docs/gabonomicon/tour/messages/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Messages</span>
@@ -258,7 +389,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/records_and_shapes/"
+      href="/docs/gabonomicon/tour/records_and_shapes/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Records &amp; Shapes</span>
@@ -270,7 +401,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/blocks/"
+      href="/docs/gabonomicon/tour/blocks/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Blocks</span>
@@ -282,7 +413,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/fibers_and_channels/"
+      href="/docs/gabonomicon/tour/fibers_and_channels/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Fibers &amp; Channels</span>
@@ -294,7 +425,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/error_handling/"
+      href="/docs/gabonomicon/tour/error_handling/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Error Handling</span>
@@ -308,7 +439,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/"
+      href="/docs/gabonomicon/basic_types/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Types</span>
@@ -321,7 +452,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/arithmetic/"
+      href="/docs/gabonomicon/basic_types/arithmetic/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Numbers</span>
@@ -333,7 +464,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/strings/"
+      href="/docs/gabonomicon/basic_types/strings/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Strings &amp; Binaries</span>
@@ -345,7 +476,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/messages/"
+      href="/docs/gabonomicon/basic_types/messages/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Messages</span>
@@ -357,7 +488,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/records/"
+      href="/docs/gabonomicon/basic_types/records/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Records</span>
@@ -369,7 +500,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/shapes/"
+      href="/docs/gabonomicon/basic_types/shapes/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Shapes</span>
@@ -381,7 +512,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/blocks/"
+      href="/docs/gabonomicon/basic_types/blocks/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Blocks</span>
@@ -393,7 +524,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/fibers/"
+      href="/docs/gabonomicon/basic_types/fibers/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Fibers &amp; Channels</span>
@@ -407,7 +538,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/examples/"
+      href="/docs/gabonomicon/examples/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Examples</span>
@@ -420,7 +551,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/examples/kv_store/"
+      href="/docs/gabonomicon/examples/kv_store/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Key-Value Store</span>
@@ -432,7 +563,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/examples/networked_kv_store/"
+      href="/docs/gabonomicon/examples/networked_kv_store/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Networked Key-Value Store</span>
@@ -444,13 +575,15 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/examples/pubsub/"
+      href="/docs/gabonomicon/examples/pubsub/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Pub/Sub Broker</span>
     </a>
   </div>
               
+            </li></ul>
+      </div>
             </li></ul>
       </div>
             </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
@@ -617,56 +750,6 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       </div>
             </li></ul>
       </div></li>
-          <li class=""><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
-    <a
-      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
-      hx:hextra-focus-visible-inset
-        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/blog/"
-      
-    >
-      <span class="hx:min-w-0 [word-break:break-word]">Blog</span>
-    </a>
-      <button type="button" class="hextra-sidebar-collapsible-button hx:absolute hx:top-1/2 hx:-translate-y-1/2 hx:ltr:right-2 hx:rtl:left-2 hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:group-data-[active=true]:text-primary-800 hx:group-data-[active=true]:dark:text-primary-600 hx:hextra-focus-visible-inset" aria-label="Toggle section" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></button>
-  </div><div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
-        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
-    <a
-      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
-      hx:hextra-focus-visible-inset
-        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/blog/build/"
-      
-    >
-      <span class="hx:min-w-0 [word-break:break-word]">Build</span>
-    </a>
-  </div>
-              
-            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
-    <a
-      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
-      hx:hextra-focus-visible-inset
-        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/blog/io/"
-      
-    >
-      <span class="hx:min-w-0 [word-break:break-word]">IO</span>
-    </a>
-  </div>
-              
-            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
-    <a
-      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
-      hx:hextra-focus-visible-inset
-        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/blog/values/"
-      
-    >
-      <span class="hx:min-w-0 [word-break:break-word]">Value Representation</span>
-    </a>
-  </div>
-              
-            </li></ul>
-      </div></li>
     </ul>
 
     <ul class="hx:flex hx:flex-col hx:gap-1 hx:max-md:hidden">
@@ -676,10 +759,10 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/intro/"
+      href="/docs/installation/"
       
     >
-      <span class="hx:min-w-0 [word-break:break-word]">Introduction</span>
+      <span class="hx:min-w-0 [word-break:break-word]">Installation</span>
     </a>
   </div></li>
           <li class=""><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
@@ -687,19 +770,32 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/"
+      href="/docs/gabonomicon/"
       
     >
-      <span class="hx:min-w-0 [word-break:break-word]">Language Tour</span>
+      <span class="hx:min-w-0 [word-break:break-word]">Gabonomicon</span>
     </a>
       <button type="button" class="hextra-sidebar-collapsible-button hx:absolute hx:top-1/2 hx:-translate-y-1/2 hx:ltr:right-2 hx:rtl:left-2 hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:group-data-[active=true]:text-primary-800 hx:group-data-[active=true]:dark:text-primary-600 hx:hextra-focus-visible-inset" aria-label="Toggle section" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></button>
   </div><div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
         <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
     <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/gabonomicon/tour/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Language Tour</span>
+    </a>
+      <button type="button" class="hextra-sidebar-collapsible-button hx:absolute hx:top-1/2 hx:-translate-y-1/2 hx:ltr:right-2 hx:rtl:left-2 hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:group-data-[active=true]:text-primary-800 hx:group-data-[active=true]:dark:text-primary-600 hx:hextra-focus-visible-inset" aria-label="Toggle section" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></button>
+  </div>
+              <div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
+        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/messages/"
+      href="/docs/gabonomicon/tour/messages/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Messages</span>
@@ -711,7 +807,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/records_and_shapes/"
+      href="/docs/gabonomicon/tour/records_and_shapes/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Records &amp; Shapes</span>
@@ -723,7 +819,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/blocks/"
+      href="/docs/gabonomicon/tour/blocks/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Blocks</span>
@@ -735,7 +831,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/fibers_and_channels/"
+      href="/docs/gabonomicon/tour/fibers_and_channels/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Fibers &amp; Channels</span>
@@ -747,7 +843,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/tour/error_handling/"
+      href="/docs/gabonomicon/tour/error_handling/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Error Handling</span>
@@ -755,25 +851,26 @@ While the language is relatively stable, Gab’s runtime and libraries are still
   </div>
               
             </li></ul>
-      </div></li>
-          <li class=""><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+      </div>
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
     <a
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/"
+      href="/docs/gabonomicon/basic_types/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Types</span>
     </a>
       <button type="button" class="hextra-sidebar-collapsible-button hx:absolute hx:top-1/2 hx:-translate-y-1/2 hx:ltr:right-2 hx:rtl:left-2 hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:group-data-[active=true]:text-primary-800 hx:group-data-[active=true]:dark:text-primary-600 hx:hextra-focus-visible-inset" aria-label="Toggle section" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></button>
-  </div><div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
+  </div>
+              <div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
         <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
     <a
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/arithmetic/"
+      href="/docs/gabonomicon/basic_types/arithmetic/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Numbers</span>
@@ -785,7 +882,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/strings/"
+      href="/docs/gabonomicon/basic_types/strings/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Strings &amp; Binaries</span>
@@ -797,7 +894,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/messages/"
+      href="/docs/gabonomicon/basic_types/messages/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Messages</span>
@@ -809,7 +906,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/records/"
+      href="/docs/gabonomicon/basic_types/records/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Records</span>
@@ -821,7 +918,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/shapes/"
+      href="/docs/gabonomicon/basic_types/shapes/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Shapes</span>
@@ -833,7 +930,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/blocks/"
+      href="/docs/gabonomicon/basic_types/blocks/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Blocks</span>
@@ -845,7 +942,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/basic_types/fibers/"
+      href="/docs/gabonomicon/basic_types/fibers/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Fibers &amp; Channels</span>
@@ -853,25 +950,26 @@ While the language is relatively stable, Gab’s runtime and libraries are still
   </div>
               
             </li></ul>
-      </div></li>
-          <li class=""><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+      </div>
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
     <a
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:ltr:pr-8 hx:rtl:pl-8
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/examples/"
+      href="/docs/gabonomicon/examples/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Examples</span>
     </a>
       <button type="button" class="hextra-sidebar-collapsible-button hx:absolute hx:top-1/2 hx:-translate-y-1/2 hx:ltr:right-2 hx:rtl:left-2 hx:shrink-0 hx:cursor-pointer hx:p-0 hx:text-gray-500 hx:dark:text-neutral-400 hx:group-hover:text-gray-900 hx:dark:group-hover:text-gray-50 hx:group-data-[active=true]:text-primary-800 hx:group-data-[active=true]:dark:text-primary-600 hx:hextra-focus-visible-inset" aria-label="Toggle section" aria-expanded="false"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></button>
-  </div><div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
+  </div>
+              <div class="hextra-sidebar-children hx:ltr:pr-0 hx:rtl:pl-0 hx:overflow-hidden">
         <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
     <a
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/examples/kv_store/"
+      href="/docs/gabonomicon/examples/kv_store/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Key-Value Store</span>
@@ -883,7 +981,7 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/examples/networked_kv_store/"
+      href="/docs/gabonomicon/examples/networked_kv_store/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Networked Key-Value Store</span>
@@ -895,13 +993,15 @@ While the language is relatively stable, Gab’s runtime and libraries are still
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
-      href="/docs/examples/pubsub/"
+      href="/docs/gabonomicon/examples/pubsub/"
       
     >
       <span class="hx:min-w-0 [word-break:break-word]">Pub/Sub Broker</span>
     </a>
   </div>
               
+            </li></ul>
+      </div>
             </li></ul>
       </div></li>
           <li class=""><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
@@ -1137,39 +1237,15 @@ While the language is relatively stable, Gab’s runtime and libraries are still
 <nav class="hextra-toc hx:order-last hx:hidden hx:w-64 hx:shrink-0 hx:xl:block hx:print:hidden hx:px-4" aria-label="Table of contents">
     <div class="hextra-scrollbar hx:sticky hx:top-16 hx:overflow-y-auto hx:pr-4 hx:pt-6 hx:text-sm [hyphens:auto] hx:max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] hx:ltr:-mr-4 hx:rtl:-ml-4"><p class="hx:mb-4 hx:font-semibold hx:tracking-tight">On this page</p><ul>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#your-first-gab-program">Your First Gab Program
+        <a class="hx:ltr:pl-4 hx:rtl:pr-4 hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#the-gabonomicon">The Gabonomicon
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:ltr:pl-4 hx:rtl:pr-4 hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#1-creating-your-first-file">1. Creating Your First File
+        <a class="hx:ltr:pl-4 hx:rtl:pr-4 hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#modules">Modules
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#2-using-the-repl">2. Using the REPL
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#3-messages-everywhere">3. Messages Everywhere
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#4-imports-and-modules">4. Imports and Modules
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#5-immutability-by-default">5. Immutability by Default
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#6-fibers-lightweight-concurrency">6. Fibers: Lightweight Concurrency
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#7-channels-communicating-between-fibers">7. Channels: Communicating Between Fibers
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#8-putting-it-all-together">8. Putting It All Together
+        <a class="hx:ltr:pl-4 hx:rtl:pr-4 hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#protocols">Protocols
         </a>
       </li></ul>
       <div class="hx:mt-8 hx:border-t hx:bg-white hx:pt-8 hx:shadow-[0_-12px_16px_white] hx:dark:bg-dark hx:dark:shadow-[0_-12px_16px_#111] hx:sticky hx:bottom-0 hx:flex hx:flex-col hx:items-start hx:gap-2 hx:pb-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-t hx:contrast-more:border-neutral-400 hx:contrast-more:shadow-none hx:contrast-more:dark:border-neutral-400">
@@ -1191,160 +1267,16 @@ While the language is relatively stable, Gab’s runtime and libraries are still
 
         <div class="content">
           
-          <div class="hx:flex hx:flex-col hx:sm:flex-row hx:items-start hx:sm:items-center hx:sm:justify-between hx:gap-4 hx:mb-4">
-            <h1 class="hx:mb-0">Docs</h1>
-            
-          </div>
-          
-          <h1>&#x1f44b; Hello!</h1><p>Welcome to Gab&rsquo;s documentation. Here, we&rsquo;ll take you on a tour of the language and its features.
-If we&rsquo;ve done our job, reading through the introduction should take less than an hour.</p>
-<p>For more of a technical and in-depth exploration of <code>cgab</code> itself the official Gab compiler and runtime,
-check out the blog.</p>
-<p>While the language is relatively stable, Gab&rsquo;s runtime and libraries are still under construction.
-Expect bugs and the occasional api change as things settle down. I wouldn&rsquo;t consider Gab production-ready just yet.
-Additionally, documentation and developer tooling are works-in-progress. The language may be hard to use until these become more
-mature.</p>
-<h2>Your First Gab Program<span class="hx:absolute hx:-mt-20" id="your-first-gab-program"></span>
-    <a href="#your-first-gab-program" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Welcome! Let&rsquo;s write and run your first Gab program. This short tutorial will show you how to use the Gab runtime, REPL,
-and some of the language’s most important ideas: message sends, immutability, fibers, and channels.</p>
-<h3>1. Creating Your First File<span class="hx:absolute hx:-mt-20" id="1-creating-your-first-file"></span>
-    <a href="#1-creating-your-first-file" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Create a new file named <code>hello.gab</code>:</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #9399b3'># hello.gab</span></span></span>
-<span sytle="display:flex"><span><span style='color: #a6e3a2'>&quot;Hello, world!&quot;</span> <span style='font-weight: bold;color: #89dcec'>.println</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #9399b3'># =&gt; Hello, world!</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>To run this program, use:</p>
-<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gab run hello</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
-  <button
-    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copy code"
-    aria-label="Copy code"
-    data-copied-label="Copied!"
-  >
-    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
-<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
-  </button>
-</div>
-</div>
-<p>The <code>.run</code> command automatically searches for a file named <code>hello.gab</code> in the current directory and runs it.
-You’ll see the output printed directly to your terminal.</p>
-<hr>
-<h2>2. Using the REPL<span class="hx:absolute hx:-mt-20" id="2-using-the-repl"></span>
-    <a href="#2-using-the-repl" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>You can also experiment interactively using Gab’s REPL:</p>
-<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gab repl</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
-  <button
-    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copy code"
-    aria-label="Copy code"
-    data-copied-label="Copied!"
-  >
-    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
-<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
-  </button>
-</div>
-</div>
-<p>Inside the REPL, try typing the same code:</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #a6e3a2'>&quot;Hello, world!&quot;</span> <span style='font-weight: bold;color: #89dcec'>.println</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #9399b3'># =&gt; Hello, world!</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Gab evaluates eagerly, so every message send executes immediately.</p>
-<hr>
-<h2>3. Messages Everywhere<span class="hx:absolute hx:-mt-20" id="3-messages-everywhere"></span>
-    <a href="#3-messages-everywhere" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Gab doesn’t have statements or operators — everything is a <strong>message send</strong>. That means you can do arithmetic like this:</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-weight: bold;color: #fab388'>1</span><span style='font-weight: bold;color: #89dcec'>.+</span> <span style='font-weight: bold;color: #fab388'>2</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #9399b3'># =&gt; 3</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='font-weight: bold;color: #fab388'>4</span><span style='font-weight: bold;color: #89dcec'>.*</span> <span style='font-weight: bold;color: #fab388'>5</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #9399b3'># =&gt; 20</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Even control flow uses messages. You’ll learn more about <code>defcase</code>, <code>then:</code>, and <code>else:</code> later — but here’s a sneak peek:</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-weight: bold;color: #89b4fb'>true:</span> <span style='font-weight: bold;color: #89dcec'>.then</span> <span style='color: #9399b3'>(</span><span style='color: #9399b3'>)</span> =&gt; <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
-<span sytle="display:flex"><span>  <span style='color: #a6e3a2'>&quot;It’s true!&quot;</span> <span style='font-weight: bold;color: #89dcec'>.println</span></span></span>
-<span sytle="display:flex"><span><span style='font-weight: bold;color: #cba6f8'>end</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #9399b3'># =&gt; It’s true!</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><hr>
-<h2>4. Imports and Modules<span class="hx:absolute hx:-mt-20" id="4-imports-and-modules"></span>
-    <a href="#4-imports-and-modules" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>To use code from another file, send the <code>use:</code> message to a string literal:</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='color: #a6e3a2'>&quot;math&quot;</span><span style='font-weight: bold;color: #89dcec'>.use</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Gab searches known locations (such as <code>./mod/</code>) for a matching file named <code>math.gab</code>, loads it, and executes it.
-This makes sharing code between files simple and explicit.</p>
-<hr>
-<h2>5. Immutability by Default<span class="hx:absolute hx:-mt-20" id="5-immutability-by-default"></span>
-    <a href="#5-immutability-by-default" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Gab values are immutable. Reassigning creates new data instead of mutating existing state:</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>x = <span style='color: #9399b3'>[</span><span style='font-weight: bold;color: #fab388'>1</span> <span style='font-weight: bold;color: #fab388'>2</span> <span style='font-weight: bold;color: #fab388'>3</span><span style='color: #9399b3'>]</span></span></span>
-<span sytle="display:flex"><span>y = x<span style='font-weight: bold;color: #89dcec'>.append</span><span style='color: #9399b3'>(</span><span style='font-weight: bold;color: #fab388'>4</span><span style='color: #9399b3'>)</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>x<span style='font-weight: bold;color: #89dcec'>.println</span> <span style='font-style: italic;color: #9399b3'># =&gt; [1, 2, 3]</span></span></span>
-<span sytle="display:flex"><span>y<span style='font-weight: bold;color: #89dcec'>.println</span> <span style='font-style: italic;color: #9399b3'># =&gt; [1, 2, 3, 4]</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Lists and records use <strong>structural sharing</strong>, so updates are efficient — even though data never changes in place.</p>
-<hr>
-<h2>6. Fibers: Lightweight Concurrency<span class="hx:absolute hx:-mt-20" id="6-fibers-lightweight-concurrency"></span>
-    <a href="#6-fibers-lightweight-concurrency" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Fibers are Gab’s lightweight, isolated threads of execution. You can spawn one with <code>Fibers.make</code>:</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>Fibers<span style='font-weight: bold;color: #89dcec'>.make</span> <span style='color: #9399b3'>(</span><span style='color: #9399b3'>)</span> =&gt; <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
-<span sytle="display:flex"><span>  <span style='color: #a6e3a2'>&quot;Running in a fiber!&quot;</span> <span style='font-weight: bold;color: #89dcec'>.println</span></span></span>
-<span sytle="display:flex"><span><span style='font-weight: bold;color: #cba6f8'>end</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Fibers run cooperatively. That means long-running computations should occasionally yield control (for example, through I/O or channel operations).</p>
-<hr>
-<h2>7. Channels: Communicating Between Fibers<span class="hx:absolute hx:-mt-20" id="7-channels-communicating-between-fibers"></span>
-    <a href="#7-channels-communicating-between-fibers" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Channels let fibers safely exchange data. Create one with <code>Channels.make</code>, then use the send (<code>&lt;!</code>) and receive (<code>&gt;!</code>) messages:</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>ch = Channels<span style='font-weight: bold;color: #89dcec'>.make</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>Fibers<span style='font-weight: bold;color: #89dcec'>.make</span> <span style='color: #9399b3'>(</span><span style='color: #9399b3'>)</span> =&gt; <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
-<span sytle="display:flex"><span>  ch <span style='font-weight: bold;color: #89dcec'>&lt;!</span> <span style='color: #a6e3a2'>&quot;ping&quot;</span></span></span>
-<span sytle="display:flex"><span><span style='font-weight: bold;color: #cba6f8'>end</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>msg = ch <span style='font-weight: bold;color: #89dcec'>&gt;!</span></span></span>
-<span sytle="display:flex"><span>msg<span style='font-weight: bold;color: #89dcec'>.println</span></span></span>
-<span sytle="display:flex"><span><span style='font-style: italic;color: #9399b3'># =&gt; ping</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>Channels are <strong>unbuffered</strong> and <strong>rendezvous-based</strong> — both sides must meet for a transfer to occur.
-Closing a channel with <code>ch.close</code> simply prevents further sends.</p>
-<hr>
-<h2>8. Putting It All Together<span class="hx:absolute hx:-mt-20" id="8-putting-it-all-together"></span>
-    <a href="#8-putting-it-all-together" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Let’s combine what you’ve learned into a simple producer-consumer example:</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>ch = Channels<span style='font-weight: bold;color: #89dcec'>.make</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>producer = Fibers<span style='font-weight: bold;color: #89dcec'>.make</span> <span style='color: #9399b3'>(</span><span style='color: #9399b3'>)</span> =&gt; <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
-<span sytle="display:flex"><span>  Ranges<span style='font-weight: bold;color: #89dcec'>.make</span><span style='color: #9399b3'>(</span><span style='font-weight: bold;color: #fab388'>1</span> <span style='font-weight: bold;color: #fab388'>5</span><span style='color: #9399b3'>)</span><span style='font-weight: bold;color: #89dcec'>.each</span> <span style='color: #9399b3'>(</span>i<span style='color: #9399b3'>)</span> =&gt; <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
-<span sytle="display:flex"><span>    ch <span style='font-weight: bold;color: #89dcec'>&lt;!</span> <span style='color: #9399b3'>(</span><span style='font-weight: bold;color: #89b4fb'>num:</span> i<span style='color: #9399b3'>)</span></span></span>
-<span sytle="display:flex"><span>  <span style='font-weight: bold;color: #cba6f8'>end</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>  ch<span style='font-weight: bold;color: #89dcec'>.close</span></span></span>
-<span sytle="display:flex"><span><span style='font-weight: bold;color: #cba6f8'>end</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>consumer = Fibers<span style='font-weight: bold;color: #89dcec'>.make</span> <span style='color: #9399b3'>(</span><span style='color: #9399b3'>)</span> =&gt; <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
-<span sytle="display:flex"><span>  loop = <span style='color: #9399b3'>(</span><span style='color: #9399b3'>)</span> =&gt; <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
-<span sytle="display:flex"><span>    <span style='color: #9399b3'>(</span>status, kind, value<span style='color: #9399b3'>)</span> = ch <span style='font-weight: bold;color: #89dcec'>&gt;!</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>    status<span style='font-weight: bold;color: #89dcec'>.ok</span><span style='font-weight: bold;color: #89dcec'>.then</span> <span style='color: #9399b3'>(</span><span style='color: #9399b3'>)</span> =&gt; <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
-<span sytle="display:flex"><span>      <span style='color: #a6e3a2'>&quot;Received: $ $&quot;</span><span style='font-weight: bold;color: #89dcec'>.sprintf</span><span style='color: #9399b3'>(</span>kind, value<span style='color: #9399b3'>)</span><span style='font-weight: bold;color: #89dcec'>.println</span></span></span>
-<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #cba6f8'>end</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>    <span style='color: #9399b3'>(</span>status<span style='font-weight: bold;color: #89dcec'>.ok</span> <span style='font-weight: bold;color: #89dcec'>&amp;</span> ch<span style='font-weight: bold;color: #89dcec'>.is\open</span><span style='color: #9399b3'>)</span><span style='font-weight: bold;color: #89dcec'>.then</span> <span style='color: #f38ba9'>self</span></span></span>
-<span sytle="display:flex"><span>  <span style='font-weight: bold;color: #cba6f8'>end</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>  loop.<span style='color: #9399b3'>(</span><span style='color: #9399b3'>)</span></span></span>
-<span sytle="display:flex"><span><span style='font-weight: bold;color: #cba6f8'>end</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span><span style='color: #9399b3'>[</span>producer, consumer<span style='color: #9399b3'>]</span><span style='font-weight: bold;color: #89dcec'>.each</span> <span style='font-weight: bold;color: #89b4fb'>await:</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><p>This example spawns two fibers:</p>
-<ul>
-<li>The <strong>producer</strong> sends numbers 1–5 through the channel.</li>
-<li>The <strong>consumer</strong> receives and prints them.</li>
-</ul>
-<p>Because Gab’s fibers and I/O are non-blocking, both can run efficiently in parallel without OS threads.</p>
-<hr>
-<p>That’s it — you’ve written your first Gab program, used the REPL, spawned fibers, and passed messages through channels.
-You’re now ready to learn <strong>how Gab thinks</strong>.</p>
+          <h1>Overview</h1><p>Welcome to Gab&rsquo;s documentation! Here you will find a brief overview of each of the sections available to you.</p>
+<h3>The <em>Gabonomicon</em><span class="hx:absolute hx:-mt-20" id="the-gabonomicon"></span>
+    <a href="#the-gabonomicon" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>The canonical gab handbook. Everything you need to get off the ground and writing Gab lives in this section.</p>
+<h3>Modules<span class="hx:absolute hx:-mt-20" id="modules"></span>
+    <a href="#modules" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>This section contains specifications for the modules that come with Gab - specifically, all the modules in the <code>gab-language/cgab</code> package.
+Such packages include <code>Numbers</code>, <code>Strings</code>, and <code>Io</code>.
+These pages are generated from <code>Specs</code>, which is itself a builtin module for defining message contracts.</p>
+<h3>Protocols<span class="hx:absolute hx:-mt-20" id="protocols"></span>
+    <a href="#protocols" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>This section contains specifications for the protocols that come with the builtin <code>gab-language/cgab</code> package. Such protocols include <code>seqable</code> and <code>streamable</code>, which
+define interfaces for iterating and IO respectively.</p>
 
         </div>
         <div class="hx:mt-16"></div>
@@ -1362,6 +1294,6 @@ You’re now ready to learn <strong>how Gab thinks</strong>.</p>
     
     <script defer src="/js/main.min.f325efcf9dedbcd3fb141c64e533fb1582af9c79b56dabc3de15e54129e8f7c9.js" integrity="sha256-8yXvz53tvNP7FBxk5TP7FYKvnHm1bavD3hXlQSno98k="></script>
 <script defer src="/js/flexsearch.433e941a8a573ebb9931fc16fc75266ab6b93f569ac2fb4f3dc66882e0416f4c.js" integrity="sha256-Qz6UGopXPruZMfwW/HUmara5P1aawvtPPcZoguBBb0w=" crossorigin="anonymous"></script>
-        <script defer src="/en.search.min.4fdabdde415d95c82a8107bef7d71e5731f7921501c4d623461053fa33f9fecb.js" integrity="sha256-T9q93kFdlcgqgQe&#43;99ceVzH3khUBxNYjRhBT&#43;jP5/ss="></script>
+        <script defer src="/en.search.min.1218c2ef45ef833ab2111711159d544ed1bd06f1713be74314bbf3d8fc783522.js" integrity="sha256-EhjC70XvgzqyERcRFZ1UTtG9BvFxO&#43;dDFLvz2Px4NSI="></script>
   </body>
 </html>

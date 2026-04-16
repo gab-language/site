@@ -1,12 +1,9 @@
 +++
-title = "Introduction"
+title = "Installation"
 type = "chapter"
 weight = 1
 +++
-Welcome!
-This guide will teach you about Gab's fundamentals.
-We will discuss the basic types and ideas of the language.
-First, lets install the language itself.
+This guide covers installing the gab language, and rudimentary use of the CLI.
 ## Installing the language
 #### 1. Downloading binaries from releases
 Pre-built binaries are available for every release on the [GitHub releases page](https://github.com/gab-language/cgab/releases). Download the archive that matches your platform:

@@ -2,48 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/docs/intro/</loc>
+    <loc>/docs/installation/</loc>
   </url><url>
-    <loc>/docs/examples/kv_store/</loc>
+    <loc>/docs/gabonomicon/examples/kv_store/</loc>
   </url><url>
-    <loc>/docs/tour/</loc>
+    <loc>/docs/gabonomicon/tour/</loc>
   </url><url>
-    <loc>/docs/tour/messages/</loc>
+    <loc>/docs/gabonomicon/tour/messages/</loc>
   </url><url>
-    <loc>/docs/basic_types/arithmetic/</loc>
+    <loc>/docs/gabonomicon/basic_types/arithmetic/</loc>
   </url><url>
-    <loc>/docs/examples/networked_kv_store/</loc>
+    <loc>/docs/gabonomicon/examples/networked_kv_store/</loc>
   </url><url>
-    <loc>/docs/tour/records_and_shapes/</loc>
+    <loc>/docs/gabonomicon/tour/records_and_shapes/</loc>
   </url><url>
-    <loc>/docs/basic_types/strings/</loc>
+    <loc>/docs/gabonomicon/basic_types/strings/</loc>
   </url><url>
-    <loc>/docs/tour/blocks/</loc>
+    <loc>/docs/gabonomicon/tour/blocks/</loc>
   </url><url>
-    <loc>/docs/basic_types/messages/</loc>
+    <loc>/docs/gabonomicon/basic_types/messages/</loc>
   </url><url>
-    <loc>/docs/examples/pubsub/</loc>
+    <loc>/docs/gabonomicon/examples/pubsub/</loc>
   </url><url>
-    <loc>/docs/basic_types/records/</loc>
+    <loc>/docs/gabonomicon/basic_types/records/</loc>
   </url><url>
-    <loc>/docs/basic_types/</loc>
+    <loc>/docs/gabonomicon/basic_types/</loc>
   </url><url>
-    <loc>/docs/examples/</loc>
+    <loc>/docs/gabonomicon/examples/</loc>
   </url><url>
-    <loc>/docs/tour/fibers_and_channels/</loc>
+    <loc>/docs/gabonomicon/tour/fibers_and_channels/</loc>
   </url><url>
-    <loc>/docs/tour/error_handling/</loc>
+    <loc>/docs/gabonomicon/tour/error_handling/</loc>
   </url><url>
-    <loc>/docs/basic_types/shapes/</loc>
+    <loc>/docs/gabonomicon/basic_types/shapes/</loc>
   </url><url>
-    <loc>/docs/basic_types/blocks/</loc>
+    <loc>/docs/gabonomicon/basic_types/blocks/</loc>
   </url><url>
-    <loc>/docs/basic_types/fibers/</loc>
-  </url><url>
-    <loc>/blog/build/</loc>
-    <lastmod>2025-10-02T14:55:44-04:00</lastmod>
+    <loc>/docs/gabonomicon/basic_types/fibers/</loc>
   </url><url>
     <loc>/</loc>
+    <lastmod>2025-10-02T14:55:44-04:00</lastmod>
+  </url><url>
+    <loc>/blog/build/</loc>
     <lastmod>2025-10-02T14:55:44-04:00</lastmod>
   </url><url>
     <loc>/blog/io/</loc>
@@ -56,6 +56,9 @@
     <lastmod>2025-04-16T09:22:19-04:00</lastmod>
   </url><url>
     <loc>/docs/</loc>
+    <lastmod>2025-03-10T07:07:42-04:00</lastmod>
+  </url><url>
+    <loc>/docs/gabonomicon/</loc>
     <lastmod>2025-03-10T07:07:42-04:00</lastmod>
   </url><url>
     <loc>/docs/modules/channel/</loc>

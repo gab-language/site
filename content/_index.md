@@ -1,20 +1,21 @@
 ---
-title: Gab
+title:
 ---
 
 > [intransitive verb] — to talk in a rapid or thoughtless manner
 
-## Programming systems, not systems programming.
+# Programming systems, not systems programming
 
 **Gab** is a small, dynamic language built for writing concurrent systems.
 Gab gives you the minimal set of abstractions that actually matter, and gets out of your way.
 
 {{< cards >}}
   {{< card link="docs/intro" title="Install Gab" icon="download" >}}
-  {{< card link="docs/tour" title="Language Tour" icon="book-open" >}}
+  {{< card link="docs/tour" title="Gabonomicon" icon="book-open" >}}
 {{< /cards >}}
 
-## Simple.
+
+## Simple
 
 Gab has one mechanism for control flow: sending messages. No `if`. No `for`. No `while`. No special forms to memorise.
 
