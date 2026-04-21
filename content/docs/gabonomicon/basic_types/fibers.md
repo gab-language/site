@@ -3,7 +3,7 @@ title: Fibers & Channels
 weight: 7
 ---
 
-For a conceptual introduction to fibers and channels, see [the Language Tour](/docs/tour/fibers-and-channels). This page covers the specifics.
+For a conceptual introduction to fibers and channels, see [the Language Tour](/docs/gabonomicon/tour/fibers_and_channels). This page covers the specifics.
 
 ## `gab\fiber`
 
@@ -14,11 +14,6 @@ Fibers.make () => do
   'Hello from a fiber!'.println
 end
 ```
-
-Because all Gab values are immutable, a block passed to a fiber can safely capture any variables from its enclosing scope — no copying or synchronisation is required.
-
-The only way for two fibers to exchange values at runtime is through a channel.
-
 ## `gab\channel`
 
 Channels are created with `Channels.make`:
@@ -39,24 +34,33 @@ ch <! 'hello'
 value = ch >!
 ```
 
-Both operations are **blocking**: a send blocks until a receiver is ready, and a receive blocks until a sender is ready. A fiber waiting on a channel yields the CPU to other fibers rather than spinning, and retries when scheduled again.
+In Gab, channels are unbuffered. Practically, this means that Both operations are **blocking**: a send blocks until a receiver is ready, and a receive blocks until a sender is ready.
+For this reason, channels serve as both a primitive for sharing data, and way to *synchronize* fibers.
 
-Channels are unbuffered — there is no internal queue. Every send and receive are a direct handoff. This keeps communication explicit and eliminates an entire class of race conditions.
+>[!NOTE]
+>For a comprehensive example of synchronizing fibers with channels, see the [pub/sub broker example](/docs/gabonomicon/examples/pubsub).
 
-> Even `<!` must block until a receiver arrives. Because `gab\channel` is immutable, it cannot hold a reference to a queued value — every value must be handed directly from sender to receiver.
+## Buffered channels
 
-## Buffered Channels
+While synchronization is useful, it can sometimes be a bottleneck for performance. If producers outpace consumers, then channels may become backed-up as producers
+have to block and wait for consumers.
 
-Gab's channels are unbuffered — every send blocks until a receiver is ready. `Channels.buffered` provides N-slot buffering by spawning N slot fibers that each hold one value in transit between an input and output channel:
+In this scenario it is better to use a *buffered* channel, which can hold up to a certain number of values before producers have to begin blocking.
+
+Lets build this with the primitives Gab gives us!
 
 ```gab
 buffered: .def (Channels, (n) => do
   input  = Channels.make
   output = Channels.make
 
-  Ranges.make(0, n).each () => do
+  Ranges.make(0 n).each () => do
+    # Spawn n fibers to perform buffering.
     Fibers.make () => do
-      input.each (val) => output <! val
+        # Take out of input channel, and forward it to the output channel.
+        output <! (input >!)
+        # Loop by calling self
+        self.()
     end
   end
 
@@ -70,21 +74,9 @@ end)
 
 The sender writes to `input` and can race N values ahead before blocking. The consumer reads from `output`. The N slot fibers sit between them, each capable of holding one value in flight.
 
-A relay chain — one fiber forwarding to the next — does not work: when fiber 1 blocks on its forward, fiber 0 also blocks, jamming the chain after a single value. Independent slot fibers sharing two channels are what produces genuine N-slot buffering.
+## Note: operator precedence
 
-## `each:`
-
-`each:` reads values from a channel in a loop, calling a block for each one:
-
-```gab
-ch.each (msg) => msg.println
-```
-
-`each:` blocks until the channel is closed.
-
-## Operator Precedence Note
-
-`<!` and `>!` are operator sends. The `.` prefix is optional but changes precedence — named sends (`.name`) bind tighter than bare operators:
+`<!` and `>!` are operator sends. The `.` prefix is optional but changes the precedence. Named sends (`.name`) bind tighter than bare operators.
 
 ```gab
 ch <! value       # operator form

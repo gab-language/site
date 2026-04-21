@@ -221,32 +221,3 @@ t: .def (Broker, Channels.t)
 
 Broker
 ```
-
-## What to Notice
-
-**`put_via_by:` and `put_by:` update nested state cleanly.** `put_via_by:`
-initialises missing keys and applies a transformation in one step.
-`put_by:` applies a transformation block to an existing value at a key.
-Together they eliminate the fetch-transform-put pattern that would otherwise appear throughout actor state management.
-
-**Subscribers can unsubscribe themselves.**
-The sport subscriber calls `broker.broker\unsubscribe(sport: inbox)` after its first event, and
-the channel itself is the unsubscription token.
-After unsubscribing it signals `done` so the main fiber knows the subscription has been removed before sending again.
-
-**`or:` for fallback values.**
-`.or(state)` returns `state` directly if the preceding result is `none:`. This is a concise shorthand for defaulting a missing value without `.else(() => ...)`.
-
-**The `done` channel carries ordering guarantees.**
-Each `done >!` in the main fiber corresponds to a specific event in a subscriber fiber.
-The channel  enforces a happens-before relationship.
-The second sport publish cannot run until the sport subscriber has finished unsubscribing, which cannot happen until it has received the first sport event.
-
-**No reply channels.**
-None of the broker's commands return a value to the caller.
-Commands are processed asynchronously. Ordering guarantees, where needed, are expressed through separate synchronisation channels rather than blocking on command replies.
-
-**Fan-out via fibers.**
-`publish:` spawns one fiber per subscriber.
-The broker returns `state` immediately, and does not wait for any delivery to complete.
-A slow or unresponsive subscriber cannot stall the broker or delay others.

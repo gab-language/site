@@ -3,9 +3,9 @@ title: Blocks
 weight: 3
 ---
 
-A **block** is Gab's name for a lambda — an anonymous function that can capture values from its surrounding scope. Blocks are values: you can store them in records, pass them as arguments to messages, and call them.
+A **block** is Gab's name for a closure - an anonymous function that can capture values from its surrounding scope. Blocks are values: you can store them in records, pass them as arguments to messages, and call them.
 
-## Block Syntax
+## Block syntax
 
 The `=>` operator creates a block. The left-hand side is the **binding** (the parameter list), and the right-hand side is the **expression** that becomes the return value.
 
@@ -16,15 +16,15 @@ double.(5)
 # => 10
 ```
 
-Blocks are called with an **empty message send** — a bare `.` followed by the argument list in parentheses. This is consistent with how all message sending works in Gab: `.` followed by a name is a named send; `.` alone is an anonymous send that invokes a block.
+Blocks are called with an **empty message send**. This is a bare `.` followed by any arguments.
 
-For multi-line blocks, use `do ... end` on the right-hand side. A `do ... end` evaluates to its last expression:
+For multi-line blocks, use `do ... end` on the right-hand side. A `do ... end` expression evaluates to the last expression before the `end`:
 
 ```gab
 describe = (name, age) => do
   line1 = 'Name: $!'.sprintf(name)
   line2 = 'Age: $!'.sprintf(age)
-  Strings.make(line1, '\n', line2)
+  Strings.make(line1 '\n' line2)
 end
 
 describe.('Alice', 30).println
@@ -32,9 +32,9 @@ describe.('Alice', 30).println
 # => Age: 30
 ```
 
-## Blocks with No Parameters
+## Blocks with no parameters
 
-If a block takes no arguments, use empty parentheses on both sides — in the definition and in the call:
+If a block takes no arguments, use an empty tuple as the **binding**.
 
 ```gab
 greet = () => 'Hello!'.println
@@ -43,17 +43,17 @@ greet.()
 # => Hello!
 ```
 
-## Blocks as Arguments
+## Blocks as arguments
 
-Blocks are most commonly passed as arguments to messages. This is how all control flow is expressed in Gab. You've already seen this with boolean branching:
+Blocks are commonly passed as arguments to messages. You've already seen this with boolean branching:
 
 ```gab
-(temperature > 100)
+(temperature > 80)
   .then(() => 'Too hot!'.println)
   .else(() => 'Just right.'.println)
 ```
 
-Collection messages like `each` and `map` also take blocks:
+Blocks are also useful as arguments to messages like `each` and `map`:
 
 ```gab
 ['alice', 'bob', 'carol'].each (name) => do
@@ -65,9 +65,9 @@ end
 # => Hello, carol
 ```
 
-## Multiple Return Values
+## Multiple return values
 
-Blocks can return more than one value using a **tuple expression** — parentheses containing two or more values:
+Blocks can return more than one value using a **tuple**.
 
 ```gab
 minmax = (a, b) => do
@@ -82,12 +82,18 @@ lo  # => 3
 hi  # => 7
 ```
 
-The comma between `a` and `b` is required here — without it, `a b` would be parsed as sending message `b` to `a`. In general, a comma inside a tuple terminates the preceding message send and starts a new element. This makes commas meaningful rather than decorative:
+### A note on commas
+Commas are whitespace in Gab. Most of the time they are purely visual, to help us distiguish key-value pairs in a dictionary.
+However, sometimes whitespace *does* have syntactic meaning. Take a look at the below example.
 
 ```gab
 (1 + 2 3)   # => (3, 3)  — `2` is the argument to `+`, `3` is the second element
 (1 +, 2 3)  # => Error   — the comma cuts off `+` before it gets an argument
 ```
+
+This doesn't just happen with commas - gab treats commas, semi-colons, and new-lines all identically.
+
+---
 
 Multiple return values become especially important when combined with message chaining. When you chain a message send, **all return values** from the left side are forwarded as the receiver and arguments of the next message. Given:
 
@@ -121,6 +127,6 @@ greet.('world')
 
 The block captures `prefix` at the time it is defined. If you rebind `prefix` later, the block still holds onto the original value — Gab's immutability makes this safe and predictable.
 
-## Blocks and Fibers
+## Blocks and fibers
 
-A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs concurrently in its own lightweight thread of execution. See [Fibers & Channels](/docs/tour/fibers_and_channels) for the full picture.
+A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs parallel in its own lightweight thread of execution. See [Fibers & Channels](/docs/tour/fibers_and_channels) for the full picture.

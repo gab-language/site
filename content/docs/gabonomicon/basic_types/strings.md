@@ -61,7 +61,7 @@ Converting a binary back to a string can fail if the bytes are not valid UTF-8:
 (status, str) = some_binary.as\s
 ```
 
-## Shared Memory with `gab\message`
+## Shared memory with `gab\message`
 
 Because `gab\string`, `gab\binary`, and `gab\message` all share the same underlying character data, converting between them is zero-cost. The string `'true'` and the message `true:` occupy the same bytes — they differ only in their type tag.
 

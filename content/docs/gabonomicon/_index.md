@@ -17,35 +17,47 @@ Additionally, documentation and developer tooling are works-in-progress. The lan
 mature.
 {{< /callout >}}
 
-## Your First Gab Program
+# Installation
 
-Welcome! Let's write and run your first Gab program. This short tutorial will show you how to use the Gab runtime, REPL,
-and some of the language’s most important ideas: message sends, immutability, fibers, and channels.
-
-### 1. Creating Your First File
-
-Create a new file named `hello.gab`:
-
-```gab
-# hello.gab
-"Hello, world!" .println
-# => Hello, world!
-````
-
-To run this program, use:
-
-```bash
-gab run hello
-```
-
-The `.run` command automatically searches for a file named `hello.gab` in the current directory and runs it.
-You’ll see the output printed directly to your terminal.
+If you haven't installed Gab yet, take a look at the [installation](/docs/installation) page first. Once you're up and running, pick it back up here.
 
 ---
 
-## 2. Using the REPL
+# Your First Project
 
-You can also experiment interactively using Gab’s REPL:
+Woohoo! Gab is now installed on your system. We can now begin writing our first Gab programs!
+
+## Creating a package
+
+First, we need to create what Gab calls a 'package'. This is just a folder in your project! Lets call it `hello`, and add a special file `mod.gab`.
+
+{{< filetree/container >}}
+  {{< filetree/folder name="hello" >}}
+    {{< filetree/file name="mod.gab" >}}
+  {{< /filetree/folder >}}
+{{< /filetree/container >}}
+
+Lets add some content to `mod.gab`:
+
+```gab {filename="mod.gab"}
+'github.com/gab-language/cgab@0.0.5' .use 'Io'
+
+'Hello, world!'.println
+```
+
+And we run it with:
+
+```sh
+gab run hello
+
+# Hello, world!
+```
+
+## Using the REPL
+
+Running packages from the command line is useful, but not the best way to develop iteratively. Gab's REPL can be an improvement!
+
+Try it with:
 
 ```bash
 gab repl
@@ -53,142 +65,58 @@ gab repl
 
 Inside the REPL, try typing the same code:
 
-```gab
-"Hello, world!" .println
-# => Hello, world!
+```bash
+gab repl
+  ________   ___  |
+ / ___/ _ | / _ ) | v0.0.5
+/ (_ / __ |/ _  | |  on: x86_64-linux-gnu
+\___/_/ |_/____/  |  in: release
+
+>>> 'github.com/gab-language/cgab@0.0.5'.use 'Io'
+io:
+>>> 'Hello, world!'.println
+Hello, world!
+ok:
 ```
 
-Gab evaluates eagerly, so every message send executes immediately.
+Use this to tweak and iterate.
+
+>[!NOTE]
+>Editor tooling for Gab is a WIP. We plan to build both an LSP and an nREPL server for integrating with multiple clients.
+
+## Building a Standalone Executable
+
+When you're ready to ship, `gab build` compiles your project into a single, self-contained executable — including the entire Gab runtime. You can even cross-compile for other platforms from your current machine:
+
+```sh
+# Build for arm macOS
+gab build -t aarch64-macos-none -m my,deps my_project
+
+# Build for Linux x86_64, from any supported platform
+gab build -t x86_64-linux-gnu -m my,deps my_project
+```
+
+The resulting binary can be sent to any machine of the target platform and run directly, without installing anything on the host.
+
+For a quick bit of fun, lets compile our `hello` package to an executable. Simply run:
+```bash
+gab build -m github.com/gab-language/cgab@0.0.5 hello
+```
+
+This produces a file `hello.cgab-<version>-<target>.exe`. Gab chooses this name because it is cross-platform, and including the cgab version and compilation target is a hygenic practice.
+The only mandatory element in the name is that it begins with `hello` - this is how the executable determines which module to use as the *entrypoint* of the application.
+
+That being said, this is an executable you can just run!
+```bash
+./hello.cgab-<version>-<target>.exe
+# Hello, world!
+```
+
+>[!NOTE]
+>The `-m` flag adds a dependency to include in the final executable. Gab doesn't make any assumptions when compiling binaries - you must define everything you want to include.
 
 ---
 
-## 3. Messages Everywhere
+Congratulations! You've run some Gab code and made your own first package - even compiled a binary for distributing.
 
-Gab doesn’t have statements or operators — everything is a **message send**. That means you can do arithmetic like this:
-
-```gab
-1.+ 2
-# => 3
-
-4.* 5
-# => 20
-```
-
-Even control flow uses messages. You’ll learn more about `defcase`, `then:`, and `else:` later — but here’s a sneak peek:
-
-```gab
-true: .then () => do
-  "It’s true!" .println
-end
-# => It’s true!
-```
-
----
-
-## 4. Imports and Modules
-
-To use code from another file, send the `use:` message to a string literal:
-
-```gab
-"math".use
-```
-
-Gab searches known locations (such as `./mod/`) for a matching file named `math.gab`, loads it, and executes it.
-This makes sharing code between files simple and explicit.
-
----
-
-## 5. Immutability by Default
-
-Gab values are immutable. Reassigning creates new data instead of mutating existing state:
-
-```gab
-x = [1 2 3]
-y = x.append(4)
-
-x.println # => [1, 2, 3]
-y.println # => [1, 2, 3, 4]
-```
-
-Lists and records use **structural sharing**, so updates are efficient — even though data never changes in place.
-
----
-
-## 6. Fibers: Lightweight Concurrency
-
-Fibers are Gab’s lightweight, isolated threads of execution. You can spawn one with `Fibers.make`:
-
-```gab
-Fibers.make () => do
-  "Running in a fiber!" .println
-end
-```
-
-Fibers run cooperatively. That means long-running computations should occasionally yield control (for example, through I/O or channel operations).
-
----
-
-## 7. Channels: Communicating Between Fibers
-
-Channels let fibers safely exchange data. Create one with `Channels.make`, then use the send (`<!`) and receive (`>!`) messages:
-
-```gab
-ch = Channels.make
-
-Fibers.make () => do
-  ch <! "ping"
-end
-
-msg = ch >!
-msg.println
-# => ping
-```
-
-Channels are **unbuffered** and **rendezvous-based** — both sides must meet for a transfer to occur.
-Closing a channel with `ch.close` simply prevents further sends.
-
----
-
-## 8. Putting It All Together
-
-Let’s combine what you’ve learned into a simple producer-consumer example:
-
-```gab
-ch = Channels.make
-
-producer = Fibers.make () => do
-  Ranges.make(1 5).each (i) => do
-    ch <! (num: i)
-  end
-
-  ch.close
-end
-
-consumer = Fibers.make () => do
-  loop = () => do
-    (status, kind, value) = ch >!
-
-    status.ok.then () => do
-      "Received: $ $".sprintf(kind, value).println
-    end
-
-    (status.ok & ch.is\open).then self
-  end
-
-  loop.()
-end
-
-[producer, consumer].each await:
-```
-
-This example spawns two fibers:
-
-* The **producer** sends numbers 1–5 through the channel.
-* The **consumer** receives and prints them.
-
-Because Gab’s fibers and I/O are non-blocking, both can run efficiently in parallel without OS threads.
-
----
-
-That’s it — you’ve written your first Gab program, used the REPL, spawned fibers, and passed messages through channels.
-You’re now ready to learn **how Gab thinks**.
+Continue in the Gabonomicon to learn more deeply about the language.

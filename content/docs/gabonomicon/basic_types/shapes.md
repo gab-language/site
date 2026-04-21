@@ -14,11 +14,9 @@ b?          # => <gab\shape name:>
 (a?) == (b?)  # => true:
 ```
 
-> A space is required between an identifier and `?`. Names in Gab may end with `?` or `!`, so `a?` would be parsed as a single identifier, not a message send.
+## Obtaining a shape
 
-## Obtaining a Shape
-
-There are two ways to get a shape value.
+There are multiple ways to get a shape value.
 
 **From a record**, using the `?` message:
 
@@ -27,16 +25,18 @@ Person = { name: '', age: 0 }?
 # => <gab\shape name: age:>
 ```
 
-**Directly**, using `Shapes.make:` with a list of keys:
+**Directly**, using `Shapes.make:` with a list of keys, or the shape syntax:
 
 ```gab
 Person = Shapes.make(name:, age:)
+# => <gab\shape name: age:>
+Person = \{ name: age: }
 # => <gab\shape name: age:>
 ```
 
 Both produce the same shape value. The `?` approach is convenient when you already have an example record; `Shapes.make` is useful when you want to define the shape without constructing a record first.
 
-## Shapes as Specialization Targets
+## Shapes as specialization targets
 
 Shapes are most useful as receiver types in `def:`, `defcase:`, and `defmodule:`. All records with a matching shape will respond to the defined message:
 
@@ -55,16 +55,18 @@ bob = bob.birthday
 bob.age   # => 45
 ```
 
-## Shapes in Dispatch
+## Shapes in dispatch
 
 When Gab resolves a message send, the shape is checked as the **super type** before the record's base type (`gab\record`). This means shape-specialised messages take precedence over general record behaviour:
 
 ```gab
-z: .def (Shapes.make(x:), 'shape case')
+z: .def (\{ x: }, 'shape case')
+z: .def (Records.t, 'record case')
 z: .def 'general case'
 
-{ x: 1 }.z   # => 'shape case'   (shape wins over general)
-{ y: 1 }.z   # => 'general case'
+{ x: 1 }.z          # => 'shape case'   (shape wins over general)
+{ y: 1 }.z          # => 'record case'
+'something else!'.z # => 'general case'
 ```
 
 See [Messages — Dispatch Resolution Order](/docs/basic_types/messages#dispatch-resolution-order) for the full sequence.

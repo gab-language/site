@@ -8,12 +8,12 @@ weight = 1
 
 [[menu.main]]
 name = "Docs"
-pageRef = "/docs/modules"
+pageRef = "/docs"
 weight = 2
 
 [[menu.main]]
 name = "Gabonomicon"
-pageRef = "/docs"
+pageRef = "/docs/gabonomicon"
 weight = 3
 
 [[menu.main]]
@@ -39,7 +39,7 @@ enable = true
 [languages.en]
 languageName = "English"
 weight = 1
-title = "Gab"
+title = "Gab Programming Language"
 
 [navbar]
 displayTitle = true

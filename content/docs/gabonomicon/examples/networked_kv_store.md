@@ -3,7 +3,7 @@ title: "Networked Key-Value Store"
 weight: 2
 ---
 
-This example extends the [in-memory key-value store](/docs/examples/kv_store) with a TCP server. Clients connect and send text commands; the server parses each line, dispatches it to the store actor, and writes a response.
+This example extends the [in-memory key-value store](/docs/gabonomicon/examples/kv_store) with a TCP server. Clients connect and send text commands; the server parses each line, dispatches it to the store actor, and writes a response.
 
 ## The Protocol
 
@@ -33,9 +33,9 @@ serve_client: .def (IO.Sockets.t, (store) => do
     sock
       .until('\n'.to\b)
       .then(line => do
-        (cmd, args*) = line.as\s.unwrap.trim.split(' ')
-        response = cmd.to\m.run_command(sock, store, args*)
-        sock.write('$\n'.sprintf(response).to\b)
+        (cmd, args*) = line.as\string.unwrap.trim.split(' ')
+        response = cmd.to\message.run_command(sock, store, args*)
+        sock.write('$\n'.sprintf(response).to\binary)
         recurse.()
       end)
       .else(() => do
@@ -270,15 +270,3 @@ store  = Store.make
 server = store.start('::1' 6379)
 server.await
 ```
-
-## What to Notice
-
-**`self` must be captured before nested blocks.** This appears three times in the program: `sock = self` in `serve_client`, `recurse = self` inside `loop`, and `store = self` in `start:`. In each case, a nested block would shadow `self` with its own receiver. Capturing early is the standard pattern whenever `self` needs to outlive the block it was introduced in.
-
-**`to\m` makes strings dispatchable.** `cmd.to\m` converts the wire protocol string `'GET'` to the message `GET:`, which `defcase` can route on. The conversion is trivial at runtime and it means the command routing table is just a `defcase`, consistent with how dispatch works everywhere else in Gab.
-
-**The accept loop is a fiber, not a primitive.** There's no built-in server loop.`accept_loop` is a recursive function that calls `accept`, hands the connection off, and calls itself. The structure is identical to the store's command loop. The same pattern appears everywhere in Gab: a fiber owns a resource, loops by recursing, and delegates work to other fibers.
-
-**One store, many clients.** Every connection fiber holds a reference to the same store channel.
-
-**`rest*` absorbs noise.** Extra tokens in a command are silently ignored. Missing arguments arrive as `nil:`, which the store returns `none:` for, propagating back as `NONE`. The server never crashes on malformed input.

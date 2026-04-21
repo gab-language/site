@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gab – Blog</title>
+    <title>Gab Programming Language – Blog</title>
     <link>/blog/</link>
-    <description>Recent content in Blog on Gab</description>
+    <description>Recent content in Blog on Gab Programming Language</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Wed, 16 Apr 2025 09:22:29 -0400</lastBuildDate>

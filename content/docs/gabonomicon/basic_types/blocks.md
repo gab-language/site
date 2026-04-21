@@ -3,22 +3,27 @@ title: Blocks
 weight: 6
 ---
 
-A block is a closure — a function that captures its surrounding scope. Blocks are values: they can be stored, passed as arguments, and called.
+A block is a function that captures its surrounding scope. Blocks are values: they can be stored, passed as arguments, and respond to messages.
+
+## `gab\block`
 
 ```gab
 square = (x) => x * x
 square.(4)   # => 16
 ```
 
-Every block has an implicit `self` binding. When a block is used as a message specialization via `def:`, `self` refers to the value that received the message. When called directly, `self` refers to the block itself.
+>[!NOTE]
+>Every block has an implicit `self` binding. When a block is used as a message specialization via `def:`, `self` refers to the value that received the message. When called directly, `self` refers to the block itself.
 
-## Variadic Bindings
+## Variadic bindings
 
 There are two kinds of variadic binding, distinguished by whether the collected arguments are treated as a list or as a record.
 
-### `*` — list binding
+### List binding with `*`
 
-A `*` suffix on a binding name collects a run of positional arguments into a list. Its position in the binding list determines which arguments it absorbs — the other bindings around it claim their arguments first, and `*` takes the rest:
+A `*` suffix on a binding name collects a run of positional arguments into a list.
+Its position in the binding list determines which arguments it absorbs.
+The other bindings around it claim their arguments first, and `*` takes the rest:
 
 ```gab
 first_and_rest = (first, rest*) => do
@@ -41,14 +46,14 @@ Because position determines what `*` absorbs, it can appear anywhere in the bind
 # a => 1,  b => [2, 3, 4]
 ```
 
-The `*` operator inverts this — it splats a list's values back out into a positional tuple:
+The `*` message inverts this — it splats a list's values back out into a positional tuple:
 
 ```gab
 args = [1, 2, 3]
 args*   # => (1, 2, 3)
 ```
 
-Together they let a block forward all its arguments unchanged:
+Together they compose to forward all of a block's arguments, unchanged.
 
 ```gab
 forward_all = (args*) => args*
@@ -56,7 +61,7 @@ forward_all = (args*) => args*
 
 This is how `and:` is implemented for `true:` in the core library — it simply returns all its arguments as-is.
 
-### `**` — record binding
+### Dictionary binding with `**`
 
 A `**` suffix collects a run of positional arguments and interprets them as **alternating keys and values**, constructing a record. Like `*`, it is positionally aware and can appear anywhere in the binding list:
 
@@ -73,7 +78,10 @@ The `**` operator on a record is the inverse — it splats a record's key-value 
 { a: 'b', c: 'd' } **   # => (a: 'b', c: 'd')
 ```
 
-### Keyword-style APIs
+>[!NOTE]
+>This message still works on list-like records. The keys will be the integer indices.
+
+### Keyword-style apis
 
 The `**` binding is what makes keyword-argument-style APIs possible in Gab. At the call site, you write alternating message keys and values as positional arguments:
 
@@ -93,21 +101,13 @@ end)
 
 There are no keyword arguments in Gab — only positional ones. The record is constructed from the raw argument sequence by the `**` binding. This means you can place a `**` binding anywhere, not just at the end, and it will absorb whichever positional arguments fall to it.
 
-## Tuples and Multiple Return Values
+## Tuples and multiple return values
 
-Blocks return multiple values using a tuple expression — parentheses containing two or more values:
+Blocks may return multiple values using a tuple expression like we've seen before
 
 ```gab
 (ok: file.read)     # Two-value tuple
 (err: 'not found')  # Two-value tuple
-```
-
-Commas inside a tuple terminate the preceding message send and begin a new element. They are only required where omitting them would cause an expression to be parsed as an argument to the previous send:
-
-```gab
-(1 + 2 3)    # => (3, 3): 2 is the argument to +, 3 is the second element
-(1 +, 2 3)   # => Runtime Error: + has no0 second argument, so gab tries to add 1 and nil:
-(ok: result) # => There is no send here, so no commas are needed.
 ```
 
 Receiving multiple return values uses the same tuple syntax on the left side of an assignment:
@@ -116,7 +116,7 @@ Receiving multiple return values uses the same tuple syntax on the left side of 
 (status, file) = IO.File.make('data.csv')
 ```
 
-## Tuple Forwarding in Chains
+## Tuple forwarding in chains
 
 When a message is chained after a call that returns multiple values, Gab forwards the entire tuple into the next send: the first value becomes the receiver, the rest become arguments.
 
@@ -133,7 +133,7 @@ status.then(() => file.read.println)
 
 This allows the result of a multi-value return to be routed directly into a `defcase`-style dispatch without any intermediate binding.
 
-## The `unwrap:` Pattern
+## The `unwrap:` pattern
 
 A common use of tuple forwarding is `unwrap:`, which either returns the result value or panics with the error:
 

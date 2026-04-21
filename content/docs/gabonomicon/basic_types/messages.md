@@ -3,19 +3,25 @@ title: Messages
 weight: 3
 ---
 
-A message is an identifier ending in a colon. Its type is itself.
+A message is a unique value whose type is itself.
+
+## `gab\message`
+
+Messages values are a name or operator ending with a `:`.
 
 ```gab
++:
+true:
+<=!=>:
+
 ok:?      # => ok:
-true:?    # => true:
-my_msg:?  # => my_msg:
 ```
 
 Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are Gab's implementation of booleans, nil, and result values — there are no built-in keywords for any of these.
 
-## Defining Specializations
+## Defining specializations
 
-A message responds to `def:` to add a new **specialization** — an implementation for a specific receiver type:
+Messages responds to `def:`. This adds a new **specialization** of that message for a specific receiver type:
 
 ```gab
 greet: .def (Strings.t, () => do
@@ -25,7 +31,7 @@ end)
 'Alice'.greet   # => Hello, Alice!
 ```
 
-There are three definition messages, each suited to different situations.
+There are multiple ways to define messages, and it is commonplace to create your own.
 
 ### `def:`
 
@@ -37,9 +43,11 @@ birthday: .def (Person, () => do
 end)
 ```
 
+If you omit the type, you create a *general* specialization. Think of this as a fallback implementation which will run if nothing more specific exists.
+
 ### `defcase:`
 
-Defines multiple specializations for one message at once, using a record as a dispatch table:
+Defines multiple specializations for one message at once, using a record. Each key-value pair in the record is used to create a new type-specialization.
 
 ```gab
 describe: .defcase {
@@ -62,7 +70,7 @@ Defines multiple messages for multiple receiver types at once:
 }
 ```
 
-## Dispatch Resolution Order
+## Dispatch resolution order
 
 When a message is sent to a value, Gab resolves the specialization in this order:
 
@@ -81,11 +89,11 @@ z: .def (Shapes.make(x:), 'shape case')
 { x: 1 }.x   # => 1               (property)
 ```
 
-## `and:`, `or:`, `then:`, `else:`
+## `and:` `or:` `then:` `else:`
 
 These messages are defined on `true:` and `false:` in the core library. Their semantics differ in one important way:
 
-`and:` and `or:` accept **values** — the argument is always evaluated before the message is sent:
+`and:` and `or:` accept **values**. The argument is always evaluated before the message is sent:
 
 ```gab
 true:  .and 2    # => 2
@@ -94,19 +102,19 @@ false: .or  2    # => 2
 true:  .or  2    # => true:
 ```
 
-`then:` and `else:` accept **blocks** — only the appropriate branch is invoked:
+`then:` and `else:` accept **blocks**. Only the appropriate branch is invoked:
 
 ```gab
 true: .then  () => 'yes'.println   # => yes
 true: .else  () => 'no'.println    # (block is never called)
 ```
 
-## `nil:` and `none:`
+## `nil:` `none:`
 
-`nil:` is the value Gab binds to names that have no corresponding value — for example, if a binding list is longer than the tuple being destructured:
+`nil:` is the value Gab binds to names that have no corresponding value. This may occur if, for example,  a binding list is longer than the tuple being destructured:
 
 ```gab
 (a, b) = 1   # a => 1, b => nil:
 ```
 
-`none:` is used by certain APIs to signal the absence of a result (as opposed to an error). Both are plain message values with no special runtime treatment.
+`none:` is used by certain APIs to signal the absence of a result (as opposed to an error). Both are `nil:` and `none:` are just plain messages.
