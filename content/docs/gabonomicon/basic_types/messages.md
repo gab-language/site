@@ -14,7 +14,7 @@ Messages values are a name or operator ending with a `:`.
 true:
 <=!=>:
 
-ok:?      # => ok:
+ok:?      # :: ok:
 ```
 
 Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are Gab's implementation of booleans, nil, and result values — there are no built-in keywords for any of these.
@@ -24,11 +24,11 @@ Messages are used as record keys, as sentinel/enum values, and as the mechanism 
 Messages responds to `def:`. This adds a new **specialization** of that message for a specific receiver type:
 
 ```gab
-greet: .def (Strings.t, () => do
+greet: .def (Strings.t, () :: do
   'Hello, $!'.sprintf(self).println
 end)
 
-'Alice'.greet   # => Hello, Alice!
+'Alice'.greet   # :: Hello, Alice!
 ```
 
 There are multiple ways to define messages, and it is commonplace to create your own.
@@ -38,7 +38,7 @@ There are multiple ways to define messages, and it is commonplace to create your
 Defines a single specialization for a single type:
 
 ```gab
-birthday: .def (Person, () => do
+birthday: .def (Person, () :: do
   self.put(age: self.age + 1)
 end)
 ```
@@ -51,9 +51,9 @@ Defines multiple specializations for one message at once, using a record. Each k
 
 ```gab
 describe: .defcase {
-  ok:   result => 'Success: $'.sprintf(result).println
-  err:  msg    => 'Error: $'.sprintf(msg).println
-  nil:          => 'Nothing here.'.println
+  ok:   result :: 'Success: $'.sprintf(result).println
+  err:  msg    :: 'Error: $'.sprintf(msg).println
+  nil:          :: 'Nothing here.'.println
 }
 ```
 
@@ -65,8 +65,8 @@ Defines multiple messages for multiple receiver types at once:
 
 ```gab
 [Point, Vector] .defmodule {
-  scale: (factor) => self.put(x: self.x * factor, y: self.y * factor)
-  zero:  ()       => self.put(x: 0, y: 0)
+  scale: (factor) :: self.put(x: self.x * factor, y: self.y * factor)
+  zero:  ()       :: self.put(x: 0, y: 0)
 }
 ```
 
@@ -84,9 +84,9 @@ y: .def 'general case'
 
 z: .def (Shapes.make(x:), 'shape case')
 
-{ x: 1 }.y   # => 'general case'  (general)
-{ x: 1 }.z   # => 'shape case'    (super type — the shape <x:>)
-{ x: 1 }.x   # => 1               (property)
+{ x: 1 }.y   # :: 'general case'  (general)
+{ x: 1 }.z   # :: 'shape case'    (super type — the shape <x:>)
+{ x: 1 }.x   # :: 1               (property)
 ```
 
 ## `and:` `or:` `then:` `else:`
@@ -96,17 +96,17 @@ These messages are defined on `true:` and `false:` in the core library. Their se
 `and:` and `or:` accept **values**. The argument is always evaluated before the message is sent:
 
 ```gab
-true:  .and 2    # => 2
-false: .and 2    # => false:
-false: .or  2    # => 2
-true:  .or  2    # => true:
+true:  .and 2    # :: 2
+false: .and 2    # :: false:
+false: .or  2    # :: 2
+true:  .or  2    # :: true:
 ```
 
 `then:` and `else:` accept **blocks**. Only the appropriate branch is invoked:
 
 ```gab
-true: .then  () => 'yes'.println   # => yes
-true: .else  () => 'no'.println    # (block is never called)
+true: .then  () :: 'yes'.println   # :: yes
+true: .else  () :: 'no'.println    # (block is never called)
 ```
 
 ## `nil:` `none:`
@@ -114,7 +114,7 @@ true: .else  () => 'no'.println    # (block is never called)
 `nil:` is the value Gab binds to names that have no corresponding value. This may occur if, for example,  a binding list is longer than the tuple being destructured:
 
 ```gab
-(a, b) = 1   # a => 1, b => nil:
+(a, b) := 1   # a :: 1, b :: nil:
 ```
 
 `none:` is used by certain APIs to signal the absence of a result (as opposed to an error). Both are `nil:` and `none:` are just plain messages.

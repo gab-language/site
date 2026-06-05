@@ -1,4 +1,4 @@
-## streamable
+### streamable
 ```gab
 [ stream\send:, stream\recv: ]
 ```
@@ -8,9 +8,9 @@
   A file handle or socket connection are examples of devices which could serve as `streamable`.
   
 
-## stream\send
+### stream\send
 ```gab
-streamable.stream\send: bytes binary => (success (status ok:, value nil:) | failure (status err:, message string))
+streamable.stream\send: bytes binary :: (success (status ok:, value nil:) | failure (status err:, message string))
 ```
 
   Send the binary argument through the device. This API is synchronous (IE, the operation is guranteed to be completed when this message returns.)
@@ -18,9 +18,9 @@ streamable.stream\send: bytes binary => (success (status ok:, value nil:) | fail
   Returns `ok:` on success, or `err:` if an error occurred.
   
 
-## stream\recv
+### stream\recv
 ```gab
-streamable.stream\recv: (n int | default nil:) => (success (status ok:, value binary) | failure (status err:, message string))
+streamable.stream\recv: (n int | default nil:) :: (success (status ok:, value binary) | failure (status err:, message string))
 ```
 
   When `arg` is not `nil:`, perform a blocking wait for `arg` bytes on the device, and return them. Otherwise, don't block and return as many bytes as are available.

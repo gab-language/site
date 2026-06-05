@@ -1,4 +1,4 @@
-## socket
+### socket
 ```gab
 Box[io\socket]
 ```
@@ -17,45 +17,67 @@ Box[io\socket]
   arguments to messages such as `connect:` or `bind:`. See their definitions for details.
   
 
-## make
+### make
 ```gab
-io\socket:.make: protocol (TCP tcp: | UDP udp: | TCP with TLS tcp\tls: | UDP with TLS udp\tls:) => socket socket
+io\socket:.make: protocol (TCP tcp: | UDP udp: | TCP with TLS tcp\tls: | UDP with TLS udp\tls:) :: socket io\socket
 ```
 
   Create a socket with the given protocol.
   
 
-## accept
+### accept
 ```gab
-socket.accept: () => (success (status ok:, value socket) | failure (status err:, message string))
+socket.accept: () :: (success (status ok:, value io\socket) | failure (status err:, message string))
 ```
 
   Accept a client connection on a listening server socket.
   
 
-## listen
+### listen
 ```gab
-socket.listen: max_connections int => (ok ok: | err err:)
+socket.listen: max_connections int :: (ok ok: | err err:)
 ```
 
   Begin listening for connections on a server socket.
   
 
-## bind
+### bind
 ```gab
-socket.bind: (default (address string, port int) | tls (address string, port int, certificate binary, private_key binary)) => (success (status ok:, value nil:) | failure (status err:, message string))
+socket.bind: (default (address string, port int) | tls (address string, port int, certificate binary, private_key binary)) :: (success (status ok:, value nil:) | failure (status err:, message string))
 ```
 
   Bind a socket to a local address. This turns a socket into a server socket.
   
 
-## connect
+### connect
 ```gab
-socket.connect: (default (address string, port int) | tls (address string, port int, certificate binary)) => (success (status ok:, value nil:) | failure (status err:, message string))
+socket.connect: (default (address string, port int) | tls (address string, port int, certificate binary)) :: (success (status ok:, value nil:) | failure (status err:, message string))
 ```
 
   Connect to an address. This turns a socket into a client socket.
 
   For ssl clients, Gab bundles a public mozilla client certificate chain, so the 'certificate'
   argument is optional.
+  
+
+### stream\send
+```gab
+streamable.stream\send: bytes binary :: (success (status ok:, value nil:) | failure (status err:, message string))
+```
+
+  Write bytes to a socket.
+
+  This is part of the `streamable` protocool.
+  
+
+### stream\recv
+```gab
+streamable.stream\recv: (n int | default nil:) :: (success (status ok:, value binary) | failure (status err:, message string))
+```
+
+  Read 'amount' bytes from a socket.
+
+  If you omit 'amount', then will return whatever bytes are immediately available.
+
+  This is part of the `streamable` protocool.
   

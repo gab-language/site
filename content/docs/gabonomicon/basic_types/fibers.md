@@ -10,7 +10,7 @@ For a conceptual introduction to fibers and channels, see [the Language Tour](/d
 Fibers are created with `Fibers.make:`, which takes a block and immediately queues it for execution. The fiber may run on any OS thread managed by Gab's runtime.
 
 ```gab
-Fibers.make () => do
+Fibers.make () :: do
   'Hello from a fiber!'.println
 end
 ```
@@ -19,7 +19,7 @@ end
 Channels are created with `Channels.make`:
 
 ```gab
-ch = Channels.make
+ch := Channels.make
 ```
 
 **Send** a value with `<!`:
@@ -31,7 +31,7 @@ ch <! 'hello'
 **Receive** a value with `>!`:
 
 ```gab
-value = ch >!
+value := ch >!
 ```
 
 In Gab, channels are unbuffered. Practically, this means that Both operations are **blocking**: a send blocks until a receiver is ready, and a receive blocks until a sender is ready.
@@ -50,13 +50,13 @@ In this scenario it is better to use a *buffered* channel, which can hold up to 
 Lets build this with the primitives Gab gives us!
 
 ```gab
-buffered: .def (Channels, (n) => do
-  input  = Channels.make
-  output = Channels.make
+buffered: .def (Channels, (n) :: do
+  input  := Channels.make
+  output := Channels.make
 
-  Ranges.make(0 n).each () => do
+  Ranges.make(0 n).each () :: do
     # Spawn n fibers to perform buffering.
-    Fibers.make () => do
+    Fibers.make () :: do
         # Take out of input channel, and forward it to the output channel.
         output <! (input >!)
         # Loop by calling self
@@ -69,7 +69,7 @@ end)
 ```
 
 ```gab
-(input, output) = Channels.buffered(10)
+(input, output) := Channels.buffered(10)
 ```
 
 The sender writes to `input` and can race N values ahead before blocking. The consumer reads from `output`. The N slot fibers sit between them, each capable of holding one value in flight.

@@ -12,7 +12,7 @@ You handle errors the same way you do anything else: by sending messages.
 A message that can fail returns multiple values. The first is a status, typically either `ok:` or `err:`. The second is either the result or an explanation of what went wrong.
 
 ```gab
-(status, file) = IO.File.make('my_file.txt')
+(status, file) := IO.File.make('my_file.txt')
 ```
 
 If the file is opened successfully, `status` is `ok:` and `file` is a `gab\box IO.File` you can read from or write to.
@@ -24,11 +24,11 @@ If something went wrong: maybe the file doesn't exist, or permissions are denied
 Because `ok:` and `err:` are just values, you handle them with messages. The verbose approach binds each return value and branches explicitly:
 
 ```gab
-(status, file) = IO.File.make('my_file.txt')
+(status, file) := IO.File.make('my_file.txt')
 
 status
-  .then(() => file.read.println)
-  .else(() => 'Failed to open file: $!'.sprintf(file).println)
+  .then(() :: file.read.println)
+  .else(() :: 'Failed to open file: $!'.sprintf(file).println)
 ```
 
 But recall how message chaining works with multiple return values: when you chain a message after a call that returns multiple values, the first return value becomes the receiver and the rest become arguments.
@@ -36,8 +36,8 @@ This means you can write the same thing as a single chain:
 
 ```gab
 IO.File.make('my_file.txt')
-  .then((file) => file.read.println)
-  .else((msg)  => 'Failed to open file: $!'.sprintf(msg).println)
+  .then((file) :: file.read.println)
+  .else((msg)  :: 'Failed to open file: $!'.sprintf(msg).println)
 ```
 
 `ok:` and `err:` respond differently to `then:` and `else:`. `ok:` calls its `then:` block and passes the file through; `err:` calls its `else:` block and passes the error message through. The branching is built into the types, not into special syntax.
@@ -55,9 +55,9 @@ This approach is familiar if you've used Go, Rust's `Result` type, or Erlang's `
 If you want to pass an error up to the caller, return a tuple:
 
 ```gab
-read_config: .def (Strings.t, () => do
+read_config: .def (Strings.t, () :: do
   IO.File.make(self)
-    .then((file) => (ok: file.read))
-    .else((msg)  => (err: 'Could not open config: $!'.sprintf(msg)))
+    .then((file) :: (ok: file.read))
+    .else((msg)  :: (err: 'Could not open config: $!'.sprintf(msg)))
 end)
 ```

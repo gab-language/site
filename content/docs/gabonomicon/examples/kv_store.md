@@ -23,7 +23,7 @@ The command name comes first in the tuple so it can be forwarded directly as the
 caller fiber                   store fiber
     |                               |
     |-- (store\set: reply k v) ---------> ch
-    |                               |-- state = state.put(k, v)
+    |                               |-- state := state.put(k, v)
     |                               |-- reply <! ok:
     | <----------- ok: ------------ |
 ```
@@ -35,18 +35,18 @@ Because all state lives inside one fiber, parallel callers are automatically ser
 `make:` creates a channel, spawns the store fiber, and returns the channel directly. The store **is** the channel. Callers hold a channel value and send commands into it.
 
 ```gab
-Stores = store:
+Stores := store:
 
-make: .def (Stores, () => do
-  ch = Channels.make
+make: .def (Stores, () :: do
+  ch := Channels.make
 
-  loop = (state) => do
-    (cmd, reply, args*) = ch >! .unwrap
-    next_state = (cmd, reply, state, args*) .handle
+  loop := (state) :: do
+    (cmd, reply, args*) := ch >! .unwrap
+    next_state := (cmd, reply, state, args*) .handle
     self.(next_state)
   end
 
-  Fibers.make () => loop.({})
+  Fibers.make () :: loop.({})
 
   ch
 end)
@@ -58,17 +58,17 @@ The command handlers each receive `(reply, state, args*)` and return the next st
 
 ```gab
 handle: .defcase {
-  store\get: (reply, state, k) => do
+  store\get: (reply, state, k) :: do
     reply <! (state.at k)
     state
   end
 
-  store\set: (reply, state, k, v) => do
+  store\set: (reply, state, k, v) :: do
     reply <! ok:
     state.put(k, v)
   end
 
-  store\delete: (reply, state, k) => do
+  store\delete: (reply, state, k) :: do
     reply <! (state.at k)
     state.take(k)
   end
@@ -88,20 +88,20 @@ t: .def (Stores, Channels.t)
 
 # Define messages on our Store.t
 [Stores.t] .defmodule {
-  store\get: (k) => do
-    reply = Channels.make
+  store\get: (k) :: do
+    reply := Channels.make
     self <! (store\get: reply k)
     reply >! .unwrap
   end
 
-  store\set: (k, v) => do
-    reply = Channels.make
+  store\set: (k, v) :: do
+    reply := Channels.make
     self <! (store\set: reply k v)
     reply >! .unwrap
   end
 
-  store\delete: (k) => do
-    reply = Channels.make
+  store\delete: (k) :: do
+    reply := Channels.make
     self <! (store\delete: reply k)
     reply >! .unwrap
   end
@@ -115,34 +115,34 @@ t: .def (Stores, Channels.t)
 Here is an example of how we'd expect to use this api:
 
 ```gab
-store = Stores.make
+store := Stores.make
 
 # Set some values
 store.store\set('name', 'Gab')
-store.store\set('version', '0.0.5')
+store.store\set('version', '0.1.1')
 
 # Get a value
 store.store\get('name')
-  .then((val) => 'name is: $'.sprintf(val).println)
-  .else(()    => 'not found'.println)
-# => name is: Gab
+  .then((val) :: 'name is: $'.sprintf(val).println)
+  .else(()    :: 'not found'.println)
+# :: name is: Gab
 
 # Overwrite
 store.store\set('name', 'cgab')
 store.store\get('name')
-  .then((val) => val.println)
-# => cgab
+  .then((val) :: val.println)
+# :: cgab
 
 # Delete
 store.store\delete('version')
 store.store\get('version')
-  .else(() => 'not found'.println)
-# => not found
+  .else(() :: 'not found'.println)
+# :: not found
 
 # Missing key
 store.store\get('missing')
-  .else(() => 'not found'.println)
-# => not found
+  .else(() :: 'not found'.println)
+# :: not found
 ```
 
 ## Parallel access
@@ -150,18 +150,18 @@ store.store\get('missing')
 The store is safe to use from any number of fibers simultaneously. Because all state is owned by the store fiber, and all access goes through the channel, operations are automatically serialised:
 
 ```gab
-store = Stores.make
+store := Stores.make
 
-fibers = Ranges.make(0, 1000).map (i) => do
-  Fibers.make () => do
-    key = 'fiber-$'.sprintf(i)
+fibers := Ranges.make(0, 1000).map (i) :: do
+  Fibers.make () :: do
+    key := 'fiber-$'.sprintf(i)
     store.store\set(key, i)
     store.store\get(key)
-      .then((val) => '$: $'.sprintf(key, val).println)
+      .then((val) :: '$: $'.sprintf(key, val).println)
   end
 end
 
-fibers.each f => f.await
+fibers.each f :: f.await
 
 ```
 
@@ -172,34 +172,34 @@ The store is the only path to the state. Serialisation is a consequence of the t
 Here is a final, full example of our key-value store.
 
 ```gab
-Stores = store:
+Stores := store:
 
-make: .def (Stores, () => do
-  ch = Channels.make
+make: .def (Stores, () :: do
+  ch := Channels.make
 
-  loop = (state) => do
-    (cmd, reply, args*) = ch >! .unwrap
-    next_state = (cmd, reply, state, args*) .handle
+  loop := (state) :: do
+    (cmd, reply, args*) := ch >! .unwrap
+    next_state := (cmd, reply, state, args*) .handle
     self.(next_state)
   end
 
-  Fibers.make () => loop.({})
+  Fibers.make () :: loop.({})
 
   ch
 end)
 
 handle: .defcase {
-  store\get: (reply, state, k) => do
+  store\get: (reply, state, k) :: do
     reply <! (state.at k)
     state
   end
 
-  store\set: (reply, state, k, v) => do
+  store\set: (reply, state, k, v) :: do
     reply <! ok:
     state.put(k, v)
   end
 
-  store\delete: (reply, state, k) => do
+  store\delete: (reply, state, k) :: do
     reply <! (state.at k)
     state.take(k)
   end
@@ -208,20 +208,20 @@ handle: .defcase {
 t: .def (Stores, Channels.t)
 
 [Stores.t] .defmodule {
-  store\get: (k) => do
-    reply = Channels.make
+  store\get: (k) :: do
+    reply := Channels.make
     self <! (store\get: reply k)
     reply >! .unwrap
   end
 
-  store\set: (k, v) => do
-    reply = Channels.make
+  store\set: (k, v) :: do
+    reply := Channels.make
     self <! (store\set: reply k v)
     reply >! .unwrap
   end
 
-  store\delete: (k) => do
-    reply = Channels.make
+  store\delete: (k) :: do
+    reply := Channels.make
     self <! (store\delete: reply k)
     reply >! .unwrap
   end

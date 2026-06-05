@@ -16,9 +16,9 @@ With gab, you'll build composable, resilient programs almost by accident.
 Gab's syntax is minimal - learn the whole language in an afternoon.
 
 ```gab
-welcome = ['Hello', ' ', 'world!']
+welcome := ['Hello', ' ', 'world!']
 welcome.join.println
-# => Hello world!
+# :: Hello world!
 ```
 
 ## Parallel
@@ -26,15 +26,15 @@ welcome.join.println
 Gab's runtime is built on units of execution fibers. Fibers are lightweight and far cheaper than OS threads - make as many as you like. Gab will schedule them across all your cores, and run them in parallel.
 
 ```gab
-print_chan = Channels.make
+print_chan := Channels.make
 
-Ranges.make(0, 10000).each i => do
-  Fibers.make () => do
+Ranges.make(0, 10000).each i :: do
+  Fibers.make () :: do
     print_chan <! 'Hello from fiber $!'.sprintf(i)
   end
 end
 
-print_chan.each (msg) => msg.println
+print_chan.each (msg) :: msg.println
 ```
 
 ## Immutable
@@ -42,11 +42,11 @@ print_chan.each (msg) => msg.println
 Every value in Gab is immutable. This makes thinking in parallel easier than ever.
 
 ```gab
-bob   = { name: 'bob',   age: 44 }
-alice = bob.put(name: 'alice')
+bob   := { name: 'bob',   age: 44 }
+alice := bob.put(name: 'alice')
 
-bob    # => { name: 'bob',   age: 44 }
-alice  # => { name: 'alice', age: 44 }
+bob    # :: { name: 'bob',   age: 44 }
+alice  # :: { name: 'alice', age: 44 }
 ```
 
 ## Embeddable
@@ -61,10 +61,10 @@ Build a standalone executable for any supported platform — from any other:
 
 ```sh
 gab build -t aarch64-macos-none -m my,deps my_project
-# => my_project  (runs on Apple Silicon, no Gab installation required)
+# :: my_project  (runs on Apple Silicon, no Gab installation required)
 
 gab build -t x86_64-linux-gnu -m my,deps my_project
-# => my_project  (runs on Linux x86_64, no Gab installation required)
+# :: my_project  (runs on Linux x86_64, no Gab installation required)
 ```
 
 The output is a single file containing your code, your dependencies, and the entire Gab runtime. Send it to a server, bundle it in a container, hand it to a colleague or user — it just works.

@@ -1,4 +1,4 @@
-## channel
+### channel
 ```gab
 Channel[predicate\unknown]
 ```
@@ -6,17 +6,17 @@ Channel[predicate\unknown]
   Channels allow data to be shared between fibers.
   
 
-## close
+### close
 ```gab
-channel.close: () => ()
+channel.close: () :: ()
 ```
 
   Close a channel. Any fibers waiting to receive from this channel will receive `none:`.
   
 
-## is\closed
+### is\closed
 ```gab
-channel.is\closed: () => boolean
+channel.is\closed: () :: boolean
 ```
 
   Return `true:` if a channel is closed, and `false:` otherwise.
@@ -25,9 +25,9 @@ channel.is\closed: () => boolean
   so the return value of this message may change unexpectedly.
   
 
-## is\full
+### is\full
 ```gab
-channel.is\full: () => boolean
+channel.is\full: () :: boolean
 ```
 
   Return `true:` if a channel is occupied by a value, and `false:` otherwise.
@@ -36,9 +36,9 @@ channel.is\full: () => boolean
   so the return value of this message may change unexpectedly.
   
 
-## is\empty
+### is\empty
 ```gab
-channel.is\empty: () => boolean
+channel.is\empty: () :: boolean
 ```
 
   Return `true:` if a channel is *not* occupied by a value, and `false:` otherwise.
@@ -47,9 +47,9 @@ channel.is\empty: () => boolean
   so the return value of this message may change unexpectedly.
   
 
-## <!
+### <!
 ```gab
-channel.<!: value unknown => ()
+channel.<!: value unknown :: ()
 ```
 
   Send a value into self. This is always a synchronization point - the sending
@@ -59,9 +59,9 @@ channel.<!: value unknown => ()
   does nothing.
   
 
-## >!
+### >!
 ```gab
-channel.>!: value unknown => (some (status ok:, value unknown) | none none:)
+channel.>!: value unknown :: (some (status ok:, value unknown) | none none:)
 ```
 
   Receive a value from self. This is always a synchronization point - the receiving

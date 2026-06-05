@@ -40,7 +40,7 @@ First, we need to create what Gab calls a 'package'. This is just a folder in yo
 Lets add some content to `mod.gab`:
 
 ```gab {filename="mod.gab"}
-'github.com/gab-language/cgab@0.0.5' .use 'Io'
+'github.com/gab-language/cgab@0.1.1' .use 'Io'
 
 'Hello, world!'.println
 ```
@@ -68,11 +68,11 @@ Inside the REPL, try typing the same code:
 ```bash
 gab repl
   ________   ___  |
- / ___/ _ | / _ ) | v0.0.5
+ / ___/ _ | / _ ) | v0.1.1
 / (_ / __ |/ _  | |  on: x86_64-linux-gnu
 \___/_/ |_/____/  |  in: release
 
->>> 'github.com/gab-language/cgab@0.0.5'.use 'Io'
+>>> 'github.com/gab-language/cgab@0.1.1'.use 'Io'
 io:
 >>> 'Hello, world!'.println
 Hello, world!
@@ -100,7 +100,7 @@ The resulting binary can be sent to any machine of the target platform and run d
 
 For a quick bit of fun, lets compile our `hello` package to an executable. Simply run:
 ```bash
-gab build -m github.com/gab-language/cgab@0.0.5 hello
+gab build -m github.com/gab-language/cgab@0.1.1 hello
 ```
 
 This produces a file `hello.cgab-<version>-<target>.exe`. Gab chooses this name because it is cross-platform, and including the cgab version and compilation target is a hygenic practice.

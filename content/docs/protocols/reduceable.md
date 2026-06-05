@@ -1,4 +1,4 @@
-## reduceable
+### reduceable
 ```gab
 [ reduce\step:, reduce\done: ]
 ```
@@ -8,7 +8,7 @@
   Send `reduce\step:` to a reduceable, with an accumulator and any values:
 
   ```gab
-    (cmd r acc) = reduceable.reduce\step(acc, args)
+    (cmd r acc) := reduceable.reduce\step(acc, args)
   ```
 
   Reducers can terminate a sequence before the seqable runs out of values.
@@ -25,7 +25,7 @@
   In many cases, `reduce\done:` just forwards the accumulator as it received it.
 
   ```gab
-    acc = reduceable.reduce\done acc
+    acc := reduceable.reduce\done acc
   ```
 
   With these two messages, it is possible to define a message which recursively process a seqable with a reduceable.
@@ -38,47 +38,47 @@
   ```gab
     doreduce: .defcase {
       # The sequence continues
-      ok: (seq\i, seq\v, acc, r, xs) => do
+      ok: (seq\i, seq\v, acc, r, xs) :: do
         # Apply the reducer
-        (cmd, r, acc) = r.reduce\step(acc, xs*)
+        (cmd, r, acc) := r.reduce\step(acc, xs*)
         # proceed to the next sep
         cmd.doreduce(seq\i, seq\v, acc, r)
       end
 
       # The sequence is done
-      none: (seq\i, seq\v, acc, r) => do
+      none: (seq\i, seq\v, acc, r) :: do
         r.reduce\done(acc)
       end
 
       # The reducer continues
-      next: (seq\i, seq\v, acc, r) => do
+      next: (seq\i, seq\v, acc, r) :: do
         # Apply the producer resolving new values for the next step
-        (ok, seq\v, xs*) = seq\i .seq\next seq\v
+        (ok, seq\v, xs*) := seq\i .seq\next seq\v
         # Tailcall to the next step
         ok.doreduce(seq\i, seq\v, acc, r, xs)
       end
 
       # The reducer is done
-      stop: (seq\i, seq\v, acc, r) => do
+      stop: (seq\i, seq\v, acc, r) :: do
         r.reduce\done(acc)
       end
     }
 
     # Initialize the seq
-    (ok, seq\v, xs*) = self.seq\init
+    (ok, seq\v, xs*) := self.seq\init
     # Tail recursive algorithm with `doreduce:`
     ok.doreduce(self, seq\v, acc, r, xs)
   ```
   
 
-## reduce\step
+### reduce\step
 ```gab
-reduceable.reduce\step: (accumulator unknown, sequence_args *unknown) => (command next: | stop:, reducer reduceable, accumulator unknown)
+reduceable.reduce\step: (accumulator unknown, sequence_args *unknown) :: (command next: | stop:, reducer [ reduce\step:, reduce\done: ], accumulator unknown)
 ```
 Performs one step of reducing work.
 
-## reduce\done
+### reduce\done
 ```gab
-reduceable.reduce\done: accumulator unknown => accumulator unknown
+reduceable.reduce\done: accumulator unknown :: accumulator unknown
 ```
 Finish reducing work. Perform any final computation the reducer needs to do in order to produce a final accumulated value.

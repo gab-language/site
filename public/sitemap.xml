@@ -64,19 +64,37 @@
     <loc>/docs/gabonomicon/</loc>
     <lastmod>2025-03-10T07:07:42-04:00</lastmod>
   </url><url>
+    <loc>/docs/modules/atoms/</loc>
+  </url><url>
+    <loc>/docs/modules/bencode/</loc>
+  </url><url>
+    <loc>/docs/modules/binary/</loc>
+  </url><url>
     <loc>/docs/modules/channel/</loc>
+  </url><url>
+    <loc>/docs/modules/dbrow/</loc>
   </url><url>
     <loc>/docs/modules/fiber/</loc>
   </url><url>
     <loc>/docs/modules/file/</loc>
   </url><url>
+    <loc>/docs/modules/http/</loc>
+  </url><url>
+    <loc>/docs/modules/json/</loc>
+  </url><url>
     <loc>/docs/modules/number/</loc>
   </url><url>
     <loc>/docs/modules/record/</loc>
   </url><url>
+    <loc>/docs/modules/shape/</loc>
+  </url><url>
     <loc>/docs/modules/socket/</loc>
   </url><url>
     <loc>/docs/modules/string/</loc>
+  </url><url>
+    <loc>/docs/modules/ui/</loc>
+  </url><url>
+    <loc>/docs/modules/uri/</loc>
   </url><url>
     <loc>/docs/protocols/reduceable/</loc>
   </url><url>

@@ -1,4 +1,4 @@
-## number
+### number
 ```gab
 float
 ```
@@ -6,127 +6,127 @@ float
   A 64-bit floating number.
   
 
-## float\between
+### float\between
 ```gab
-gab\number:.float\between: (() | from 0 to  number | between (lower number, upper number)) => number
+gab\number:.float\between: (() | from 0 to  float | between (lower float, upper float)) :: number
 ```
 Return a random float between lower and upper..
 
-## Pi
+### Pi
 ```gab
-gab\number:.Pi: () => number
+gab\number:.Pi: () :: number
 ```
 Return pi.
 
-## E
+### E
 ```gab
-gab\number:.E: () => number
+gab\number:.E: () :: number
 ```
 Return e.
 
-## Infinity
+### Infinity
 ```gab
-gab\number:.Infinity: () => number
+gab\number:.Infinity: () :: number
 ```
 Return infinity.
 
-## MaxInt
+### MaxInt
 ```gab
-gab\number:.MaxInt: () => number
+gab\number:.MaxInt: () :: number
 ```
 Return the maximum safe integer available to the gab runtime.
 
-## is\nan
+### is\nan
 ```gab
-number.is\nan: () => boolean
+number.is\nan: () :: boolean
 ```
 
   Returns true if self is NaN.
   
 
-## is\inf
+### is\inf
 ```gab
-number.is\inf: () => boolean
+number.is\inf: () :: boolean
 ```
 
   Returns true if self is infinity.
   
 
-## floor
+### floor
 ```gab
-number.floor: () => number
+number.floor: () :: number
 ```
 
   Returns the largest integral value not greater than self.
   
 
-## ceil
+### ceil
 ```gab
-number.ceil: () => number
+number.ceil: () :: number
 ```
 
   Returns the smallest integral value not less than self.
   
 
-## round
+### round
 ```gab
-number.is\round: () => number
+number.is\round: () :: number
 ```
 
   Returns self to the nearest integral value.
   
 
-## acos
+### acos
 ```gab
-number.acos: () => number
+number.acos: () :: number
 ```
 
   Returns the arccosine of self.
   
 
-## asin
+### asin
 ```gab
-number.asin: () => number
+number.asin: () :: number
 ```
 
   Returns the arcsine of self.
   
 
-## atan
+### atan
 ```gab
-number.atan: () => number
+number.atan: () :: number
 ```
 
   Returns the arctangent of self.
   
 
-## cos
+### cos
 ```gab
-number.cos: () => number
+number.cos: () :: number
 ```
 
   Returns the cosine of self.
   
 
-## sin
+### sin
 ```gab
-number.sin: () => number
+number.sin: () :: number
 ```
 
   Returns the sine of self.
   
 
-## tan
+### tan
 ```gab
-number.tan: () => number
+number.tan: () :: number
 ```
 
   Returns the tangent of self.
   
 
-## abs
+### abs
 ```gab
-number.abs: () => number
+number.abs: () :: number
 ```
 
   Returns the absolute value of self.

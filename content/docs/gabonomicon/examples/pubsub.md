@@ -11,8 +11,8 @@ This example builds a publish/subscribe message broker. Publishers send events t
 
 The broker owns a record mapping topic names to subscriber lists. Each subscriber list is a record used as a growable list of channels.
 
-```
-state = {
+```gab
+state := {
   news:  [ chan_a, chan_b ],
   sport: [ chan_c ]
 }
@@ -31,18 +31,18 @@ Fan-out spawns one fiber per subscriber, so a slow subscriber never stalls the b
 The broker channel carries `(cmd, args*)` tuples. No reply channel is needed since callers don't wait for a result from any of the three commands.
 
 ```gab
-Broker = broker:
+Broker := broker:
 
-make: .def (Broker, () => do
-  ch = Channels.make
+make: .def (Broker, () :: do
+  ch := Channels.make
 
-  loop = (state) => do
-    (cmd, args*) = ch >! .unwrap
-    next_state = (cmd, state, args*) .handle
+  loop := (state) :: do
+    (cmd, args*) := ch >! .unwrap
+    next_state := (cmd, state, args*) .handle
     self.(next_state)
   end
 
-  Fibers.make () => loop.({})
+  Fibers.make () :: loop.({})
 
   ch
 end)
@@ -58,24 +58,24 @@ end)
 
 ```gab
 handle: .defcase {
-  broker\subscribe: (state, topic, ch) => do
-    state.put_via_by(topic subs => subs.cons ch)
+  broker\subscribe: (state, topic, ch) :: do
+    state.put_via_by(topic subs :: subs.cons ch)
   end
 
-  broker\unsubscribe: (state, topic, ch) => do
+  broker\unsubscribe: (state, topic, ch) :: do
     state.at(topic)
-      .then(() => do
-        after = state.put_by(topic, subs => subs.filter(c => c == ch !))
+      .then(() :: do
+        after := state.put_by(topic, subs :: subs.filter(c :: c == ch !))
         after
       end)
       .or(state)
   end
 
-  broker\publish: (state, topic, event) => do
+  broker\publish: (state, topic, event) :: do
     state.at(topic)
-      .then(subs => do
-        subs.each sub => do
-          Fibers.make () => sub <! event
+      .then(subs :: do
+        subs.each sub :: do
+          Fibers.make () :: sub <! event
         end
       end)
 
@@ -92,15 +92,15 @@ All three methods are fire-and-forget. `broker\unsubscribe:` takes both the topi
 t: .def (Broker, Channels.t)
 
 [Broker.t] .defmodule {
-  broker\subscribe: (topic, ch) => do
+  broker\subscribe: (topic, ch) :: do
     self <! (broker\subscribe: topic ch)
   end
 
-  broker\unsubscribe: (topic, ch) => do
+  broker\unsubscribe: (topic, ch) :: do
     self <! (broker\unsubscribe: topic ch)
   end
 
-  broker\publish: (topic, event) => do
+  broker\publish: (topic, event) :: do
     self <! (broker\publish: topic event)
   end
 }
@@ -111,29 +111,29 @@ t: .def (Broker, Channels.t)
 Because the broker processes commands asynchronously, subscribers must confirm they have registered before the publisher starts sending, and the publisher must wait for unsubscription to complete before sending to a topic the subscriber has left. A shared `done` channel coordinates all of this:
 
 ```gab
-broker = Broker.make
-done   = Channels.make
+broker := Broker.make
+done   := Channels.make
 
-Fibers.make () => do
-  inbox = Channels.make
+Fibers.make () :: do
+  inbox := Channels.make
   broker.broker\subscribe(news: inbox)
 
   done <!         # signal: subscribed
 
-  inbox.each (event) => do
+  inbox.each (event) :: do
     'NEWS: $'.sprintf(event).println
   end
 end
 
 done >!           # wait for news subscriber
 
-Fibers.make () => do
-  inbox = Channels.make
+Fibers.make () :: do
+  inbox := Channels.make
   broker.broker\subscribe(sport: inbox)
 
   done <!         # signal: subscribed
 
-  inbox.each (event) => do
+  inbox.each (event) :: do
     'SPORT: $'.sprintf(event).println
 
     broker.broker\unsubscribe(sport: inbox)
@@ -161,41 +161,41 @@ The sport subscriber unsubscribes after receiving its first event, then signals 
 The full broker module is below.
 
 ```gab
-Broker = broker:
+Broker := broker:
 
-make: .def (Broker, () => do
-  ch = Channels.make
+make: .def (Broker, () :: do
+  ch := Channels.make
 
-  loop = (state) => do
-    (cmd, args*) = ch >! .unwrap
-    next_state = (cmd, state, args*) .handle
+  loop := (state) :: do
+    (cmd, args*) := ch >! .unwrap
+    next_state := (cmd, state, args*) .handle
     self.(next_state)
   end
 
-  Fibers.make () => loop.({})
+  Fibers.make () :: loop.({})
 
   ch
 end)
 
 handle: .defcase {
-  broker\subscribe: (state, topic, ch) => do
-    state.put_via_by(topic subs => subs.cons ch)
+  broker\subscribe: (state, topic, ch) :: do
+    state.put_via_by(topic subs :: subs.cons ch)
   end
 
-  broker\unsubscribe: (state, topic, ch) => do
+  broker\unsubscribe: (state, topic, ch) :: do
     state.at(topic)
-      .then(() => do
-        after = state.put_by(topic, subs => subs.filter(c => c == ch !))
+      .then(() :: do
+        after := state.put_by(topic, subs :: subs.filter(c :: c == ch !))
         after
       end)
       .or(state)
   end
 
-  broker\publish: (state, topic, event) => do
+  broker\publish: (state, topic, event) :: do
     state.at(topic)
-      .then(subs => do
-        subs.each sub => do
-          Fibers.make () => ok = sub <! event
+      .then(subs :: do
+        subs.each sub :: do
+          Fibers.make () :: ok := sub <! event
         end
       end)
 
@@ -206,15 +206,15 @@ handle: .defcase {
 t: .def (Broker, Channels.t)
 
 [Broker.t] .defmodule {
-  broker\subscribe: (topic, ch) => do
+  broker\subscribe: (topic, ch) :: do
     self <! (broker\subscribe: topic ch)
   end
 
-  broker\unsubscribe: (topic, ch) => do
+  broker\unsubscribe: (topic, ch) :: do
     self <! (broker\unsubscribe: topic ch)
   end
 
-  broker\publish: (topic, event) => do
+  broker\publish: (topic, event) :: do
     self <! (broker\publish: topic event)
   end
 }

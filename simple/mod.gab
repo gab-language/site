@@ -1,6 +1,6 @@
-Ranges = 'github.com/gab-language/cgab@0.0.5'.use 'Ranges'
-Transducers = 'github.com/gab-language/cgab@0.0.5'.use 'Transducers'
-'github.com/gab-language/cgab@0.0.5' .use 'Io'
+Ranges = 'github.com/gab-language/cgab@0.1.1'.use 'Ranges'
+Transducers = 'github.com/gab-language/cgab@0.1.1'.use 'Transducers'
+'github.com/gab-language/cgab@0.1.1' .use 'Io'
 
 ch = Channels.make
 

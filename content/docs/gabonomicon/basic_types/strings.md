@@ -18,9 +18,9 @@ Strings are UTF-8 encoded byte sequences. Single-quoted strings support escape s
 Because Gab respects UTF-8 encoding, operations that are trivial on raw bytes may be linear-time on strings. Slicing a string at a given index requires scanning from the start, since utf8 codepoints are 1–4 bytes wide.
 
 ```gab
-smiley = '😀'
+smiley := '😀'
 
-smiley.len    # => 1  (one codepoint)
+smiley.len    # :: 1  (one codepoint)
 ```
 
 **Constructing strings:**
@@ -29,7 +29,7 @@ smiley.len    # => 1  (one codepoint)
 Strings.make('Ada', ' ', last_name)
 
 'Format a value: $'.sprintf({ name: 'bob' })
-# => 'Format a value: { name: bob }'
+# :: 'Format a value: { name: bob }'
 ```
 
 `sprintf` replaces each `$` in the format string with the corresponding argument, in order.
@@ -41,11 +41,11 @@ Strings.make('Ada', ' ', last_name)
 There is no literal syntax for binaries. Convert a string with `to\b`:
 
 ```gab
-smiley     = '😀'
-smiley_bin = smiley.to\b
+smiley     := '😀'
+smiley_bin := smiley.to\b
 
-smiley.len      # => 1  (codepoints)
-smiley_bin.len  # => 4  (bytes)
+smiley.len      # :: 1  (codepoints)
+smiley_bin.len  # :: 4  (bytes)
 ```
 
 Slicing a binary is constant-time:
@@ -58,7 +58,7 @@ Slicing a binary is constant-time:
 Converting a binary back to a string can fail if the bytes are not valid UTF-8:
 
 ```gab
-(status, str) = some_binary.as\s
+(status, str) := some_binary.as\s
 ```
 
 ## Shared memory with `gab\message`
@@ -66,8 +66,8 @@ Converting a binary back to a string can fail if the bytes are not valid UTF-8:
 Because `gab\string`, `gab\binary`, and `gab\message` all share the same underlying character data, converting between them is zero-cost. The string `'true'` and the message `true:` occupy the same bytes — they differ only in their type tag.
 
 ```gab
-'true'.to\m   # => true:   (no allocation)
-true:.to\s    # => 'true'  (no allocation)
+'true'.to\m   # :: true:   (no allocation)
+true:.to\s    # :: 'true'  (no allocation)
 ```
 
 This design means message values are just as efficient as strings in any context where they appear as keys or identifiers.

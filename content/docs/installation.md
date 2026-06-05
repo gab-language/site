@@ -12,16 +12,15 @@ Download the archive that matches your platform:
 
 | Platform | Architecture | File |
 |---|---|---|
-| macOS | Apple Silicon (M1/M2/M3) | [gab-aarch64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-release-aarch64-macos-none) |
-| macOS | Intel | [gab-x86_64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-release-x86_64-macos-none) |
-| Linux | x86_64 | [gab-x86_64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-release-x86_64-linux-gnu) |
-| Linux | ARM64 | [gab-aarch64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-release-aarch64-linux-gnu) |
-
-> Windows support is planned for a future release.
+| macOS | x86-64 | [gab-x86-64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-release-x86_64-macos-none) |
+| macOS | arm 64 | [gab-aarch64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-release-aarch64-macos-none) |
+| Windows | x86-64 | [gab-x86-64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-release-x86_64-windows-gnu.exe) |
+| Windows | arm 64 | [gab-aarch64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-release-aarch64-windows-gnu.exe) |
+| Linux | x86-64 | [gab-x86-64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-release-x86_64-linux-gnu) |
+| Linux | arm 64 | [gab-aarch64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-release-aarch64-linux-gnu) |
 
 > [!WARNING]
-> The executable you just downloaded (`gab-release-<your_target>`) won't be in your path, so you'll need to invoke it directly. On some platforms you may need to mark it as executable, with `chmod +x <gab-release-your_target>`.
-> Later, Gab will recommend how to update your PATH as part of installation. Ultimately, this is up to you!
+> The executable you just downloaded (`gab-release-<your_target>`) won't be in your path, so you'll need to invoke it directly. On some platforms you may need to mark it as executable.
 
 ## Install
 
@@ -53,43 +52,57 @@ gab info
         arm macos | not installed
       arm windows | not installed
 ```
-Aha! No installations were found. Lets go ahead and complete your installation by downloading the core modules
-that Gab requires.
+Aha! No installations were found. Lets go ahead and complete your installation.
 
-### Download Gab's development files and builtin package
+### Download and install Gab locally
 
 ```bash
 # Gab makes this easy:
 gab get
 ```
-This command downloads the gab binary, development files (for embedding Gab in other programs), and the builtin `gab-language/cgab` package.
+This command downloads packages. When no package is specified (as above), it downloads the builtin `gab-language/cgab` package, which includes the standard library and the gab binary itself.
+
+A 'package' is a resource attached to a tag on a git remote. The only supported host thus far is github.
+
+To manually download the builtin gab package, the command would look something like:
+
+```bash
+gab get github.com/gab-language/cgab@0.1.1
+```
+
+From this example, gab constructs the url:
+
+```
+https://github.com/gab-language/cgab/releases/downloads/0.1.1/cgab-0.1.1-x86_64-linux-gnu
+```
+
+> When other hosts become officially supported, gab will construct URLs to match their needs.
+
+If this resources exists, gab downloads it expecting a *gab bundle*, which it then installs as a package.
+
+> [!NOTE]
+> `gab` calls out to the operating system for `curl` in order to perform this installation. They should be widely available by default on most machines,
+> including any Windows machine with Windows 10 or later. However, you may see an error message indicating that it is unavailable - in this case, installation will fail.
+
+The resource name `cgab-0.1.1-x86_64-linux-gnu` is a canonical gab bundlename. It is composed of 5 parts, separated with `-`.
+
+1. The gab implementation
+2. The version of said gab implementation
+3. The machine architecture
+4. The operating system
+5. The libc implementation
+
+These components ensure that gab searches for and downloads code matching the desired target exactly.
 
 ### Complete the installation
 
-Lastly, complete your installation as instructed by the message in your terminal.
+At this point, you have a gab version installed correctly on your machine. In order to use it however, you'll need to add it to your *PATH*.
 
-> [!NOTE]
-> `gab` calls out to the operating system for `curl` and `tar` in order to perform this installation. They should be widely available by default on most machines,
-> including any Windows machine with Windows 10 or later. However, you may see an error message indicating that one of the two is unavailable - in that case installation will fail.
+Running `gab info` again should show that you've installed the appropriate target. You *can* install the same binary and builtin package for any platform that you like - this is actually how Gab supports cross compilation!
 
-Running `gab info` again should show that you've installed the appropriate target. You *can* install the same development files and package for any platform that you like - this is actually how Gab supports cross compilation!
+If your system supports symbolic links, it is recommended to link the gab binary found in the local installation to some folder already in your *PATH*, like `/usr/local/bin` on Linux.
 
 And thats it - Gab is now installed and ready to go on your system. If you're new to Gab, start with the [gabonomicon](/docs/gabonomicon). Get hacking!
-
-## Embedding Gab
-
-Gab is designed to be embedded in larger C applications. When you install Gab, you also get:
-
-- `gab.h` — the complete C API, documented in a single header file
-- `libcgab.a` — a static library to link against
-
-To embed Gab, include `gab.h` and link with `libcgab.a`. The C API gives you full control: you can evaluate Gab source, call Gab functions from C, and expose C functions to Gab code.
-
-To write a **native module** (a C library that Gab code can `use`), you only need `gab.h` — no linking required, since the Gab runtime that loads your module already carries the necessary symbols.
-
-## Windows
-Unforunately, windows is not supported at the moment. There is currently a [bug](https://github.com/ziglang/zig/issues/18799) in `zig cc` causing miscompilations on Windows which break the **c abi**. The features of c which cause this bug to appear
-are used heavily in cgab. Until this bug is fixed in `zig`, Gab will not support windows. 
 
 ## Compiling From Source
 cgab is a C project built with Zig's c-compiler toolchain. `zig cc` is chosen specifically for its cross-compiling superpowers. This enables
