@@ -1,4 +1,4 @@
-### uri
+## uri
 ```gab
 [ uri\scheme:, uri\authority:, uri\path:, uri\query:, uri\fragment: ]
 ```
@@ -6,7 +6,7 @@
   A fully-parsed uri. See `scheme`, `authority`, `path`, `query`, and `fragment` for more details on these components.
   
 
-### as\uri
+## as\uri
 ```gab
 string.as\uri: () :: (success (status ok:, value [ uri\scheme:, uri\authority:, uri\path:, uri\query:, uri\fragment: ]) | failure (status err:, message string))
 ```
@@ -17,7 +17,7 @@ string.as\uri: () :: (success (status ok:, value [ uri\scheme:, uri\authority:, 
   For details on percent-decoding, see `as\uri\encoded`.
   
 
-### to\uri
+## to\uri
 ```gab
 uri.to\uri: () :: string
 ```
@@ -27,7 +27,7 @@ uri.to\uri: () :: string
   Neither the uri conversion nor the percent-encoding can fail in this direction.
   
 
-### to\uri\encoded
+## to\uri\encoded
 ```gab
 string.to\uri\encoded: () :: string
 ```
@@ -52,7 +52,7 @@ string.to\uri\encoded: () :: string
   The ` ` characters are replaced with the percent encoding `%20` (A `%`, followed by the ASCII value of a space, `20`).
   
 
-### as\uri\encoded
+## as\uri\encoded
 ```gab
 string.as\uri\encoded: () :: (success (status ok:, value string) | failure (status err:, message string))
 ```
@@ -73,7 +73,7 @@ string.as\uri\encoded: () :: (success (status ok:, value string) | failure (stat
   If there are fewer than two characters after the `%`, decoding will also fail.
   
 
-### scheme
+## scheme
 ```gab
 string
 ```
@@ -86,7 +86,7 @@ string
   ```
   
 
-### authority
+## authority
 ```gab
 [ uri\host:, uri\port:, uri\username:, uri\password: ]
 ```
@@ -102,7 +102,7 @@ string
   See `host`, `port`, `username`, and `password`.
   
 
-### path
+## path
 ```gab
 List[string]
 ```
@@ -117,7 +117,7 @@ List[string]
   ```
   
 
-### query
+## query
 ```gab
 Dict[string, string]
 ```
@@ -132,7 +132,7 @@ Dict[string, string]
   This record will contain the key-value present in the URI. Both keys and values are strings.
   
 
-### fragment
+## fragment
 ```gab
 string
 ```
@@ -145,7 +145,7 @@ string
   ```
   
 
-### host
+## host
 ```gab
 string
 ```
@@ -158,7 +158,7 @@ string
   ```
   
 
-### port
+## port
 ```gab
 string
 ```
@@ -171,7 +171,7 @@ string
   ```
   
 
-### username
+## username
 ```gab
 string
 ```
@@ -184,7 +184,7 @@ string
   ```
   
 
-### password
+## password
 ```gab
 string
 ```

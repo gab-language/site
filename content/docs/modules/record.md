@@ -1,4 +1,4 @@
-### record
+## record
 ```gab
 record
 ```
@@ -8,7 +8,7 @@ record
   In addition to the builtin messages defined in this module, records also respond to their *keys* as messages.
   
 
-### len
+## len
 ```gab
 record.len: () :: int
 ```
@@ -20,7 +20,7 @@ record.len: () :: int
   ```
   
 
-### at
+## at
 ```gab
 record.at: unknown :: (some (status ok:, value unknown) | none none:)
 ```
@@ -41,7 +41,7 @@ record.at: unknown :: (some (status ok:, value unknown) | none none:)
   ```
   
 
-### has
+## has
 ```gab
 record.has: unknown :: boolean
 ```
@@ -50,7 +50,7 @@ record.has: unknown :: boolean
   ```
   
 
-### put
+## put
 ```gab
 record.put: (key unknown, value unknown) :: record
 ```
@@ -67,7 +67,7 @@ record.put: (key unknown, value unknown) :: record
   ```
   
 
-### put_via
+## put_via
 ```gab
 record.put_via: (key_path *unknown, value unknown) :: record
 ```
@@ -95,7 +95,7 @@ record.put_via: (key_path *unknown, value unknown) :: record
   ```
   
 
-### at_via
+## at_via
 ```gab
 record.at_via: key_path *unknown :: (some (status ok:, value unknown) | none none:)
 ```
@@ -108,7 +108,7 @@ record.at_via: key_path *unknown :: (some (status ok:, value unknown) | none non
   ```
   
 
-### put_by
+## put_by
 ```gab
 record.put_by: (key unknown, f is\block:) :: record
 ```
@@ -126,7 +126,7 @@ record.put_by: (key unknown, f is\block:) :: record
   If the key does not exist in the record, then the argument to the block will be `nil:`.
   
 
-### put_via_by
+## put_via_by
 ```gab
 record.put_via_by: (key_path *unknown, f is\block:) :: record
 ```
@@ -136,7 +136,7 @@ record.put_via_by: (key_path *unknown, f is\block:) :: record
   Combines the behavior of `put_via:` and `put_by:`.
   
 
-### push
+## push
 ```gab
 record.push: unknown :: record
 ```
@@ -150,7 +150,7 @@ record.push: unknown :: record
   ```
   
 
-### pop
+## pop
 ```gab
 record.pop: () :: (some (status ok:, value (record record, popped_value unknown, popped_key unknown)) | none none:)
 ```
@@ -173,7 +173,7 @@ record.pop: () :: (some (status ok:, value (record record, popped_value unknown,
   ```
   
 
-### is\record
+## is\record
 ```gab
 unknown.is\record: () :: boolean
 ```
@@ -181,7 +181,7 @@ unknown.is\record: () :: boolean
   Returns `true:` if the receiver is a record, and `false:` otherwise.
   
 
-### is\list
+## is\list
 ```gab
 record.is\list: () :: boolean
 ```
@@ -189,7 +189,7 @@ record.is\list: () :: boolean
   Returns `true:` if the receiving record is a list, and false otherwise.
   
 
-### is\dict
+## is\dict
 ```gab
 record.is\dict: () :: boolean
 ```
@@ -197,7 +197,7 @@ record.is\dict: () :: boolean
   Returns `true:` if the receiving record is a dict, and false otherwise.
   
 
-### keys
+## keys
 ```gab
 record.keys: () :: List[unknown]
 ```
@@ -205,7 +205,7 @@ record.keys: () :: List[unknown]
   Return a list of all the keys in the record, in order.
   
 
-### vals
+## vals
 ```gab
 record.vals: () :: List[unknown]
 ```
@@ -213,7 +213,7 @@ record.vals: () :: List[unknown]
   Return a list of all the values in the record, in order.
   
 
-### plus
+## plus
 ```gab
 record.+: other record :: record
 ```
@@ -221,7 +221,7 @@ record.+: other record :: record
   Concatenate the argment record onto self.
   
 
-### slice
+## slice
 ```gab
 record.slice: (end int | both (begin int, end int)) :: record
 ```
@@ -230,7 +230,7 @@ record.slice: (end int | both (begin int, end int)) :: record
   (0, end) or (begin, end).
   
 
-### 
+## 
 ```gab
 record.: unknown :: unknown
 ```
@@ -248,7 +248,7 @@ record.: unknown :: unknown
   This allows for records to serve as functions of their keys.
   
 
-### take
+## take
 ```gab
 record.take: unknown :: (remaining record, value unknown)
 ```
@@ -256,7 +256,7 @@ record.take: unknown :: (remaining record, value unknown)
   Given a key, return a tuple of a new record *without* the given key, and whatever value was found at that key (if any).
   
 
-### seq\init
+## seq\init
 ```gab
 seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done none:)
 ```
@@ -266,7 +266,7 @@ seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done 
   See the seqable protocol for details.
   
 
-### seq\next
+## seq\next
 ```gab
 seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown) | done none:)
 ```

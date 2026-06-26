@@ -8,20 +8,18 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>Value Representation – Gab Programming Language</title>
-  <meta name="description" content="Why it matters In a language like C, code is compiled to run natively - values are just blocks of memory, and at runtime there is no type information. A register could hold an integer, or a pointer, or a boolean, but to the program they’re all just bits.
-This differs from how a language like Java, Python, or Gab work. These dynamic languages also carry type information about values through runtime, and use it for garbage collection, reflection, and detecting type errors." /><link rel="canonical" href="/blog/values/" itemprop="url" />
+<title>Representing Values in cgab – Gab Programming Language</title>
+  <meta name="description" content="Why it matters Performance is always the answer! Dynamic languages like gab often have one over-arching definition of what a value is in the runtime. It is crucial that this value has as small of a memory footprint as possible. The runtime stores many contiguous arrays of these values, and the more compact these arrays can be, the better. In gab’s case, it is even more important that values fit into a register, as this makes it easier for them to cross thread boundaries." /><link rel="canonical" href="/blog/values/" itemprop="url" />
 
-<meta property="og:title" content="Value Representation">
+<meta property="og:title" content="Representing Values in cgab">
 <meta
   property="og:description"
   content="
     
       Why it matters
-    In a language like C, code is compiled to run natively - values are just blocks of memory, and at runtime there is no type information.
-A register could hold an integer, or a pointer, or a boolean, but to the program they&rsquo;re all just bits.
-This differs from how a language like Java, Python, or Gab work.
-These dynamic languages also carry type information about values through runtime, and use it for garbage collection, reflection, and detecting type errors.
+    Performance is always the answer! Dynamic languages like gab often have one over-arching definition of what a value is in the runtime.
+It is crucial that this value has as small of a memory footprint as possible. The runtime stores many contiguous arrays of these values,
+and the more compact these arrays can be, the better. In gab&rsquo;s case, it is even more important that values fit into a register, as this makes it easier for them to cross thread boundaries.
     
   ">
 <meta
@@ -42,16 +40,14 @@ These dynamic languages also carry type information about values through runtime
 
 
 
-  <meta itemprop="name" content="Value Representation">
-  <meta itemprop="description" content="Why it matters In a language like C, code is compiled to run natively - values are just blocks of memory, and at runtime there is no type information. A register could hold an integer, or a pointer, or a boolean, but to the program they’re all just bits.
-This differs from how a language like Java, Python, or Gab work. These dynamic languages also carry type information about values through runtime, and use it for garbage collection, reflection, and detecting type errors.">
-  <meta itemprop="datePublished" content="2025-04-16T09:22:19-04:00">
-  <meta itemprop="dateModified" content="2025-04-16T09:22:19-04:00">
-  <meta itemprop="wordCount" content="1992">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Value Representation">
-  <meta name="twitter:description" content="Why it matters In a language like C, code is compiled to run natively - values are just blocks of memory, and at runtime there is no type information. A register could hold an integer, or a pointer, or a boolean, but to the program they’re all just bits.
-This differs from how a language like Java, Python, or Gab work. These dynamic languages also carry type information about values through runtime, and use it for garbage collection, reflection, and detecting type errors.">
+	<meta itemprop="name" content="Representing Values in cgab">
+	<meta itemprop="description" content="Why it matters Performance is always the answer! Dynamic languages like gab often have one over-arching definition of what a value is in the runtime. It is crucial that this value has as small of a memory footprint as possible. The runtime stores many contiguous arrays of these values, and the more compact these arrays can be, the better. In gab’s case, it is even more important that values fit into a register, as this makes it easier for them to cross thread boundaries.">
+	<meta itemprop="datePublished" content="2025-04-16T09:22:19-04:00">
+	<meta itemprop="dateModified" content="2025-04-16T09:22:19-04:00">
+	<meta itemprop="wordCount" content="2093">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Representing Values in cgab">
+	<meta name="twitter:description" content="Why it matters Performance is always the answer! Dynamic languages like gab often have one over-arching definition of what a value is in the runtime. It is crucial that this value has as small of a memory footprint as possible. The runtime stores many contiguous arrays of these values, and the more compact these arrays can be, the better. In gab’s case, it is even more important that values fit into a register, as this makes it easier for them to cross thread boundaries.">
 
     <link rel="preload" href="/css/compiled/main.min.1a431501cdeb52323c920e7761f7d9e327b2bee53160196c4bd1d34a3fd9fbc9.css" as="style" integrity="sha256-GkMVAc3rUjI8kg53YffZ4yeyvuUxYBlsS9HTSj/Z&#43;8k=" />
     <link href="/css/compiled/main.min.1a431501cdeb52323c920e7761f7d9e327b2bee53160196c4bd1d34a3fd9fbc9.css" rel="stylesheet" integrity="sha256-GkMVAc3rUjI8kg53YffZ4yeyvuUxYBlsS9HTSj/Z&#43;8k=" />
@@ -193,10 +189,22 @@ This differs from how a language like Java, Python, or Gab work. These dynamic l
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/blog/demo/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Demo</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
       href="/blog/build/"
       
     >
-      <span class="hx:min-w-0 [word-break:break-word]">Build</span>
+      <span class="hx:min-w-0 [word-break:break-word]">Building, Deploying, Distributing</span>
     </a>
   </div>
               
@@ -208,7 +216,7 @@ This differs from how a language like Java, Python, or Gab work. These dynamic l
       href="/blog/io/"
       
     >
-      <span class="hx:min-w-0 [word-break:break-word]">IO</span>
+      <span class="hx:min-w-0 [word-break:break-word]">Asynchronous, Parallel IO in a Single Header File</span>
     </a>
   </div>
               
@@ -220,7 +228,7 @@ This differs from how a language like Java, Python, or Gab work. These dynamic l
       href="/blog/values/"
       
     >
-      <span class="hx:min-w-0 [word-break:break-word]">Value Representation</span>
+      <span class="hx:min-w-0 [word-break:break-word]">Representing Values in cgab</span>
     </a>
   </div>
   
@@ -232,9 +240,27 @@ This differs from how a language like Java, Python, or Gab work. These dynamic l
             </li>
           <li>
               <a
-                href="#nan-tagging"
+                href="#start-simple"
                 class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
-              >NaN Tagging</a>
+              >Start Simple</a>
+            </li>
+          <li>
+              <a
+                href="#values-in-context"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >Values in Context</a>
+            </li>
+          <li>
+              <a
+                href="#the-dark-arts"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >The Dark Arts</a>
+            </li>
+          <li>
+              <a
+                href="#a-step-further"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >A Step Further</a>
             </li>
           </ul>
   
@@ -766,6 +792,30 @@ This differs from how a language like Java, Python, or Gab work. These dynamic l
       class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
       hx:hextra-focus-visible-inset
         hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/protocols/sinkable/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Sinkable</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+      href="/docs/protocols/sourceable/"
+      
+    >
+      <span class="hx:min-w-0 [word-break:break-word]">Sourceable</span>
+    </a>
+  </div>
+              
+            </li><li class="hx:flex hx:flex-col "><div class="hextra-sidebar-item hx:group hx:relative hx:flex hx:items-center" data-active="false">
+    <a
+      class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:grow hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none]
+      hx:hextra-focus-visible-inset
+        hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
       href="/docs/protocols/streamable/"
       
     >
@@ -1117,11 +1167,19 @@ This differs from how a language like Java, Python, or Gab work. These dynamic l
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#nan-tagging">NaN Tagging
+        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#start-simple">Start Simple
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:ltr:pl-4 hx:rtl:pr-4 hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#short-string-optimization">Short String Optimization
+        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#values-in-context">Values in Context
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#the-dark-arts">The Dark Arts
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#a-step-further">A Step Further
         </a>
       </li></ul>
       <div class="hx:mt-8 hx:border-t hx:bg-white hx:pt-8 hx:shadow-[0_-12px_16px_white] hx:dark:bg-dark hx:dark:shadow-[0_-12px_16px_#111] hx:sticky hx:bottom-0 hx:flex hx:flex-col hx:items-start hx:gap-2 hx:pb-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-t hx:contrast-more:border-neutral-400 hx:contrast-more:shadow-none hx:contrast-more:dark:border-neutral-400">
@@ -1141,27 +1199,31 @@ This differs from how a language like Java, Python, or Gab work. These dynamic l
         <div class="hx:mt-1.5 hx:flex hx:items-center hx:gap-1 hx:overflow-hidden hx:text-sm hx:text-gray-500 hx:dark:text-gray-400 hx:contrast-more:text-current">
         <div class="hx:whitespace-nowrap hx:transition-colors hx:min-w-[24px] hx:overflow-hidden hx:text-ellipsis hx:hover:text-gray-900 hx:dark:hover:text-gray-100">
           <a href="/blog/" class="hx:inline-block hx:rounded-sm hx:hextra-focus-visible-inset">Blog</a>
-        </div><svg class="hx:w-3.5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx:whitespace-nowrap hx:transition-colors hx:font-medium hx:text-gray-700 hx:contrast-more:font-bold hx:contrast-more:text-current hx:dark:text-gray-100 hx:contrast-more:dark:text-current">Value Representation</div>
+        </div><svg class="hx:w-3.5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx:whitespace-nowrap hx:transition-colors hx:font-medium hx:text-gray-700 hx:contrast-more:font-bold hx:contrast-more:text-current hx:dark:text-gray-100 hx:contrast-more:dark:text-current">Representing Values in cgab</div>
   </div>
 
         
         <div class="hx:flex hx:flex-col hx:sm:flex-row hx:items-start hx:sm:items-center hx:sm:justify-between hx:gap-4 hx:mt-2">
-          <h1 class="hx:mb-0 hx:text-4xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">Value Representation</h1>
+          <h1 class="hx:mb-0 hx:text-4xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">Representing Values in cgab</h1>
           
         </div>
         
         <div class="hx:mt-4 hx:mb-16 hx:text-gray-500 hx:dark:text-gray-400 hx:text-sm hx:flex hx:items-center hx:flex-wrap hx:gap-y-2"><span class="hx:mr-1">April 16, 2025</span></div>
         <div class="content">
           <h2>Why it matters<span class="hx:absolute hx:-mt-20" id="why-it-matters"></span>
-    <a href="#why-it-matters" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>In a language like <code>C</code>, code is compiled to run natively - values are just blocks of memory, and at runtime there is <em>no type information</em>.
+    <a href="#why-it-matters" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Performance is always the answer! Dynamic languages like gab often have one over-arching definition of what a <em>value</em> is in the runtime.
+It is crucial that this value has as small of a memory footprint as possible. The runtime stores <em>many</em> contiguous arrays of these values,
+and the more compact these arrays can be, the better. In gab&rsquo;s case, it is even more important that values <em>fit into a register</em>, as this makes it easier for them to cross thread boundaries.</p>
+<p>In a language like <code>C</code>, code is compiled to run natively - values are just blocks of memory, and at runtime there is <em>no type information</em>.
 A register could hold an integer, or a pointer, or a boolean, but to the program they&rsquo;re all just bits.</p>
-<p>This differs from how a language like Java, Python, or Gab work.
+<p>This differs from how languages like Java, Python, or gab work.
 These dynamic languages also carry type information about values through runtime, and use it for garbage collection, reflection, and detecting type errors.</p>
 <blockquote>
   <p>Don&rsquo;t get mad at me for calling Java dynamic. You know it is.</p>
 
 </blockquote>
-<p>At the runtime-level, dynamic languages need a type which can represent <em>any</em> value in a program. A simple (dare I say naive) way of implementing this is with
+<h2>Start Simple<span class="hx:absolute hx:-mt-20" id="start-simple"></span>
+    <a href="#start-simple" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>At the runtime-level, dynamic languages need a type which can represent <em>any</em> value in a program. A simple (dare I say naive) way of implementing this is with
 a <em>tagged union</em>.</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
@@ -1215,7 +1277,8 @@ a <em>tagged union</em>.</p>
 </div>
 <p>Alright! We&rsquo;ve seen how these values can be used in our c-interpreter, and it all works nicely. What are the problems with this approach?
 To understand that, we need to dive a little bit deeper into how our c-interpreter <em>actually</em> works.</p>
-<p>Native programs have two types of memory - a <strong>stack</strong> and a <strong>heap</strong>. The same is true in the managed runtimes of Java, Python, and Gab. The interpreters (or virtual machines - VMs, as I&rsquo;ll probably say from now on) have an internal <em>stack</em>, which keep track of local variables, scopes, and function calls.</p>
+<h2>Values in Context<span class="hx:absolute hx:-mt-20" id="values-in-context"></span>
+    <a href="#values-in-context" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Native programs have two types of memory - a <strong>stack</strong> and a <strong>heap</strong>. The same is true in the managed runtimes of Java, Python, and Gab. The interpreters (or virtual machines - VMs, as I&rsquo;ll probably say from now on) have an internal <em>stack</em>, which keep track of local variables, scopes, and function calls.</p>
 <p>Here we have a random Python function which for the purpose of this demonstration, just makes some random calculations with arguments and variables.</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
@@ -1237,7 +1300,8 @@ To understand that, we need to dive a little bit deeper into how our c-interpret
 </div>
 <p>Let&rsquo;s take a look at how the <em>stack</em> might look under the hood as this function is being called.</p>
 <blockquote>
-  <p>Disclaimer: I am not a cpython expert. I am guessing based on what I know about it and stack vms in general.</p>
+  <p>Disclaimer: I am not a cpython expert. I am guessing based on what I know about it and stack vms in general.
+The specifics are not important - these principles apply to many situations in language runtimes.</p>
 
 </blockquote>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
@@ -1282,7 +1346,7 @@ To understand that, we need to dive a little bit deeper into how our c-interpret
   </button>
 </div>
 </div>
-<p>The point I&rsquo;m trying to get across is that the stack is basically a big, contiguous, array. As functions are called and scopes are entered/left, values are pushed and popped off of this array.
+<p>The point I&rsquo;m trying to get across is that the stack is basically a big, contiguous, array. As functions are called and scopes are entered/exited, values are pushed and popped off of this array.
 Lets tie in our tagged-union implementation, and look at the actual <strong>memory layout</strong> of our stack at the last pause point.</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
@@ -1342,8 +1406,8 @@ Lets tie in our tagged-union implementation, and look at the actual <strong>memo
 <li>We allocate <em>more</em> memory from the kernel dynamically than we actually use.</li>
 </ul>
 <p>In order to fix this problem, is there a way to fit a value <em>and</em> a tag into 8 bytes?</p>
-<h2>NaN Tagging<span class="hx:absolute hx:-mt-20" id="nan-tagging"></span>
-    <a href="#nan-tagging" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>There is a technique among vm-implementers known as <em>NaN tagging</em>, which involves repurposing some of the normally useless states
+<h2>The Dark Arts<span class="hx:absolute hx:-mt-20" id="the-dark-arts"></span>
+    <a href="#the-dark-arts" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>There is a technique among vm-implementers known as <em>NaN tagging</em>, which involves repurposing some of the normally useless states
 that a double-precision floating-point number can be in. There is an in-depth explanation in the source code, and the comment is copied at the end of this blog post.</p>
 <p>To summarize, we use a special incantation bit-pattern (known as a quiet NaN) to signal that we&rsquo;re in one of these useless floating-point states. If we confirm a double matches our incantation,
 we can safely use the lower 50 bits to interpret however we choose. If it doesn&rsquo;t, then we should interpret it as an ordinary double.</p>
@@ -1377,8 +1441,8 @@ On the other side of the pointer there will be a tag and data describing the obj
 </div>
 <p>The reason that the first four values are specified is because of our NaN tagging scheme. Those four kinds need to be small enough to fit in our two-bit tag.
 These four tags determine the types of all the values which we can cram into our remaining 48 bits.</p>
-<h3>Short String Optimization<span class="hx:absolute hx:-mt-20" id="short-string-optimization"></span>
-    <a href="#short-string-optimization" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>Using the remaining 48 bits, <code>cgab</code> can store up to 5 bytes of string data, including a length byte. This short string optimization is also described in the below comment.
+<h2>A Step Further<span class="hx:absolute hx:-mt-20" id="a-step-further"></span>
+    <a href="#a-step-further" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Using the remaining 48 bits, <code>cgab</code> can store up to 5 bytes of string data, including a length byte. This short string optimization is also described in the below comment.
 Strings, Binaries, and Messages <em>all</em> benefit from the short string optimization, and internally they all point to the same data. This is because the tag in the NaN-boxed value itself is
 what determines whether the value is a String, Binary, or Message. Because of this, converting <em>between</em> the 3 string-like types is quite literally trivial. Here is the code for converting
 a string into a binary, lifted from <code>cgab</code>.</p>
@@ -1523,9 +1587,9 @@ It describes more in depth how the floating-point trickery and short-string opti
 
         </div><div class="hx:mt-16"></div><div class="hx:mb-8 hx:flex hx:items-center hx:border-t hx:pt-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-neutral-400 hx:dark:contrast-more:border-neutral-400 hx:print:hidden"><a
         href="/blog/io/"
-        title="IO"
+        title="Asynchronous, Parallel IO in a Single Header File"
         class="hx:flex hx:max-w-[50%] hx:items-center hx:gap-1 hx:py-4 hx:text-base hx:font-medium hx:text-gray-600 hx:transition-colors [word-break:break-word] hx:hover:text-primary-600 hx:dark:text-gray-300 hx:md:text-lg hx:ltr:ml-auto hx:ltr:pl-4 hx:ltr:text-right hx:rtl:mr-auto hx:rtl:pr-4 hx:rtl:text-left"
-      >IO<svg class="hx:inline hx:h-5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div></main>
+      >Asynchronous, Parallel IO in a Single Header File<svg class="hx:inline hx:h-5 hx:shrink-0 hx:rtl:-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div></main>
     </article>
   </div>
 

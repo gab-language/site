@@ -1,16 +1,22 @@
 +++
 date = '2025-04-16T09:22:19-04:00'
 draft = false
-title = 'Value Representation'
+title = 'Representing Values in cgab'
 +++
 ## Why it matters
+Performance is always the answer! Dynamic languages like gab often have one over-arching definition of what a *value* is in the runtime.
+It is crucial that this value has as small of a memory footprint as possible. The runtime stores *many* contiguous arrays of these values,
+and the more compact these arrays can be, the better. In gab's case, it is even more important that values *fit into a register*, as this makes it easier for them to cross thread boundaries.
+
 In a language like `C`, code is compiled to run natively - values are just blocks of memory, and at runtime there is *no type information*.
 A register could hold an integer, or a pointer, or a boolean, but to the program they're all just bits.
 
-This differs from how a language like Java, Python, or Gab work. 
+This differs from how languages like Java, Python, or gab work. 
 These dynamic languages also carry type information about values through runtime, and use it for garbage collection, reflection, and detecting type errors.
 
 > Don't get mad at me for calling Java dynamic. You know it is.
+
+## Start Simple
 
 At the runtime-level, dynamic languages need a type which can represent *any* value in a program. A simple (dare I say naive) way of implementing this is with
 a *tagged union*.
@@ -45,6 +51,8 @@ This works well! We can now pass around this small struct in our interpreter. Ju
 Alright! We've seen how these values can be used in our c-interpreter, and it all works nicely. What are the problems with this approach?
 To understand that, we need to dive a little bit deeper into how our c-interpreter *actually* works.
 
+## Values in Context
+
 Native programs have two types of memory - a **stack** and a **heap**. The same is true in the managed runtimes of Java, Python, and Gab. The interpreters (or virtual machines - VMs, as I'll probably say from now on) have an internal *stack*, which keep track of local variables, scopes, and function calls.
 
 Here we have a random Python function which for the purpose of this demonstration, just makes some random calculations with arguments and variables.
@@ -57,6 +65,7 @@ def example(a, b):
 ```
 Let's take a look at how the *stack* might look under the hood as this function is being called.
 > Disclaimer: I am not a cpython expert. I am guessing based on what I know about it and stack vms in general.
+> The specifics are not important - these principles apply to many situations in language runtimes.
 ```python
 # Here is what the stack might look like at the callsite below.
 example(1, 2)
@@ -88,7 +97,7 @@ def example(a, b):
 # | ....... | The rest of the stack below, i.e. all the function calls that led to this one
 # %---------%
 ```
-The point I'm trying to get across is that the stack is basically a big, contiguous, array. As functions are called and scopes are entered/left, values are pushed and popped off of this array.
+The point I'm trying to get across is that the stack is basically a big, contiguous, array. As functions are called and scopes are entered/exited, values are pushed and popped off of this array.
 Lets tie in our tagged-union implementation, and look at the actual **memory layout** of our stack at the last pause point.
 ```c
 const sz = sizeof(struct value);         // 9 bytes
@@ -137,7 +146,7 @@ In each of these areas, we're experiencing:
 
 In order to fix this problem, is there a way to fit a value *and* a tag into 8 bytes?
 
-## NaN Tagging
+## The Dark Arts
 There is a technique among vm-implementers known as *NaN tagging*, which involves repurposing some of the normally useless states
 that a double-precision floating-point number can be in. There is an in-depth explanation in the source code, and the comment is copied at the end of this blog post.
 
@@ -163,7 +172,7 @@ enum gab_kind {
 The reason that the first four values are specified is because of our NaN tagging scheme. Those four kinds need to be small enough to fit in our two-bit tag.
 These four tags determine the types of all the values which we can cram into our remaining 48 bits.
 
-### Short String Optimization
+## A Step Further
 Using the remaining 48 bits, `cgab` can store up to 5 bytes of string data, including a length byte. This short string optimization is also described in the below comment.
 Strings, Binaries, and Messages *all* benefit from the short string optimization, and internally they all point to the same data. This is because the tag in the NaN-boxed value itself is 
 what determines whether the value is a String, Binary, or Message. Because of this, converting *between* the 3 string-like types is quite literally trivial. Here is the code for converting

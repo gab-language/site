@@ -1,20 +1,20 @@
 +++
 date = '2025-10-02T14:55:44-04:00'
 draft = false
-title = 'Build'
+title = 'Building, Deploying, Distributing'
 +++
 ## Why it matters
 Deploying and distributing apps in dynamic languages can be a pain. How are packages and dependencies managed?
 What if the user has a different version of the interpreter? What if we can't expect the user to have the interpreter at all?
 
-Compiled languages get to distrubute a single static binary, runnable on any matching os/arch system. This is vastly more simple and after all -
+Compiled languages get to distrubute a single static binary, runnable on any matching os/arch system. This is vastly simpler and after all -
 [just give me an .EXE](https://github.com/twitter/the-algorithm/issues/1999).
 
-What if there was a way that dynamic languages could bundle not just the users code, but *the interpreter itself and all the native modules*? Its possible! And its a feature coming to Gab.
+What if there was a way that dynamic languages could bundle not just the users code, but *the interpreter itself and all the native modules*? Its possible! And its now a feature of gab.
 
-### Prior Art
+## Prior Art
 This feature is inspired by the way the Lua Game Engine [Love2D](https://www.love2d.org/) recommends developers package up their games.
-It uses a technique involving **zip archives**.
+It uses a technique involving self-extracting **zip archives**.
 
 The neat thing about the zip file format is that the metadata about the files in the archive is stored at the **end** of the file.
 In Love2d, the developer creates a distrubutable game by zipping up all their code into a single zip archive, and concatenating it onto the back of the
@@ -22,28 +22,28 @@ love binary itself.
 
 Part of the love binaries behavior is that under some condition (I'm not quite sure what) it will check if the binary being executed (ie, itself)
 is a valid zip archive. If it is, it **unzips itself into memory**, and executes the game code! When I discovered this was how it worked my mind
-was kinda blown. And I immediately though this would be an incredibly useful way to allow users to build distributable Gab binaries of their own.
+was kinda blown. And I immediately though this would be an incredibly useful way to allow users to build distributable gab binaries of their own.
 
-### The Gab Toolchain
-This is the first blog post about a feature of the Gab Toolchain, not the implementation of cgab, or a native module.
-The toolchain is a first-class concern to me as a language creator. I want the Gab CLI to be a batteries-included tool
-which can do everything a developer might need to write, run, test, download, install, and build Gab code.
+## The gab Toolchain
+This is the first blog post about a feature of the gab toolchain, not the implementation of cgab, or a native module.
+The toolchain is a first-class concern to me as a language creator. I want the gab CLI to be a batteries-included tool
+which can do everything a developer might need to write, run, test, download, install, and build gab code.
 
 This is another step in that direction. Lets dive into the implementation!
-### When to unzip?
-Under certain conditions, the Gab binary needs to determine that there is a zip archive at the end of itself. Then it needs
-to unzip said archive into memory, and allow the Gab runtime to see the archive when looking for modules. That leads us on a little
+## When to unzip?
+Under certain conditions, the gab binary needs to determine that there is a zip archive at the end of itself. Then it needs
+to unzip said archive into memory, and allow the gab runtime to see the archive when looking for modules. That leads us on a little
 side tangent:
 
-> How does the Gab runtime find modules?
+> How does the gab runtime find modules?
 
-Here is the snippet of c code in the Gab CLI which initializes the gab engine when you type something like `gab run myapp`.
+Here is the snippet of c code in the gab CLI which initializes the gab engine when you type something like `gab run myapp`.
 ```c
   union gab_value_pair res = gab_create(
       (struct gab_create_argt){
         // Various flags which determine some minor behaviors within the engine.
           .flags = flags,
-        // The number of worker threads the Gab runtime should spawn.
+        // The number of worker threads the gab runtime should spawn.
           .jobs = jobs,
         // A list of modules to require upon startup. Think of them as pre-loaded
           .len = nmodules,
@@ -61,7 +61,7 @@ Here is the snippet of c code in the Gab CLI which initializes the gab engine wh
         //   One determines if the module *exists* at the given path
         //     Since these resources check against the user's filesystem, that callback just determines if the file exists.
         //   The other *loads* the module at the given path.
-        //     There are two implementations for this function, depending on whether or not the file is a Gab source file or a native module.
+        //     There are two implementations for this function, depending on whether or not the file is a gab source file or a native module.
           .resources =
               (struct gab_resource[]){
                   {"mod/", GAB_DYNLIB_FILEENDING, gab_use_dynlib, file_exister},
@@ -74,10 +74,10 @@ Here is the snippet of c code in the Gab CLI which initializes the gab engine wh
       },
       &gab);
 ```
-Hopefully the comments are self explanatory, but the gist is that the user registers paths and callbacks which the Gab engine uses to
+Hopefully the comments are self explanatory, but the gist is that the user registers paths and callbacks which the gab engine uses to
 search for modules. We will hook into this later!
-### When to unzip: for real
-How does the Gab executable know when to try and unzip itself? The solution is relatively simple:
+## When to unzip: for real
+How does the gab executable know when to try and unzip itself? The solution is relatively simple:
 ```c
 // main.c
 ...
@@ -115,7 +115,7 @@ bool check_valid_zip() {
 ```
 This snippet is also relatively simple. The `miniz.c` is a fantastic, single-file library with an intuitive api.
 If we get to `run_app`, that means we have successfully unzipped the executing binary as a zip-archive into memory, and saw at least one file.
-Lets take a look at how the Gab engine is initialized there.
+Lets take a look at how the gab engine is initialized there.
 ```c
   union gab_value_pair res = gab_create(
       (struct gab_create_argt){
@@ -149,22 +149,22 @@ With this, we can run built gab-apps when we detect that the program is run as `
 the zip-loader hooks. Yay!
 
 > But how do we *get* a built-app in the first place?
-### Introducing `gab build`
+## Introducing `gab build`
 Here lies the magic of `gab build`. Lets take a look at an example:
 ```bash
 gab build -m tests,cgui test
 ```
 See `gab help build` for more information. In summary, the `-m` option appends the comma-separated list to the builtin list of modules to be bundled into the build. The final argument
-`test` defines the _entrypoint_ of the bundle. This module will be included in the bundle, determine the name of the final `exe`, and will be invoked when the user runs the executable.
+`test` defines the _entrypoint_ of the executable. This module will be included in the executable, determine the name of the output file, and will be invoked when the user runs the executable.
 
-This is neat, but not the whole story. `gab build` actually lets you build executables for *any* of Gab's supported platforms! That means I can run:
+This is neat, but not the whole story. `gab build` actually lets you build executables for *any* of gab's supported platforms! That means I can run:
 ```bash
 gab build -p aarch64_macos_none -m tests,cgui test
 ```
-and get an equivalent macos arm64 executable - even though I'm on an intel chip, running Linux! Gab does this by downloading the Gab runtime and modules for the appropriate platform, and using these to
+and get an equivalent macos arm64 executable - even though I'm on an intel chip, running Linux! gab does this by downloading the gab runtime and modules for the appropriate platform, and using these to
 build the bundle. This makes distributing native binaries a breeze!
 
-Here is a final code snippet, which creates the bundlefile. Again, the fantastatic API of miniz makes this so easy.
+Here is a final code snippet, which creates the executable. Again, the fantastatic API of miniz makes this so easy.
 ```c
 // ...
   FILE *bundle_f = fopen(bundle, "w");

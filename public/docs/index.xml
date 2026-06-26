@@ -560,30 +560,30 @@ age := 20
 &lt;h2&gt;The Protocol&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-protocol&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#the-protocol&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Each request is a single newline-terminated line. Each response is a single newline-terminated line.&lt;/p&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;Request&lt;/th&gt;
-          &lt;th&gt;Response&lt;/th&gt;
-          &lt;th&gt;No key response&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;GET key&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;OK value&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;NONE&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;SET key value&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;OK&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;DELETE key&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;OK value&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;NONE&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Request&lt;/th&gt;
+					&lt;th&gt;Response&lt;/th&gt;
+					&lt;th&gt;No key response&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;GET key&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;OK value&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;NONE&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;SET key value&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;OK&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;DELETE key&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;OK value&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;NONE&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;hr&gt;
 &lt;h2&gt;Handling a Connection&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;handling-a-connection&#34;&gt;&lt;/span&gt;
@@ -2039,14 +2039,14 @@ ch.&gt;! .println    # dot prefix — binds tighter, result chains into .println
       <description>
         
         
-        &lt;h3&gt;to\bencode&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tobencode&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#tobencode&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;to\bencode&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tobencode&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tobencode&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 unknown.to\bencode: () :: string
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Convert a value into a bencode string.&lt;/p&gt;
-&lt;h3&gt;as\bencode&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asbencode&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#asbencode&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;as\bencode&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asbencode&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#asbencode&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.as\bencode: () :: (success (status ok:, value unknown) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
@@ -2064,27 +2064,27 @@ string.as\bencode: () :: (success (status ok:, value unknown) | failure (status 
       <description>
         
         
-        &lt;h3&gt;binary&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;binary&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#binary&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;binary&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;binary&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#binary&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 binary
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A sequence of bytes, with no encoding.&lt;/p&gt;
-&lt;h3&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 binary.len: () :: int
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return the length of the binary, in bytes.&lt;/p&gt;
-&lt;h3&gt;as\string&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asstring&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#asstring&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;as\string&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asstring&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#asstring&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 binary.as\string: () :: (success (status ok:, value string) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Try to convert the binary to string. This will fail if the binary isn&amp;rsquo;t valid UTF-8.&lt;/p&gt;
 &lt;p&gt;This is only attempted once - the result of conversion is cached.&lt;/p&gt;
-&lt;h3&gt;at&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;at&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#at&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;at&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;at&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#at&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 binary.at: (default int | stepped (index int, step int)) :: binary
 &lt;/code&gt;&lt;/pre&gt;
@@ -2102,44 +2102,44 @@ binary.at: (default int | stepped (index int, step int)) :: binary
       <description>
         
         
-        &lt;h3&gt;channel&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;channel&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#channel&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;channel&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;channel&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#channel&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 Channel[predicate\unknown]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Channels allow data to be shared between fibers.&lt;/p&gt;
-&lt;h3&gt;close&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;close&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#close&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;close&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;close&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#close&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 channel.close: () :: ()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Close a channel. Any fibers waiting to receive from this channel will receive &lt;code&gt;none:&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;is\closed&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isclosed&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#isclosed&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;is\closed&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isclosed&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#isclosed&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 channel.is\closed: () :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return &lt;code&gt;true:&lt;/code&gt; if a channel is closed, and &lt;code&gt;false:&lt;/code&gt; otherwise.&lt;/p&gt;
 &lt;p&gt;Keep in mind that a channel may be closed by another fiber at any time -
 so the return value of this message may change unexpectedly.&lt;/p&gt;
-&lt;h3&gt;is\full&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isfull&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#isfull&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;is\full&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isfull&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#isfull&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 channel.is\full: () :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return &lt;code&gt;true:&lt;/code&gt; if a channel is occupied by a value, and &lt;code&gt;false:&lt;/code&gt; otherwise.&lt;/p&gt;
 &lt;p&gt;Keep in mind that a channel may be closed by another fiber at any time -
 so the return value of this message may change unexpectedly.&lt;/p&gt;
-&lt;h3&gt;is\empty&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isempty&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#isempty&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;is\empty&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isempty&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#isempty&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 channel.is\empty: () :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return &lt;code&gt;true:&lt;/code&gt; if a channel is &lt;em&gt;not&lt;/em&gt; occupied by a value, and &lt;code&gt;false:&lt;/code&gt; otherwise.&lt;/p&gt;
 &lt;p&gt;Keep in mind that a channel may be closed by another fiber at any time -
 so the return value of this message may change unexpectedly.&lt;/p&gt;
-&lt;h3&gt;&amp;lt;!&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;heading&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#heading&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;&amp;lt;!&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;heading&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#heading&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 channel.&lt;!: value unknown :: ()
 &lt;/code&gt;&lt;/pre&gt;
@@ -2147,8 +2147,8 @@ channel.&lt;!: value unknown :: ()
 fiber &lt;em&gt;will not progress&lt;/em&gt; until the value has been &lt;strong&gt;received&lt;/strong&gt; by another fiber.&lt;/p&gt;
 &lt;p&gt;In the case that the channel is closed before a receiver arrives, this message
 does nothing.&lt;/p&gt;
-&lt;h3&gt;&amp;gt;!&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;heading-1&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#heading-1&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;&amp;gt;!&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;heading-1&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#heading-1&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 channel.&gt;!: value unknown :: (some (status ok:, value unknown) | none none:)
 &lt;/code&gt;&lt;/pre&gt;
@@ -2169,14 +2169,14 @@ returns &lt;code&gt;none:&lt;/code&gt;.&lt;/p&gt;
       <description>
         
         
-        &lt;h3&gt;dbrow&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;dbrow&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#dbrow&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;dbrow&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;dbrow&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#dbrow&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 Box[dbow]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A connection to a row-based database. This implementation wraps sqlite.&lt;/p&gt;
-&lt;h3&gt;eval&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;eval&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#eval&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;eval&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;eval&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#eval&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 dbrow.eval: string :: (success ok: | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
@@ -2194,21 +2194,21 @@ dbrow.eval: string :: (success ok: | failure (status err:, message string))
       <description>
         
         
-        &lt;h3&gt;fiber&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;fiber&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#fiber&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;fiber&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;fiber&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#fiber&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 fiber
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Fibers execute gab code.&lt;/p&gt;
-&lt;h3&gt;await&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;await&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#await&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;await&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;await&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#await&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 fiber.await: () :: ()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Blocks the running fiber while self is not done.&lt;/p&gt;
 &lt;p&gt;Returns the result of self.&lt;/p&gt;
-&lt;h3&gt;is\done&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isdone&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#isdone&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;is\done&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isdone&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#isdone&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 fiber.is\done: () :: boolean
 &lt;/code&gt;&lt;/pre&gt;
@@ -2226,33 +2226,33 @@ fiber.is\done: () :: boolean
       <description>
         
         
-        &lt;h3&gt;file&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;file&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#file&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;file&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;file&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#file&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 Box[io\file]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A native file handle.&lt;/p&gt;
-&lt;h3&gt;make&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;make&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#make&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;make&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;make&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#make&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 io\file:.make: (path string, permissions string) :: file io\file
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Create a file.&lt;/p&gt;
-&lt;h3&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 file.len: () :: int
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns the length of a file.&lt;/p&gt;
-&lt;h3&gt;stream\send&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamsend&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#streamsend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;stream\send&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamsend&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#streamsend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 streamable.stream\send: bytes binary :: (success (status ok:, value nil:) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Write bytes to a file.&lt;/p&gt;
 &lt;p&gt;See the streamable protocol for details.&lt;/p&gt;
-&lt;h3&gt;stream\recv&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamrecv&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#streamrecv&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;stream\recv&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamrecv&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#streamrecv&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 streamable.stream\recv: (n int | default nil:) :: (success (status ok:, value binary) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
@@ -2273,45 +2273,45 @@ streamable.stream\recv: (n int | default nil:) :: (success (status ok:, value bi
       <description>
         
         
-        &lt;h3&gt;to\http&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tohttp&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#tohttp&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;to\http&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tohttp&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tohttp&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 http\response | http\request.as\http: () :: binary
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Construct a binary http request or response. &lt;code&gt;gab/binary&lt;/code&gt; is the chosen type because the body of a request/response can be an arbitrary encoding, not strictly utf8.&lt;/p&gt;
-&lt;h3&gt;as\http&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;ashttp&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#ashttp&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;as\http&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;ashttp&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#ashttp&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 binary.as\http: () :: (success (status ok:, value http\request | http\response) | failure (status err:, message nil:))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Attempt to parse a binary as an HTTP request &lt;em&gt;or&lt;/em&gt; response.&lt;/p&gt;
 &lt;p&gt;Implemented for binaries, because a request or response body &lt;em&gt;may not be&lt;/em&gt; valid utf8.&lt;/p&gt;
-&lt;h3&gt;to\http\code&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tohttpcode&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#tohttpcode&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;to\http\code&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tohttpcode&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tohttpcode&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 http\status.to\http\code: () :: int
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return the integer status code corresponding to &lt;code&gt;self&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;to\http\status&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tohttpstatus&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#tohttpstatus&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;to\http\status&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tohttpstatus&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tohttpstatus&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 http\status.to\http\status: () :: string
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return the string representation of the status.&lt;/p&gt;
-&lt;h3&gt;request&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;request&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#request&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;request&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;request&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#request&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [ http\method:, http\endpoint:, http\headers:, http\body: ]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;An HTTP request. See &lt;code&gt;as\http&lt;/code&gt;, as well as &lt;code&gt;method&lt;/code&gt;, &lt;code&gt;endpoint&lt;/code&gt;, &lt;code&gt;headers&lt;/code&gt;, and &lt;code&gt;body&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;response&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;response&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#response&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;response&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;response&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#response&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [ http\status:, http\headers:, http\body: ]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;An HTTP request. See &lt;code&gt;status&lt;/code&gt;, &lt;code&gt;headers&lt;/code&gt;, and &lt;code&gt;body&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;status&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;status&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#status&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;status&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;status&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#status&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 http\CONTINUE: | http\SWITCHING_PROTOCOLS: | http\PROCESSING: | http\EARLY_HINTS: | http\RESPONSE_IS_STALE: | http\REVALIDATION_FAILED: | http\DISCONNECTED_OPERATION: | http\HEURISTIC_EXPIRATION: | http\MISCELLANEOUS_WARNING: | http\OK: | http\CREATED: | http\ACCEPTED: | http\NON_AUTHORITATIVE_INFORMATION: | http\NO_CONTENT: | http\RESET_CONTENT: | http\PARTIAL_CONTENT: | http\MULTI_STATUS: | http\ALREADY_REPORTED: | http\TRANSFORMATION_APPLIED: | http\IM_USED: | http\MISCELLANEOUS_PERSISTENT_WARNING: | http\MULTIPLE_CHOICES: | http\MOVED_PERMANENTLY: | http\FOUND: | http\SEE_OTHER: | http\NOT_MODIFIED: | http\USE_PROXY: | http\SWITCH_PROXY: | http\TEMPORARY_REDIRECT: | http\PERMANENT_REDIRECT: | http\BAD_REQUEST: | http\UNAUTHORIZED: | http\PAYMENT_REQUIRED: | http\FORBIDDEN: | http\NOT_FOUND: | http\METHOD_NOT_ALLOWED: | http\NOT_ACCEPTABLE: | http\PROXY_AUTHENTICATION_REQUIRED: | http\REQUEST_TIMEOUT: | http\CONFLICT: | http\GONE: | http\LENGTH_REQUIRED: | http\PRECONDITION_FAILED: | http\PAYLOAD_TOO_LARGE: | http\URI_TOO_LONG: | http\UNSUPPORTED_MEDIA_TYPE: | http\RANGE_NOT_SATISFIABLE: | http\EXPECTATION_FAILED: | http\IM_A_TEAPOT: | http\PAGE_EXPIRED: | http\ENHANCE_YOUR_CALM: | http\MISDIRECTED_REQUEST: | http\UNPROCESSABLE_ENTITY: | http\LOCKED: | http\FAILED_DEPENDENCY: | http\TOO_EARLY: | http\UPGRADE_REQUIRED: | http\PRECONDITION_REQUIRED: | http\TOO_MANY_REQUESTS: | http\REQUEST_HEADER_FIELDS_TOO_LARGE_UNOFFICIAL: | http\REQUEST_HEADER_FIELDS_TOO_LARGE: | http\LOGIN_TIMEOUT: | http\NO_RESPONSE: | http\RETRY_WITH: | http\BLOCKED_BY_PARENTAL_CONTROL: | http\UNAVAILABLE_FOR_LEGAL_REASONS: | http\CLIENT_CLOSED_LOAD_BALANCED_REQUEST: | http\INVALID_X_FORWARDED_FOR: | http\REQUEST_HEADER_TOO_LARGE: | http\SSL_CERTIFICATE_ERROR: | http\SSL_CERTIFICATE_REQUIRED: | http\HTTP_REQUEST_SENT_TO_HTTPS_PORT: | http\INVALID_TOKEN: | http\CLIENT_CLOSED_REQUEST: | http\INTERNAL_SERVER_ERROR: | http\NOT_IMPLEMENTED: | http\BAD_GATEWAY: | http\SERVICE_UNAVAILABLE: | http\GATEWAY_TIMEOUT: | http\HTTP_VERSION_NOT_SUPPORTED: | http\VARIANT_ALSO_NEGOTIATES: | http\INSUFFICIENT_STORAGE: | http\LOOP_DETECTED: | http\BANDWIDTH_LIMIT_EXCEEDED: | http\NOT_EXTENDED: | http\NETWORK_AUTHENTICATION_REQUIRED: | http\WEB_SERVER_UNKNOWN_ERROR: | http\WEB_SERVER_IS_DOWN: | http\CONNECTION_TIMEOUT: | http\ORIGIN_IS_UNREACHABLE: | http\TIMEOUT_OCCURED: | http\SSL_HANDSHAKE_FAILED: | http\INVALID_SSL_CERTIFICATE: | http\RAILGUN_ERROR: | http\SITE_IS_OVERLOADED: | http\SITE_IS_FROZEN: | http\IDENTITY_PROVIDER_AUTHENTICATION_ERROR: | http\NETWORK_READ_TIMEOUT: | http\NETWORK_CONNECT_TIMEOUT:
 &lt;/code&gt;&lt;/pre&gt;
@@ -2321,27 +2321,27 @@ http\CONTINUE: | http\SWITCHING_PROTOCOLS: | http\PROCESSING: | http\EARLY_HINTS
 http\OK:        # The &#39;200 OK&#39; status.
 http\NOT_FOUND: # The &#39;404 NOT FOUND&#39; status.
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;method&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;method&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#method&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;method&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;method&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#method&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 DELETE: | GET: | HEAD: | POST: | PUT: | CONNECT: | OPTIONS: | TRACE: | COPY: | LOCK: | MKCOL: | PROPFIND: | PROPPATCH: | SEARCH: | UNLOCK: | BIND: | REBIND: | ACL: | REPORT: | MKACTIVITY: | CHECKOUT: | MERGE: | MSEARCH: | NOTIFY: | SUBSCRIBE: | UNSUBSCRIBE: | PATCH: | PURGE: | MKCALENDAR: | LINK: | UNLINK: | SOURCE: | PRI: | DESCRIBE: | ANNOUNCE: | SETUP: | PLAY: | PAUSE: | TEARDOWN: | GET_PARAMETER: | SET_PARAMETER: | REDIRECT: | RECORD: | FLUSH: | QUERY:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;An HTTP method, as a message.&lt;/p&gt;
-&lt;h3&gt;endpoint&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;endpoint&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#endpoint&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;endpoint&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;endpoint&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#endpoint&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;An HTTP path.&lt;/p&gt;
-&lt;h3&gt;headers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;headers&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#headers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;headers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;headers&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#headers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 Dict[string, string]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A record of HTTP header -&amp;gt; value.&lt;/p&gt;
 &lt;p&gt;HTTP headers must contain only ASCII characters. For this reason, we choose the string type over binary.&lt;/p&gt;
-&lt;h3&gt;body&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;body&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#body&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;body&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;body&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#body&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 binary
 &lt;/code&gt;&lt;/pre&gt;
@@ -2359,14 +2359,14 @@ binary
       <description>
         
         
-        &lt;h3&gt;to\json&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tojson&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#tojson&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;to\json&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tojson&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tojson&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 unknown.to\json: () :: string
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Convert a value into a json string.&lt;/p&gt;
-&lt;h3&gt;as\json&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asjson&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#asjson&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;as\json&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asjson&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#asjson&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.as\json: () :: (success (status ok:, value unknown) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
@@ -2384,110 +2384,110 @@ string.as\json: () :: (success (status ok:, value unknown) | failure (status err
       <description>
         
         
-        &lt;h3&gt;number&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;number&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#number&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;number&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;number&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#number&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 float
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A 64-bit floating number.&lt;/p&gt;
-&lt;h3&gt;float\between&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;floatbetween&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#floatbetween&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;float\between&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;floatbetween&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#floatbetween&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 gab\number:.float\between: (() | from 0 to  float | between (lower float, upper float)) :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return a random float between lower and upper..&lt;/p&gt;
-&lt;h3&gt;Pi&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pi&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#pi&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;Pi&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pi&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#pi&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 gab\number:.Pi: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return pi.&lt;/p&gt;
-&lt;h3&gt;E&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;e&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#e&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;E&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;e&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#e&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 gab\number:.E: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return e.&lt;/p&gt;
-&lt;h3&gt;Infinity&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;infinity&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#infinity&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;Infinity&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;infinity&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#infinity&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 gab\number:.Infinity: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return infinity.&lt;/p&gt;
-&lt;h3&gt;MaxInt&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;maxint&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#maxint&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;MaxInt&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;maxint&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#maxint&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 gab\number:.MaxInt: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return the maximum safe integer available to the gab runtime.&lt;/p&gt;
-&lt;h3&gt;is\nan&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isnan&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#isnan&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;is\nan&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isnan&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#isnan&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.is\nan: () :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns true if self is NaN.&lt;/p&gt;
-&lt;h3&gt;is\inf&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isinf&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#isinf&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;is\inf&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isinf&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#isinf&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.is\inf: () :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns true if self is infinity.&lt;/p&gt;
-&lt;h3&gt;floor&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;floor&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#floor&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;floor&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;floor&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#floor&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.floor: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns the largest integral value not greater than self.&lt;/p&gt;
-&lt;h3&gt;ceil&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;ceil&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#ceil&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;ceil&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;ceil&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#ceil&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.ceil: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns the smallest integral value not less than self.&lt;/p&gt;
-&lt;h3&gt;round&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;round&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#round&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;round&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;round&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#round&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.is\round: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns self to the nearest integral value.&lt;/p&gt;
-&lt;h3&gt;acos&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;acos&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#acos&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;acos&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;acos&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#acos&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.acos: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns the arccosine of self.&lt;/p&gt;
-&lt;h3&gt;asin&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asin&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#asin&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;asin&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asin&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#asin&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.asin: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns the arcsine of self.&lt;/p&gt;
-&lt;h3&gt;atan&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;atan&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#atan&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;atan&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;atan&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#atan&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.atan: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns the arctangent of self.&lt;/p&gt;
-&lt;h3&gt;cos&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;cos&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#cos&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;cos&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;cos&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#cos&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.cos: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns the cosine of self.&lt;/p&gt;
-&lt;h3&gt;sin&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;sin&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#sin&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;sin&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;sin&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#sin&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.sin: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns the sine of self.&lt;/p&gt;
-&lt;h3&gt;tan&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tan&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#tan&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;tan&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tan&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tan&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.tan: () :: number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns the tangent of self.&lt;/p&gt;
-&lt;h3&gt;abs&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;abs&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#abs&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;abs&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;abs&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#abs&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 number.abs: () :: number
 &lt;/code&gt;&lt;/pre&gt;
@@ -2505,15 +2505,15 @@ number.abs: () :: number
       <description>
         
         
-        &lt;h3&gt;record&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;record&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#record&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;record&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;record&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#record&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;An immutable set of key,value pairs. This is the core datastructure of the language.&lt;/p&gt;
 &lt;p&gt;In addition to the builtin messages defined in this module, records also respond to their &lt;em&gt;keys&lt;/em&gt; as messages.&lt;/p&gt;
-&lt;h3&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.len: () :: int
 &lt;/code&gt;&lt;/pre&gt;
@@ -2522,8 +2522,8 @@ record.len: () :: int
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [1 2 3].len # :: 3
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;at&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;at&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#at&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;at&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;at&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#at&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.at: unknown :: (some (status ok:, value unknown) | none none:)
 &lt;/code&gt;&lt;/pre&gt;
@@ -2541,8 +2541,8 @@ value # :: &#39;John Doe&#39;
 ok    # :: none:
 value # :: nil:
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;has&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;has&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#has&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;has&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;has&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#has&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.has: unknown :: boolean
 &lt;/code&gt;&lt;/pre&gt;
@@ -2551,7 +2551,7 @@ record.has: unknown :: boolean
 
 &lt;div&gt;&lt;pre&gt;&lt;code&gt;
 
-### put
+## put
 ```gab
 record.put: (key unknown, value unknown) :: record&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
   &lt;button
@@ -2575,8 +2575,8 @@ person := person.put(age: 30)
 person.name # :: &#39;John Doe&#39;
 person.age  # :: 30
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;put_via&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;put_via&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#put_via&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;put_via&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;put_via&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#put_via&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.put_via: (key_path *unknown, value unknown) :: record
 &lt;/code&gt;&lt;/pre&gt;
@@ -2600,8 +2600,8 @@ person.mother.age # :: 60
 
 # :: { mother: { sister: { daughter: { relation: &#39;cousin&#39; } } } }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;at_via&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;at_via&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#at_via&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;at_via&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;at_via&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#at_via&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.at_via: key_path *unknown :: (some (status ok:, value unknown) | none none:)
 &lt;/code&gt;&lt;/pre&gt;
@@ -2611,8 +2611,8 @@ If any key along the path is missing, returns &lt;code&gt;none:&lt;/code&gt;&lt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (ok, value) := record.at_via(a: long: run: of: keys:)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;put_by&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;put_by&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#put_by&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;put_by&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;put_by&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#put_by&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.put_by: (key unknown, f is\block:) :: record
 &lt;/code&gt;&lt;/pre&gt;
@@ -2626,15 +2626,15 @@ person := person.put_by(age: age :: age + 1)
 person.age # :: 30
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;If the key does not exist in the record, then the argument to the block will be &lt;code&gt;nil:&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;put_via_by&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;put_via_by&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#put_via_by&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;put_via_by&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;put_via_by&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#put_via_by&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.put_via_by: (key_path *unknown, f is\block:) :: record
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Apply a function to the value at &lt;code&gt;key_path&lt;/code&gt;, returning a new record with the returned value from that function at key_path.&lt;/p&gt;
 &lt;p&gt;Combines the behavior of &lt;code&gt;put_via:&lt;/code&gt; and &lt;code&gt;put_by:&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;push&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;push&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#push&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;push&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;push&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#push&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.push: unknown :: record
 &lt;/code&gt;&lt;/pre&gt;
@@ -2645,8 +2645,8 @@ arr := [1 2 3] .push 4
 
 arr # :: [1 2 3 4]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;pop&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pop&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#pop&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;pop&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pop&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#pop&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.pop: () :: (some (status ok:, value (record record, popped_value unknown, popped_key unknown)) | none none:)
 &lt;/code&gt;&lt;/pre&gt;
@@ -2666,51 +2666,51 @@ key # :: 3
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [].pop # :: none: []
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;is\record&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isrecord&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#isrecord&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;is\record&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isrecord&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#isrecord&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 unknown.is\record: () :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns &lt;code&gt;true:&lt;/code&gt; if the receiver is a record, and &lt;code&gt;false:&lt;/code&gt; otherwise.&lt;/p&gt;
-&lt;h3&gt;is\list&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;islist&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#islist&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;is\list&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;islist&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#islist&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.is\list: () :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns &lt;code&gt;true:&lt;/code&gt; if the receiving record is a list, and false otherwise.&lt;/p&gt;
-&lt;h3&gt;is\dict&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isdict&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#isdict&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;is\dict&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isdict&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#isdict&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.is\dict: () :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns &lt;code&gt;true:&lt;/code&gt; if the receiving record is a dict, and false otherwise.&lt;/p&gt;
-&lt;h3&gt;keys&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;keys&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#keys&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;keys&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;keys&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#keys&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.keys: () :: List[unknown]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return a list of all the keys in the record, in order.&lt;/p&gt;
-&lt;h3&gt;vals&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;vals&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#vals&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;vals&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;vals&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#vals&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.vals: () :: List[unknown]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return a list of all the values in the record, in order.&lt;/p&gt;
-&lt;h3&gt;plus&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;plus&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#plus&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;plus&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;plus&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#plus&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.+: other record :: record
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Concatenate the argment record onto self.&lt;/p&gt;
-&lt;h3&gt;slice&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;slice&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#slice&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;slice&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;slice&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#slice&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.slice: (end int | both (begin int, end int)) :: record
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return a new record with only the key-value pairs in the range
 (0, end) or (begin, end).&lt;/p&gt;
-&lt;h3&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.: unknown :: unknown
 &lt;/code&gt;&lt;/pre&gt;
@@ -2724,21 +2724,21 @@ map.(&#39;id&#39;) # :: 1234
 map.(&#39;name&#39;) # :: panic
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This allows for records to serve as functions of their keys.&lt;/p&gt;
-&lt;h3&gt;take&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;take&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#take&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;take&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;take&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#take&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 record.take: unknown :: (remaining record, value unknown)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Given a key, return a tuple of a new record &lt;em&gt;without&lt;/em&gt; the given key, and whatever value was found at that key (if any).&lt;/p&gt;
-&lt;h3&gt;seq\init&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqinit&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#seqinit&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;seq\init&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqinit&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#seqinit&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done none:)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Begin iterating the key-value pairs in the record.&lt;/p&gt;
 &lt;p&gt;See the seqable protocol for details.&lt;/p&gt;
-&lt;h3&gt;seq\next&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqnext&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#seqnext&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;seq\next&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqnext&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#seqnext&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown) | done none:)
 &lt;/code&gt;&lt;/pre&gt;
@@ -2757,39 +2757,39 @@ seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown
       <description>
         
         
-        &lt;h3&gt;shape&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;shape&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#shape&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;shape&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;shape&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#shape&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 shape
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;An immutable set of keys.&lt;/p&gt;
-&lt;h3&gt;push&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;push&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#push&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;push&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;push&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#push&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 shape.push: unknown :: shape
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Push additional keys to the end of a shape.&lt;/p&gt;
-&lt;h3&gt;pop&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pop&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#pop&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;pop&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pop&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#pop&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 shape.pop: unknown :: remaining shape
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Pop a key off the back of the shape&lt;/p&gt;
-&lt;h3&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 shape.len: unknown :: int
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return the numbers of keys in the shape.&lt;/p&gt;
-&lt;h3&gt;seq\init&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqinit&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#seqinit&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;seq\init&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqinit&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#seqinit&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done none:)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Begin iterating the keys in the shape.&lt;/p&gt;
 &lt;p&gt;See the seqable protocol for details.&lt;/p&gt;
-&lt;h3&gt;seq\next&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqnext&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#seqnext&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;seq\next&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqnext&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#seqnext&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown) | done none:)
 &lt;/code&gt;&lt;/pre&gt;
@@ -2808,8 +2808,8 @@ seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown
       <description>
         
         
-        &lt;h3&gt;socket&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;socket&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#socket&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;socket&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;socket&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#socket&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 Box[io\socket]
 &lt;/code&gt;&lt;/pre&gt;
@@ -2824,47 +2824,47 @@ Box[io\socket]
 &lt;/ul&gt;
 &lt;p&gt;The latter two include transport-layer-security. Sockets with and without &lt;code&gt;tls:&lt;/code&gt; require different
 arguments to messages such as &lt;code&gt;connect:&lt;/code&gt; or &lt;code&gt;bind:&lt;/code&gt;. See their definitions for details.&lt;/p&gt;
-&lt;h3&gt;make&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;make&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#make&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;make&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;make&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#make&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 io\socket:.make: protocol (TCP tcp: | UDP udp: | TCP with TLS tcp\tls: | UDP with TLS udp\tls:) :: socket io\socket
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Create a socket with the given protocol.&lt;/p&gt;
-&lt;h3&gt;accept&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;accept&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#accept&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;accept&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;accept&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#accept&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 socket.accept: () :: (success (status ok:, value io\socket) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Accept a client connection on a listening server socket.&lt;/p&gt;
-&lt;h3&gt;listen&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;listen&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#listen&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;listen&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;listen&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#listen&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 socket.listen: max_connections int :: (ok ok: | err err:)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Begin listening for connections on a server socket.&lt;/p&gt;
-&lt;h3&gt;bind&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;bind&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#bind&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;bind&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;bind&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#bind&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 socket.bind: (default (address string, port int) | tls (address string, port int, certificate binary, private_key binary)) :: (success (status ok:, value nil:) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Bind a socket to a local address. This turns a socket into a server socket.&lt;/p&gt;
-&lt;h3&gt;connect&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;connect&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#connect&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;connect&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;connect&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#connect&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 socket.connect: (default (address string, port int) | tls (address string, port int, certificate binary)) :: (success (status ok:, value nil:) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Connect to an address. This turns a socket into a client socket.&lt;/p&gt;
 &lt;p&gt;For ssl clients, Gab bundles a public mozilla client certificate chain, so the &amp;lsquo;certificate&amp;rsquo;
 argument is optional.&lt;/p&gt;
-&lt;h3&gt;stream\send&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamsend&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#streamsend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;stream\send&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamsend&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#streamsend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 streamable.stream\send: bytes binary :: (success (status ok:, value nil:) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Write bytes to a socket.&lt;/p&gt;
 &lt;p&gt;This is part of the &lt;code&gt;streamable&lt;/code&gt; protocool.&lt;/p&gt;
-&lt;h3&gt;stream\recv&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamrecv&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#streamrecv&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;stream\recv&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamrecv&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#streamrecv&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 streamable.stream\recv: (n int | default nil:) :: (success (status ok:, value binary) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
@@ -2884,99 +2884,99 @@ streamable.stream\recv: (n int | default nil:) :: (success (status ok:, value bi
       <description>
         
         
-        &lt;h3&gt;string&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;string&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#string&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;string&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;string&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#string&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A valid UTF-8 encoded sequence of bytes.&lt;/p&gt;
-&lt;h3&gt;is\blank&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isblank&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#isblank&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;is\blank&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isblank&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#isblank&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.is\blank: () :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns &lt;code&gt;true:&lt;/code&gt; if the string contains only blank characters. Returns &lt;code&gt;false:&lt;/code&gt; otherwise.&lt;/p&gt;
-&lt;h3&gt;split&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;split&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#split&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;split&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;split&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#split&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-string.split: delimiter string :: tokens *string
+string.split: delimiter string :: (head string, tail string)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Split the receiving string on the given delimitier.&lt;/p&gt;
-&lt;h3&gt;has\sub&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;hassub&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#hassub&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Split the receiving string on the given delimiter. Only performs one split.&lt;/p&gt;
+&lt;h2&gt;has\sub&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;hassub&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#hassub&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.has\sub: substring string :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns &lt;code&gt;true:&lt;/code&gt; if the receiver contains the argument string.&lt;/p&gt;
-&lt;h3&gt;has\suffix&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;hassuffix&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#hassuffix&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;has\suffix&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;hassuffix&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#hassuffix&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.has\suffix: substring string :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns &lt;code&gt;true:&lt;/code&gt; if the receiver ends with the argument string.&lt;/p&gt;
-&lt;h3&gt;has\prefix&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;hasprefix&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#hasprefix&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;has\prefix&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;hasprefix&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#hasprefix&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.has\prefix: substring string :: boolean
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Returns &lt;code&gt;true&lt;/code&gt; if the receiver string begins with the argument string.&lt;/p&gt;
-&lt;h3&gt;to\message&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tomessage&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#tomessage&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;to\message&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tomessage&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tomessage&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.to\message: () :: message
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Convert a string into a message.&lt;/p&gt;
-&lt;h3&gt;to\binary&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tobinary&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#tobinary&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;to\binary&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tobinary&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tobinary&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.to\binary: () :: binary
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Convert a string into a binary.&lt;/p&gt;
-&lt;h3&gt;as\number&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asnumber&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#asnumber&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;as\number&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asnumber&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#asnumber&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.as\number: () :: (success (status ok:, value float) | failure (status err:, message nil:))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Try to convert a string into a number. If successful, return &lt;code&gt;ok:&lt;/code&gt; and the number. Otherwise, return &lt;code&gt;err:&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.len: () :: int
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return the length of the string. This does not count the bytes of the string - it returns the number of graphemes.&lt;/p&gt;
-&lt;h3&gt;at&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;at&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#at&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;at&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;at&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#at&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.at: index int :: (some (status ok:, value string) | none none:)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return &lt;code&gt;ok:&lt;/code&gt; and the grapheme at the given index. If none exists, return &lt;code&gt;none:&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;slice&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;slice&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#slice&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;slice&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;slice&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#slice&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.slice: (begin (some (status ok:, value int) | none none:), end (some (status ok:, value int) | none none:)) :: string
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return a substring of graphemes at the given indices. Will panic if indices are out of bounds.&lt;/p&gt;
-&lt;h3&gt;pop&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pop&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#pop&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;pop&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pop&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#pop&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.pop: () :: (some (status ok:, value (rest string, last string)) | none none:)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Similar behavior to &lt;code&gt;pop:&lt;/code&gt; on the records.&lt;/p&gt;
-&lt;h3&gt;trim&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;trim&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#trim&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;trim&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;trim&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#trim&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.trim: trimset string :: string
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Trim graphemes from the front and back of the string if they are within the arg &amp;rsquo;trimset&#39;.&lt;/p&gt;
-&lt;h3&gt;seq\init&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqinit&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#seqinit&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;seq\init&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqinit&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#seqinit&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done none:)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Begin iterating the graphemes in the string.&lt;/p&gt;
 &lt;p&gt;See the seqable protocol for details.&lt;/p&gt;
-&lt;h3&gt;seq\next&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqnext&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#seqnext&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;seq\next&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqnext&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#seqnext&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown) | done none:)
 &lt;/code&gt;&lt;/pre&gt;
@@ -2995,41 +2995,132 @@ seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown
       <description>
         
         
-        &lt;h3&gt;run&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;run&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#run&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;run&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;run&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#run&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-ui:.run: (platform gui: | tui:, events Channel, frames Channel) :: ()
+ui:.run: (platform gui: | tui: | hui:, events Channel, frames Channel) :: ()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Begin running an application.&lt;/p&gt;
 &lt;p&gt;The platform argument defines how the application renders.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;gui:&lt;/code&gt; Render in a new, native operating system window&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;tui:&lt;/code&gt; Render in the terminal&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hui:&lt;/code&gt; Render headlessly&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The &lt;em&gt;events&lt;/em&gt; and &lt;em&gt;frames&lt;/em&gt; arguments are the entry/exit points for interacting with the running app.&lt;/p&gt;
 &lt;p&gt;Every frame, a new event will arrive on the &lt;em&gt;events&lt;/em&gt; channel. For more on events, see &lt;code&gt;ui\event&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;It is the program&amp;rsquo;s task to pull events off the &lt;code&gt;events&lt;/code&gt; channel, process them, and put corresponding views onto the &lt;code&gt;frames&lt;/code&gt; channel.&lt;/p&gt;
+&lt;p&gt;It is the programmers&amp;rsquo;s task to pull events off the &lt;code&gt;events&lt;/code&gt; channel, process them, and put corresponding views onto the &lt;code&gt;frames&lt;/code&gt; channel.&lt;/p&gt;
 &lt;p&gt;A &lt;em&gt;view&lt;/em&gt; is a data structure which describes the layout of the app. The &lt;code&gt;ui&lt;/code&gt; library takes each view off the &lt;code&gt;frames&lt;/code&gt; channel, walks the
 data structure, and renders a new frame. The cycle then repeats.&lt;/p&gt;
 &lt;p&gt;For more information on views, see &lt;code&gt;ui\view&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;event&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;event&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#event&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;event&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;event&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#event&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-predicate:alt:{ mouse predicate:cat:{ kind mouse, button predicate:any:[ left, right ]:, target predicate:message: }:, key predicate:cat:{ kind key, key predicate\string:, val predicate\int:, pressed predicate\boolean: }:, tick predicate:cat:{ kind tick, tick tick, hovered predicate:message: }: }:
+(mouse (kind mouse, event up | down, button left | right | unknown, target message) | key (kind key, event up | down, value string) | tick (kind tick, tick tick, hovered message))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A &lt;em&gt;ui\event&lt;/em&gt; is a tuple of values describing some user interaction, or simply the passage of time.&lt;/p&gt;
-&lt;h3&gt;component&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;component&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#component&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;component&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;component&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#component&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-predicate:alt:{ text predicate:pat:{ kind text:, opts predicate\record: }:, rect predicate:pat:{ kind rect:, opts predicate\record: }:, img predicate:pat:{ kind img:, opts predicate\record: }:, box predicate:pat:{ kind box:, opts predicate\record:, children ui\view: }: }:
+(text (kind text:, props record, content string) | img (kind img:, props record, content binary) | box (kind box:, props record, content ui\view))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A component is UI element, drawable to the screen.&lt;/p&gt;
-&lt;h3&gt;view&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;view&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#view&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The &amp;lsquo;props&amp;rsquo; is a record containing layout/design information for the component.&lt;/p&gt;
+&lt;p&gt;The supported keys are listed below.&lt;/p&gt;
+&lt;h3&gt;color&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;color&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#color&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Colors are represented with numbers. Use the hex notation to write them easily. Here is a sample pallette. The most significant byte is the alpha - so you could even add an &lt;em&gt;empty/clear&lt;/em&gt; color
+by setting that to 00.&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+bg:  # Set the background color
+fg:  # Set the foreground color
+
+# An example pallette
+Colors := {
+  bg: 0xff161821
+  fg: 0xffcdd6f5
+  bg\hl: 0xff272c42
+  fg\hl: 0xffc6c8d1
+  r: 0xfff38ba9
+  o: 0xfffab388
+  y: 0xfff9e2b0
+  g: 0xffa6e3a2
+  b: 0xff89b4fb
+  i: 0xff94e2d6
+  v: 0xffcba6f8
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;border&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;border&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#border&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;box:&lt;/code&gt; components support a border.&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+border: # Set a border
+# Should be a record with keys:
+fg:  # Color of the border
+w:   # Width of the border
+# Example
+border: { fg: Colors.r, w: 2 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;padding&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;padding&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#padding&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Padding is space on the inside of component between its edges and its conent.&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+p:   # Set padding in all directions
+p\x: # Set padding in left/right directions (along x axis)
+p\y: # Set padding in top/bottom directions (along y axis)
+p\l: # Set padding on left side
+p\r: # Set padding on right side
+p\t: # Set padding on top side
+p\b: # Set padding on bottom side
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;sizing&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;sizing&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#sizing&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Control the size of components. Left unset, it defaults to the size of its content.&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+w:   # Set width directly
+w\g: # Set how much component should grow relative to others
+w\r: # Set width relative to parent
+h:   # Set height directly
+h\g: # Set how much component should grow relative to others
+h\r: # Set height relative to parent
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;child layout&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;child-layout&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#child-layout&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Control how child components are laid out.&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+layout\direction: # Set the direction that children layout
+align\x:          # Set how children align along x axis (left: right: center:)
+align\y:          # Set how children align along y axis (top: bottom: center:)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;transitions&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;transitions&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#transitions&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Transitions allow components to interpolate from one state to another over time.&lt;/p&gt;
+&lt;p&gt;In order for this to work properly, components need a stable &lt;code&gt;id:&lt;/code&gt;. By default, components are
+given ids based on the order they are rendered. When using transitions, it is better to not rely on this
+and instead provide unique id&amp;rsquo;s for the transitioning components.&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+id:                    # A stable id required for transitioning components. Any string value will work.
+transition\duration:   # Set durations for *all* transitions on this element. Default is 0.5 seconds.
+transition\properties: # Set which properties should transition on this element. Leave unset for *all*.
+# Available transition properties:
+#  r:      Corner radius
+#  bg:     Background color
+#  fg:     Foreground color
+#  w:      Width
+#  h:      Height
+#  x:      X Position
+#  y:      Y Position
+#  border: Border properties
+#  pos:    x: and y:
+#  dim:    w: and h:
+#  box:    pos: and dim:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;view&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;view&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#view&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 List[ui\component:]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A list of UI components.&lt;/p&gt;
+&lt;p&gt;A list of UI components. Box components have a list of child components.&lt;/p&gt;
 
       </description>
     </item>
@@ -3043,29 +3134,29 @@ List[ui\component:]
       <description>
         
         
-        &lt;h3&gt;uri&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;uri&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#uri&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;uri&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;uri&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#uri&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [ uri\scheme:, uri\authority:, uri\path:, uri\query:, uri\fragment: ]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A fully-parsed uri. See &lt;code&gt;scheme&lt;/code&gt;, &lt;code&gt;authority&lt;/code&gt;, &lt;code&gt;path&lt;/code&gt;, &lt;code&gt;query&lt;/code&gt;, and &lt;code&gt;fragment&lt;/code&gt; for more details on these components.&lt;/p&gt;
-&lt;h3&gt;as\uri&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asuri&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#asuri&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;as\uri&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asuri&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#asuri&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.as\uri: () :: (success (status ok:, value [ uri\scheme:, uri\authority:, uri\path:, uri\query:, uri\fragment: ]) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Parse a string as a URI.&lt;/p&gt;
 &lt;p&gt;Returns an error if parsing fails. This can happen if the URI is poorly formed, or if percent-decoding fails.
 For details on percent-decoding, see &lt;code&gt;as\uri\encoded&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;to\uri&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;touri&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#touri&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;to\uri&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;touri&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#touri&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 uri.to\uri: () :: string
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Convert a uri into its string form. Performs percent-encoding on each component.&lt;/p&gt;
 &lt;p&gt;Neither the uri conversion nor the percent-encoding can fail in this direction.&lt;/p&gt;
-&lt;h3&gt;to\uri\encoded&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;touriencoded&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#touriencoded&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;to\uri\encoded&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;touriencoded&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#touriencoded&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.to\uri\encoded: () :: string
 &lt;/code&gt;&lt;/pre&gt;
@@ -3103,8 +3194,8 @@ ASCII value of the percent-encoded character. Here is a simple example:&lt;/p&gt
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;The &lt;code&gt; &lt;/code&gt; characters are replaced with the percent encoding &lt;code&gt;%20&lt;/code&gt; (A &lt;code&gt;%&lt;/code&gt;, followed by the ASCII value of a space, &lt;code&gt;20&lt;/code&gt;).&lt;/p&gt;
-&lt;h3&gt;as\uri\encoded&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asuriencoded&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#asuriencoded&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;as\uri\encoded&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;asuriencoded&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#asuriencoded&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string.as\uri\encoded: () :: (success (status ok:, value string) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
@@ -3118,8 +3209,8 @@ string.as\uri\encoded: () :: (success (status ok:, value string) | failure (stat
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The &lt;code&gt;z&lt;/code&gt; character cannot represent a hexadecimal value (valid characters are 0-9, a-f, A-F).&lt;/p&gt;
 &lt;p&gt;If there are fewer than two characters after the &lt;code&gt;%&lt;/code&gt;, decoding will also fail.&lt;/p&gt;
-&lt;h3&gt;scheme&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;scheme&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#scheme&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;scheme&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;scheme&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#scheme&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string
 &lt;/code&gt;&lt;/pre&gt;
@@ -3139,8 +3230,8 @@ string
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h3&gt;authority&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;authority&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#authority&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;authority&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;authority&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#authority&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [ uri\host:, uri\port:, uri\username:, uri\password: ]
 &lt;/code&gt;&lt;/pre&gt;
@@ -3162,8 +3253,8 @@ string
 &lt;/div&gt;
 &lt;p&gt;uri\authority is a record containing any combination of these keys.
 See &lt;code&gt;host&lt;/code&gt;, &lt;code&gt;port&lt;/code&gt;, &lt;code&gt;username&lt;/code&gt;, and &lt;code&gt;password&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;path&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;path&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#path&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;path&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;path&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#path&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 List[string]
 &lt;/code&gt;&lt;/pre&gt;
@@ -3184,8 +3275,8 @@ List[string]
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h3&gt;query&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;query&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#query&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;query&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;query&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#query&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 Dict[string, string]
 &lt;/code&gt;&lt;/pre&gt;
@@ -3206,8 +3297,8 @@ Dict[string, string]
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;This record will contain the key-value present in the URI. Both keys and values are strings.&lt;/p&gt;
-&lt;h3&gt;fragment&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;fragment&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#fragment&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;fragment&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;fragment&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#fragment&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string
 &lt;/code&gt;&lt;/pre&gt;
@@ -3227,8 +3318,8 @@ string
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h3&gt;host&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;host&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#host&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;host&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;host&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#host&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string
 &lt;/code&gt;&lt;/pre&gt;
@@ -3248,8 +3339,8 @@ string
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h3&gt;port&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;port&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#port&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;port&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;port&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#port&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string
 &lt;/code&gt;&lt;/pre&gt;
@@ -3269,8 +3360,8 @@ string
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h3&gt;username&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;username&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#username&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;username&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;username&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#username&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string
 &lt;/code&gt;&lt;/pre&gt;
@@ -3290,8 +3381,8 @@ string
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h3&gt;password&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;password&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#password&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;password&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;password&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#password&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 string
 &lt;/code&gt;&lt;/pre&gt;
@@ -3324,12 +3415,12 @@ string
       <description>
         
         
-        &lt;h3&gt;reduceable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;reduceable&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#reduceable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;reduceable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;reduceable&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#reduceable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [ reduce\step:, reduce\done: ]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;reduceable&lt;/code&gt; protocol allows a value to serve as a reducing function.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;reduceable&lt;/code&gt; protocol defines how a value serves as a reducing function.&lt;/p&gt;
 &lt;p&gt;Send &lt;code&gt;reduce\step:&lt;/code&gt; to a reduceable, with an accumulator and any values:&lt;/p&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -3350,49 +3441,14 @@ This is determined by the cmd, which can be &lt;code&gt;next:&lt;/code&gt; or &l
 &lt;p&gt;In this example, &lt;code&gt;seq\i&lt;/code&gt; and &lt;code&gt;seq\v&lt;/code&gt; are used as naming conventions for the sequence&amp;rsquo;s invariant and variant respectively.&lt;/p&gt;
 &lt;p&gt;The &lt;em&gt;invariant&lt;/em&gt; is the value which &lt;strong&gt;doesn&amp;rsquo;t&lt;/strong&gt; change over the course of iterating the sequence. This is typically the seqable itself.&lt;/p&gt;
 &lt;p&gt;The &lt;em&gt;variant&lt;/em&gt; is the value which &lt;strong&gt;does&lt;/strong&gt; change over the course of iteration. This is the &lt;code&gt;key&lt;/code&gt; as described in the &lt;code&gt;seqable&lt;/code&gt; module.&lt;/p&gt;
-
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-  doreduce: .defcase {
-    # The sequence continues
-    ok: (seq\i, seq\v, acc, r, xs) :: do
-      # Apply the reducer
-      (cmd, r, acc) := r.reduce\step(acc, xs*)
-      # proceed to the next sep
-      cmd.doreduce(seq\i, seq\v, acc, r)
-    end
-
-    # The sequence is done
-    none: (seq\i, seq\v, acc, r) :: do
-      r.reduce\done(acc)
-    end
-
-    # The reducer continues
-    next: (seq\i, seq\v, acc, r) :: do
-      # Apply the producer resolving new values for the next step
-      (ok, seq\v, xs*) := seq\i .seq\next seq\v
-      # Tailcall to the next step
-      ok.doreduce(seq\i, seq\v, acc, r, xs)
-    end
-
-    # The reducer is done
-    stop: (seq\i, seq\v, acc, r) :: do
-      r.reduce\done(acc)
-    end
-  }
-
-  # Initialize the seq
-  (ok, seq\v, xs*) := self.seq\init
-  # Tail recursive algorithm with `doreduce:`
-  ok.doreduce(self, seq\v, acc, r, xs)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;reduce\step&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;reducestep&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#reducestep&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;reduce\step&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;reducestep&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#reducestep&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 reduceable.reduce\step: (accumulator unknown, sequence_args *unknown) :: (command next: | stop:, reducer [ reduce\step:, reduce\done: ], accumulator unknown)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Performs one step of reducing work.&lt;/p&gt;
-&lt;h3&gt;reduce\done&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;reducedone&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#reducedone&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;reduce\done&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;reducedone&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#reducedone&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 reduceable.reduce\done: accumulator unknown :: accumulator unknown
 &lt;/code&gt;&lt;/pre&gt;
@@ -3410,12 +3466,12 @@ reduceable.reduce\done: accumulator unknown :: accumulator unknown
       <description>
         
         
-        &lt;h3&gt;seqable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqable&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#seqable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;seqable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqable&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#seqable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [ seq\init:, seq\next: ]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;seqable&lt;/code&gt; protocol defines how a value can produce a lazy sequence of other values.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;seqable&lt;/code&gt; protocol defines how a value should produce a lazy sequence of other values.&lt;/p&gt;
 &lt;p&gt;To use the &lt;code&gt;seqable&lt;/code&gt; protocol, begin by sending &lt;code&gt;seq\init&lt;/code&gt;:&lt;/p&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -3441,18 +3497,80 @@ reduceable.reduce\done: accumulator unknown :: accumulator unknown
   next   # :: 2
   values # :: [&#39;2&#39;, 1]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3&gt;seq\init&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqinit&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#seqinit&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;seq\init&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqinit&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#seqinit&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done none:)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Return the initial key and value which should begin the sequence.&lt;/p&gt;
-&lt;h3&gt;seq\next&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqnext&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#seqnext&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;seq\next&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqnext&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#seqnext&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown) | done none:)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Given a key, return the next keys and values which would continue the sequence.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/docs/protocols/sinkable/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/protocols/sinkable/</guid>
+      <description>
+        
+        
+        &lt;h2&gt;sinkable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;sinkable&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#sinkable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+[ &lt;!: ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;sinkable&lt;/code&gt; protocol defines how a value should consume other values.&lt;/p&gt;
+&lt;p&gt;Typically, sinks perform some side-effect with each value.&lt;/p&gt;
+&lt;p&gt;Here is an example implementation of &lt;code&gt;sinkable&lt;/code&gt; for files.&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+  &lt;!: .def (Files.t, (line) =&gt; self.stream\send(line + &#39;\n&#39;))
+&lt;/code&gt;&lt;/pre&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/docs/protocols/sourceable/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/protocols/sourceable/</guid>
+      <description>
+        
+        
+        &lt;h2&gt;sourceable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;sourceable&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#sourceable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+[ &gt;!: ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;sourceable&lt;/code&gt; protocol defines how a value should produce a lazy sequence of values.&lt;/p&gt;
+&lt;p&gt;This differs from the &lt;code&gt;seqable&lt;/code&gt; protocol in that sources are not guaranteed to produce the same
+values in the same order every time. They may also modify some state in the source itself
+(such as mutating the offset of a file descriptor).&lt;/p&gt;
+&lt;p&gt;The lines between the two protocols are somewhat blurred, as the gab\channel type does implement the &lt;code&gt;seqable&lt;/code&gt;
+protocol &lt;em&gt;using&lt;/em&gt; the &lt;code&gt;sourceable&lt;/code&gt; protocol, like so:&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+  [Channels.t] .defmodule {
+    seq\init: _ :: do
+      (ok, xs*) := self &gt;!
+      (ok, nil:, xs*)
+    end
+    seq\next: _ :: do
+      (ok, xs*) := self &gt;!
+      (ok, nil:, xs*)
+    end
+  }
+&lt;/code&gt;&lt;/pre&gt;
 
       </description>
     </item>
@@ -3466,22 +3584,22 @@ seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown
       <description>
         
         
-        &lt;h3&gt;streamable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamable&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#streamable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;streamable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamable&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#streamable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [ stream\send:, stream\recv: ]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The &lt;code&gt;streamable&lt;/code&gt; protocol defines an interface for a value to stream bytes in or out as a &lt;strong&gt;side effect&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;A file handle or socket connection are examples of devices which could serve as &lt;code&gt;streamable&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;stream\send&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamsend&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#streamsend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;stream\send&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamsend&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#streamsend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 streamable.stream\send: bytes binary :: (success (status ok:, value nil:) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Send the binary argument through the device. This API is synchronous (IE, the operation is guranteed to be completed when this message returns.)&lt;/p&gt;
 &lt;p&gt;Returns &lt;code&gt;ok:&lt;/code&gt; on success, or &lt;code&gt;err:&lt;/code&gt; if an error occurred.&lt;/p&gt;
-&lt;h3&gt;stream\recv&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamrecv&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#streamrecv&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;stream\recv&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamrecv&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#streamrecv&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 streamable.stream\recv: (n int | default nil:) :: (success (status ok:, value binary) | failure (status err:, message string))
 &lt;/code&gt;&lt;/pre&gt;
@@ -3499,8 +3617,8 @@ streamable.stream\recv: (n int | default nil:) :: (success (status ok:, value bi
       <description>
         
         
-        &lt;h3&gt;transduceable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;transduceable&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#transduceable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+        &lt;h2&gt;transduceable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;transduceable&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#transduceable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 [ transduce\wrap:, transduce\step: ]
 &lt;/code&gt;&lt;/pre&gt;
@@ -3522,14 +3640,14 @@ values meet a certain condition.&lt;/p&gt;
 &lt;p&gt;This is conceptually similar to &lt;code&gt;reduce\step:&lt;/code&gt; for the &lt;code&gt;reduceable:&lt;/code&gt; protocol, but has a different signature.&lt;/p&gt;
 &lt;p&gt;In addition to receiving an accumulator and tuple of values from the sequence, &lt;code&gt;transduce\step:&lt;/code&gt; receives
 a &lt;em&gt;reduceable&lt;/em&gt; and a &lt;em&gt;state&lt;/em&gt; argument as well.&lt;/p&gt;
-&lt;h3&gt;transduce\wrap&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;transducewrap&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#transducewrap&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;transduce\wrap&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;transducewrap&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#transducewrap&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 transduceable.transduce\wrap: reducer reduceable: :: reduceable:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Wrap a &lt;code&gt;reduceable&lt;/code&gt; with some behavior, returning a new &lt;code&gt;reduceable&lt;/code&gt;.&lt;/p&gt;
-&lt;h3&gt;transduce\step&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;transducestep&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#transducestep&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h2&gt;transduce\step&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;transducestep&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#transducestep&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 transduceable.transduce\step: (reducer reduceable:, accumulator unknown, sequence List[unknown], state unknown) :: (state unknown, command next: | stop:, reducer reduceable:, accumulator unknown)
 &lt;/code&gt;&lt;/pre&gt;

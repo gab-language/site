@@ -1,4 +1,4 @@
-### file
+## file
 ```gab
 Box[io\file]
 ```
@@ -6,7 +6,7 @@ Box[io\file]
   A native file handle.
   
 
-### make
+## make
 ```gab
 io\file:.make: (path string, permissions string) :: file io\file
 ```
@@ -14,7 +14,7 @@ io\file:.make: (path string, permissions string) :: file io\file
   Create a file.
   
 
-### len
+## len
 ```gab
 file.len: () :: int
 ```
@@ -22,7 +22,7 @@ file.len: () :: int
   Returns the length of a file.
   
 
-### stream\send
+## stream\send
 ```gab
 streamable.stream\send: bytes binary :: (success (status ok:, value nil:) | failure (status err:, message string))
 ```
@@ -32,7 +32,7 @@ streamable.stream\send: bytes binary :: (success (status ok:, value nil:) | fail
   See the streamable protocol for details.
   
 
-### stream\recv
+## stream\recv
 ```gab
 streamable.stream\recv: (n int | default nil:) :: (success (status ok:, value binary) | failure (status err:, message string))
 ```

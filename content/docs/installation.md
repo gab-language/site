@@ -12,17 +12,22 @@ Download the archive that matches your platform:
 
 | Platform | Architecture | File |
 |---|---|---|
-| macOS | x86-64 | [gab-x86-64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-release-x86_64-macos-none) |
-| macOS | arm 64 | [gab-aarch64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-release-aarch64-macos-none) |
-| Windows | x86-64 | [gab-x86-64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-release-x86_64-windows-gnu.exe) |
-| Windows | arm 64 | [gab-aarch64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-release-aarch64-windows-gnu.exe) |
-| Linux | x86-64 | [gab-x86-64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-release-x86_64-linux-gnu) |
-| Linux | arm 64 | [gab-aarch64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-release-aarch64-linux-gnu) |
+| macOS | x86-64 | [gab-x86-64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-x86_64-macos-none) |
+| macOS | arm 64 | [gab-aarch64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-aarch64-macos-none) |
+| Windows | x86-64 | [gab-x86-64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-x86_64-windows-gnu.exe) |
+| Windows | arm 64 | [gab-aarch64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-aarch64-windows-gnu.exe) |
+| Linux | x86-64 | [gab-x86-64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-x86_64-linux-gnu) |
+| Linux | arm 64 | [gab-aarch64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-aarch64-linux-gnu) |
 
 > [!WARNING]
-> The executable you just downloaded (`gab-release-<your_target>`) won't be in your path, so you'll need to invoke it directly. On some platforms you may need to mark it as executable.
+> On certain platforms, the executable you just downloaded (`gab-<your_target>`) will need to be marked as executable in order to run it.
 
 ## Install
+
+> [!INFO]
+> The executable you just downloaded (`gab-<your_target>`) won't be in your path, so you'll need to invoke it directly.
+> Gab installs binaries into a platform-specific location. It is recommended to add this directory to your `$PATH`.
+> To see where gab installs binaries, use the `-n` flag to explain download/installation steps.
 
 ### Test the downloaded binary
 
@@ -60,20 +65,20 @@ Aha! No installations were found. Lets go ahead and complete your installation.
 # Gab makes this easy:
 gab get
 ```
-This command downloads packages. When no package is specified (as above), it downloads the builtin `gab-language/cgab` package, which includes the standard library and the gab binary itself.
+This command downloads packages. When no package is specified (as above), it downloads the builtin `gab-language/cgab` package, and the gab binary itself.
 
 A 'package' is a resource attached to a tag on a git remote. The only supported host thus far is github.
 
 To manually download the builtin gab package, the command would look something like:
 
 ```bash
-gab get github.com/gab-language/cgab@0.1.1
+gab get github.com/gab-language/cgab@0.1.3
 ```
 
 From this example, gab constructs the url:
 
 ```
-https://github.com/gab-language/cgab/releases/downloads/0.1.1/cgab-0.1.1-x86_64-linux-gnu
+https://github.com/gab-language/cgab/releases/downloads/0.1.3/cgab-0.1.3-x86_64-linux-gnu
 ```
 
 > When other hosts become officially supported, gab will construct URLs to match their needs.

@@ -1,7 +1,7 @@
 +++
 date = '2025-10-02T09:57:01-04:00'
 draft = false
-title = 'IO'
+title = 'Asynchronous, Parallel IO in a Single Header File'
 +++
 ## Why it matters
 In a lot of programs that we write today, the bottleneck for performance of our applications isn't
@@ -16,12 +16,12 @@ run on the thread. Python's *asyncio* and Rust's *tokio* work similarly.
 
 libuv works fantastically well, but there were some problems when it comes to integrating it into Gab's IO module.
 - At the c-level, libuv's api uses callbacks. This is inconvenient.
-- libuv spawns a thread pool, which will compete with Gab's.
+- libuv spawns a thread pool, which will compete with cgab's.
 - Gab native modules prefer single-header libraries (which libuv is not) to avoid linking and to ease cross-compilation.
 
 For these reasons, I created my own eventloop library in c: [TeddyRandby/qio](https://github.com/TeddyRandby/qio)
 
-### QIO - A simple event loop.
+## QIO - A simple event loop.
 This library uses OS-specific apis to implement the event loop as efficiently as possible. It also allows for the
 user to submit IO-requests from multiple threads (the library is thread-safe in this way). Here is a quick overview of the api:
 ```c
@@ -32,7 +32,7 @@ user to submit IO-requests from multiple threads (the library is thread-safe in 
 typedef /* os_fd_type */ qfd_t;
 
 /*
- * A qd (pronounced 'kid') is a handle representing a single, 'queued' IO operation.
+ * A qd (pronounced 'kid') is a handle representing a single 'queued' IO operation.
  *
  * It is used to:
  *  - Check on the status of its corresponding operation.
@@ -159,11 +159,11 @@ qd_t qshutdown(qfd_t fd);
 int qio_addrfrom(const char *restrict hostname, uint16_t port,
                          struct qio_addr *dst);
 ```
-Using this api, the messages defined in the IO module are *asynchronous*. They queue up IO operations which are batched
-and run on a separate thread. While waiting for these IO operations to complete, other Gab fibers can run on the that
-Gab thread instead. This is supported by a feature in Gab's native API, known as *yielding*.
+Using this api, the messages defined in the IO module are *asynchronous and parallel*. They queue up IO operations which are batched
+and run on a separate thread. While waiting for these IO operations to complete, other gab fibers can run on the that
+cgab thread instead. This is supported by a feature in cgab's native API, known as *yielding*.
 
-### Yielding
+## Yielding in Native Functions
 
 The following is the type signature for a native block in Gab:
 ```c
@@ -178,17 +178,18 @@ There are three options:
 - Your function has panicked with an unrecoverable error. The VM must terminate execution of *all* fibers. Use the macro `gab_union_cinvalid()`, or the helper `gab_panicf`.
 - Your function's work is *incomplete*, and you want to yield this fiber's time so that other fibers may continue. Use the macro `gab_union_ctimeout()`, and pass a non-zero 64-bit value. This will serve as the `reentrant`. The next time the Gab runtime chooses to schedule the fiber to run again, it will be called with this reentrant value.
 
-This is where qio integrates with Gab, in the IO module. Here is a simplified example:
+This is where qio integrates with cgab, in the IO module. Here is a simplified example:
 ```c
 union gab_value_pair async_socket_write(struct gab_triple gab, uint64_t argc, gab_value *argv, uintptr_t reentrant) {
     // If the reentrant is zero, this is our first time entering this function.
     if (!reentrant) {
+        // Initialize the write with arguments we parse from argc and argv.
         qd = qwrite(...);
         // Yield this fiber, with the qd as the reentrant.
         return gab_union_ctimeout(qd);
     }
 
-    // At this point, we have a reentrant.
+    // At this point, we have a reentrant. We know its the `qd` from a write we queued up before.
 
     // If the reentrant is done, 
     if (qd_status(reentrant)) {
@@ -205,8 +206,8 @@ union gab_value_pair async_socket_write(struct gab_triple gab, uint64_t argc, ga
 ```
 And thats it! Now we have an async IO runtime which never blocks on IO. And the best part is that the user **never** knows its happening.
 There is no function coloring or async/await, like in other languages. Simple!
-## So what?
-There is nothing unique or special-cased about the Gab's native IO module. It is implemented completely in user-land, with the same cgab library features that other
+## The Best Bit
+There is nothing unique or special-cased about how cgab's native IO module works. It is implemented completely in user-land, with the same cgab library features that other
 native modules would have access to. If *you* wanted to implement an IO module on top of libuv instead, you could! Gab's users wouldn't know the difference.
 
-This is a fundamental philosophy of Gab's design. Native modules should be first class - native module authors should feel empowered to write highly efficient, non-blocking native functions without pulling their hair out.
+This is a fundamental philosophy of Gab's design. Native module authors should feel empowered to write highly efficient, non-blocking native functions without pulling their hair out.

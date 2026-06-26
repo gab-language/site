@@ -1,4 +1,4 @@
-### shape
+## shape
 ```gab
 shape
 ```
@@ -6,7 +6,7 @@ shape
   An immutable set of keys.
   
 
-### push
+## push
 ```gab
 shape.push: unknown :: shape
 ```
@@ -14,7 +14,7 @@ shape.push: unknown :: shape
   Push additional keys to the end of a shape.
   
 
-### pop
+## pop
 ```gab
 shape.pop: unknown :: remaining shape
 ```
@@ -22,7 +22,7 @@ shape.pop: unknown :: remaining shape
   Pop a key off the back of the shape
   
 
-### len
+## len
 ```gab
 shape.len: unknown :: int
 ```
@@ -30,7 +30,7 @@ shape.len: unknown :: int
   Return the numbers of keys in the shape.
   
 
-### seq\init
+## seq\init
 ```gab
 seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done none:)
 ```
@@ -40,7 +40,7 @@ seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done 
   See the seqable protocol for details.
   
 
-### seq\next
+## seq\next
 ```gab
 seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown) | done none:)
 ```

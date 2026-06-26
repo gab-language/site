@@ -1,9 +1,9 @@
-### seqable
+## seqable
 ```gab
 [ seq\init:, seq\next: ]
 ```
 
-  The `seqable` protocol defines how a value can produce a lazy sequence of other values.
+  The `seqable` protocol defines how a value should produce a lazy sequence of other values.
 
   To use the `seqable` protocol, begin by sending `seq\init`:
 
@@ -38,13 +38,13 @@
   ```
   
 
-### seq\init
+## seq\init
 ```gab
 seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done none:)
 ```
 Return the initial key and value which should begin the sequence.
 
-### seq\next
+## seq\next
 ```gab
 seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown) | done none:)
 ```

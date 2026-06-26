@@ -6,8 +6,8 @@ title: Develop and Distribute with Gab
 With gab, you'll build composable, resilient programs almost by accident.
 
 {{< cards >}}
-  {{< card link="docs/intro" title="Install Gab" icon="download" >}}
-  {{< card link="docs/tour" title="Gabonomicon" icon="book-open" >}}
+  {{< card link="docs/installation" title="Install Gab" icon="download" >}}
+  {{< card link="docs/gabonomicon" title="Gabonomicon" icon="book-open" >}}
 {{< /cards >}}
 
 

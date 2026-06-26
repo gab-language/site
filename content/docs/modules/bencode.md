@@ -1,4 +1,4 @@
-### to\bencode
+## to\bencode
 ```gab
 unknown.to\bencode: () :: string
 ```
@@ -6,7 +6,7 @@ unknown.to\bencode: () :: string
   Convert a value into a bencode string.
   
 
-### as\bencode
+## as\bencode
 ```gab
 string.as\bencode: () :: (success (status ok:, value unknown) | failure (status err:, message string))
 ```

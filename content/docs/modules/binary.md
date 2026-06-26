@@ -1,4 +1,4 @@
-### binary
+## binary
 ```gab
 binary
 ```
@@ -6,7 +6,7 @@ binary
   A sequence of bytes, with no encoding.
   
 
-### len
+## len
 ```gab
 binary.len: () :: int
 ```
@@ -14,7 +14,7 @@ binary.len: () :: int
   Return the length of the binary, in bytes.
   
 
-### as\string
+## as\string
 ```gab
 binary.as\string: () :: (success (status ok:, value string) | failure (status err:, message string))
 ```
@@ -24,7 +24,7 @@ binary.as\string: () :: (success (status ok:, value string) | failure (status er
   This is only attempted once - the result of conversion is cached.
   
 
-### at
+## at
 ```gab
 binary.at: (default int | stepped (index int, step int)) :: binary
 ```

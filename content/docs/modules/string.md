@@ -1,4 +1,4 @@
-### string
+## string
 ```gab
 string
 ```
@@ -6,7 +6,7 @@ string
   A valid UTF-8 encoded sequence of bytes.
   
 
-### is\blank
+## is\blank
 ```gab
 string.is\blank: () :: boolean
 ```
@@ -14,15 +14,15 @@ string.is\blank: () :: boolean
   Returns `true:` if the string contains only blank characters. Returns `false:` otherwise.
   
 
-### split
+## split
 ```gab
-string.split: delimiter string :: tokens *string
+string.split: delimiter string :: (head string, tail string)
 ```
 
-  Split the receiving string on the given delimitier.
+  Split the receiving string on the given delimiter. Only performs one split.
   
 
-### has\sub
+## has\sub
 ```gab
 string.has\sub: substring string :: boolean
 ```
@@ -30,7 +30,7 @@ string.has\sub: substring string :: boolean
   Returns `true:` if the receiver contains the argument string. 
   
 
-### has\suffix
+## has\suffix
 ```gab
 string.has\suffix: substring string :: boolean
 ```
@@ -38,7 +38,7 @@ string.has\suffix: substring string :: boolean
   Returns `true:` if the receiver ends with the argument string.
   
 
-### has\prefix
+## has\prefix
 ```gab
 string.has\prefix: substring string :: boolean
 ```
@@ -46,7 +46,7 @@ string.has\prefix: substring string :: boolean
   Returns `true` if the receiver string begins with the argument string.
   
 
-### to\message
+## to\message
 ```gab
 string.to\message: () :: message
 ```
@@ -54,7 +54,7 @@ string.to\message: () :: message
   Convert a string into a message.
   
 
-### to\binary
+## to\binary
 ```gab
 string.to\binary: () :: binary
 ```
@@ -62,7 +62,7 @@ string.to\binary: () :: binary
   Convert a string into a binary.
   
 
-### as\number
+## as\number
 ```gab
 string.as\number: () :: (success (status ok:, value float) | failure (status err:, message nil:))
 ```
@@ -70,7 +70,7 @@ string.as\number: () :: (success (status ok:, value float) | failure (status err
   Try to convert a string into a number. If successful, return `ok:` and the number. Otherwise, return `err:`.
   
 
-### len
+## len
 ```gab
 string.len: () :: int
 ```
@@ -78,7 +78,7 @@ string.len: () :: int
   Return the length of the string. This does not count the bytes of the string - it returns the number of graphemes.
   
 
-### at
+## at
 ```gab
 string.at: index int :: (some (status ok:, value string) | none none:)
 ```
@@ -86,7 +86,7 @@ string.at: index int :: (some (status ok:, value string) | none none:)
   Return `ok:` and the grapheme at the given index. If none exists, return `none:`.
   
 
-### slice
+## slice
 ```gab
 string.slice: (begin (some (status ok:, value int) | none none:), end (some (status ok:, value int) | none none:)) :: string
 ```
@@ -94,7 +94,7 @@ string.slice: (begin (some (status ok:, value int) | none none:), end (some (sta
   Return a substring of graphemes at the given indices. Will panic if indices are out of bounds.
   
 
-### pop
+## pop
 ```gab
 string.pop: () :: (some (status ok:, value (rest string, last string)) | none none:)
 ```
@@ -102,7 +102,7 @@ string.pop: () :: (some (status ok:, value (rest string, last string)) | none no
   Similar behavior to `pop:` on the records.
   
 
-### trim
+## trim
 ```gab
 string.trim: trimset string :: string
 ```
@@ -110,7 +110,7 @@ string.trim: trimset string :: string
   Trim graphemes from the front and back of the string if they are within the arg 'trimset'.
   
 
-### seq\init
+## seq\init
 ```gab
 seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done none:)
 ```
@@ -120,7 +120,7 @@ seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done 
   See the seqable protocol for details.
   
 
-### seq\next
+## seq\next
 ```gab
 seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown) | done none:)
 ```

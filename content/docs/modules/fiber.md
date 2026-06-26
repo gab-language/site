@@ -1,4 +1,4 @@
-### fiber
+## fiber
 ```gab
 fiber
 ```
@@ -6,7 +6,7 @@ fiber
   Fibers execute gab code.
   
 
-### await
+## await
 ```gab
 fiber.await: () :: ()
 ```
@@ -16,7 +16,7 @@ fiber.await: () :: ()
   Returns the result of self.
   
 
-### is\done
+## is\done
 ```gab
 fiber.is\done: () :: boolean
 ```

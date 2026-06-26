@@ -16,7 +16,173 @@
     
     
     <item>
-      <title>Build</title>
+      <title>Demo</title>
+      <link>/blog/demo/</link>
+      <pubDate>Thu, 25 Jun 2026 19:22:23 -0400</pubDate>
+      
+      <guid>/blog/demo/</guid>
+      <description>
+        
+        
+        &lt;h2&gt;Why it matters&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;why-it-matters&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#why-it-matters&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Gab is approaching a stable, usable point.
+But as the language&amp;rsquo;s author, I don&amp;rsquo;t have a good perspective of how new users may feel.
+In order to improve the experience for them, I need to put myself in their shoes.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Eating your own dog food or &amp;ldquo;dogfooding&amp;rdquo; is the practice of using one&amp;rsquo;s own products or services.[1] This can be a way for an organization to test its products in real-world usage using product management techniques. Hence dogfooding can act as quality control, and eventually a kind of testimonial advertising. Once in the market, dogfooding can demonstrate developers&amp;rsquo; confidence in their own products.[2][3]
+-Wikipedia&lt;/p&gt;
+
+&lt;/blockquote&gt;
+&lt;h2&gt;Picking an Example&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;picking-an-example&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#picking-an-example&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I want to maintain a small repository that new users can look to for an idea of how gab works.
+Since I believe that gab&amp;rsquo;s strength is in building native applications, I think the best way to demonstrate this
+is with a small native gui app which does something useful and uses a range of gab&amp;rsquo;s features.
+For this case, I chose to implement a small wordle clone.&lt;/p&gt;
+&lt;p&gt;This is useful because:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some simple state/logic is required for managing guesses&lt;/li&gt;
+&lt;li&gt;User input for key-strokes, special cases for enter/delete&lt;/li&gt;
+&lt;li&gt;Requires embedding some static data, like a &lt;em&gt;valid words&lt;/em&gt; list&lt;/li&gt;
+&lt;li&gt;Shows off some of gab&amp;rsquo;s best builtin modules and toolchain features&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Wait - did you say GUI?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;wait---did-you-say-gui&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#wait---did-you-say-gui&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Yes! GUI as in graphical! Gab ships with a &lt;code&gt;github.com/gab-language/cgab/ui&lt;/code&gt; module which enables
+programmers to develop &lt;em&gt;native gui applications&lt;/em&gt;. Out of the box! It works like this:&lt;/p&gt;
+&lt;p&gt;First, create two channels. I like to call them &lt;code&gt;app&lt;/code&gt; and &lt;code&gt;ev&lt;/code&gt;&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+(app ev) := (Channels.make, Channels.make)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;These are used to communicate with the UI fibers that do all the event-listening and rendering work for us.
+We pass them into &lt;code&gt;run:&lt;/code&gt; message like so:&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+UI
+  .run(gui: ev app)
+  .unwrap
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Of course, we may fail to start the event/render fibers for any number of reasons. Unwrap the error so that we crash if we don&amp;rsquo;t get back &lt;code&gt;ok:&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-green-200 hx:bg-green-100 hx:text-green-900 hx:dark:border-green-200/30 hx:dark:bg-green-900/30 hx:dark:text-green-200&#34;&gt;
+  &lt;p class=&#34;hx:flex hx:items-center hx:font-medium&#34;&gt;&lt;svg height=16px class=&#34;hx:inline-block hx:align-middle hx:mr-2&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; fill=&#34;none&#34; viewBox=&#34;0 0 24 24&#34; stroke-width=&#34;2&#34; stroke=&#34;currentColor&#34; aria-hidden=&#34;true&#34;&gt;&lt;path stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; d=&#34;M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z&#34;/&gt;&lt;/svg&gt;Info&lt;/p&gt;
+
+  &lt;div class=&#34;hx:w-full hx:min-w-0 hx:leading-7&#34;&gt;
+    &lt;div class=&#34;hx:mt-6 hx:leading-7 hx:first:mt-0&#34;&gt;&lt;p&gt;The &lt;code&gt;gui:&lt;/code&gt; message tells the UI module to launch a new window and run in GUI mode. There are two other options,
+&lt;code&gt;tui:&lt;/code&gt; and &lt;code&gt;hui:&lt;/code&gt;. They render in the terminal and headlessly, respectively.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;From this point on, our task is simple. Take &lt;em&gt;events&lt;/em&gt; off the &lt;em&gt;ev&lt;/em&gt; channel, process them however we need, and then put a new &lt;em&gt;view&lt;/em&gt; on the &lt;em&gt;app&lt;/em&gt; channel.
+This is a perfect usecase for the &lt;code&gt;pipe:&lt;/code&gt; message:&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+ev
+  .pipe(
+    app
+    Transducers.take_until((e t key) :: do
+      (e == key:) &amp; (key == &#34;escape&#34;)
+    end)
+    |&gt; Transducers.reduce(model controller)
+    |&gt; Transducers.map(view))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;pipe:&lt;/code&gt; message is defined on the &lt;a href=&#34;/docs/protocols/seqable/&#34;&gt;seqable&lt;/a&gt; protocol. By convention, protocols end in &lt;code&gt;-able&lt;/code&gt;. Take a look at the &lt;a href=&#34;/docs/protocols/&#34;&gt;protocol&lt;/a&gt; page to learn more about how these work.&lt;/p&gt;
+&lt;p&gt;In pseudocode, the &lt;code&gt;pipe:&lt;/code&gt; message does the following:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;for values in seqable:
+    sinkable &amp;lt;! (values)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+    aria-label=&#34;Copy code&#34;
+    data-copied-label=&#34;Copied!&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;It uses the &lt;code&gt;seqable&lt;/code&gt; protocol to iterate values from the source, and puts them into the &lt;code&gt;sinkable&lt;/code&gt; with &lt;code&gt;&amp;lt;!&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Since &lt;code&gt;gab\channel&lt;/code&gt; implements seqable and sinkable, we can just use them directly with the pipe message. This sets up a pipeline for us from &lt;code&gt;ev -&amp;gt; app&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;However, we need to do some data manipulation to maintain some state and translate events into views. This is where the Transducers come in!
+The second argument to &lt;code&gt;pipe:&lt;/code&gt; is an optinonal &lt;a href=&#34;/docs/protocols/transduceable/&#34;&gt;Transduceable&lt;/a&gt;. Transducers transform values in a sequence as they pass through.
+The transducers themselves are composable - the &lt;code&gt;|&amp;gt;:&lt;/code&gt; message is used to combine Transducers together. Lets look at the ones we use above:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;take_until:&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;reduce:&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;map:&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;First, we use the &lt;code&gt;take_until:&lt;/code&gt; transducer to close the sequence once we see the &lt;code&gt;escape:&lt;/code&gt; key event. This lets the user close our app!&lt;/p&gt;
+&lt;p&gt;Second, we use the &lt;code&gt;reduce:&lt;/code&gt; transducer to keep track of our model&amp;rsquo;s state as we receive events. &lt;em&gt;controller&lt;/em&gt; is simply a block which takes a model and event, and returns a new model.
+&lt;em&gt;model&lt;/em&gt; is simply a record which contains all the state our app needs. &lt;em&gt;event&lt;/em&gt; is a message which tells us what kind of event we&amp;rsquo;re looking at - something like &lt;code&gt;key:&lt;/code&gt;, &lt;code&gt;mouse:&lt;/code&gt;, or &lt;code&gt;tick:&lt;/code&gt;.&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+controller := (model event args*) :: do 
+  model := event.dispatch(model args)
+  model
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Third, we use the &lt;code&gt;map:&lt;/code&gt; transducer to transform our model into a list of components we can render. &lt;em&gt;view&lt;/em&gt; is just a block that does this transformation.
+We call out to some helper blocks to render the rows of our wordle game.&lt;/p&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+view := (model) :: [
+  [
+    box:
+    {
+      w\g: 1
+      bg: Colors.bg
+      align\x: center:
+    }
+    [
+      [text: { size: SIZE * 2 bg: Colors.bg, fg: Colors.b } &#34;gwordle&#34;]
+    ]
+  ]
+  [
+    box: 
+    {
+      align\x: center:
+      align\y: center:
+      h\g: 1
+      w\g: 1
+      bg: Colors.bg
+    }
+    [
+      model.guesses.map((g i) :: [box: { layout: horizontal: } HintRow.(model g i)])*
+      current_guess.(model)*
+      remaining.(model)*
+    ]
+  ]
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There is some additional logic for handling guesses and events, and checking if the game is over, etc.
+We did manage to cover the core of the architecture in this short article, and hopefully it helps you understand how
+to structure your own apps in gab!&lt;/p&gt;
+&lt;p&gt;Here is the offical repo for &lt;a href=&#34;https://github.com/gab-language/gwordle&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;gwordle&lt;/a&gt;. There are some additional gems in this repo
+if you&amp;rsquo;re curious for more - like how to embed static data (like a word list) as module, and how to build cross-platform executables
+in github actions and attach them to a release. Please download the game from the releases page and try it!&lt;/p&gt;
+&lt;p&gt;If you have gab installed, you can also install gwordle with&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gab get github.com/gab-language/gwordle@0.1.0 gwordle@0.1.0
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Then, assuming you have gab/bin in your path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gwordle@0.1.0&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+    aria-label=&#34;Copy code&#34;
+    data-copied-label=&#34;Copied!&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Building, Deploying, Distributing</title>
       <link>/blog/build/</link>
       <pubDate>Thu, 02 Oct 2025 14:55:44 -0400</pubDate>
       
@@ -27,39 +193,39 @@
         &lt;h2&gt;Why it matters&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;why-it-matters&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#why-it-matters&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Deploying and distributing apps in dynamic languages can be a pain. How are packages and dependencies managed?
 What if the user has a different version of the interpreter? What if we can&amp;rsquo;t expect the user to have the interpreter at all?&lt;/p&gt;
-&lt;p&gt;Compiled languages get to distrubute a single static binary, runnable on any matching os/arch system. This is vastly more simple and after all -
+&lt;p&gt;Compiled languages get to distrubute a single static binary, runnable on any matching os/arch system. This is vastly simpler and after all -
 &lt;a href=&#34;https://github.com/twitter/the-algorithm/issues/1999&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;just give me an .EXE&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;What if there was a way that dynamic languages could bundle not just the users code, but &lt;em&gt;the interpreter itself and all the native modules&lt;/em&gt;? Its possible! And its a feature coming to Gab.&lt;/p&gt;
-&lt;h3&gt;Prior Art&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;prior-art&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#prior-art&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;This feature is inspired by the way the Lua Game Engine &lt;a href=&#34;https://www.love2d.org/&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Love2D&lt;/a&gt; recommends developers package up their games.
-It uses a technique involving &lt;strong&gt;zip archives&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;What if there was a way that dynamic languages could bundle not just the users code, but &lt;em&gt;the interpreter itself and all the native modules&lt;/em&gt;? Its possible! And its now a feature of gab.&lt;/p&gt;
+&lt;h2&gt;Prior Art&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;prior-art&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#prior-art&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This feature is inspired by the way the Lua Game Engine &lt;a href=&#34;https://www.love2d.org/&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Love2D&lt;/a&gt; recommends developers package up their games.
+It uses a technique involving self-extracting &lt;strong&gt;zip archives&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;The neat thing about the zip file format is that the metadata about the files in the archive is stored at the &lt;strong&gt;end&lt;/strong&gt; of the file.
 In Love2d, the developer creates a distrubutable game by zipping up all their code into a single zip archive, and concatenating it onto the back of the
 love binary itself.&lt;/p&gt;
 &lt;p&gt;Part of the love binaries behavior is that under some condition (I&amp;rsquo;m not quite sure what) it will check if the binary being executed (ie, itself)
 is a valid zip archive. If it is, it &lt;strong&gt;unzips itself into memory&lt;/strong&gt;, and executes the game code! When I discovered this was how it worked my mind
-was kinda blown. And I immediately though this would be an incredibly useful way to allow users to build distributable Gab binaries of their own.&lt;/p&gt;
-&lt;h3&gt;The Gab Toolchain&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-gab-toolchain&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#the-gab-toolchain&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;This is the first blog post about a feature of the Gab Toolchain, not the implementation of cgab, or a native module.
-The toolchain is a first-class concern to me as a language creator. I want the Gab CLI to be a batteries-included tool
-which can do everything a developer might need to write, run, test, download, install, and build Gab code.&lt;/p&gt;
+was kinda blown. And I immediately though this would be an incredibly useful way to allow users to build distributable gab binaries of their own.&lt;/p&gt;
+&lt;h2&gt;The gab Toolchain&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-gab-toolchain&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-gab-toolchain&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This is the first blog post about a feature of the gab toolchain, not the implementation of cgab, or a native module.
+The toolchain is a first-class concern to me as a language creator. I want the gab CLI to be a batteries-included tool
+which can do everything a developer might need to write, run, test, download, install, and build gab code.&lt;/p&gt;
 &lt;p&gt;This is another step in that direction. Lets dive into the implementation!&lt;/p&gt;
-&lt;h3&gt;When to unzip?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;when-to-unzip&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#when-to-unzip&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Under certain conditions, the Gab binary needs to determine that there is a zip archive at the end of itself. Then it needs
-to unzip said archive into memory, and allow the Gab runtime to see the archive when looking for modules. That leads us on a little
+&lt;h2&gt;When to unzip?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;when-to-unzip&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#when-to-unzip&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Under certain conditions, the gab binary needs to determine that there is a zip archive at the end of itself. Then it needs
+to unzip said archive into memory, and allow the gab runtime to see the archive when looking for modules. That leads us on a little
 side tangent:&lt;/p&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;How does the Gab runtime find modules?&lt;/p&gt;
+  &lt;p&gt;How does the gab runtime find modules?&lt;/p&gt;
 
 &lt;/blockquote&gt;
-&lt;p&gt;Here is the snippet of c code in the Gab CLI which initializes the gab engine when you type something like &lt;code&gt;gab run myapp&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Here is the snippet of c code in the gab CLI which initializes the gab engine when you type something like &lt;code&gt;gab run myapp&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;union&lt;/span&gt; gab_value_pair res &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gab_create&lt;/span&gt;(
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      (&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; gab_create_argt){
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// Various flags which determine some minor behaviors within the engine.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          .flags &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; flags,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// The number of worker threads the Gab runtime should spawn.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// The number of worker threads the gab runtime should spawn.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          .jobs &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; jobs,
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// A list of modules to require upon startup. Think of them as pre-loaded
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          .len &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; nmodules,
@@ -77,7 +243,7 @@ side tangent:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//   One determines if the module *exists* at the given path
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//     Since these resources check against the user&amp;#39;s filesystem, that callback just determines if the file exists.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//   The other *loads* the module at the given path.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//     There are two implementations for this function, depending on whether or not the file is a Gab source file or a native module.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//     There are two implementations for this function, depending on whether or not the file is a gab source file or a native module.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          .resources &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              (&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; gab_resource[]){
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  {&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;mod/&amp;#34;&lt;/span&gt;, GAB_DYNLIB_FILEENDING, gab_use_dynlib, file_exister},
@@ -100,10 +266,10 @@ side tangent:&lt;/p&gt;
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Hopefully the comments are self explanatory, but the gist is that the user registers paths and callbacks which the Gab engine uses to
+&lt;p&gt;Hopefully the comments are self explanatory, but the gist is that the user registers paths and callbacks which the gab engine uses to
 search for modules. We will hook into this later!&lt;/p&gt;
-&lt;h3&gt;When to unzip: for real&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;when-to-unzip-for-real&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#when-to-unzip-for-real&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;How does the Gab executable know when to try and unzip itself? The solution is relatively simple:&lt;/p&gt;
+&lt;h2&gt;When to unzip: for real&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;when-to-unzip-for-real&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#when-to-unzip-for-real&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;How does the gab executable know when to try and unzip itself? The solution is relatively simple:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// main.c
@@ -163,7 +329,7 @@ search for modules. We will hook into this later!&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;This snippet is also relatively simple. The &lt;code&gt;miniz.c&lt;/code&gt; is a fantastic, single-file library with an intuitive api.
 If we get to &lt;code&gt;run_app&lt;/code&gt;, that means we have successfully unzipped the executing binary as a zip-archive into memory, and saw at least one file.
-Lets take a look at how the Gab engine is initialized there.&lt;/p&gt;
+Lets take a look at how the gab engine is initialized there.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;union&lt;/span&gt; gab_value_pair res &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gab_create&lt;/span&gt;(
@@ -210,8 +376,8 @@ the zip-loader hooks. Yay!&lt;/p&gt;
   &lt;p&gt;But how do we &lt;em&gt;get&lt;/em&gt; a built-app in the first place?&lt;/p&gt;
 
 &lt;/blockquote&gt;
-&lt;h3&gt;Introducing &lt;code&gt;gab build&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;introducing-gab-build&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#introducing-gab-build&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Here lies the magic of &lt;code&gt;gab build&lt;/code&gt;. Lets take a look at an example:&lt;/p&gt;
+&lt;h2&gt;Introducing &lt;code&gt;gab build&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;introducing-gab-build&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#introducing-gab-build&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Here lies the magic of &lt;code&gt;gab build&lt;/code&gt;. Lets take a look at an example:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gab build -m tests,cgui test&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
@@ -227,8 +393,8 @@ the zip-loader hooks. Yay!&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;See &lt;code&gt;gab help build&lt;/code&gt; for more information. In summary, the &lt;code&gt;-m&lt;/code&gt; option appends the comma-separated list to the builtin list of modules to be bundled into the build. The final argument
-&lt;code&gt;test&lt;/code&gt; defines the &lt;em&gt;entrypoint&lt;/em&gt; of the bundle. This module will be included in the bundle, determine the name of the final &lt;code&gt;exe&lt;/code&gt;, and will be invoked when the user runs the executable.&lt;/p&gt;
-&lt;p&gt;This is neat, but not the whole story. &lt;code&gt;gab build&lt;/code&gt; actually lets you build executables for &lt;em&gt;any&lt;/em&gt; of Gab&amp;rsquo;s supported platforms! That means I can run:&lt;/p&gt;
+&lt;code&gt;test&lt;/code&gt; defines the &lt;em&gt;entrypoint&lt;/em&gt; of the executable. This module will be included in the executable, determine the name of the output file, and will be invoked when the user runs the executable.&lt;/p&gt;
+&lt;p&gt;This is neat, but not the whole story. &lt;code&gt;gab build&lt;/code&gt; actually lets you build executables for &lt;em&gt;any&lt;/em&gt; of gab&amp;rsquo;s supported platforms! That means I can run:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;gab build -p aarch64_macos_none -m tests,cgui test&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
@@ -243,9 +409,9 @@ the zip-loader hooks. Yay!&lt;/p&gt;
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;and get an equivalent macos arm64 executable - even though I&amp;rsquo;m on an intel chip, running Linux! Gab does this by downloading the Gab runtime and modules for the appropriate platform, and using these to
+&lt;p&gt;and get an equivalent macos arm64 executable - even though I&amp;rsquo;m on an intel chip, running Linux! gab does this by downloading the gab runtime and modules for the appropriate platform, and using these to
 build the bundle. This makes distributing native binaries a breeze!&lt;/p&gt;
-&lt;p&gt;Here is a final code snippet, which creates the bundlefile. Again, the fantastatic API of miniz makes this so easy.&lt;/p&gt;
+&lt;p&gt;Here is a final code snippet, which creates the executable. Again, the fantastatic API of miniz makes this so easy.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// ...
@@ -316,7 +482,7 @@ build the bundle. This makes distributing native binaries a breeze!&lt;/p&gt;
     </item>
     
     <item>
-      <title>IO</title>
+      <title>Asynchronous, Parallel IO in a Single Header File</title>
       <link>/blog/io/</link>
       <pubDate>Thu, 02 Oct 2025 09:57:01 -0400</pubDate>
       
@@ -336,12 +502,12 @@ run on the thread. Python&amp;rsquo;s &lt;em&gt;asyncio&lt;/em&gt; and Rust&amp;
 &lt;p&gt;libuv works fantastically well, but there were some problems when it comes to integrating it into Gab&amp;rsquo;s IO module.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;At the c-level, libuv&amp;rsquo;s api uses callbacks. This is inconvenient.&lt;/li&gt;
-&lt;li&gt;libuv spawns a thread pool, which will compete with Gab&amp;rsquo;s.&lt;/li&gt;
+&lt;li&gt;libuv spawns a thread pool, which will compete with cgab&amp;rsquo;s.&lt;/li&gt;
 &lt;li&gt;Gab native modules prefer single-header libraries (which libuv is not) to avoid linking and to ease cross-compilation.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For these reasons, I created my own eventloop library in c: &lt;a href=&#34;https://github.com/TeddyRandby/qio&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;TeddyRandby/qio&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;QIO - A simple event loop.&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;qio---a-simple-event-loop&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#qio---a-simple-event-loop&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;This library uses OS-specific apis to implement the event loop as efficiently as possible. It also allows for the
+&lt;h2&gt;QIO - A simple event loop.&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;qio---a-simple-event-loop&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#qio---a-simple-event-loop&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This library uses OS-specific apis to implement the event loop as efficiently as possible. It also allows for the
 user to submit IO-requests from multiple threads (the library is thread-safe in this way). Here is a quick overview of the api:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
@@ -352,7 +518,7 @@ user to submit IO-requests from multiple threads (the library is thread-safe in 
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;/* os_fd_type */&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;qfd_t&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/*
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * A qd (pronounced &amp;#39;kid&amp;#39;) is a handle representing a single, &amp;#39;queued&amp;#39; IO operation.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * A qd (pronounced &amp;#39;kid&amp;#39;) is a handle representing a single &amp;#39;queued&amp;#39; IO operation.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; *
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * It is used to:
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; *  - Check on the status of its corresponding operation.
@@ -489,11 +655,11 @@ user to submit IO-requests from multiple threads (the library is thread-safe in 
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Using this api, the messages defined in the IO module are &lt;em&gt;asynchronous&lt;/em&gt;. They queue up IO operations which are batched
-and run on a separate thread. While waiting for these IO operations to complete, other Gab fibers can run on the that
-Gab thread instead. This is supported by a feature in Gab&amp;rsquo;s native API, known as &lt;em&gt;yielding&lt;/em&gt;.&lt;/p&gt;
-&lt;h3&gt;Yielding&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;yielding&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#yielding&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The following is the type signature for a native block in Gab:&lt;/p&gt;
+&lt;p&gt;Using this api, the messages defined in the IO module are &lt;em&gt;asynchronous and parallel&lt;/em&gt;. They queue up IO operations which are batched
+and run on a separate thread. While waiting for these IO operations to complete, other gab fibers can run on the that
+cgab thread instead. This is supported by a feature in cgab&amp;rsquo;s native API, known as &lt;em&gt;yielding&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Yielding in Native Functions&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;yielding-in-native-functions&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#yielding-in-native-functions&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The following is the type signature for a native block in Gab:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;union&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gab_value_pair&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;gab_native_f)(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; gab_triple, &lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; argc,
@@ -518,18 +684,19 @@ There are three options:&lt;/p&gt;
 &lt;li&gt;Your function has panicked with an unrecoverable error. The VM must terminate execution of &lt;em&gt;all&lt;/em&gt; fibers. Use the macro &lt;code&gt;gab_union_cinvalid()&lt;/code&gt;, or the helper &lt;code&gt;gab_panicf&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Your function&amp;rsquo;s work is &lt;em&gt;incomplete&lt;/em&gt;, and you want to yield this fiber&amp;rsquo;s time so that other fibers may continue. Use the macro &lt;code&gt;gab_union_ctimeout()&lt;/code&gt;, and pass a non-zero 64-bit value. This will serve as the &lt;code&gt;reentrant&lt;/code&gt;. The next time the Gab runtime chooses to schedule the fiber to run again, it will be called with this reentrant value.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;This is where qio integrates with Gab, in the IO module. Here is a simplified example:&lt;/p&gt;
+&lt;p&gt;This is where qio integrates with cgab, in the IO module. Here is a simplified example:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;union&lt;/span&gt; gab_value_pair &lt;span style=&#34;color:#a6e22e&#34;&gt;async_socket_write&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; gab_triple gab, &lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; argc, gab_value &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;argv, &lt;span style=&#34;color:#66d9ef&#34;&gt;uintptr_t&lt;/span&gt; reentrant) {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// If the reentrant is zero, this is our first time entering this function.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;reentrant) {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        qd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;qwrite&lt;/span&gt;(...);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// Initialize the write with arguments we parse from argc and argv.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        qd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;qwrite&lt;/span&gt;(...);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;// Yield this fiber, with the qd as the reentrant.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gab_union_ctimeout&lt;/span&gt;(qd);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// At this point, we have a reentrant.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// At this point, we have a reentrant. We know its the `qd` from a write we queued up before.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// If the reentrant is done, 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;qd_status&lt;/span&gt;(reentrant)) {
@@ -556,16 +723,16 @@ There are three options:&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;And thats it! Now we have an async IO runtime which never blocks on IO. And the best part is that the user &lt;strong&gt;never&lt;/strong&gt; knows its happening.
 There is no function coloring or async/await, like in other languages. Simple!&lt;/p&gt;
-&lt;h2&gt;So what?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;so-what&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#so-what&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There is nothing unique or special-cased about the Gab&amp;rsquo;s native IO module. It is implemented completely in user-land, with the same cgab library features that other
+&lt;h2&gt;The Best Bit&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-best-bit&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-best-bit&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There is nothing unique or special-cased about how cgab&amp;rsquo;s native IO module works. It is implemented completely in user-land, with the same cgab library features that other
 native modules would have access to. If &lt;em&gt;you&lt;/em&gt; wanted to implement an IO module on top of libuv instead, you could! Gab&amp;rsquo;s users wouldn&amp;rsquo;t know the difference.&lt;/p&gt;
-&lt;p&gt;This is a fundamental philosophy of Gab&amp;rsquo;s design. Native modules should be first class - native module authors should feel empowered to write highly efficient, non-blocking native functions without pulling their hair out.&lt;/p&gt;
+&lt;p&gt;This is a fundamental philosophy of Gab&amp;rsquo;s design. Native module authors should feel empowered to write highly efficient, non-blocking native functions without pulling their hair out.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
-      <title>Value Representation</title>
+      <title>Representing Values in cgab</title>
       <link>/blog/values/</link>
       <pubDate>Wed, 16 Apr 2025 09:22:19 -0400</pubDate>
       
@@ -574,15 +741,19 @@ native modules would have access to. If &lt;em&gt;you&lt;/em&gt; wanted to imple
         
         
         &lt;h2&gt;Why it matters&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;why-it-matters&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#why-it-matters&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;In a language like &lt;code&gt;C&lt;/code&gt;, code is compiled to run natively - values are just blocks of memory, and at runtime there is &lt;em&gt;no type information&lt;/em&gt;.
+    &lt;a href=&#34;#why-it-matters&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Performance is always the answer! Dynamic languages like gab often have one over-arching definition of what a &lt;em&gt;value&lt;/em&gt; is in the runtime.
+It is crucial that this value has as small of a memory footprint as possible. The runtime stores &lt;em&gt;many&lt;/em&gt; contiguous arrays of these values,
+and the more compact these arrays can be, the better. In gab&amp;rsquo;s case, it is even more important that values &lt;em&gt;fit into a register&lt;/em&gt;, as this makes it easier for them to cross thread boundaries.&lt;/p&gt;
+&lt;p&gt;In a language like &lt;code&gt;C&lt;/code&gt;, code is compiled to run natively - values are just blocks of memory, and at runtime there is &lt;em&gt;no type information&lt;/em&gt;.
 A register could hold an integer, or a pointer, or a boolean, but to the program they&amp;rsquo;re all just bits.&lt;/p&gt;
-&lt;p&gt;This differs from how a language like Java, Python, or Gab work.
+&lt;p&gt;This differs from how languages like Java, Python, or gab work.
 These dynamic languages also carry type information about values through runtime, and use it for garbage collection, reflection, and detecting type errors.&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;Don&amp;rsquo;t get mad at me for calling Java dynamic. You know it is.&lt;/p&gt;
 
 &lt;/blockquote&gt;
-&lt;p&gt;At the runtime-level, dynamic languages need a type which can represent &lt;em&gt;any&lt;/em&gt; value in a program. A simple (dare I say naive) way of implementing this is with
+&lt;h2&gt;Start Simple&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;start-simple&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#start-simple&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;At the runtime-level, dynamic languages need a type which can represent &lt;em&gt;any&lt;/em&gt; value in a program. A simple (dare I say naive) way of implementing this is with
 a &lt;em&gt;tagged union&lt;/em&gt;.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
@@ -636,7 +807,8 @@ a &lt;em&gt;tagged union&lt;/em&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Alright! We&amp;rsquo;ve seen how these values can be used in our c-interpreter, and it all works nicely. What are the problems with this approach?
 To understand that, we need to dive a little bit deeper into how our c-interpreter &lt;em&gt;actually&lt;/em&gt; works.&lt;/p&gt;
-&lt;p&gt;Native programs have two types of memory - a &lt;strong&gt;stack&lt;/strong&gt; and a &lt;strong&gt;heap&lt;/strong&gt;. The same is true in the managed runtimes of Java, Python, and Gab. The interpreters (or virtual machines - VMs, as I&amp;rsquo;ll probably say from now on) have an internal &lt;em&gt;stack&lt;/em&gt;, which keep track of local variables, scopes, and function calls.&lt;/p&gt;
+&lt;h2&gt;Values in Context&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;values-in-context&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#values-in-context&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Native programs have two types of memory - a &lt;strong&gt;stack&lt;/strong&gt; and a &lt;strong&gt;heap&lt;/strong&gt;. The same is true in the managed runtimes of Java, Python, and Gab. The interpreters (or virtual machines - VMs, as I&amp;rsquo;ll probably say from now on) have an internal &lt;em&gt;stack&lt;/em&gt;, which keep track of local variables, scopes, and function calls.&lt;/p&gt;
 &lt;p&gt;Here we have a random Python function which for the purpose of this demonstration, just makes some random calculations with arguments and variables.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
@@ -658,7 +830,8 @@ To understand that, we need to dive a little bit deeper into how our c-interpret
 &lt;/div&gt;
 &lt;p&gt;Let&amp;rsquo;s take a look at how the &lt;em&gt;stack&lt;/em&gt; might look under the hood as this function is being called.&lt;/p&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;Disclaimer: I am not a cpython expert. I am guessing based on what I know about it and stack vms in general.&lt;/p&gt;
+  &lt;p&gt;Disclaimer: I am not a cpython expert. I am guessing based on what I know about it and stack vms in general.
+The specifics are not important - these principles apply to many situations in language runtimes.&lt;/p&gt;
 
 &lt;/blockquote&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
@@ -703,7 +876,7 @@ To understand that, we need to dive a little bit deeper into how our c-interpret
   &lt;/button&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;The point I&amp;rsquo;m trying to get across is that the stack is basically a big, contiguous, array. As functions are called and scopes are entered/left, values are pushed and popped off of this array.
+&lt;p&gt;The point I&amp;rsquo;m trying to get across is that the stack is basically a big, contiguous, array. As functions are called and scopes are entered/exited, values are pushed and popped off of this array.
 Lets tie in our tagged-union implementation, and look at the actual &lt;strong&gt;memory layout&lt;/strong&gt; of our stack at the last pause point.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
@@ -763,8 +936,8 @@ Lets tie in our tagged-union implementation, and look at the actual &lt;strong&g
 &lt;li&gt;We allocate &lt;em&gt;more&lt;/em&gt; memory from the kernel dynamically than we actually use.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;In order to fix this problem, is there a way to fit a value &lt;em&gt;and&lt;/em&gt; a tag into 8 bytes?&lt;/p&gt;
-&lt;h2&gt;NaN Tagging&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;nan-tagging&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#nan-tagging&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There is a technique among vm-implementers known as &lt;em&gt;NaN tagging&lt;/em&gt;, which involves repurposing some of the normally useless states
+&lt;h2&gt;The Dark Arts&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-dark-arts&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#the-dark-arts&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There is a technique among vm-implementers known as &lt;em&gt;NaN tagging&lt;/em&gt;, which involves repurposing some of the normally useless states
 that a double-precision floating-point number can be in. There is an in-depth explanation in the source code, and the comment is copied at the end of this blog post.&lt;/p&gt;
 &lt;p&gt;To summarize, we use a special incantation bit-pattern (known as a quiet NaN) to signal that we&amp;rsquo;re in one of these useless floating-point states. If we confirm a double matches our incantation,
 we can safely use the lower 50 bits to interpret however we choose. If it doesn&amp;rsquo;t, then we should interpret it as an ordinary double.&lt;/p&gt;
@@ -798,8 +971,8 @@ On the other side of the pointer there will be a tag and data describing the obj
 &lt;/div&gt;
 &lt;p&gt;The reason that the first four values are specified is because of our NaN tagging scheme. Those four kinds need to be small enough to fit in our two-bit tag.
 These four tags determine the types of all the values which we can cram into our remaining 48 bits.&lt;/p&gt;
-&lt;h3&gt;Short String Optimization&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;short-string-optimization&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#short-string-optimization&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Using the remaining 48 bits, &lt;code&gt;cgab&lt;/code&gt; can store up to 5 bytes of string data, including a length byte. This short string optimization is also described in the below comment.
+&lt;h2&gt;A Step Further&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;a-step-further&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#a-step-further&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Using the remaining 48 bits, &lt;code&gt;cgab&lt;/code&gt; can store up to 5 bytes of string data, including a length byte. This short string optimization is also described in the below comment.
 Strings, Binaries, and Messages &lt;em&gt;all&lt;/em&gt; benefit from the short string optimization, and internally they all point to the same data. This is because the tag in the NaN-boxed value itself is
 what determines whether the value is a String, Binary, or Message. Because of this, converting &lt;em&gt;between&lt;/em&gt; the 3 string-like types is quite literally trivial. Here is the code for converting
 a string into a binary, lifted from &lt;code&gt;cgab&lt;/code&gt;.&lt;/p&gt;

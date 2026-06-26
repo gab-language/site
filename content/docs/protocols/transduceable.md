@@ -1,4 +1,4 @@
-### transduceable
+## transduceable
 ```gab
 [ transduce\wrap:, transduce\step: ]
 ```
@@ -34,7 +34,7 @@
   a *reduceable* and a *state* argument as well.
   
 
-### transduce\wrap
+## transduce\wrap
 ```gab
 transduceable.transduce\wrap: reducer reduceable: :: reduceable:
 ```
@@ -42,7 +42,7 @@ transduceable.transduce\wrap: reducer reduceable: :: reduceable:
   Wrap a `reduceable` with some behavior, returning a new `reduceable`.
   
 
-### transduce\step
+## transduce\step
 ```gab
 transduceable.transduce\step: (reducer reduceable:, accumulator unknown, sequence List[unknown], state unknown) :: (state unknown, command next: | stop:, reducer reduceable:, accumulator unknown)
 ```
