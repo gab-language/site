@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gab Programming Language – </title>
+    <title>gab – </title>
     <link>/docs/</link>
-    <description>Recent content on Gab Programming Language</description>
+    <description>Recent content on gab</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 20 Apr 2026 10:00:44 -0400</lastBuildDate>
@@ -2633,15 +2633,15 @@ record.put_via_by: (key_path *unknown, f is\block:) :: record
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Apply a function to the value at &lt;code&gt;key_path&lt;/code&gt;, returning a new record with the returned value from that function at key_path.&lt;/p&gt;
 &lt;p&gt;Combines the behavior of &lt;code&gt;put_via:&lt;/code&gt; and &lt;code&gt;put_by:&lt;/code&gt;.&lt;/p&gt;
-&lt;h2&gt;push&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;push&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#push&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;cons&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;cons&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#cons&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-record.push: unknown :: record
+record.push:  :: record
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Return a new record with the given value at the &lt;em&gt;end&lt;/em&gt; of the record. The key will be the length of the record &lt;em&gt;before&lt;/em&gt; inserting.&lt;/p&gt;
+&lt;p&gt;Return a new record with the given values at the &lt;em&gt;end&lt;/em&gt; of the record. The key will be the length of the record &lt;em&gt;before&lt;/em&gt; inserting.&lt;/p&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-arr := [1 2 3] .push 4
+arr := [1 2 3] .cons 4
 
 arr # :: [1 2 3 4]
 &lt;/code&gt;&lt;/pre&gt;
@@ -2763,18 +2763,6 @@ seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown
 shape
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;An immutable set of keys.&lt;/p&gt;
-&lt;h2&gt;push&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;push&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#push&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-shape.push: unknown :: shape
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Push additional keys to the end of a shape.&lt;/p&gt;
-&lt;h2&gt;pop&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pop&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#pop&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-shape.pop: unknown :: remaining shape
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Pop a key off the back of the shape&lt;/p&gt;
 &lt;h2&gt;len&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;len&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#len&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;

@@ -6,22 +6,6 @@ shape
   An immutable set of keys.
   
 
-## push
-```gab
-shape.push: unknown :: shape
-```
-
-  Push additional keys to the end of a shape.
-  
-
-## pop
-```gab
-shape.pop: unknown :: remaining shape
-```
-
-  Pop a key off the back of the shape
-  
-
 ## len
 ```gab
 shape.len: unknown :: int

@@ -136,15 +136,15 @@ record.put_via_by: (key_path *unknown, f is\block:) :: record
   Combines the behavior of `put_via:` and `put_by:`.
   
 
-## push
+## cons
 ```gab
-record.push: unknown :: record
+record.push:  :: record
 ```
 
-  Return a new record with the given value at the *end* of the record. The key will be the length of the record *before* inserting.
+  Return a new record with the given values at the *end* of the record. The key will be the length of the record *before* inserting.
 
   ```gab
-  arr := [1 2 3] .push 4
+  arr := [1 2 3] .cons 4
 
   arr # :: [1 2 3 4]
   ```

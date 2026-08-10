@@ -8,7 +8,7 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>Asynchronous, Parallel IO in a Single Header File – Gab Programming Language</title>
+<title>Asynchronous, Parallel IO in a Single Header File – gab</title>
   <meta name="description" content="Why it matters In a lot of programs that we write today, the bottleneck for performance of our applications isn’t actually the work we’re doing on the CPU. Its more likely that the IO Operations, such as sending/receiving data over the network or writing and reading files, will end up blocking the CPU from doing its work.
 Programming languages solve this issue in different ways. At the lowest level, languages need a way of telling the OS that some IO work needs to be done, without blocking the thread. NodeJS for example uses libuv, a c library which utilizes an eventloop and threadpool to perform IO. The user in Javascript issues IO requests to the libuv loop, which process them as it can with its workers. The Javascript runtime then yields that function until the IO request is complete - allowing other JS code to run on the thread. Python’s asyncio and Rust’s tokio work similarly." /><link rel="canonical" href="/blog/io/" itemprop="url" />
 
@@ -82,7 +82,7 @@ Programming languages solve this issue in different ways. At the lowest level, l
     <a class="hx:flex hx:items-center hx:hover:opacity-75 hx:ltr:mr-auto hx:rtl:ml-auto" href="/">
     <img class="hx:mr-2 hx:block hx:dark:hidden" src="/images/logo.svg" alt="Logo" height="20" width="20" />
     <img class="hx:mr-2 hx:hidden hx:dark:block" src="/images/logo.svg" alt="Dark Logo" height="20" width="20" />
-    <span class="hx:mr-2 hx:font-extrabold hx:inline hx:select-none">Gab Programming Language</span>
+    <span class="hx:mr-2 hx:font-extrabold hx:inline hx:select-none">gab</span>
 </a>
 <a
   title=""

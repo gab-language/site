@@ -12,15 +12,15 @@ Download the archive that matches your platform:
 
 | Platform | Architecture | File |
 |---|---|---|
-| macOS | x86-64 | [gab-x86-64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-x86_64-macos-none) |
-| macOS | arm 64 | [gab-aarch64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-aarch64-macos-none) |
-| Windows | x86-64 | [gab-x86-64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-x86_64-windows-gnu.exe) |
-| Windows | arm 64 | [gab-aarch64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-aarch64-windows-gnu.exe) |
-| Linux | x86-64 | [gab-x86-64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-x86_64-linux-gnu) |
-| Linux | arm 64 | [gab-aarch64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.3-aarch64-linux-gnu) |
+| macOS | x86-64 | [gab-x86-64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.4-x86_64-macos-none.exe) |
+| macOS | arm 64 | [gab-aarch64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.4-aarch64-macos-none.exe) |
+| Windows | x86-64 | [gab-x86-64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.4-x86_64-windows-gnu.exe) |
+| Windows | arm 64 | [gab-aarch64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.4-aarch64-windows-gnu.exe) |
+| Linux | x86-64 | [gab-x86-64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.4-x86_64-linux-gnu.exe) |
+| Linux | arm 64 | [gab-aarch64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.4-aarch64-linux-gnu.exe) |
 
 > [!WARNING]
-> On certain platforms, the executable you just downloaded (`gab-<your_target>`) will need to be marked as executable in order to run it.
+> On certain platforms (Linux, macOS), the executable you just downloaded (`gab-<your_target>`) will need to be marked as executable in order to run it.
 
 ## Install
 

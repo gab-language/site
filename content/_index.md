@@ -1,19 +1,49 @@
 ---
-title: Develop and Distribute with Gab
+title:
 ---
 
-**Gab** is a small, dynamic language designed for building highly parallel, interactive systems.
-With gab, you'll build composable, resilient programs almost by accident.
+# Build cross-platform native apps in an afternoon.
+gab is a dynamic, general-purpose scripting language designed and built from scratch. It is intenionally minimal, while providing the programmer with a core set of composable tools to build scalable, parallel applications.
 
-{{< cards >}}
-  {{< card link="docs/installation" title="Install Gab" icon="download" >}}
-  {{< card link="docs/gabonomicon" title="Gabonomicon" icon="book-open" >}}
-{{< /cards >}}
+## Batteries Included
+gab's standard library ships with a growing number of useful modules. Beyond those you'd expect like `Json` or `Io`, gab includes `Ui`: an elm-inspired module for building cross platform graphical/terminal applications.
 
+```gab
+Ui := 'github.com/gab-language/cgab@0.1.4' .use 'cui'
+
+(events, app) := (Channels.make, Channels.make)
+
+Ui.run(gui: events app)
+  .unwrap
+
+events
+  .pipe(
+    app,
+    Streams.take_until((e t key) :: do
+      (e == key:) & ((key == "escape") | (key == "q"))
+    end)
+    |> Streams.reduce(
+      model
+      (app, args*) :: app.app\controller(args*))
+    |> Streams.map(app :: app.app\view)
+  )
+```
+
+## Convenient Cross Platform
+gab's packaging and bundling system makes distributing your application trivial. In one `gab build` command, produce native binaries for *any* supported platform.
+```bash
+# Build native binaries  for *any* target using the `build` command. 
+gab build my_app -t aarch64-macos-none < dependencies
+# gab: * Created application my_app-cgab-0.1.4-aarch64-macos-none.exe (8.2 mb).
+
+# Download packages and binaries using the `get` command.
+gab@0.1.3 get github.com/gab-language/gwordle@0.1.0 gwordle@0.1.0
+./gwordle@0.1.0
+# Play wordle!
+```
 
 ## Simple
-
-Gab's syntax is minimal - learn the whole language in an afternoon.
+gab's syntax is minimal - learn the whole language in an afternoon.
 
 ```gab
 welcome := ['Hello', ' ', 'world!']
@@ -37,34 +67,7 @@ end
 print_chan.each (msg) :: msg.println
 ```
 
-## Immutable
-
-Every value in Gab is immutable. This makes thinking in parallel easier than ever.
-
-```gab
-bob   := { name: 'bob',   age: 44 }
-alice := bob.put(name: 'alice')
-
-bob    # :: { name: 'bob',   age: 44 }
-alice  # :: { name: 'alice', age: 44 }
-```
-
-## Embeddable
-
-Gab is designed to live inside larger applications. A stable C API (`gab.h`) and a static library (`libcgab.a`) are provided with every release. Call into Gab from C, or write native modules.
-
-If you're looking for a scripting layer in your application, Gab is a fantastic option.
-
-## Ship anywhere
-
-Build a standalone executable for any supported platform — from any other:
-
-```sh
-gab build -t aarch64-macos-none -m my,deps my_project
-# :: my_project  (runs on Apple Silicon, no Gab installation required)
-
-gab build -t x86_64-linux-gnu -m my,deps my_project
-# :: my_project  (runs on Linux x86_64, no Gab installation required)
-```
-
-The output is a single file containing your code, your dependencies, and the entire Gab runtime. Send it to a server, bundle it in a container, hand it to a colleague or user — it just works.
+{{< cards >}}
+  {{< card link="docs/installation" title="Install Gab" icon="download" >}}
+  {{< card link="docs/gabonomicon" title="Gabonomicon" icon="book-open" >}}
+{{< /cards >}}

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr"><head>
-	<meta name="generator" content="Hugo 0.163.3">
+	<meta name="generator" content="Hugo 0.164.0">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="robots" content="index, follow" />
   <link rel="icon shortcut" href="/favicon.ico" sizes="32x32" />
@@ -9,10 +9,10 @@
 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
-<title>Gab Programming Language</title>
+<title>gab</title>
   <meta name="description" content="" /><link rel="canonical" href="/" itemprop="url" />
 
-<meta property="og:title" content="Develop and Distribute with Gab">
+<meta property="og:title" content="">
 <meta
   property="og:description"
   content="
@@ -28,16 +28,16 @@
 <meta property="og:url" content="/">
 
 
-	<meta itemprop="name" content="Develop and Distribute with Gab">
-	<meta itemprop="description" content="Gab is a small, dynamic language designed for building highly parallel, interactive systems. With gab, you’ll build composable, resilient programs almost by accident.
-Install Gab Gabonomicon Simple Gab’s syntax is minimal - learn the whole language in an afternoon.">
+	<meta itemprop="name" content="gab">
+	<meta itemprop="description" content="Build cross-platform native apps in an afternoon.gab is a dynamic, general-purpose scripting language designed and built from scratch. It is intenionally minimal, while providing the programmer with a core set of composable tools to build scalable, parallel applications.
+Batteries Included gab’s standard library ships with a growing number of useful modules. Beyond those you’d expect like Json or Io, gab includes Ui: an elm-inspired module for building cross platform graphical/terminal applications.">
 	<meta itemprop="datePublished" content="2026-06-25T19:22:23-04:00">
 	<meta itemprop="dateModified" content="2026-06-25T19:22:23-04:00">
-	<meta itemprop="wordCount" content="293">
+	<meta itemprop="wordCount" content="275">
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Develop and Distribute with Gab">
-	<meta name="twitter:description" content="Gab is a small, dynamic language designed for building highly parallel, interactive systems. With gab, you’ll build composable, resilient programs almost by accident.
-Install Gab Gabonomicon Simple Gab’s syntax is minimal - learn the whole language in an afternoon.">
+	<meta name="twitter:title" content="gab">
+	<meta name="twitter:description" content="Build cross-platform native apps in an afternoon.gab is a dynamic, general-purpose scripting language designed and built from scratch. It is intenionally minimal, while providing the programmer with a core set of composable tools to build scalable, parallel applications.
+Batteries Included gab’s standard library ships with a growing number of useful modules. Beyond those you’d expect like Json or Io, gab includes Ui: an elm-inspired module for building cross platform graphical/terminal applications.">
 
     <link rel="preload" href="/css/compiled/main.min.1a431501cdeb52323c920e7761f7d9e327b2bee53160196c4bd1d34a3fd9fbc9.css" as="style" integrity="sha256-GkMVAc3rUjI8kg53YffZ4yeyvuUxYBlsS9HTSj/Z&#43;8k=" />
     <link href="/css/compiled/main.min.1a431501cdeb52323c920e7761f7d9e327b2bee53160196c4bd1d34a3fd9fbc9.css" rel="stylesheet" integrity="sha256-GkMVAc3rUjI8kg53YffZ4yeyvuUxYBlsS9HTSj/Z&#43;8k=" />
@@ -64,7 +64,7 @@ Install Gab Gabonomicon Simple Gab’s syntax is minimal - learn the whole langu
     <a class="hx:flex hx:items-center hx:hover:opacity-75 hx:ltr:mr-auto hx:rtl:ml-auto" href="/">
     <img class="hx:mr-2 hx:block hx:dark:hidden" src="/images/logo.svg" alt="Logo" height="20" width="20" />
     <img class="hx:mr-2 hx:hidden hx:dark:block" src="/images/logo.svg" alt="Dark Logo" height="20" width="20" />
-    <span class="hx:mr-2 hx:font-extrabold hx:inline hx:select-none">Gab Programming Language</span>
+    <span class="hx:mr-2 hx:font-extrabold hx:inline hx:select-none">gab</span>
 </a>
 <a
   title=""
@@ -1120,23 +1120,19 @@ Install Gab Gabonomicon Simple Gab’s syntax is minimal - learn the whole langu
 <nav class="hextra-toc hx:order-last hx:hidden hx:w-64 hx:shrink-0 hx:xl:block hx:print:hidden hx:px-4" aria-label="Table of contents">
     <div class="hextra-scrollbar hx:sticky hx:top-16 hx:overflow-y-auto hx:pr-4 hx:pt-6 hx:text-sm [hyphens:auto] hx:max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] hx:ltr:-mr-4 hx:rtl:-ml-4"><p class="hx:mb-4 hx:font-semibold hx:tracking-tight">On this page</p><ul>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#batteries-included">Batteries Included
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#convenient-cross-platform">Convenient Cross Platform
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
         <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#simple">Simple
         </a>
       </li>
       <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
         <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#parallel">Parallel
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#immutable">Immutable
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#embeddable">Embeddable
-        </a>
-      </li>
-      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
-        <a class="hx:font-medium hx:inline-block hx:rounded-sm hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:wrap-break-word hx:hextra-focus-visible-inset" href="#ship-anywhere">Ship anywhere
         </a>
       </li></ul>
       <div class="hx:mt-8 hx:border-t hx:bg-white hx:pt-8 hx:shadow-[0_-12px_16px_white] hx:dark:bg-dark hx:dark:shadow-[0_-12px_16px_#111] hx:sticky hx:bottom-0 hx:flex hx:flex-col hx:items-start hx:gap-2 hx:pb-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-t hx:contrast-more:border-neutral-400 hx:contrast-more:shadow-none hx:contrast-more:dark:border-neutral-400">
@@ -1153,23 +1149,55 @@ Install Gab Gabonomicon Simple Gab’s syntax is minimal - learn the whole langu
 
     <article class="hx:w-full hx:break-words hx:flex hx:min-h-[calc(100vh-var(--navbar-height))] hx:min-w-0 hx:justify-center hx:pb-8 hx:pr-[calc(env(safe-area-inset-right)-1.5rem)]">
       <main id="content" class="hx:w-full hx:min-w-0 hextra-max-content-width hx:px-6 hx:pt-4 hx:md:px-12">
-        <h1 class="hx:text-center hx:mt-2 hx:text-4xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">Develop and Distribute with Gab</h1>
+        
         <div class="content">
-          <p><strong>Gab</strong> is a small, dynamic language designed for building highly parallel, interactive systems.
-With gab, you&rsquo;ll build composable, resilient programs almost by accident.</p>
-<div class="hextra-cards hx:mt-4 hx:gap-4 hx:grid not-prose" style="--hextra-cards-grid-cols: 3;">
-  <a
-    class="hextra-card hx:group hx:flex hx:flex-col hx:justify-start hx:overflow-hidden hx:rounded-lg hx:border hx:border-gray-200 hx:text-current hx:no-underline hx:dark:shadow-none hx:hover:shadow-gray-100 hx:dark:hover:shadow-none hx:shadow-gray-100 hx:active:shadow-sm hx:active:shadow-gray-200 hx:transition-all hx:duration-200 hx:hover:border-gray-300 hx:bg-transparent hx:shadow-xs hx:dark:border-neutral-800 hx:hover:bg-slate-50 hx:hover:shadow-md hx:dark:hover:border-neutral-700 hx:dark:hover:bg-neutral-900"href="docs/installation"
-      ><div class="hx:mt-auto">
-      <span class="hextra-card-icon hx:flex hx:font-semibold hx:items-start hx:gap-2 hx:p-4 hx:text-gray-700 hx:hover:text-gray-900 hx:dark:text-neutral-200 hx:dark:hover:text-neutral-50"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Install Gab</span></div></a>
-  <a
-    class="hextra-card hx:group hx:flex hx:flex-col hx:justify-start hx:overflow-hidden hx:rounded-lg hx:border hx:border-gray-200 hx:text-current hx:no-underline hx:dark:shadow-none hx:hover:shadow-gray-100 hx:dark:hover:shadow-none hx:shadow-gray-100 hx:active:shadow-sm hx:active:shadow-gray-200 hx:transition-all hx:duration-200 hx:hover:border-gray-300 hx:bg-transparent hx:shadow-xs hx:dark:border-neutral-800 hx:hover:bg-slate-50 hx:hover:shadow-md hx:dark:hover:border-neutral-700 hx:dark:hover:bg-neutral-900"href="docs/gabonomicon"
-      ><div class="hx:mt-auto">
-      <span class="hextra-card-icon hx:flex hx:font-semibold hx:items-start hx:gap-2 hx:p-4 hx:text-gray-700 hx:hover:text-gray-900 hx:dark:text-neutral-200 hx:dark:hover:text-neutral-50"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>Gabonomicon</span></div></a>
-</div>
+          <h1>Build cross-platform native apps in an afternoon.</h1><p>gab is a dynamic, general-purpose scripting language designed and built from scratch. It is intenionally minimal, while providing the programmer with a core set of composable tools to build scalable, parallel applications.</p>
+<h2>Batteries Included<span class="hx:absolute hx:-mt-20" id="batteries-included"></span>
+    <a href="#batteries-included" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>gab&rsquo;s standard library ships with a growing number of useful modules. Beyond those you&rsquo;d expect like <code>Json</code> or <code>Io</code>, gab includes <code>Ui</code>: an elm-inspired module for building cross platform graphical/terminal applications.</p>
 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>Ui <span style='font-weight: bold;color: #cba6f8'>:=</span> <span style='color: #a6e3a2'>&#39;github.com/gab-language/cgab@0.1.4&#39;</span> <span style='font-weight: bold;color: #89dcec'>.use</span> <span style='color: #a6e3a2'>&#39;cui&#39;</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='color: #9399b3'>(</span>events, app<span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #cba6f8'>:=</span> <span style='color: #9399b3'>(</span>Channels<span style='font-weight: bold;color: #89dcec'>.make</span>, Channels<span style='font-weight: bold;color: #89dcec'>.make</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>Ui<span style='font-weight: bold;color: #89dcec'>.run</span><span style='color: #9399b3'>(</span><span style='color: #f9e2b0'>gui:</span> events app<span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span>  <span style='font-weight: bold;color: #89dcec'>.unwrap</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>events</span></span>
+<span sytle="display:flex"><span>  <span style='font-weight: bold;color: #89dcec'>.pipe</span><span style='color: #9399b3'>(</span></span></span>
+<span sytle="display:flex"><span>    app,</span></span>
+<span sytle="display:flex"><span>    Streams<span style='font-weight: bold;color: #89dcec'>.take_until</span><span style='color: #9399b3'>(</span><span style='color: #9399b3'>(</span>e t key<span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #cba6f8'>::</span> <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
+<span sytle="display:flex"><span>      <span style='color: #9399b3'>(</span>e <span style='font-weight: bold;color: #89dcec'>==</span> <span style='color: #f9e2b0'>key:</span><span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #89dcec'>&amp;</span> <span style='color: #9399b3'>(</span><span style='color: #9399b3'>(</span>key <span style='font-weight: bold;color: #89dcec'>==</span> <span style='color: #a6e3a2'>&quot;escape&quot;</span><span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #89dcec'>|</span> <span style='color: #9399b3'>(</span>key <span style='font-weight: bold;color: #89dcec'>==</span> <span style='color: #a6e3a2'>&quot;q&quot;</span><span style='color: #9399b3'>)</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #cba6f8'>end</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #89dcec'>|&gt;</span> Streams<span style='font-weight: bold;color: #89dcec'>.reduce</span><span style='color: #9399b3'>(</span></span></span>
+<span sytle="display:flex"><span>      model</span></span>
+<span sytle="display:flex"><span>      <span style='color: #9399b3'>(</span>app, args<span style='font-weight: bold;color: #89dcec'>*</span><span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #cba6f8'>::</span> app<span style='font-weight: bold;color: #89dcec'>.app\controller</span><span style='color: #9399b3'>(</span>args<span style='font-weight: bold;color: #89dcec'>*</span><span style='color: #9399b3'>)</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #89dcec'>|&gt;</span> Streams<span style='font-weight: bold;color: #89dcec'>.map</span><span style='color: #9399b3'>(</span>app <span style='font-weight: bold;color: #cba6f8'>::</span> app<span style='font-weight: bold;color: #89dcec'>.app\view</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span>  <span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div><h2>Convenient Cross Platform<span class="hx:absolute hx:-mt-20" id="convenient-cross-platform"></span>
+    <a href="#convenient-cross-platform" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>gab&rsquo;s packaging and bundling system makes distributing your application trivial. In one <code>gab build</code> command, produce native binaries for <em>any</em> supported platform.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build native binaries  for *any* target using the `build` command. </span>
+</span></span><span style="display:flex;"><span>gab build my_app -t aarch64-macos-none &lt; dependencies
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># gab: * Created application my_app-cgab-0.1.4-aarch64-macos-none.exe (8.2 mb).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download packages and binaries using the `get` command.</span>
+</span></span><span style="display:flex;"><span>gab@0.1.3 get github.com/gab-language/gwordle@0.1.0 gwordle@0.1.0
+</span></span><span style="display:flex;"><span>./gwordle@0.1.0
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Play wordle!</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+    aria-label="Copy code"
+    data-copied-label="Copied!"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
 <h2>Simple<span class="hx:absolute hx:-mt-20" id="simple"></span>
-    <a href="#simple" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Gab&rsquo;s syntax is minimal - learn the whole language in an afternoon.</p>
+    <a href="#simple" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>gab&rsquo;s syntax is minimal - learn the whole language in an afternoon.</p>
 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>welcome <span style='font-weight: bold;color: #cba6f8'>:=</span> <span style='color: #9399b3'>[</span><span style='color: #a6e3a2'>&#39;Hello&#39;</span>, <span style='color: #a6e3a2'>&#39; &#39;</span>, <span style='color: #a6e3a2'>&#39;world!&#39;</span><span style='color: #9399b3'>]</span></span></span>
 <span sytle="display:flex"><span>welcome<span style='font-weight: bold;color: #89dcec'>.join</span><span style='font-weight: bold;color: #89dcec'>.println</span></span></span>
@@ -1186,38 +1214,17 @@ With gab, you&rsquo;ll build composable, resilient programs almost by accident.<
 <span sytle="display:flex"><span><span style='font-weight: bold;color: #cba6f8'>end</span></span></span>
 <span sytle="display:flex"><span></span></span>
 <span sytle="display:flex"><span>print_chan<span style='font-weight: bold;color: #89dcec'>.each</span> <span style='color: #9399b3'>(</span>msg<span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #cba6f8'>::</span> msg<span style='font-weight: bold;color: #89dcec'>.println</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h2>Immutable<span class="hx:absolute hx:-mt-20" id="immutable"></span>
-    <a href="#immutable" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Every value in Gab is immutable. This makes thinking in parallel easier than ever.</p>
-
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>bob   <span style='font-weight: bold;color: #cba6f8'>:=</span> <span style='color: #9399b3'>{</span> <span style='color: #f9e2b0'>name:</span> <span style='color: #a6e3a2'>&#39;bob&#39;</span>,   <span style='color: #f9e2b0'>age:</span> <span style='font-weight: bold;color: #fab388'>44</span> <span style='color: #9399b3'>}</span></span></span>
-<span sytle="display:flex"><span>alice <span style='font-weight: bold;color: #cba6f8'>:=</span> bob<span style='font-weight: bold;color: #89dcec'>.put</span><span style='color: #9399b3'>(</span><span style='color: #f9e2b0'>name:</span> <span style='color: #a6e3a2'>&#39;alice&#39;</span><span style='color: #9399b3'>)</span></span></span>
-<span sytle="display:flex"><span></span></span>
-<span sytle="display:flex"><span>bob    <span style='font-style: italic;color: #9399b3'># :: { name: &#39;bob&#39;,   age: 44 }</span></span></span>
-<span sytle="display:flex"><span>alice  <span style='font-style: italic;color: #9399b3'># :: { name: &#39;alice&#39;, age: 44 }</span></span></span>
-<span sytle="display:flex"><span></span></span></pre></div><h2>Embeddable<span class="hx:absolute hx:-mt-20" id="embeddable"></span>
-    <a href="#embeddable" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Gab is designed to live inside larger applications. A stable C API (<code>gab.h</code>) and a static library (<code>libcgab.a</code>) are provided with every release. Call into Gab from C, or write native modules.</p>
-<p>If you&rsquo;re looking for a scripting layer in your application, Gab is a fantastic option.</p>
-<h2>Ship anywhere<span class="hx:absolute hx:-mt-20" id="ship-anywhere"></span>
-    <a href="#ship-anywhere" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Build a standalone executable for any supported platform — from any other:</p>
-<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>gab build -t aarch64-macos-none -m my,deps my_project
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># :: my_project  (runs on Apple Silicon, no Gab installation required)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gab build -t x86_64-linux-gnu -m my,deps my_project
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># :: my_project  (runs on Linux x86_64, no Gab installation required)</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
-  <button
-    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
-    title="Copy code"
-    aria-label="Copy code"
-    data-copied-label="Copied!"
-  >
-    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
-<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
-  </button>
+<span sytle="display:flex"><span></span></span></pre></div><div class="hextra-cards hx:mt-4 hx:gap-4 hx:grid not-prose" style="--hextra-cards-grid-cols: 3;">
+  <a
+    class="hextra-card hx:group hx:flex hx:flex-col hx:justify-start hx:overflow-hidden hx:rounded-lg hx:border hx:border-gray-200 hx:text-current hx:no-underline hx:dark:shadow-none hx:hover:shadow-gray-100 hx:dark:hover:shadow-none hx:shadow-gray-100 hx:active:shadow-sm hx:active:shadow-gray-200 hx:transition-all hx:duration-200 hx:hover:border-gray-300 hx:bg-transparent hx:shadow-xs hx:dark:border-neutral-800 hx:hover:bg-slate-50 hx:hover:shadow-md hx:dark:hover:border-neutral-700 hx:dark:hover:bg-neutral-900"href="docs/installation"
+      ><div class="hx:mt-auto">
+      <span class="hextra-card-icon hx:flex hx:font-semibold hx:items-start hx:gap-2 hx:p-4 hx:text-gray-700 hx:hover:text-gray-900 hx:dark:text-neutral-200 hx:dark:hover:text-neutral-50"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Install Gab</span></div></a>
+  <a
+    class="hextra-card hx:group hx:flex hx:flex-col hx:justify-start hx:overflow-hidden hx:rounded-lg hx:border hx:border-gray-200 hx:text-current hx:no-underline hx:dark:shadow-none hx:hover:shadow-gray-100 hx:dark:hover:shadow-none hx:shadow-gray-100 hx:active:shadow-sm hx:active:shadow-gray-200 hx:transition-all hx:duration-200 hx:hover:border-gray-300 hx:bg-transparent hx:shadow-xs hx:dark:border-neutral-800 hx:hover:bg-slate-50 hx:hover:shadow-md hx:dark:hover:border-neutral-700 hx:dark:hover:bg-neutral-900"href="docs/gabonomicon"
+      ><div class="hx:mt-auto">
+      <span class="hextra-card-icon hx:flex hx:font-semibold hx:items-start hx:gap-2 hx:p-4 hx:text-gray-700 hx:hover:text-gray-900 hx:dark:text-neutral-200 hx:dark:hover:text-neutral-50"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>Gabonomicon</span></div></a>
 </div>
-</div>
-<p>The output is a single file containing your code, your dependencies, and the entire Gab runtime. Send it to a server, bundle it in a container, hand it to a colleague or user — it just works.</p>
+
 
         </div>
       </main>

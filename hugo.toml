@@ -39,7 +39,7 @@ enable = true
 [languages.en]
 languageName = "English"
 weight = 1
-title = "Gab Programming Language"
+title = "gab"
 
 [navbar]
 displayTitle = true
