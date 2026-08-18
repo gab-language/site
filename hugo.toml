@@ -30,7 +30,7 @@ url = "https://github.com/gab-language/cgab"
 
 [[menu.main]]
 name = "Install"
-pageRef = "/docs/intro"
+pageRef = "/docs/installation"
 weight = 6
 
 [params.page.contextMenu]
