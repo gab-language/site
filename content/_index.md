@@ -1,11 +1,64 @@
 ---
-title:
+title: gab
 ---
 
-# Build cross-platform native apps in an afternoon.
-gab is a dynamic, general-purpose scripting language designed and built from scratch. It is intenionally minimal, while providing the programmer with a core set of composable tools to build scalable, parallel applications.
+## A modern approach to scripting
+gab is a dynamic scripting language designed for the world we compute in. Parallelism, asynchrony, dependency management, deployment, and performance are core elements of gab's coherent vision and design - not bolted-on afterthoughts.
 
-## Batteries Included
+{{< cards >}}
+  {{< card link="docs/installation" title="Install Gab" icon="download" >}}
+  {{< card link="docs/gabonomicon" title="Gabonomicon" icon="book-open" >}}
+{{< /cards >}}
+
+### Parallelism
+gab's runtime is multi-threaded by design. All datatypes in gab are immutable, and therefore can be trivially sent to and from threads without any manual synchronization.
+gab provides the building blocks for the [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) model, which inspires golang, erlang, and many others.
+
+```gab
+ch := Channels.make
+
+Fibers.make () :: do
+    ch <! "Hello"
+    ch <! "world"
+end
+
+msg := Strings.make(ch >!, " ", ch >!)
+
+msg.println
+```
+
+### Asynchrony
+gab's builtin `Io` module is completely asynchronous. Your gab program will *never* block an os thread waiting on i/o. (And you can forget about that **async** keyword while you're at it)
+```gab
+# Launch many fibers to perform some background work.
+launch_workers.()
+
+# Work is done on other fibers while waiting for this to finish.
+file.write(a_really_long_binary)
+
+'Hurray!'.println
+```
+
+### Dependency Management
+gab ships with a simple `gab get` command, making it trivial to download packages and apps from the command line. (You also use this to download and manage your gab versions).
+```bash
+# Download the demo wordle app
+gab get github.com/gab-language/gwordle@0.1.1 gwordle@0.1.1
+
+# Run it!
+./gwordle@0.1.1
+```
+gab keeps separate packages and apps based on their versions, as well as the *gab* version they depend on. This allows you to have different versions of the same package/app, targeting different versions of cgab, and they all coexist happily.
+
+### Deployment & Distribution
+gab includes the `gab build` command, which creates bundled packages or apps. Bundled apps can be distributed as a single binary, and can be built *for* any platform *from* any other!
+```bash
+# Build your app in one command for any target
+gab build -t aarch64-windows-gnu my_app@1.0.0 < dependencies
+# Distrubute the stand-alone 'my_app@1.0.0-cgab-0.1.5-aarch64-windows-gnu.exe'
+```
+
+### Batteries Included
 gab's standard library ships with a growing number of useful modules. Beyond those you'd expect like `Json` or `Io`, gab includes `Ui`: an elm-inspired module for building cross platform graphical/terminal applications.
 
 ```gab
@@ -28,46 +81,3 @@ events
     |> Streams.map(app :: app.app\view)
   )
 ```
-
-## Convenient Cross Platform
-gab's packaging and bundling system makes distributing your application trivial. In one `gab build` command, produce native binaries for *any* supported platform.
-```bash
-# Build native binaries  for *any* target using the `build` command. 
-gab build my_app -t aarch64-macos-none < dependencies
-# gab: * Created application my_app-cgab-0.1.4-aarch64-macos-none.exe (8.2 mb).
-
-# Download packages and binaries using the `get` command.
-gab@0.1.3 get github.com/gab-language/gwordle@0.1.0 gwordle@0.1.0
-./gwordle@0.1.0
-# Play wordle!
-```
-
-## Simple
-gab's syntax is minimal - learn the whole language in an afternoon.
-
-```gab
-welcome := ['Hello', ' ', 'world!']
-welcome.join.println
-# :: Hello world!
-```
-
-## Parallel
-
-Gab's runtime is built on units of execution fibers. Fibers are lightweight and far cheaper than OS threads - make as many as you like. Gab will schedule them across all your cores, and run them in parallel.
-
-```gab
-print_chan := Channels.make
-
-Ranges.make(0, 10000).each i :: do
-  Fibers.make () :: do
-    print_chan <! 'Hello from fiber $!'.sprintf(i)
-  end
-end
-
-print_chan.each (msg) :: msg.println
-```
-
-{{< cards >}}
-  {{< card link="docs/installation" title="Install Gab" icon="download" >}}
-  {{< card link="docs/gabonomicon" title="Gabonomicon" icon="book-open" >}}
-{{< /cards >}}
