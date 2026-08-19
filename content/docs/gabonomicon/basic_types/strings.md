@@ -3,7 +3,7 @@ title: Strings & Binaries
 weight: 2
 ---
 
-Gab has two string-like types: `gab\string` and `gab\binary`. A third type, `gab\message`, also belongs to this family. All three **share their character data in memory** — the bytes `[ 't', 'r', 'u', 'e' ]` are stored once on the heap, shared between the string `"true"` and the message `true:`. Converting between these types is therefore a constant-time operation with no allocation.
+gab has two string-like types: `gab\string` and `gab\binary`. A third type, `gab\message`, also belongs to this family. All three **share their character data in memory** — the bytes `[ 't', 'r', 'u', 'e' ]` are stored once on the heap, shared between the string `"true"` and the message `true:`. Converting between these types is therefore a constant-time operation with no allocation.
 
 ## `gab\string`
 
@@ -15,7 +15,7 @@ Strings are UTF-8 encoded byte sequences. Single-quoted strings support escape s
 'Hello \u[2502]'
 ```
 
-Because Gab respects UTF-8 encoding, operations that are trivial on raw bytes may be linear-time on strings. Slicing a string at a given index requires scanning from the start, since utf8 codepoints are 1–4 bytes wide.
+Because gab respects UTF-8 encoding, operations that are trivial on raw bytes may be linear-time on strings. Slicing a string at a given index requires scanning from the start, since utf8 codepoints are 1–4 bytes wide.
 
 ```gab
 smiley := '😀'

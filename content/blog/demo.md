@@ -4,7 +4,7 @@ draft = false
 title = 'Demo'
 +++
 ## Why it matters
-Gab is approaching a stable, usable point.
+gab is approaching a stable, usable point.
 But as the language's author, I don't have a good perspective of how new users may feel.
 In order to improve the experience for them, I need to put myself in their shoes.
 
@@ -24,7 +24,7 @@ This is useful because:
 - Shows off some of gab's best builtin modules and toolchain features
 
 ## Wait - did you say GUI?
-Yes! GUI as in graphical! Gab ships with a `github.com/gab-language/cgab/ui` module which enables
+Yes! GUI as in graphical! gab ships with a `github.com/gab-language/cgab/ui` module which enables
 programmers to develop *native gui applications*. Out of the box! It works like this:
 
 First, create two channels. I like to call them `app` and `ev`

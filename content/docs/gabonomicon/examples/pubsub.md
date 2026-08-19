@@ -143,7 +143,7 @@ end
 
 done >!           # wait for sport subscriber
 
-broker.broker\publish(news:  'Gab 1.0 released')
+broker.broker\publish(news:  'gab 1.0 released')
 broker.broker\publish(sport: 'Final score: 3-1')
 broker.broker\publish(news:  'Another story')
 

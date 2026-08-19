@@ -53,7 +53,7 @@ To understand that, we need to dive a little bit deeper into how our c-interpret
 
 ## Values in Context
 
-Native programs have two types of memory - a **stack** and a **heap**. The same is true in the managed runtimes of Java, Python, and Gab. The interpreters (or virtual machines - VMs, as I'll probably say from now on) have an internal *stack*, which keep track of local variables, scopes, and function calls.
+Native programs have two types of memory - a **stack** and a **heap**. The same is true in the managed runtimes of Java, Python, and gab. The interpreters (or virtual machines - VMs, as I'll probably say from now on) have an internal *stack*, which keep track of local variables, scopes, and function calls.
 
 Here we have a random Python function which for the purpose of this demonstration, just makes some random calculations with arguments and variables.
 ```python
@@ -194,7 +194,7 @@ It describes more in depth how the floating-point trickery and short-string opti
  * |     Value Representation      |
  * %-------------------------------%
  *
- * Gab values are nan-boxed.
+ * gab values are nan-boxed.
  *
  * An IEEE 754 double-precision float is a 64-bit value with bits laid out like:
  *
@@ -263,7 +263,7 @@ It describes more in depth how the floating-point trickery and short-string opti
  *                    |                               |
  * [0][....NaN....11][--][------------------------------------------------]
  *
- * Gab also employs a short string optimization. Lots of strings in a gab
+ * gab also employs a short string optimization. Lots of strings in a gab
  * program are incredibly small, and incredibly common. values like
  *
  * none:

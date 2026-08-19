@@ -1,7 +1,7 @@
 +++
 date = '2025-10-02T09:57:01-04:00'
 draft = false
-title = 'Asynchronous, Parallel IO in a Single Header File'
+title = 'Asynchronous, Parallel Io in a Single Header File'
 +++
 ## Why it matters
 In a lot of programs that we write today, the bottleneck for performance of our applications isn't
@@ -14,10 +14,10 @@ an eventloop and threadpool to perform IO. The user in Javascript issues IO **re
 as it can with its workers. The Javascript runtime then yields that function until the IO request is complete - allowing other JS code to
 run on the thread. Python's *asyncio* and Rust's *tokio* work similarly.
 
-libuv works fantastically well, but there were some problems when it comes to integrating it into Gab's IO module.
+libuv works fantastically well, but there were some problems when it comes to integrating it into gab's Io module.
 - At the c-level, libuv's api uses callbacks. This is inconvenient.
 - libuv spawns a thread pool, which will compete with cgab's.
-- Gab native modules prefer single-header libraries (which libuv is not) to avoid linking and to ease cross-compilation.
+- gab native modules prefer single-header libraries (which libuv is not) to avoid linking and to ease cross-compilation.
 
 For these reasons, I created my own eventloop library in c: [TeddyRandby/qio](https://github.com/TeddyRandby/qio)
 
@@ -165,18 +165,18 @@ cgab thread instead. This is supported by a feature in cgab's native API, known 
 
 ## Yielding in Native Functions
 
-The following is the type signature for a native block in Gab:
+The following is the type signature for a native block in gab:
 ```c
 typedef union gab_value_pair (*gab_native_f)(struct gab_triple, uint64_t argc,
                                              gab_value *argv,
                                              uintptr_t reentrant);
 ```
 Two pieces are of note - the return value `union gab_value_pair`, and the last argument `reentrant`.
-The `gab_value_pair` is used to indicate to the Gab runtime the status of your native function.
+The `gab_value_pair` is used to indicate to the gab runtime the status of your native function.
 There are three options:
 - Your function has completed, and the VM can continue executing bytecode. Use the macro `gab_union_cvalid()` to return this.
 - Your function has panicked with an unrecoverable error. The VM must terminate execution of *all* fibers. Use the macro `gab_union_cinvalid()`, or the helper `gab_panicf`.
-- Your function's work is *incomplete*, and you want to yield this fiber's time so that other fibers may continue. Use the macro `gab_union_ctimeout()`, and pass a non-zero 64-bit value. This will serve as the `reentrant`. The next time the Gab runtime chooses to schedule the fiber to run again, it will be called with this reentrant value.
+- Your function's work is *incomplete*, and you want to yield this fiber's time so that other fibers may continue. Use the macro `gab_union_ctimeout()`, and pass a non-zero 64-bit value. This will serve as the `reentrant`. The next time the gab runtime chooses to schedule the fiber to run again, it will be called with this reentrant value.
 
 This is where qio integrates with cgab, in the IO module. Here is a simplified example:
 ```c
@@ -208,6 +208,6 @@ And thats it! Now we have an async IO runtime which never blocks on IO. And the 
 There is no function coloring or async/await, like in other languages. Simple!
 ## The Best Bit
 There is nothing unique or special-cased about how cgab's native IO module works. It is implemented completely in user-land, with the same cgab library features that other
-native modules would have access to. If *you* wanted to implement an IO module on top of libuv instead, you could! Gab's users wouldn't know the difference.
+native modules would have access to. If *you* wanted to implement an IO module on top of libuv instead, you could! gab's users wouldn't know the difference.
 
-This is a fundamental philosophy of Gab's design. Native module authors should feel empowered to write highly efficient, non-blocking native functions without pulling their hair out.
+This is a fundamental philosophy of gab's design. Native module authors should feel empowered to write highly efficient, non-blocking native functions without pulling their hair out.

@@ -3,7 +3,7 @@ title: "Key-Value Store"
 weight: 1
 ---
 
-This example builds an in-memory key-value store. It is a complete, useful program and demonstrates how Gab's core features compose in practice.
+This example builds an in-memory key-value store. It is a complete, useful program and demonstrates how gab's core features compose in practice.
 
 By the end you'll have a store that can be safely read and written from any number of fibers.
 
@@ -118,14 +118,14 @@ Here is an example of how we'd expect to use this api:
 store := Stores.make
 
 # Set some values
-store.store\set('name', 'Gab')
+store.store\set('name', 'gab')
 store.store\set('version', '0.1.1')
 
 # Get a value
 store.store\get('name')
   .then((val) :: 'name is: $'.sprintf(val).println)
   .else(()    :: 'not found'.println)
-# :: name is: Gab
+# :: name is: gab
 
 # Overwrite
 store.store\set('name', 'cgab')

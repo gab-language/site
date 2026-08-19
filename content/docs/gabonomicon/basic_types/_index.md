@@ -3,7 +3,7 @@ title: Types
 weight: 3
 ---
 
-Gab has a small, fixed set of built-in types. This section is a reference for each one.
+gab has a small, fixed set of built-in types. This section is a reference for each one.
 
 | Type | Description |
 |---|---|

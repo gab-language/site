@@ -5,7 +5,7 @@ title: 'Quirks'
 weight: 1
 ---
 
-Gab is a quirky language. It is probably similar to languages you've used in the past - but no matter where you come from (Python, Ruby, Elixir, Clojure, even Smalltalk),
+gab is a quirky language. It is probably similar to languages you've used in the past - but no matter where you come from (Python, Ruby, Elixir, Clojure, even Smalltalk),
 you should see some similarities and some funny-looking differences. Lets take a glance at some of the things you may find a bit weird.
 
 ## Imports and Modules
@@ -19,12 +19,12 @@ To run code from another file, send the `use:` message to a string literal:
 The string literal receiver here is the *package* name. On the right side of the `.use`, you can optionally include a *module* name. This looks for a specific
 module within the given package. This is how we imported the builtin `Io` module earlier!
 
-Gab searches known locations for a matching package folder. If the package is found, Gab searches the package for a matching module, loads it, and executes it.
-If no module was specified, Gab searches for the default `mod.gab` module, and executes it.
+gab searches known locations for a matching package folder. If the package is found, gab searches the package for a matching module, loads it, and executes it.
+If no module was specified, gab searches for the default `mod.gab` module, and executes it.
 
 ## Messages
 
-In Gab, the only way to *do* anything is to send a message. This looks like a method call or an operator.
+In gab, the only way to *do* anything is to send a message. This looks like a method call or an operator.
 
 ```gab
 1 + 2
@@ -43,15 +43,15 @@ end
 # :: It’s true!
 ```
 
-Messages are also *values* in Gab. The funky syntax you see for `true:` above is actually a *message value*. This is how Gab implements, booleans and nil/null.
+Messages are also *values* in gab. The funky syntax you see for `true:` above is actually a *message value*. This is how gab implements, booleans and nil/null.
 
 ## Immutability
 
-Gab values are immutable. To update a list value, send a message like `push:` and begin using the result. In the below example, `push:` returns a *new* list with the number 4 appended to the end.
+gab values are immutable. To update a list value, send a message like `cons:` and begin using the result. In the below example, `cons:` returns a *new* list with the number 4 appended to the end.
 
 ```gab
 x := [1 2 3]
-y := x.push(4)
+y := x.cons(4)
 
 x.println # :: [1, 2, 3]
 y.println # :: [1, 2, 3, 4]
@@ -61,7 +61,7 @@ Immutability forces programmers to write code which operates on values instead o
 
 ## Parallelism
 
-Fibers are Gab’s lightweight, isolated threads of execution. You can spawn one with `Fibers.make`:
+Fibers are gab’s lightweight, isolated threads of execution. You can spawn one with `Fibers.make`:
 
 ```gab
 Fibers.make () :: do
@@ -95,7 +95,7 @@ Channels can be closed with `close:` to cancel current operations and prevent fu
 
 ## Putting It All Together
 
-Let’s combine what we’ve learned into a simple producer-consumer example. This is a common pattern you'll use in Gab programs.
+Let’s combine what we’ve learned into a simple producer-consumer example. This is a common pattern you'll use in gab programs.
 
 ```gab
 # Imports excluded for brevity.
@@ -131,4 +131,4 @@ end
 [producer, consumer].each f :: f.await
 ```
 
-That’s it — you’ve written your first Gab program, used the REPL, spawned fibers, and passed messages through channels.
+That’s it — you’ve written your first gab program, used the REPL, spawned fibers, and passed messages through channels.

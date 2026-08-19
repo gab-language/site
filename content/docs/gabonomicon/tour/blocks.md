@@ -3,7 +3,7 @@ title: Blocks
 weight: 3
 ---
 
-A **block** is Gab's name for a closure - an anonymous function that can capture values from its surrounding scope. Blocks are values: you can store them in records, pass them as arguments to messages, and call them.
+A **block** is gab's name for a closure - an anonymous function that can capture values from its surrounding scope. Blocks are values: you can store them in records, pass them as arguments to messages, and call them.
 
 ## Block syntax
 
@@ -83,7 +83,7 @@ hi  # :: 7
 ```
 
 ### A note on commas
-Commas are whitespace in Gab. Most of the time they are purely visual, to help us distiguish key-value pairs in a dictionary.
+Commas are whitespace in gab. Most of the time they are purely visual, to help us distiguish key-value pairs in a dictionary.
 However, sometimes whitespace *does* have syntactic meaning. Take a look at the below example.
 
 ```gab
@@ -108,7 +108,7 @@ This is exactly equivalent to:
 status.my_message(file)
 ```
 
-The first return value becomes the receiver; subsequent return values become arguments. This is why the error-handling pattern in Gab is so fluid — `ok:` and `err:` can each respond differently to the same chained message, routing the remaining values accordingly. You'll see this in detail in [Error Handling](/docs/tour/error_handling).
+The first return value becomes the receiver; subsequent return values become arguments. This is why the error-handling pattern in gab is so fluid — `ok:` and `err:` can each respond differently to the same chained message, routing the remaining values accordingly. You'll see this in detail in [Error Handling](/docs/tour/error_handling).
 
 ## Closures
 
@@ -125,7 +125,7 @@ greet.('world')
 # :: Hello, world
 ```
 
-The block captures `prefix` at the time it is defined. If you rebind `prefix` later, the block still holds onto the original value — Gab's immutability makes this safe and predictable.
+The block captures `prefix` at the time it is defined. If you rebind `prefix` later, the block still holds onto the original value — gab's immutability makes this safe and predictable.
 
 ## Blocks and fibers
 

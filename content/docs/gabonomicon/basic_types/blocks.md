@@ -83,7 +83,7 @@ The `**` operator on a record is the inverse — it splats a record's key-value 
 
 ### Keyword-style apis
 
-The `**` binding is what makes keyword-argument-style APIs possible in Gab. At the call site, you write alternating message keys and values as positional arguments:
+The `**` binding is what makes keyword-argument-style APIs possible in gab. At the call site, you write alternating message keys and values as positional arguments:
 
 ```gab
 MyType.some_api(positional, argument, flag: true:)
@@ -99,7 +99,7 @@ some_api: .def (MyType, (positional, argument, kwargs**) :: do
 end)
 ```
 
-There are no keyword arguments in Gab — only positional ones. The record is constructed from the raw argument sequence by the `**` binding. This means you can place a `**` binding anywhere, not just at the end, and it will absorb whichever positional arguments fall to it.
+There are no keyword arguments in gab — only positional ones. The record is constructed from the raw argument sequence by the `**` binding. This means you can place a `**` binding anywhere, not just at the end, and it will absorb whichever positional arguments fall to it.
 
 ## Tuples and multiple return values
 
@@ -118,7 +118,7 @@ Receiving multiple return values uses the same tuple syntax on the left side of 
 
 ## Tuple forwarding in chains
 
-When a message is chained after a call that returns multiple values, Gab forwards the entire tuple into the next send: the first value becomes the receiver, the rest become arguments.
+When a message is chained after a call that returns multiple values, gab forwards the entire tuple into the next send: the first value becomes the receiver, the rest become arguments.
 
 ```gab
 IO.File.make('data.csv').then(file :: file.read.println)

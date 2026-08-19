@@ -3,7 +3,7 @@ title: Numbers
 weight: 1
 ---
 
-All numbers in Gab are IEEE 754 64-bit floating point values. There is no distinct integer type.
+All numbers in gab are IEEE 754 64-bit floating point values. There is no distinct integer type.
 
 ## `gab\number`
 
@@ -18,7 +18,7 @@ Numbers literals may have leading `-`, or even be written with exponents, or in 
 3.14?   # :: gab\number
 ```
 
-> Numbers less than one require a leading zero: `0.5`, not `.5`. A bare `.` is the empty message send in Gab.
+> Numbers less than one require a leading zero: `0.5`, not `.5`. A bare `.` is the empty message send in gab.
 
 ## Arithmetic
 
@@ -34,7 +34,7 @@ The standard arithmetic operators are all message sends:
 
 ## Bitwise operations and 53-bit integers
 
-For bitwise operations, Gab uses **53-bit integers**. This is because 64-bit floats can only represent integers losslessly up to 2^52. Limiting integers to 52 bits guarantees that Gab can convert freely between its float representation and integer operations without loss.
+For bitwise operations, gab uses **53-bit integers**. This is because 64-bit floats can only represent integers losslessly up to 2^52. Limiting integers to 52 bits guarantees that gab can convert freely between its float representation and integer operations without loss.
 
 ```gab
 1 << 52   # :: -4.5036e+15
@@ -52,7 +52,7 @@ The standard bitwise operators:
 
 ## Bit-shifting edge cases
 
-Gab defines behaviour for several cases that are undefined or implementation-defined in C.
+gab defines behaviour for several cases that are undefined or implementation-defined in C.
 
 **Shifting by a negative amount** is treated as a shift in the opposite direction:
 

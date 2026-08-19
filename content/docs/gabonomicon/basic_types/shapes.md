@@ -57,7 +57,7 @@ bob.age   # :: 45
 
 ## Shapes in dispatch
 
-When Gab resolves a message send, the shape is checked as the **super type** before the record's base type (`gab\record`). This means shape-specialised messages take precedence over general record behaviour:
+When gab resolves a message send, the shape is checked as the **super type** before the record's base type (`gab\record`). This means shape-specialised messages take precedence over general record behaviour:
 
 ```gab
 z: .def (\{ x: }, 'shape case')

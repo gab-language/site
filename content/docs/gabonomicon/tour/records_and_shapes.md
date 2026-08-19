@@ -5,7 +5,7 @@ weight: 2
 
 ## Records
 
-Gab has one compound data structure: `gab\record`. Both Lists and Dictionaries are built on top of it. This constraint is intentional and furthers Gab's focus on minimalism.
+gab has one compound data structure: `gab\record`. Both Lists and Dictionaries are built on top of it. This constraint is intentional and furthers gab's focus on minimalism.
 
 ### Dictionaries
 
@@ -22,7 +22,7 @@ bob.name  # :: 'bob'
 bob.age   # :: 44
 ```
 
-If the message doesn't exist as a key in the record, Gab will panic with `MISSING SPECIALIZATION`. If you're not sure the key exists, try:
+If the message doesn't exist as a key in the record, gab will panic with `MISSING SPECIALIZATION`. If you're not sure the key exists, try:
 
 ```gab
 (ok, is_hungry) := bob.at(hungry:)
@@ -42,7 +42,7 @@ Both *Dictionaries* and *Lists* share the `gab\record` type.
 
 ## Immutability
 
-All records in Gab are **immutable** - You cannot change a record in place. Instead, messages like `put` return a new record with the updated value, leaving the original value untouched:
+All records in gab are **immutable** - You cannot change a record in place. Instead, messages like `put` return a new record with the updated value, leaving the original value untouched:
 
 ```gab
 bob := { name: 'bob', age: 44 }
@@ -53,13 +53,13 @@ bob    # :: { name: 'bob', age: 44 }
 alice  # :: { name: 'alice', age: 44 }
 ```
 
-Gab's immutable record is implemented as a Hash-Array-Mapped Trie, a persistent data structure used by many functional languages. `put` operations essentially create **diffs**, which allow records to share the data that didn't change.
+gab's immutable record is implemented as a Hash-Array-Mapped Trie, a persistent data structure used by many functional languages. `put` operations essentially create **diffs**, which allow records to share the data that didn't change.
 
 ## Shapes
 
 Records are especially unique for their type. Before we can discuss what this means and why its important, lets get a baseline to compare to.
 
-Every value in Gab has a **type**, which you can inspect with the `?` message. For most values, `?` returns a string describing the type:
+Every value in gab has a **type**, which you can inspect with the `?` message. For most values, `?` returns a string describing the type:
 
 ```gab
 'hello' ?  # :: 'gab\string'
@@ -102,7 +102,7 @@ end)
 
 Here `birthday:` is a **message value** — the trailing colon is part of the value, not punctuation. Sending `def:` to `birthday:` registers a new specialization: whenever a record with the `Person` shape receives `birthday:`, call this method.
 
-It is a convention in Gab to define a `t:` message on your own modules that returns the type others should specialize against. For built-in types, the standard library already follows this convention — `Strings.t` returns the string type, so you never need to write a bare type name directly.
+It is a convention in gab to define a `t:` message on your own modules that returns the type others should specialize against. For built-in types, the standard library already follows this convention — `Strings.t` returns the string type, so you never need to write a bare type name directly.
 
 Now any record with the keys `name:` and `age:` responds to `birthday:`:
 
@@ -118,7 +118,7 @@ Notice that `birthday` returns a new record (with `age` incremented) — it does
 
 ### Types
 
-Types in Gab dictate how values respond to messages. This is a powerful tool for creating intuitive interfaces.
+Types in gab dictate how values respond to messages. This is a powerful tool for creating intuitive interfaces.
 
 ```gab
 Point   := { x: 0, y: 0 } ?

@@ -3,7 +3,7 @@ title: Error Handling
 weight: 5
 ---
 
-Gab does not have exceptions. There is no `try/catch`, no `throw`, and no stack unwinding.
+gab does not have exceptions. There is no `try/catch`, no `throw`, and no stack unwinding.
 Instead, operations that can fail **return their errors as values**.
 You handle errors the same way you do anything else: by sending messages.
 
@@ -48,7 +48,7 @@ Exceptions make control flow invisible. An exception thrown inside a deeply nest
 
 Returning errors as values keeps the failure path explicit. When a message can fail, its type signature says so. You can't accidentally ignore the error and proceed as if everything succeeded — the status value is right there in the binding.
 
-This approach is familiar if you've used Go, Rust's `Result` type, or Erlang's `{:ok, value} | {:error, reason}` convention. Gab follows the same discipline.
+This approach is familiar if you've used Go, Rust's `Result` type, or Erlang's `{:ok, value} | {:error, reason}` convention. gab follows the same discipline.
 
 ## Propagating errors
 

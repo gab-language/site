@@ -17,7 +17,7 @@ true:
 ok:?      # :: ok:
 ```
 
-Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are Gab's implementation of booleans, nil, and result values — there are no built-in keywords for any of these.
+Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are gab's implementation of booleans, nil, and result values — there are no built-in keywords for any of these.
 
 ## Defining specializations
 
@@ -72,7 +72,7 @@ Defines multiple messages for multiple receiver types at once:
 
 ## Dispatch resolution order
 
-When a message is sent to a value, Gab resolves the specialization in this order:
+When a message is sent to a value, gab resolves the specialization in this order:
 
 1. **Super type** — if the value's type (e.g. a `gab\shape`) has a specialization, use it.
 2. **Type** — use the specialization defined for the value's `gab\` type (e.g. `gab\record`).
@@ -111,7 +111,7 @@ true: .else  () :: 'no'.println    # (block is never called)
 
 ## `nil:` `none:`
 
-`nil:` is the value Gab binds to names that have no corresponding value. This may occur if, for example,  a binding list is longer than the tuple being destructured:
+`nil:` is the value gab binds to names that have no corresponding value. This may occur if, for example,  a binding list is longer than the tuple being destructured:
 
 ```gab
 (a, b) := 1   # a :: 1, b :: nil:

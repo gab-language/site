@@ -127,14 +127,14 @@ server.await
 Connect with any TCP client:
 
 ```sh
-$ echo "SET name Gab" | nc ::1 6379
+$ echo "SET name gab" | nc ::1 6379
 OK
 
 $ echo "GET name" | nc ::1 6379
-OK Gab
+OK gab
 
 $ echo "DELETE name" | nc ::1 6379
-OK Gab
+OK gab
 
 $ echo "GET name" | nc ::1 6379
 NONE

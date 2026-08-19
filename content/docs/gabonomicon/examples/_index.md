@@ -3,15 +3,15 @@ title: Examples
 weight: 4
 ---
 
-The best way to understand a language is to read programs written in it. This section collects complete, working Gab programs — not contrived syntax demonstrations, but useful things you might actually build.
+The best way to understand a language is to read programs written in it. This section collects complete, working gab programs — not contrived syntax demonstrations, but useful things you might actually build.
 
-Each example is chosen to show how Gab's core features compose under real constraints. The language tour explains the pieces; these examples show what happens when you put them together.
+Each example is chosen to show how gab's core features compose under real constraints. The language tour explains the pieces; these examples show what happens when you put them together.
 
 ## What you'll find here
 
 **[Key-Value Store](/docs/gabonomicon/examples/kv_store)** — A concurrent in-memory store built on the actor model. A single fiber owns all state; any number of fibers can read and write safely. A good first example of how channels and immutability replace synchronisation primitives in practice.
 
-**[Networked Key-Value Store](/docs/gabonomicon/examples/networked_kv_store)** — Extends the in-memory store with a TCP server. Each client connection is an independent fiber; all share the same store actor. Shows how Gab's concurrency model scales naturally from a single process to a networked service.
+**[Networked Key-Value Store](/docs/gabonomicon/examples/networked_kv_store)** — Extends the in-memory store with a TCP server. Each client connection is an independent fiber; all share the same store actor. Shows how gab's concurrency model scales naturally from a single process to a networked service.
 
 **[Pub/Sub Broker](/docs/gabonomicon/examples/pubsub)** — A publish/subscribe message broker. Publishers send events to a topic; all subscribers receive them. Shows dynamic collections of channels, fire-and-forget fan-out, and how actor state can be a record of records.
 

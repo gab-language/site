@@ -3,11 +3,11 @@ title: Fibers & Channels
 weight: 4
 ---
 
-Parallelism is not an add-on in Gab. It is a first-class feature of the language and runtime. Two foundational primitives are provided: **fibers** and **channels**.
+Parallelism is not an add-on in gab. It is a first-class feature of the language and runtime. Two foundational primitives are provided: **fibers** and **channels**.
 
 ## Fibers
 
-A fiber is a lightweight unit of execution, similar to a goroutine in Go or a process on the BEAM (Erlang/Elixir). Fibers are cheap: Gab's runtime is designed to support hundreds of thousands of them running concurrently.
+A fiber is a lightweight unit of execution, similar to a goroutine in Go or a process on the BEAM (Erlang/Elixir). Fibers are cheap: gab's runtime is designed to support hundreds of thousands of them running concurrently.
 
 You spawn a fiber by passing a block to `Fibers.make`:
 
@@ -17,7 +17,7 @@ Fibers.make () :: do
 end
 ```
 
-The block runs concurrently. The fiber is scheduled by Gab's runtime — you don't manage threads or thread pools.
+The block runs concurrently. The fiber is scheduled by gab's runtime — you don't manage threads or thread pools.
 
 Here's a more complete example that spawns 20,000 fibers:
 
@@ -53,7 +53,7 @@ ch <! 'a message'
 value := ch >!
 ```
 
-Gab's channels are **unbuffered**: a send blocks until a receiver is ready, and a receive blocks until a sender is ready.
+gab's channels are **unbuffered**: a send blocks until a receiver is ready, and a receive blocks until a sender is ready.
 This keeps communication explicit and synchronised.
 
 >[!NOTE]
@@ -79,11 +79,11 @@ Each fiber sends one message into the channel, then exits. The `each` message re
 
 ## Zero-copy message passing
 
-A common cost in concurrent systems is **copying**: when you send data to another thread, the runtime must copy it to keep both sides safe. Gab eliminates this cost.
+A common cost in concurrent systems is **copying**: when you send data to another thread, the runtime must copy it to keep both sides safe. gab eliminates this cost.
 
-Because all of Gab's data structures are immutable, a value cannot change after it is created. This means it is always safe to share a reference to a value across fiber boundaries — no copying is needed. In practice, passing a large record between 10,000 fibers is no more expensive than passing an integer.
+Because all of gab's data structures are immutable, a value cannot change after it is created. This means it is always safe to share a reference to a value across fiber boundaries — no copying is needed. In practice, passing a large record between 10,000 fibers is no more expensive than passing an integer.
 
-This is a deliberate design choice that makes Gab's concurrency both safe and fast.
+This is a deliberate design choice that makes gab's concurrency both safe and fast.
 
 ## Channels are immutable too
 

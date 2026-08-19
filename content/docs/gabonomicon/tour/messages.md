@@ -3,13 +3,13 @@ title: Messages
 weight: 1
 ---
 
-In most languages, control flow is driven by keywords: `if`, `for`, `while`, `switch`. Gab has none of these. Instead, everything is accomplished by **sending messages to values**.
+In most languages, control flow is driven by keywords: `if`, `for`, `while`, `switch`. gab has none of these. Instead, everything is accomplished by **sending messages to values**.
 
 If you've used Ruby or Smalltalk, this will feel familiar. If you haven't, don't worry — it's a simple idea with surprisingly powerful implications.
 
 ## Sending a message
 
-Sending messages to values is the foundation of Gab programs. It looks just like a method call:
+Sending messages to values is the foundation of gab programs. It looks just like a method call:
 
 ```gab
 'hello'.println
@@ -28,7 +28,7 @@ The **value** on the left receives the **message** on the right. The message may
 
 ## Two forms of message send
 
-There are exactly two kinds of message send in Gab.
+There are exactly two kinds of message send in gab.
 
 A **named send** is a `.` followed by one or more letters, underscores, or numbers:
 
@@ -67,7 +67,7 @@ result.println
 
 ## Tuples
 
-I've slightly lied to you! Gab actually isn't strict about what *side* of the send you put the arguments on. Gab implicitly collects the left and right sides into
+I've slightly lied to you! gab actually isn't strict about what *side* of the send you put the arguments on. gab implicitly collects the left and right sides into
 a singular **tuple**, and sends the message to **that tuple**. Therefore, you could rewrite:
 
 ```gab
@@ -80,7 +80,7 @@ as:
 (1 1) +
 ```
 
-These are semantically identical in Gab. Tuples will be important later on, and help to make Gab efficient.
+These are semantically identical in gab. Tuples will be important later on, and help to make gab efficient.
 
 ## Defining new messages
 
@@ -97,17 +97,17 @@ end)
 # :: Hello, Alice!
 ```
 
-`def:` takes two arguments: the **receiver type** and a **block** containing the implementation. Here, `Strings.t` is the conventional way to refer to the string type — it is a message sent to the `Strings` module that returns the type upon which new string messages should be defined. Using `Strings.t` rather than a bare type name is a convention you'll see throughout Gab's standard library, and one you should follow in your own modules.
+`def:` takes two arguments: the **receiver type** and a **block** containing the implementation. Here, `Strings.t` is the conventional way to refer to the string type — it is a message sent to the `Strings` module that returns the type upon which new string messages should be defined. Using `Strings.t` rather than a bare type name is a convention you'll see throughout gab's standard library, and one you should follow in your own modules.
 
 Inside the block, `self` refers to the value that received the message.
 
 Message definitions are **specializations** — the same message name can have completely different implementations depending on the type of the receiver.
-This is how Gab achieves polymorphism without classes or interfaces.
+This is how gab achieves polymorphism without classes or interfaces.
 More on this in the [Records & Shapes](/docs/gabonomicon/tour/records_and_shapes) section.
 
 ## Control flow with messages
 
-Because Gab has no `if` keyword, conditional branching is done by sending messages. Boolean values respond to messages like `then:` and `else:`:
+Because gab has no `if` keyword, conditional branching is done by sending messages. Boolean values respond to messages like `then:` and `else:`:
 
 ```gab
 age := 20

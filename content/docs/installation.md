@@ -26,13 +26,13 @@ Download the archive that matches your platform:
 
 > [!INFO]
 > The executable you just downloaded (`gab-<your_target>`) won't be in your path, so you'll need to invoke it directly.
-> Gab installs binaries into a platform-specific location. It is recommended to add this directory to your `$PATH`.
+> gab installs binaries into a platform-specific location. It is recommended to add this directory to your `$PATH`.
 > To see where gab installs binaries, use the `-n` flag to explain download/installation steps.
 
 ### Test the downloaded binary
 
 From this point forward lets refer to your downloaded binary as simply `gab`, just to make things easier.
-Now, you should be able to run Gab.
+Now, you should be able to run gab.
 ```bash
 # Try this:
 gab
@@ -41,9 +41,9 @@ gab
 gab help
 ```
 You should see a generic help message, summarazing the commands available to you.
-However, at this point trying to run any real code will fail - Gab's core modules still need to be installed. Lets verify this with `gab info`.
+However, at this point trying to run any real code will fail - gab's core modules still need to be installed. Lets verify this with `gab info`.
 
-### Check your Gab installations
+### Check your gab installations
 
 ```bash
 gab info
@@ -59,10 +59,10 @@ gab info
 ```
 Aha! No installations were found. Lets go ahead and complete your installation.
 
-### Download and install Gab locally
+### Download and install gab locally
 
 ```bash
-# Gab makes this easy:
+# gab makes this easy:
 gab get
 ```
 This command downloads packages. When no package is specified (as above), it downloads the builtin `gab-language/cgab` package, and the gab binary itself.
@@ -103,11 +103,11 @@ These components ensure that gab searches for and downloads code matching the de
 
 At this point, you have a gab version installed correctly on your machine. In order to use it however, you'll need to add it to your *PATH*.
 
-Running `gab info` again should show that you've installed the appropriate target. You *can* install the same binary and builtin package for any platform that you like - this is actually how Gab supports cross compilation!
+Running `gab info` again should show that you've installed the appropriate target. You *can* install the same binary and builtin package for any platform that you like - this is actually how gab supports cross compilation!
 
 If your system supports symbolic links, it is recommended to link the gab binary found in the local installation to some folder already in your *PATH*, like `/usr/local/bin` on Linux.
 
-And thats it - Gab is now installed and ready to go on your system. If you're new to Gab, start with the [gabonomicon](/docs/gabonomicon). Get hacking!
+And thats it - gab is now installed and ready to go on your system. If you're new to gab, start with the [gabonomicon](/docs/gabonomicon). Get hacking!
 
 ## Compiling From Source
 cgab is a C project built with Zig's c-compiler toolchain. `zig cc` is chosen specifically for its cross-compiling superpowers. This enables

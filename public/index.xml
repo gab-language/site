@@ -1,6 +1,6 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>gab – gab</title>
+    <title>gab – </title>
     <link>/</link>
     <description>Recent content on gab</description>
     <generator>Hugo -- gohugo.io</generator>
@@ -24,7 +24,7 @@
         
         
         &lt;h2&gt;Why it matters&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;why-it-matters&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#why-it-matters&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Gab is approaching a stable, usable point.
+    &lt;a href=&#34;#why-it-matters&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;gab is approaching a stable, usable point.
 But as the language&amp;rsquo;s author, I don&amp;rsquo;t have a good perspective of how new users may feel.
 In order to improve the experience for them, I need to put myself in their shoes.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -45,21 +45,25 @@ For this case, I chose to implement a small wordle clone.&lt;/p&gt;
 &lt;li&gt;Shows off some of gab&amp;rsquo;s best builtin modules and toolchain features&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Wait - did you say GUI?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;wait---did-you-say-gui&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#wait---did-you-say-gui&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Yes! GUI as in graphical! Gab ships with a &lt;code&gt;github.com/gab-language/cgab/ui&lt;/code&gt; module which enables
+    &lt;a href=&#34;#wait---did-you-say-gui&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Yes! GUI as in graphical! gab ships with a &lt;code&gt;github.com/gab-language/cgab/ui&lt;/code&gt; module which enables
 programmers to develop &lt;em&gt;native gui applications&lt;/em&gt;. Out of the box! It works like this:&lt;/p&gt;
 &lt;p&gt;First, create two channels. I like to call them &lt;code&gt;app&lt;/code&gt; and &lt;code&gt;ev&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (app ev) := (Channels.make, Channels.make)
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;These are used to communicate with the UI fibers that do all the event-listening and rendering work for us.
 We pass them into &lt;code&gt;run:&lt;/code&gt; message like so:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 UI
   .run(gui: ev app)
   .unwrap
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;Of course, we may fail to start the event/render fibers for any number of reasons. Unwrap the error so that we crash if we don&amp;rsquo;t get back &lt;code&gt;ok:&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-green-200 hx:bg-green-100 hx:text-green-900 hx:dark:border-green-200/30 hx:dark:bg-green-900/30 hx:dark:text-green-200&#34;&gt;
   &lt;p class=&#34;hx:flex hx:items-center hx:font-medium&#34;&gt;&lt;svg height=16px class=&#34;hx:inline-block hx:align-middle hx:mr-2&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; fill=&#34;none&#34; viewBox=&#34;0 0 24 24&#34; stroke-width=&#34;2&#34; stroke=&#34;currentColor&#34; aria-hidden=&#34;true&#34;&gt;&lt;path stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; d=&#34;M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z&#34;/&gt;&lt;/svg&gt;Info&lt;/p&gt;
@@ -71,6 +75,7 @@ UI
 &lt;/div&gt;
 &lt;p&gt;From this point on, our task is simple. Take &lt;em&gt;events&lt;/em&gt; off the &lt;em&gt;ev&lt;/em&gt; channel, process them however we need, and then put a new &lt;em&gt;view&lt;/em&gt; on the &lt;em&gt;app&lt;/em&gt; channel.
 This is a perfect usecase for the &lt;code&gt;pipe:&lt;/code&gt; message:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 ev
@@ -82,6 +87,7 @@ ev
     |&gt; Transducers.reduce(model controller)
     |&gt; Transducers.map(view))
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;The &lt;code&gt;pipe:&lt;/code&gt; message is defined on the &lt;a href=&#34;/docs/protocols/seqable/&#34;&gt;seqable&lt;/a&gt; protocol. By convention, protocols end in &lt;code&gt;-able&lt;/code&gt;. Take a look at the &lt;a href=&#34;/docs/protocols/&#34;&gt;protocol&lt;/a&gt; page to learn more about how these work.&lt;/p&gt;
 &lt;p&gt;In pseudocode, the &lt;code&gt;pipe:&lt;/code&gt; message does the following:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
@@ -112,6 +118,7 @@ The transducers themselves are composable - the &lt;code&gt;|&amp;gt;:&lt;/code&
 &lt;p&gt;First, we use the &lt;code&gt;take_until:&lt;/code&gt; transducer to close the sequence once we see the &lt;code&gt;escape:&lt;/code&gt; key event. This lets the user close our app!&lt;/p&gt;
 &lt;p&gt;Second, we use the &lt;code&gt;reduce:&lt;/code&gt; transducer to keep track of our model&amp;rsquo;s state as we receive events. &lt;em&gt;controller&lt;/em&gt; is simply a block which takes a model and event, and returns a new model.
 &lt;em&gt;model&lt;/em&gt; is simply a record which contains all the state our app needs. &lt;em&gt;event&lt;/em&gt; is a message which tells us what kind of event we&amp;rsquo;re looking at - something like &lt;code&gt;key:&lt;/code&gt;, &lt;code&gt;mouse:&lt;/code&gt;, or &lt;code&gt;tick:&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 controller := (model event args*) :: do 
@@ -119,8 +126,10 @@ controller := (model event args*) :: do
   model
 end
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;Third, we use the &lt;code&gt;map:&lt;/code&gt; transducer to transform our model into a list of components we can render. &lt;em&gt;view&lt;/em&gt; is just a block that does this transformation.
 We call out to some helper blocks to render the rows of our wordle game.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 view := (model) :: [
@@ -152,6 +161,7 @@ view := (model) :: [
   ]
 ]
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;There is some additional logic for handling guesses and events, and checking if the game is over, etc.
 We did manage to cover the core of the architecture in this short article, and hopefully it helps you understand how
 to structure your own apps in gab!&lt;/p&gt;
@@ -481,7 +491,7 @@ build the bundle. This makes distributing native binaries a breeze!&lt;/p&gt;
     </item>
     
     <item>
-      <title>Asynchronous, Parallel IO in a Single Header File</title>
+      <title>Asynchronous, Parallel Io in a Single Header File</title>
       <link>/blog/io/</link>
       <pubDate>Thu, 02 Oct 2025 09:57:01 -0400</pubDate>
       
@@ -498,11 +508,11 @@ that some IO work needs to be done, without blocking the thread. NodeJS for exam
 an eventloop and threadpool to perform IO. The user in Javascript issues IO &lt;strong&gt;requests&lt;/strong&gt; to the libuv loop, which process them
 as it can with its workers. The Javascript runtime then yields that function until the IO request is complete - allowing other JS code to
 run on the thread. Python&amp;rsquo;s &lt;em&gt;asyncio&lt;/em&gt; and Rust&amp;rsquo;s &lt;em&gt;tokio&lt;/em&gt; work similarly.&lt;/p&gt;
-&lt;p&gt;libuv works fantastically well, but there were some problems when it comes to integrating it into Gab&amp;rsquo;s IO module.&lt;/p&gt;
+&lt;p&gt;libuv works fantastically well, but there were some problems when it comes to integrating it into gab&amp;rsquo;s Io module.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;At the c-level, libuv&amp;rsquo;s api uses callbacks. This is inconvenient.&lt;/li&gt;
 &lt;li&gt;libuv spawns a thread pool, which will compete with cgab&amp;rsquo;s.&lt;/li&gt;
-&lt;li&gt;Gab native modules prefer single-header libraries (which libuv is not) to avoid linking and to ease cross-compilation.&lt;/li&gt;
+&lt;li&gt;gab native modules prefer single-header libraries (which libuv is not) to avoid linking and to ease cross-compilation.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For these reasons, I created my own eventloop library in c: &lt;a href=&#34;https://github.com/TeddyRandby/qio&#34;target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;TeddyRandby/qio&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;QIO - A simple event loop.&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;qio---a-simple-event-loop&#34;&gt;&lt;/span&gt;
@@ -658,7 +668,7 @@ user to submit IO-requests from multiple threads (the library is thread-safe in 
 and run on a separate thread. While waiting for these IO operations to complete, other gab fibers can run on the that
 cgab thread instead. This is supported by a feature in cgab&amp;rsquo;s native API, known as &lt;em&gt;yielding&lt;/em&gt;.&lt;/p&gt;
 &lt;h2&gt;Yielding in Native Functions&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;yielding-in-native-functions&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#yielding-in-native-functions&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The following is the type signature for a native block in Gab:&lt;/p&gt;
+    &lt;a href=&#34;#yielding-in-native-functions&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The following is the type signature for a native block in gab:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;union&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;gab_value_pair&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;gab_native_f)(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; gab_triple, &lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; argc,
@@ -676,12 +686,12 @@ cgab thread instead. This is supported by a feature in cgab&amp;rsquo;s native A
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Two pieces are of note - the return value &lt;code&gt;union gab_value_pair&lt;/code&gt;, and the last argument &lt;code&gt;reentrant&lt;/code&gt;.
-The &lt;code&gt;gab_value_pair&lt;/code&gt; is used to indicate to the Gab runtime the status of your native function.
+The &lt;code&gt;gab_value_pair&lt;/code&gt; is used to indicate to the gab runtime the status of your native function.
 There are three options:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Your function has completed, and the VM can continue executing bytecode. Use the macro &lt;code&gt;gab_union_cvalid()&lt;/code&gt; to return this.&lt;/li&gt;
 &lt;li&gt;Your function has panicked with an unrecoverable error. The VM must terminate execution of &lt;em&gt;all&lt;/em&gt; fibers. Use the macro &lt;code&gt;gab_union_cinvalid()&lt;/code&gt;, or the helper &lt;code&gt;gab_panicf&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Your function&amp;rsquo;s work is &lt;em&gt;incomplete&lt;/em&gt;, and you want to yield this fiber&amp;rsquo;s time so that other fibers may continue. Use the macro &lt;code&gt;gab_union_ctimeout()&lt;/code&gt;, and pass a non-zero 64-bit value. This will serve as the &lt;code&gt;reentrant&lt;/code&gt;. The next time the Gab runtime chooses to schedule the fiber to run again, it will be called with this reentrant value.&lt;/li&gt;
+&lt;li&gt;Your function&amp;rsquo;s work is &lt;em&gt;incomplete&lt;/em&gt;, and you want to yield this fiber&amp;rsquo;s time so that other fibers may continue. Use the macro &lt;code&gt;gab_union_ctimeout()&lt;/code&gt;, and pass a non-zero 64-bit value. This will serve as the &lt;code&gt;reentrant&lt;/code&gt;. The next time the gab runtime chooses to schedule the fiber to run again, it will be called with this reentrant value.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;This is where qio integrates with cgab, in the IO module. Here is a simplified example:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;

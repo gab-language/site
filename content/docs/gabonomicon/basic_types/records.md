@@ -3,7 +3,7 @@ title: Records
 weight: 3
 ---
 
-Records are the only data structure in Gab. They serve as both dictionareis and lists.
+Records are the only data structure in gab. They serve as both dictionareis and lists.
 
 ## `gab\record`
 
@@ -28,7 +28,7 @@ a_list := [1 2 3]
 a_list   # :: [1, 2, 3]
 ```
 
-A list can also be constructed using explicit integer keys in dictionary syntax. Gab recognises the shape and still displays it as a list:
+A list can also be constructed using explicit integer keys in dictionary syntax. gab recognises the shape and still displays it as a list:
 
 ```gab
 a_list := { 0 1, 1 2, 2 3 }

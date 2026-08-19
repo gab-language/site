@@ -7,7 +7,7 @@ For a conceptual introduction to fibers and channels, see [the Language Tour](/d
 
 ## `gab\fiber`
 
-Fibers are created with `Fibers.make:`, which takes a block and immediately queues it for execution. The fiber may run on any OS thread managed by Gab's runtime.
+Fibers are created with `Fibers.make:`, which takes a block and immediately queues it for execution. The fiber may run on any OS thread managed by gab's runtime.
 
 ```gab
 Fibers.make () :: do
@@ -34,7 +34,7 @@ ch <! 'hello'
 value := ch >!
 ```
 
-In Gab, channels are unbuffered. Practically, this means that Both operations are **blocking**: a send blocks until a receiver is ready, and a receive blocks until a sender is ready.
+In gab, channels are unbuffered. Practically, this means that Both operations are **blocking**: a send blocks until a receiver is ready, and a receive blocks until a sender is ready.
 For this reason, channels serve as both a primitive for sharing data, and way to *synchronize* fibers.
 
 >[!NOTE]
@@ -47,7 +47,7 @@ have to block and wait for consumers.
 
 In this scenario it is better to use a *buffered* channel, which can hold up to a certain number of values before producers have to begin blocking.
 
-Lets build this with the primitives Gab gives us!
+Lets build this with the primitives gab gives us!
 
 ```gab
 buffered: .def (Channels, (n) :: do
