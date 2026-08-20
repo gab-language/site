@@ -735,8 +735,8 @@ There are three options:&lt;/p&gt;
 There is no function coloring or async/await, like in other languages. Simple!&lt;/p&gt;
 &lt;h2&gt;The Best Bit&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;the-best-bit&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#the-best-bit&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There is nothing unique or special-cased about how cgab&amp;rsquo;s native IO module works. It is implemented completely in user-land, with the same cgab library features that other
-native modules would have access to. If &lt;em&gt;you&lt;/em&gt; wanted to implement an IO module on top of libuv instead, you could! Gab&amp;rsquo;s users wouldn&amp;rsquo;t know the difference.&lt;/p&gt;
-&lt;p&gt;This is a fundamental philosophy of Gab&amp;rsquo;s design. Native module authors should feel empowered to write highly efficient, non-blocking native functions without pulling their hair out.&lt;/p&gt;
+native modules would have access to. If &lt;em&gt;you&lt;/em&gt; wanted to implement an IO module on top of libuv instead, you could! gab&amp;rsquo;s users wouldn&amp;rsquo;t know the difference.&lt;/p&gt;
+&lt;p&gt;This is a fundamental philosophy of gab&amp;rsquo;s design. Native module authors should feel empowered to write highly efficient, non-blocking native functions without pulling their hair out.&lt;/p&gt;
 
       </description>
     </item>
@@ -818,7 +818,7 @@ a &lt;em&gt;tagged union&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Alright! We&amp;rsquo;ve seen how these values can be used in our c-interpreter, and it all works nicely. What are the problems with this approach?
 To understand that, we need to dive a little bit deeper into how our c-interpreter &lt;em&gt;actually&lt;/em&gt; works.&lt;/p&gt;
 &lt;h2&gt;Values in Context&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;values-in-context&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#values-in-context&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Native programs have two types of memory - a &lt;strong&gt;stack&lt;/strong&gt; and a &lt;strong&gt;heap&lt;/strong&gt;. The same is true in the managed runtimes of Java, Python, and Gab. The interpreters (or virtual machines - VMs, as I&amp;rsquo;ll probably say from now on) have an internal &lt;em&gt;stack&lt;/em&gt;, which keep track of local variables, scopes, and function calls.&lt;/p&gt;
+    &lt;a href=&#34;#values-in-context&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Native programs have two types of memory - a &lt;strong&gt;stack&lt;/strong&gt; and a &lt;strong&gt;heap&lt;/strong&gt;. The same is true in the managed runtimes of Java, Python, and gab. The interpreters (or virtual machines - VMs, as I&amp;rsquo;ll probably say from now on) have an internal &lt;em&gt;stack&lt;/em&gt;, which keep track of local variables, scopes, and function calls.&lt;/p&gt;
 &lt;p&gt;Here we have a random Python function which for the purpose of this demonstration, just makes some random calculations with arguments and variables.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
@@ -1017,7 +1017,7 @@ It describes more in depth how the floating-point trickery and short-string opti
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * |     Value Representation      |
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * %-------------------------------%
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; *
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * Gab values are nan-boxed.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * gab values are nan-boxed.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; *
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * An IEEE 754 double-precision float is a 64-bit value with bits laid out like:
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; *
@@ -1086,7 +1086,7 @@ It describes more in depth how the floating-point trickery and short-string opti
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; *                    |                               |
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * [0][....NaN....11][--][------------------------------------------------]
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; *
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * Gab also employs a short string optimization. Lots of strings in a gab
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * gab also employs a short string optimization. Lots of strings in a gab
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * program are incredibly small, and incredibly common. values like
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; *
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt; * none:

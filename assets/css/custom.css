@@ -1,3 +1,9 @@
+:root {
+  --primary-hue: 201deg;
+  --primary-saturation: 42%;
+  --primary-lightness: 58%;
+}
+
 .mx-auto { margin-right: auto; margin-left: auto; }
 .flex { display: flex; }
 .flex-col { flex-direction: column }
@@ -168,7 +174,7 @@
 	mask-position: top, center, bottom;
 	mask-size: 100%;
 	background-color: #aa2068;
-	background-image: linear-gradient(90deg, #cc3f47, #808);
+	background-image: linear-gradient(100deg, hsl(201deg, 42%, 50%), hsl(201deg, 42%, 40%));
 }
 .above-mask-box {
 	padding-bottom: var(--mask-head-size);

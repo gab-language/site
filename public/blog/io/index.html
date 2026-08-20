@@ -57,8 +57,8 @@ Programming languages solve this issue in different ways. At the lowest level, l
 	<meta name="twitter:description" content="Why it matters In a lot of programs that we write today, the bottleneck for performance of our applications isn’t actually the work we’re doing on the CPU. Its more likely that the IO Operations, such as sending/receiving data over the network or writing and reading files, will end up blocking the CPU from doing its work.
 Programming languages solve this issue in different ways. At the lowest level, languages need a way of telling the OS that some IO work needs to be done, without blocking the thread. NodeJS for example uses libuv, a c library which utilizes an eventloop and threadpool to perform IO. The user in Javascript issues IO requests to the libuv loop, which process them as it can with its workers. The Javascript runtime then yields that function until the IO request is complete - allowing other JS code to run on the thread. Python’s asyncio and Rust’s tokio work similarly.">
 
-    <link rel="preload" href="/css/compiled/main.min.9929369ca6dc281a9ba3bf052f1c74ffcdc0371147104b1544ff202d948d11c5.css" as="style" integrity="sha256-mSk2nKbcKBqbo78FLxx0/83ANxFHEEsVRP8gLZSNEcU=" />
-    <link href="/css/compiled/main.min.9929369ca6dc281a9ba3bf052f1c74ffcdc0371147104b1544ff202d948d11c5.css" rel="stylesheet" integrity="sha256-mSk2nKbcKBqbo78FLxx0/83ANxFHEEsVRP8gLZSNEcU=" />
+    <link rel="preload" href="/css/compiled/main.min.e61f4fed24e26a60600932271315a28aa1cb66079dfc8bdbebf6f89a219715eb.css" as="style" integrity="sha256-5h9P7STiamBgCTInExWiiqHLZged/Ivb6/b4miGXFes=" />
+    <link href="/css/compiled/main.min.e61f4fed24e26a60600932271315a28aa1cb66079dfc8bdbebf6f89a219715eb.css" rel="stylesheet" integrity="sha256-5h9P7STiamBgCTInExWiiqHLZged/Ivb6/b4miGXFes=" />
 
   
 
@@ -80,8 +80,6 @@ Programming languages solve this issue in different ways. At the lowest level, l
 
   <nav class="hextra-max-navbar-width hx:mx-auto hx:flex hx:items-center hx:justify-end hx:gap-2 hx:h-16 hx:px-6">
     <a class="hx:flex hx:items-center hx:hover:opacity-75 hx:ltr:mr-auto hx:rtl:ml-auto" href="/">
-    <img class="hx:mr-2 hx:block hx:dark:hidden" src="/images/logo.svg" alt="Logo" height="20" width="20" />
-    <img class="hx:mr-2 hx:hidden hx:dark:block" src="/images/logo.svg" alt="Dark Logo" height="20" width="20" />
     <span class="hx:mr-2 hx:font-extrabold hx:inline hx:select-none">gab</span>
 </a>
 <a
@@ -1454,8 +1452,8 @@ There are three options:</p>
 There is no function coloring or async/await, like in other languages. Simple!</p>
 <h2>The Best Bit<span class="hx:absolute hx:-mt-20" id="the-best-bit"></span>
     <a href="#the-best-bit" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>There is nothing unique or special-cased about how cgab&rsquo;s native IO module works. It is implemented completely in user-land, with the same cgab library features that other
-native modules would have access to. If <em>you</em> wanted to implement an IO module on top of libuv instead, you could! Gab&rsquo;s users wouldn&rsquo;t know the difference.</p>
-<p>This is a fundamental philosophy of Gab&rsquo;s design. Native module authors should feel empowered to write highly efficient, non-blocking native functions without pulling their hair out.</p>
+native modules would have access to. If <em>you</em> wanted to implement an IO module on top of libuv instead, you could! gab&rsquo;s users wouldn&rsquo;t know the difference.</p>
+<p>This is a fundamental philosophy of gab&rsquo;s design. Native module authors should feel empowered to write highly efficient, non-blocking native functions without pulling their hair out.</p>
 
         </div><div class="hx:mt-16"></div><div class="hx:mb-8 hx:flex hx:items-center hx:border-t hx:pt-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-neutral-400 hx:dark:contrast-more:border-neutral-400 hx:print:hidden"><a
         href="/blog/values/"

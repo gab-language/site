@@ -29,16 +29,16 @@
 
 
 	<meta itemprop="name" content="gab">
-	<meta itemprop="description" content="A modern scripting language for the world we compute in. gab is a dynamic language. Parallelism, asynchrony, dependency management, deployment, and performance are core elements of gab&#39;s coherent vision and design.">
+	<meta itemprop="description" content="A modern scripting language for the world we compute in. gab is a minimal, dynamic programming language. It supports a functional, immutable style of programming which make prototyping fast and scaling simple.">
 	<meta itemprop="datePublished" content="2026-06-25T19:22:23-04:00">
 	<meta itemprop="dateModified" content="2026-06-25T19:22:23-04:00">
-	<meta itemprop="wordCount" content="411">
+	<meta itemprop="wordCount" content="406">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="gab">
-	<meta name="twitter:description" content="A modern scripting language for the world we compute in. gab is a dynamic language. Parallelism, asynchrony, dependency management, deployment, and performance are core elements of gab&#39;s coherent vision and design.">
+	<meta name="twitter:description" content="A modern scripting language for the world we compute in. gab is a minimal, dynamic programming language. It supports a functional, immutable style of programming which make prototyping fast and scaling simple.">
 
-    <link rel="preload" href="/css/compiled/main.min.9929369ca6dc281a9ba3bf052f1c74ffcdc0371147104b1544ff202d948d11c5.css" as="style" integrity="sha256-mSk2nKbcKBqbo78FLxx0/83ANxFHEEsVRP8gLZSNEcU=" />
-    <link href="/css/compiled/main.min.9929369ca6dc281a9ba3bf052f1c74ffcdc0371147104b1544ff202d948d11c5.css" rel="stylesheet" integrity="sha256-mSk2nKbcKBqbo78FLxx0/83ANxFHEEsVRP8gLZSNEcU=" />
+    <link rel="preload" href="/css/compiled/main.min.e61f4fed24e26a60600932271315a28aa1cb66079dfc8bdbebf6f89a219715eb.css" as="style" integrity="sha256-5h9P7STiamBgCTInExWiiqHLZged/Ivb6/b4miGXFes=" />
+    <link href="/css/compiled/main.min.e61f4fed24e26a60600932271315a28aa1cb66079dfc8bdbebf6f89a219715eb.css" rel="stylesheet" integrity="sha256-5h9P7STiamBgCTInExWiiqHLZged/Ivb6/b4miGXFes=" />
 
   
 
@@ -60,8 +60,6 @@
 
   <nav class="hextra-max-navbar-width hx:mx-auto hx:flex hx:items-center hx:justify-end hx:gap-2 hx:h-16 hx:px-6">
     <a class="hx:flex hx:items-center hx:hover:opacity-75 hx:ltr:mr-auto hx:rtl:ml-auto" href="/">
-    <img class="hx:mr-2 hx:block hx:dark:hidden" src="/images/logo.svg" alt="Logo" height="20" width="20" />
-    <img class="hx:mr-2 hx:hidden hx:dark:block" src="/images/logo.svg" alt="Dark Logo" height="20" width="20" />
     <span class="hx:mr-2 hx:font-extrabold hx:inline hx:select-none">gab</span>
 </a>
 <a
@@ -1139,7 +1137,7 @@
         <h1 class="text-4xl sm:text-6xl font-bold tracking-tight bg-clip-text text-transparent hx-bg-gradient-to-r hx-from-gray-900 hx-to-gray-600 dark:hx-from-gray-100 dark:hx-to-gray-400">
           A modern scripting language for the world we <em>compute</em> in.
         </h1>
-        <p class="mt-6 text-lg leading-8 hx-text-gray-600 dark:hx-text-gray-400">gab is a dynamic language. Parallelism, asynchrony, dependency management, deployment, and performance are core elements of gab&#39;s coherent vision and design.</p>
+        <p class="mt-6 text-lg leading-8 hx-text-gray-600 dark:hx-text-gray-400">gab is a minimal, dynamic programming language. It supports a functional, immutable style of programming which make prototyping fast and scaling simple.</p>
       </div>
     </div>
   </div>
@@ -1147,7 +1145,7 @@
     class="below-mask-box mx-auto"
     aria-hidden="true">
     <div class="box-wrap mx-auto max-w-2xl">
-      
+        
 
 <div class="hextra-cards hx:mt-4 hx:gap-4 hx:grid not-prose" style="--hextra-cards-grid-cols: 2;">
   <a
@@ -1180,7 +1178,7 @@
         Parallel
     </dt>
     <dd class="text-lg flex flex-auto flex-col leading-7 hx-text-gray-600 dark:hx-text-gray-300">
-        <p>gab&rsquo;s runtime is multi-threaded by design. All datatypes in gab are immutable, and therefore can be trivially sent to and from threads without any manual synchronization.
+        <p>Take full advantage of your user&rsquo;s cores with gab&rsquo;s multi-threaded runtime. All datatypes in gab are immutable, and therefore can be trivially sent to and from threads without any manual synchronization.
 gab provides the building blocks for the same model which inspires golang, erlang, and many others.</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
@@ -1207,7 +1205,7 @@ gab provides the building blocks for the same model which inspires golang, erlan
         Asynchronous
     </dt>
     <dd class="text-lg flex flex-auto flex-col leading-7 hx-text-gray-600 dark:hx-text-gray-300">
-        <p>gab&rsquo;s builtin <code>Io</code> module is completely asynchronous. Your gab program will <em>never</em> block an os thread waiting on i/o. (And you can forget about that <strong>async</strong> keyword while you&rsquo;re at it)</p>
+        <p>A builtin, asynchronous <code>Io</code> module means your gab program will <em>never</em> block an os thread waiting on i/o. (And you can forget about that <strong>async</strong> keyword while you&rsquo;re at it)</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #9399b3'># Launch many fibers to perform some background work.</span></span></span>
@@ -1230,7 +1228,7 @@ gab provides the building blocks for the same model which inspires golang, erlan
         Distribute &amp; Deploy
     </dt>
     <dd class="text-lg flex flex-auto flex-col leading-7 hx-text-gray-600 dark:hx-text-gray-300">
-        <p>gab includes the <code>gab build</code> command, which creates bundled packages or apps. Bundled apps can be distributed as a single binary, and can be built <em>for</em> any platform <em>from</em> any other!</p>
+        <p>The <code>gab build</code> command creates bundled packages or apps. Distributed these as a single binary, which can be built <em>for</em> any platform <em>from</em> any other!</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
 <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build your app in one command for any target</span>
@@ -1263,7 +1261,7 @@ gab provides the building blocks for the same model which inspires golang, erlan
         Manage Dependencies
     </dt>
     <dd class="text-lg flex flex-auto flex-col leading-7 hx-text-gray-600 dark:hx-text-gray-300">
-        <p>gab ships with a simple <code>gab get</code> command, making it trivial to download packages and apps from the command line. (You also use this to download and manage your gab versions).</p>
+        <p>The <code>gab get</code> command, making it trivial to download packages and apps from the command line. (You also use this to download and manage your gab versions).</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
 <div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Download the demo wordle app</span>
@@ -1282,7 +1280,7 @@ gab provides the building blocks for the same model which inspires golang, erlan
   </button>
 </div>
 </div>
-<p>gab keeps separate packages and apps based on their versions, as well as the <em>gab</em> version they depend on. This allows you to have different versions of the same package/app, targeting different versions of cgab, and they all coexist happily.</p>
+<p>Packages and apps are automatically separated based on their versions, as well as the <em>gab</em> version they depend on. This allows you to have different versions of the same package/app, targeting different versions of cgab, and they all coexist happily.</p>
 
     </dd>
 </div>
@@ -1296,7 +1294,7 @@ gab provides the building blocks for the same model which inspires golang, erlan
         Batteries Included
     </dt>
     <dd class="text-lg flex flex-auto flex-col leading-7 hx-text-gray-600 dark:hx-text-gray-300">
-        <p>gab&rsquo;s standard library ships with a growing number of useful modules. Beyond those you&rsquo;d expect like <code>Json</code> or <code>Io</code>, gab includes <code>Ui</code>: an elm-inspired module for building cross platform graphical/terminal applications.</p>
+        <p>The standard library ships with a growing number of useful modules. Beyond those you&rsquo;d expect like <code>Json</code> or <code>Io</code>, gab includes <code>Ui</code>: an elm-inspired module for building cross platform graphical/terminal applications.</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>Ui <span style='font-weight: bold;color: #cba6f8'>:=</span> <span style='color: #a6e3a2'>&#39;github.com/gab-language/cgab@0.1.4&#39;</span> <span style='font-weight: bold;color: #89dcec'>.use</span> <span style='color: #a6e3a2'>&#39;cui&#39;</span></span></span>

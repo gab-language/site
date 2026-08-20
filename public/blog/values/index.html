@@ -49,8 +49,8 @@ and the more compact these arrays can be, the better. In gab&rsquo;s case, it is
 	<meta name="twitter:title" content="Representing Values in cgab">
 	<meta name="twitter:description" content="Why it matters Performance is always the answer! Dynamic languages like gab often have one over-arching definition of what a value is in the runtime. It is crucial that this value has as small of a memory footprint as possible. The runtime stores many contiguous arrays of these values, and the more compact these arrays can be, the better. In gab’s case, it is even more important that values fit into a register, as this makes it easier for them to cross thread boundaries.">
 
-    <link rel="preload" href="/css/compiled/main.min.9929369ca6dc281a9ba3bf052f1c74ffcdc0371147104b1544ff202d948d11c5.css" as="style" integrity="sha256-mSk2nKbcKBqbo78FLxx0/83ANxFHEEsVRP8gLZSNEcU=" />
-    <link href="/css/compiled/main.min.9929369ca6dc281a9ba3bf052f1c74ffcdc0371147104b1544ff202d948d11c5.css" rel="stylesheet" integrity="sha256-mSk2nKbcKBqbo78FLxx0/83ANxFHEEsVRP8gLZSNEcU=" />
+    <link rel="preload" href="/css/compiled/main.min.e61f4fed24e26a60600932271315a28aa1cb66079dfc8bdbebf6f89a219715eb.css" as="style" integrity="sha256-5h9P7STiamBgCTInExWiiqHLZged/Ivb6/b4miGXFes=" />
+    <link href="/css/compiled/main.min.e61f4fed24e26a60600932271315a28aa1cb66079dfc8bdbebf6f89a219715eb.css" rel="stylesheet" integrity="sha256-5h9P7STiamBgCTInExWiiqHLZged/Ivb6/b4miGXFes=" />
 
   
 
@@ -72,8 +72,6 @@ and the more compact these arrays can be, the better. In gab&rsquo;s case, it is
 
   <nav class="hextra-max-navbar-width hx:mx-auto hx:flex hx:items-center hx:justify-end hx:gap-2 hx:h-16 hx:px-6">
     <a class="hx:flex hx:items-center hx:hover:opacity-75 hx:ltr:mr-auto hx:rtl:ml-auto" href="/">
-    <img class="hx:mr-2 hx:block hx:dark:hidden" src="/images/logo.svg" alt="Logo" height="20" width="20" />
-    <img class="hx:mr-2 hx:hidden hx:dark:block" src="/images/logo.svg" alt="Dark Logo" height="20" width="20" />
     <span class="hx:mr-2 hx:font-extrabold hx:inline hx:select-none">gab</span>
 </a>
 <a
@@ -1289,7 +1287,7 @@ a <em>tagged union</em>.</p>
 <p>Alright! We&rsquo;ve seen how these values can be used in our c-interpreter, and it all works nicely. What are the problems with this approach?
 To understand that, we need to dive a little bit deeper into how our c-interpreter <em>actually</em> works.</p>
 <h2>Values in Context<span class="hx:absolute hx:-mt-20" id="values-in-context"></span>
-    <a href="#values-in-context" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Native programs have two types of memory - a <strong>stack</strong> and a <strong>heap</strong>. The same is true in the managed runtimes of Java, Python, and Gab. The interpreters (or virtual machines - VMs, as I&rsquo;ll probably say from now on) have an internal <em>stack</em>, which keep track of local variables, scopes, and function calls.</p>
+    <a href="#values-in-context" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Native programs have two types of memory - a <strong>stack</strong> and a <strong>heap</strong>. The same is true in the managed runtimes of Java, Python, and gab. The interpreters (or virtual machines - VMs, as I&rsquo;ll probably say from now on) have an internal <em>stack</em>, which keep track of local variables, scopes, and function calls.</p>
 <p>Here we have a random Python function which for the purpose of this demonstration, just makes some random calculations with arguments and variables.</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
@@ -1488,7 +1486,7 @@ It describes more in depth how the floating-point trickery and short-string opti
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * |     Value Representation      |
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * %-------------------------------%
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Gab values are nan-boxed.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * gab values are nan-boxed.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * An IEEE 754 double-precision float is a 64-bit value with bits laid out like:
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
@@ -1557,7 +1555,7 @@ It describes more in depth how the floating-point trickery and short-string opti
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *                    |                               |
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * [0][....NaN....11][--][------------------------------------------------]
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Gab also employs a short string optimization. Lots of strings in a gab
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * gab also employs a short string optimization. Lots of strings in a gab
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * program are incredibly small, and incredibly common. values like
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * none:
