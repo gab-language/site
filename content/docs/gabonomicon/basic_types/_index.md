@@ -1,9 +1,12 @@
 ---
-title: Types
 weight: 3
 ---
 
-gab has a small, fixed set of built-in types. This section is a reference for each one.
+#
+
+## Builtin Types
+
+gab has a small, fixed set of built-in types. This section serves a reference for each one.
 
 | Type | Description |
 |---|---|
@@ -18,4 +21,11 @@ gab has a small, fixed set of built-in types. This section is a reference for ea
 | `gab\channel` | A synchronised conduit between fibers |
 | `gab\box` | An opaque wrapper around a native C value |
 
-For a conceptual introduction to these types, see the [Language Tour](/docs/tour).
+If you're looking for conceptual introductions to each of these types, check out the language tour. To see these types in use in small gab programs, check out the examples.
+
+---
+
+{{< cards cols="2">}}
+  {{< card link="docs/tour" title="Language Tour" icon="academic-cap" >}}
+  {{< card link="docs/gabonomicon/examples" title="Examples" icon="pencil" >}}
+{{< /cards >}}

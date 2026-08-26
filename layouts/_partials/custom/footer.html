@@ -1,0 +1,15 @@
+<div class="hx:flex hx:w-full hx:flex-col hx:items-center hx:py-12">
+    <div class="hx:flex hx:items-center">
+      <p class="hx:text-s">
+        {{ site.Params.footer.title | markdownify }}
+      </p>
+      <p class="hx:text-s hx:px-2">|</p>
+      <p class="hx:text-s">{{ site.Params.footer.copyright | markdownify }}</p>
+      <p class="hx:text-s hx:px-2">|</p>
+      {{- if (site.Params.footer.github) -}}
+        <a class="" href="{{ site.Params.footer.github  }}">
+          {{ partial "utils/icon.html" (dict "name" ("github" ) "attributes" "height=16") }}
+        </a>
+      {{- end -}}
+    </div>
+</div>

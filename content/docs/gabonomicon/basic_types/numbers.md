@@ -1,7 +1,8 @@
 ---
-title: Numbers
 weight: 1
 ---
+
+#
 
 All numbers in gab are IEEE 754 64-bit floating point values. There is no distinct integer type.
 

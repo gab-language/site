@@ -1,9 +1,10 @@
 ---
-title: Records
 weight: 3
 ---
 
-Records are the only data structure in gab. They serve as both dictionareis and lists.
+#
+
+Records are the only data structure in gab. They serve as both dictionaries and lists.
 
 ## `gab\record`
 
@@ -17,7 +18,7 @@ another  := { key: 'value', 'another_key' 10 }
 ```
 
 >[!NOTE]
->Note that keys can be any value. Messages and strings are the most common, but numbers, blocks, channels, even other records are all valid keys.
+>Keys can be any value. Messages and strings are the most common, but numbers, blocks, channels, even other records are all valid keys.
 
 ### Lists
 
@@ -45,12 +46,20 @@ The `is\list:` message is used to determine if a given record is a list.
 >[!NOTE]
 >The empty record `{}` is a list, whether you write it like `[]` or like `{}`.
 
-## List-to-dictionary transitions
+## Transitioning between Lists and Dictionaries
 
-Adding a non-integer key to a list produces a dictionary:
+Adding an out-of-order or non-integer key to a list transforms it into a dictionary:
 
 ```gab
 a_list := [1 2 3]
 a_list := a_list.put(name: 'bob')
 # :: { 0: 1, 1: 2, 2: 3, name: 'bob' }
+```
+
+Conversely, *removing* such a key transforms the dictionary back into a list (if all the remaining keys are now properly list-like)
+
+```gab
+a_dict := { 0 1, 1 2, 2 3, name: 'bob']
+a_list := a_dict.take(name:)
+# [1 2 3]
 ```

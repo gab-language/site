@@ -1,7 +1,8 @@
 ---
-title: Messages
 weight: 1
 ---
+
+#
 
 In most languages, control flow is driven by keywords: `if`, `for`, `while`, `switch`. gab has none of these. Instead, everything is accomplished by **sending messages to values**.
 

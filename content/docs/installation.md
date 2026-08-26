@@ -1,8 +1,10 @@
-+++
-title = "Installation"
-type = "chapter"
-weight = 1
-+++
+---
+title:
+weight: 1
+---
+
+#
+
 This guide covers installing the gab language. This includes development files, as well as the binaries and builtin package.
 
 ## Choose your release
@@ -101,11 +103,11 @@ These components ensure that gab searches for and downloads code matching the de
 
 ### Complete the installation
 
-At this point, you have a gab version installed correctly on your machine. In order to use it however, you'll need to add it to your *PATH*.
+At this point, you have a gab version installed correctly on your machine. In order to use it conveniently however, you'll need to add it to your *PATH*.
 
-Running `gab info` again should show that you've installed the appropriate target. You *can* install the same binary and builtin package for any platform that you like - this is actually how gab supports cross compilation!
+Running `gab info` again should show that you've installed the appropriate target. It will also show you what value you need to add to your *PATH* - under the section **BINDIR**.
 
-If your system supports symbolic links, it is recommended to link the gab binary found in the local installation to some folder already in your *PATH*, like `/usr/local/bin` on Linux.
+You *can* install the same binary and builtin package for any platform that you like - this is actually how gab supports cross compilation!
 
 And thats it - gab is now installed and ready to go on your system. If you're new to gab, start with the [gabonomicon](/docs/gabonomicon). Get hacking!
 

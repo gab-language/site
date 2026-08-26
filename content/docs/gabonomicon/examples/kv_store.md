@@ -1,13 +1,14 @@
 ---
-title: "Key-Value Store"
 weight: 1
 ---
+
+#
 
 This example builds an in-memory key-value store. It is a complete, useful program and demonstrates how gab's core features compose in practice.
 
 By the end you'll have a store that can be safely read and written from any number of fibers.
 
-## The Design
+## Design
 
 The store is a single fiber. It owns a record which it privately threads through recursive calls. No other fiber can touch that record directly.
 
@@ -69,17 +70,20 @@ handle: .defcase {
   end
 
   store\delete: (reply, state, k) :: do
-    reply <! (state.at k)
-    state.take(k)
+    (state, v) := state.take k
+    reply <! v
+    state
   end
 }
 ```
 
-`store\get:` forwards the result of `state.at` directly — if the key exists the caller receives `(ok: value)`, otherwise `(none: nil:)`. `store\set:` replies with `ok:` and returns the updated state. `store\delete:` replies with the same result as `at` — telling the caller what was there — then returns the state with the key removed via `take:`.
+`store\get:` forwards the result of `state.at` directly. If the key exists the caller receives `(ok: value)`, otherwise `(none: nil:)`.
+`store\set:` replies with `ok:` and returns the updated state.
+`store\delete:` performs a take, which will return a new record and the value removed. It replies with said value, and returns the new state.
 
 ## Clean up the api
 
-The module is defined on the channel type directly, since the store is a channel:
+The module is defined on the channel type directly, since the store is just a channel:
 
 ```gab
 # Define the t: message on our Store module, as is convention.
@@ -108,7 +112,8 @@ t: .def (Stores, Channels.t)
 }
 ```
 
-`defmodule` attaches messages directly to the `Store.t` type, so `self` inside each method is the channel itself. Each method creates a reply channel, sends the command, and blocks on `reply >! .unwrap` until the store responds.
+`defmodule` attaches messages directly to the `Store.t` type, so `self` inside each method is the channel itself.
+Each method creates a reply channel, sends the command, and blocks on `reply >! .unwrap` until the store responds.
 
 ## Putting it together
 
@@ -147,7 +152,8 @@ store.store\get('missing')
 
 ## Parallel access
 
-The store is safe to use from any number of fibers simultaneously. Because all state is owned by the store fiber, and all access goes through the channel, operations are automatically serialised:
+The store is safe to use from any number of fibers simultaneously.
+Because all state is owned by the store fiber, and all access goes through the channel, operations are automatically serialised:
 
 ```gab
 store := Stores.make
@@ -164,8 +170,6 @@ end
 fibers.each f :: f.await
 
 ```
-
-The store is the only path to the state. Serialisation is a consequence of the topology, not something enforced by the programmer.
 
 ## The full program
 
@@ -200,8 +204,9 @@ handle: .defcase {
   end
 
   store\delete: (reply, state, k) :: do
-    reply <! (state.at k)
-    state.take(k)
+    (state, v) := state.take k
+    reply <! v
+    state
   end
 }
 

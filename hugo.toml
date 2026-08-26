@@ -36,6 +36,15 @@ weight = 6
 [params.page.contextMenu]
 enable = true
 
+[params.theme]
+displayToggle = false
+
+[params.footer]
+displayPoweredBy = false
+title = "gab"
+copyright = "© 2026 Teddy Randby | All rights reserved"
+github = "https://github.com/gab-language/cgab"
+
 [languages.en]
 languageName = "English"
 weight = 1

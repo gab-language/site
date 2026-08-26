@@ -1,12 +1,15 @@
 ---
-title: "Networked Key-Value Store"
+title:
 weight: 2
 ---
 
+#
+
 This example extends the [in-memory key-value store](/docs/gabonomicon/examples/kv_store) with a TCP server. Clients connect and send text commands; the server parses each line, dispatches it to the store actor, and writes a response.
 
-## The Protocol
+## Protocol
 
+Since we're working over the wire, we need a protocol! Lets make it simple.
 Each request is a single newline-terminated line. Each response is a single newline-terminated line.
 
 | Request | Response | No key response |
@@ -15,9 +18,9 @@ Each request is a single newline-terminated line. Each response is a single newl
 | `SET key value` | `OK` | — |
 | `DELETE key` | `OK value` | `NONE` |
 
----
-
 ## Handling a Connection
+
+Lets add a message to gab's socket type, called `serve_client`. We'll send this message to each tcp client we accept from our tcp server.
 
 Each accepted connection gets its own fiber. The fiber reads one line, dispatches to the store, writes the response, and recurses until the client disconnects:
 
@@ -31,10 +34,10 @@ serve_client: .def (IO.Sockets.t, (store) :: do
     recurse := self
 
     sock
-      .until('\n'.to\b)
+      .until('\n'.to\binary)
       .then(line :: do
-        (cmd, args*) := line.as\string.unwrap.trim.split(' ')
-        response := cmd.to\message.run_command(sock, store, args*)
+        (cmd, args) := line.as\string.unwrap.trim.split(' ')
+        response := cmd.to\message.run_command(sock, store, args)
         sock.write('$\n'.sprintf(response).to\binary)
         recurse.()
       end)
@@ -76,7 +79,7 @@ run_command: .defcase {
 
 The `defcase` keys are `GET:`, `SET:`, and `DELETE:`. They explicitly match what `to\m` produces from the wire protocol strings. `rest*` absorbs any extra tokens so malformed commands don't crash the handler. Missing arguments arrive as `nil:`, which the store returns `none:` for, propagating back to the client as `NONE`.
 
-## The Accept Loop
+## Accepting Clients
 
 The server accepts connections one at a time, immediately spawning a fiber for each and looping:
 

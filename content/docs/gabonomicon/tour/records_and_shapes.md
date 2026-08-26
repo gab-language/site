@@ -1,13 +1,14 @@
 ---
-title: Records & Shapes
 weight: 2
 ---
 
-## Records
+#
 
-gab has one compound data structure: `gab\record`. Both Lists and Dictionaries are built on top of it. This constraint is intentional and furthers gab's focus on minimalism.
+gab has one compound data structure: `gab\record`.
+It builds both list-like (sequential) and dictionary-like (associative) records from this single type.
+This constraint is intentional and furthers gab's focus on minimalism.
 
-### Dictionaries
+## Dictionary Records
 
 Curly bracket syntax creates dict-style records. The values between the `{}` are treated as alternating keys and values.
 
@@ -29,7 +30,7 @@ If the message doesn't exist as a key in the record, gab will panic with `MISSIN
 ```
 
 If the key exists, `ok` will be `ok:`, and `is_hungry` will have the value in the record. Otherwise, ok will be `none:`. More on this pattern in the section on [error handling](/docs/gabonomicon/tour/error_handling).
-### Lists
+## List Records
 
 Square-bracket syntax creates **list-style** records, where the keys are implicit integer indices:
 

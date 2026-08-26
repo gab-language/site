@@ -5,43 +5,45 @@
     <loc>/docs/gabonomicon/quirks/</loc>
     <lastmod>2026-04-20T10:00:44-04:00</lastmod>
   </url><url>
-    <loc>/docs/installation/</loc>
+    <loc>/docs/gabonomicon/basic_types/numbers/</loc>
   </url><url>
     <loc>/docs/gabonomicon/examples/kv_store/</loc>
   </url><url>
     <loc>/docs/gabonomicon/tour/messages/</loc>
   </url><url>
-    <loc>/docs/gabonomicon/basic_types/arithmetic/</loc>
-  </url><url>
-    <loc>/docs/gabonomicon/examples/networked_kv_store/</loc>
-  </url><url>
-    <loc>/docs/gabonomicon/tour/records_and_shapes/</loc>
+    <loc>/docs/installation/</loc>
   </url><url>
     <loc>/docs/gabonomicon/basic_types/strings/</loc>
   </url><url>
+    <loc>/docs/gabonomicon/examples/networked_kv_store/</loc>
+  </url><url>
     <loc>/docs/gabonomicon/tour/</loc>
   </url><url>
-    <loc>/docs/gabonomicon/tour/blocks/</loc>
+    <loc>/docs/gabonomicon/tour/records_and_shapes/</loc>
+  </url><url>
+    <loc>/docs/gabonomicon/basic_types/</loc>
   </url><url>
     <loc>/docs/gabonomicon/basic_types/messages/</loc>
   </url><url>
-    <loc>/docs/gabonomicon/examples/pubsub/</loc>
-  </url><url>
     <loc>/docs/gabonomicon/basic_types/records/</loc>
   </url><url>
-    <loc>/docs/gabonomicon/basic_types/</loc>
+    <loc>/docs/gabonomicon/tour/blocks/</loc>
+  </url><url>
+    <loc>/docs/gabonomicon/examples/pubsub/</loc>
   </url><url>
     <loc>/docs/gabonomicon/examples/</loc>
   </url><url>
     <loc>/docs/gabonomicon/tour/fibers_and_channels/</loc>
   </url><url>
-    <loc>/docs/gabonomicon/tour/error_handling/</loc>
-  </url><url>
     <loc>/docs/gabonomicon/basic_types/shapes/</loc>
+  </url><url>
+    <loc>/docs/gabonomicon/tour/error_handling/</loc>
   </url><url>
     <loc>/docs/gabonomicon/basic_types/blocks/</loc>
   </url><url>
     <loc>/docs/gabonomicon/basic_types/fibers/</loc>
+  </url><url>
+    <loc>/docs/gabonomicon/basic_types/channels/</loc>
   </url><url>
     <loc>/</loc>
     <lastmod>2026-06-25T19:22:23-04:00</lastmod>
@@ -99,6 +101,8 @@
   </url><url>
     <loc>/docs/modules/uri/</loc>
   </url><url>
+    <loc>/docs/protocols/</loc>
+  </url><url>
     <loc>/docs/protocols/reduceable/</loc>
   </url><url>
     <loc>/docs/protocols/seqable/</loc>
@@ -114,8 +118,6 @@
     <loc>/categories/</loc>
   </url><url>
     <loc>/docs/modules/</loc>
-  </url><url>
-    <loc>/docs/protocols/</loc>
   </url><url>
     <loc>/tags/</loc>
   </url>

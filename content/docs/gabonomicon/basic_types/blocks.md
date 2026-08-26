@@ -1,7 +1,8 @@
 ---
-title: Blocks
 weight: 6
 ---
+
+#
 
 A block is a function that captures its surrounding scope. Blocks are values: they can be stored, passed as arguments, and respond to messages.
 
@@ -81,7 +82,7 @@ The `**` operator on a record is the inverse — it splats a record's key-value 
 >[!NOTE]
 >This message still works on list-like records. The keys will be the integer indices.
 
-### Keyword-style apis
+### Build your own keyword-arguments
 
 The `**` binding is what makes keyword-argument-style APIs possible in gab. At the call site, you write alternating message keys and values as positional arguments:
 
@@ -106,7 +107,6 @@ There are no keyword arguments in gab — only positional ones. The record is co
 Blocks may return multiple values using a tuple expression like we've seen before
 
 ```gab
-(ok: file.read)     # Two-value tuple
 (err: 'not found')  # Two-value tuple
 ```
 
@@ -118,10 +118,10 @@ Receiving multiple return values uses the same tuple syntax on the left side of 
 
 ## Tuple forwarding in chains
 
-When a message is chained after a call that returns multiple values, gab forwards the entire tuple into the next send: the first value becomes the receiver, the rest become arguments.
+When a message is chained after a call that returns multiple values, gab forwards the entire tuple into the next send. The first value becomes the receiver, and the rest become arguments.
 
 ```gab
-IO.File.make('data.csv').then(file :: file.read.println)
+IO.File.make('data.csv').then(file :: file.read.unwrap.println)
 ```
 
 Is exactly equivalent to:
@@ -132,18 +132,3 @@ status.then(() :: file.read.println)
 ```
 
 This allows the result of a multi-value return to be routed directly into a `defcase`-style dispatch without any intermediate binding.
-
-## The `unwrap:` pattern
-
-A common use of tuple forwarding is `unwrap:`, which either returns the result value or panics with the error:
-
-```gab
-unwrap: .defcase {
-  ok:  result :: result
-  err: msg    :: 'Unwrap failed: $'.panicf(msg)
-}
-
-file := IO.File.make('data.csv').unwrap
-```
-
-`IO.File.make` returns `(ok:, file)` or `(err:, message)`. The tuple is forwarded directly to `.unwrap`, which dispatches on the first element.

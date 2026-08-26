@@ -1,7 +1,8 @@
 ---
-title: Blocks
 weight: 3
 ---
+
+#
 
 A **block** is gab's name for a closure - an anonymous function that can capture values from its surrounding scope. Blocks are values: you can store them in records, pass them as arguments to messages, and call them.
 
@@ -16,9 +17,10 @@ double.(5)
 # :: 10
 ```
 
-Blocks are called with an **empty message send**. This is a bare `.` followed by any arguments.
+>[!TIP]
+>Blocks are called with an **empty message send**. This looks like a bare `.`, followed by any arguments.
 
-For multi-line blocks, use `do ... end` on the right-hand side. A `do ... end` expression evaluates to the last expression before the `end`:
+If you want to spread your block over multiple expressions, use `do ... end` on the right-hand side. A `do ... end` expression evaluates to the last expression before the `end`:
 
 ```gab
 describe := (name, age) :: do
@@ -82,18 +84,16 @@ lo  # :: 3
 hi  # :: 7
 ```
 
-### A note on commas
-Commas are whitespace in gab. Most of the time they are purely visual, to help us distiguish key-value pairs in a dictionary.
-However, sometimes whitespace *does* have syntactic meaning. Take a look at the below example.
-
-```gab
-(1 + 2 3)   # :: (3, 3)  — `2` is the argument to `+`, `3` is the second element
-(1 +, 2 3)  # :: Error   — the comma cuts off `+` before it gets an argument
-```
-
-This doesn't just happen with commas - gab treats commas, semi-colons, and new-lines all identically.
-
----
+>[!NOTE]
+>Commas are whitespace in gab. Most of the time they are purely visual, to help us distiguish key-value pairs in a dictionary.
+>However, sometimes whitespace *does* have syntactic meaning. Take a look at the below example.
+>
+>```gab
+>(1 + 2 3)   # :: (3, 3)  — `2` is the argument to `+`, `3` is the second element
+>(1 +, 2 3)  # :: Error   — the comma cuts off `+` before it gets an argument
+>```
+>
+>This doesn't just happen with commas - gab treats commas, semi-colons, and new-lines all identically.
 
 Multiple return values become especially important when combined with message chaining. When you chain a message send, **all return values** from the left side are forwarded as the receiver and arguments of the next message. Given:
 
@@ -108,7 +108,7 @@ This is exactly equivalent to:
 status.my_message(file)
 ```
 
-The first return value becomes the receiver; subsequent return values become arguments. This is why the error-handling pattern in gab is so fluid — `ok:` and `err:` can each respond differently to the same chained message, routing the remaining values accordingly. You'll see this in detail in [Error Handling](/docs/tour/error_handling).
+The first return value becomes the receiver; subsequent return values become arguments. This is what makes the error-handling pattern in gab fluid. `ok:` and `err:` can each respond differently to the same chained message, routing the remaining values accordingly. You'll see this pattern expanded upon in detail in [Error Handling](/docs/tour/error_handling).
 
 ## Closures
 
@@ -129,4 +129,4 @@ The block captures `prefix` at the time it is defined. If you rebind `prefix` la
 
 ## Blocks and fibers
 
-A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs parallel in its own lightweight thread of execution. See [Fibers & Channels](/docs/tour/fibers_and_channels) for the full picture.
+A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs parallel in its own lightweight thread of execution.

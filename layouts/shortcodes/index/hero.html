@@ -9,7 +9,7 @@
         <h1 class="text-4xl sm:text-6xl font-bold tracking-tight bg-clip-text text-transparent hx-bg-gradient-to-r hx-from-gray-900 hx-to-gray-600 dark:hx-from-gray-100 dark:hx-to-gray-400">
           {{ .Get "title" | default .Page.Title | .Page.RenderString }}
         </h1>
-        <p class="mt-6 text-lg leading-8 hx-text-gray-600 dark:hx-text-gray-400">{{ .Get "subtitle" }}</p>
+        <p class="mt-6 text-lg leading-8 hx-text-gray-600 dark:hx-text-gray-400">{{ .Get "subtitle" | .Page.RenderString }}</p>
       </div>
     </div>
   </div>

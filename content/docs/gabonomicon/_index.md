@@ -2,7 +2,10 @@
 date: '2025-03-10T07:07:42-04:00'
 draft: false
 ---
-# The *gabonomicon* {{< icon "book-open">}}
+
+#
+
+## The *Gabonomicon*
 
 Welcome to gab's playfully-nicknamed documentation. This book should serve as your arcane guide to understanding gab and its inner-workings.
 It targets readers new to **gab**, with some prior experience writing code.
@@ -17,17 +20,15 @@ Additionally, documentation and developer tooling are works-in-progress. The lan
 mature.
 {{< /callout >}}
 
-# Installation
+### Installation
 
 If you haven't installed gab yet, take a look at the [installation](/docs/installation) page first. Once you're up and running, pick it back up here.
 
----
-
-# Your First Project
+## Your First Project
 
 Woohoo! gab is now installed on your system. We can now begin writing our first gab programs!
 
-## Creating a package
+### Creating a package
 
 First, we need to create what gab calls a 'package'. This is just a folder in your project! Lets call it `hello`, and add a special file `mod.gab`.
 
@@ -39,9 +40,7 @@ First, we need to create what gab calls a 'package'. This is just a folder in yo
 
 Lets add some content to `mod.gab`:
 
-```gab {filename="mod.gab"}
-'github.com/gab-language/cgab@0.1.1' .use 'Io'
-
+```gab
 'Hello, world!'.println
 ```
 
@@ -53,7 +52,7 @@ gab run hello
 # Hello, world!
 ```
 
-## Using the REPL
+### Using the REPL
 
 Running packages from the command line is useful, but not the best way to develop iteratively. gab's REPL can be an improvement!
 
@@ -68,12 +67,10 @@ Inside the REPL, try typing the same code:
 ```bash
 gab repl
   ________   ___  |
- / ___/ _ | / _ ) | v0.1.1
+ / ___/ _ | / _ ) |   v: <version>
 / (_ / __ |/ _  | |  on: x86_64-linux-gnu
 \___/_/ |_/____/  |  in: release
 
->>> 'github.com/gab-language/cgab@0.1.1'.use 'Io'
-io:
 >>> 'Hello, world!'.println
 Hello, world!
 ok:
@@ -100,7 +97,7 @@ The resulting binary can be sent to any machine of the target platform and run d
 
 For a quick bit of fun, lets compile our `hello` package to an executable. Simply run:
 ```bash
-gab build -m github.com/gab-language/cgab@0.1.1 hello
+gab build -m github.com/gab-language/cgab@<version> hello
 ```
 
 This produces a file `hello.cgab-<version>-<target>.exe`. gab chooses this name because it is cross-platform, and including the cgab version and compilation target is a hygenic practice.
@@ -114,8 +111,6 @@ That being said, this is an executable you can just run!
 
 >[!NOTE]
 >The `-m` flag adds a dependency to include in the final executable. gab doesn't make any assumptions when compiling binaries - you must define everything you want to include.
-
----
 
 Congratulations! You've run some gab code and made your own first package - even compiled a binary for distributing.
 

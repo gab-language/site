@@ -1,9 +1,10 @@
 ---
 date: '2026-04-20T10:00:44-04:00'
 draft: false
-title: 'Quirks'
 weight: 1
 ---
+
+#
 
 gab is a quirky language. It is probably similar to languages you've used in the past - but no matter where you come from (Python, Ruby, Elixir, Clojure, even Smalltalk),
 you should see some similarities and some funny-looking differences. Lets take a glance at some of the things you may find a bit weird.
@@ -13,7 +14,7 @@ you should see some similarities and some funny-looking differences. Lets take a
 To run code from another file, send the `use:` message to a string literal:
 
 ```gab
-"github.com/gab-langue/cgab@0.1.1" .use
+"github.com/gab-langue/cgab@<version>" .use
 ```
 
 The string literal receiver here is the *package* name. On the right side of the `.use`, you can optionally include a *module* name. This looks for a specific

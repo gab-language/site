@@ -1,15 +1,16 @@
 ---
-title: Error Handling
 weight: 5
 ---
 
+#
+
 gab does not have exceptions. There is no `try/catch`, no `throw`, and no stack unwinding.
 Instead, operations that can fail **return their errors as values**.
-You handle errors the same way you do anything else: by sending messages.
+Errors are handled the same way as anything else: by sending messages.
 
 ## Errors as return values
 
-A message that can fail returns multiple values. The first is a status, typically either `ok:` or `err:`. The second is either the result or an explanation of what went wrong.
+A message that can fail typically returns multiple values. The first is a status, typically either `ok:` or `err:`. The second is either the result or an explanation of what went wrong.
 
 ```gab
 (status, file) := IO.File.make('my_file.txt')
@@ -27,7 +28,7 @@ Because `ok:` and `err:` are just values, you handle them with messages. The ver
 (status, file) := IO.File.make('my_file.txt')
 
 status
-  .then(() :: file.read.println)
+  .then(() :: file.read.unwrap.println)
   .else(() :: 'Failed to open file: $!'.sprintf(file).println)
 ```
 
@@ -36,7 +37,7 @@ This means you can write the same thing as a single chain:
 
 ```gab
 IO.File.make('my_file.txt')
-  .then((file) :: file.read.println)
+  .then((file) :: file.read.unwrap.println)
   .else((msg)  :: 'Failed to open file: $!'.sprintf(msg).println)
 ```
 
@@ -57,7 +58,26 @@ If you want to pass an error up to the caller, return a tuple:
 ```gab
 read_config: .def (Strings.t, () :: do
   IO.File.make(self)
-    .then((file) :: (ok: file.read))
+    .then((file) :: (file.read)) # Since read: also returns a result, we can just return that
     .else((msg)  :: (err: 'Could not open config: $!'.sprintf(msg)))
 end)
+```
+
+## Case Study: unwrap
+
+We have seen the message `unwrap:` a couple of times - it unwraps a result and panics if it found an error. But how is it implemented?
+
+### Design
+This is actually very simple! We just need to implement the message for the successful values, and the failure ones.
+
+```gab
+[ok:] .defmodule {
+  # For ok:, simply forward all the args.
+  unwrap: (args*) :: args*
+}
+
+[none: err:] .defmodule {
+  # For none: and err:, collect the args and print them
+  unwrap: args* :: 'Failed to unwrap $ $'.panicf(self args)
+}
 ```

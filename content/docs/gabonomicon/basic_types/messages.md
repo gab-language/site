@@ -1,9 +1,10 @@
 ---
-title: Messages
 weight: 3
 ---
 
-A message is a unique value whose type is itself.
+#
+
+A message is a unique value whose type is *itself*.
 
 ## `gab\message`
 
@@ -17,11 +18,11 @@ true:
 ok:?      # :: ok:
 ```
 
-Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are gab's implementation of booleans, nil, and result values — there are no built-in keywords for any of these.
+Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are gab's implementation of booleans, nil, and result values - there are no built-in keywords for any of these.
 
 ## Defining specializations
 
-Messages responds to `def:`. This adds a new **specialization** of that message for a specific receiver type:
+Messages respond to `def:`. This adds a new **specialization** of that message for a specific receiver type:
 
 ```gab
 greet: .def (Strings.t, () :: do
@@ -30,6 +31,9 @@ end)
 
 'Alice'.greet   # :: Hello, Alice!
 ```
+
+>[!NOTE]
+>The def family of messages are not special-forms, or keywords. They are just messages, with specializations implemented by cgab itself.
 
 There are multiple ways to define messages, and it is commonplace to create your own.
 
@@ -118,3 +122,64 @@ true: .else  () :: 'no'.println    # (block is never called)
 ```
 
 `none:` is used by certain APIs to signal the absence of a result (as opposed to an error). Both are `nil:` and `none:` are just plain messages.
+
+## Case Study: defseq
+
+It is often the case that you define a [protocol](/docs/protocols), upon which you build a core set of messages. When users build their own type which implements this
+protocol, they may also want to define this core-set of messages on their type as well.
+
+For this use-case, we can write our own `def` message!
+
+### Design
+
+Here is an excerpt of `defseq` from the core library. It defines the `reduce` and `map` messages on the type its called on, using the `seq\init:` and `seq\next:` messages
+it expects to exist.
+
+This way, you can implement the `seqable` protocol for your type, and then send `defseq`, and now your type repsonds to `reduce:`, `map:`, and `filter:`!
+
+```gab
+
+# doreduce is a helper function which exhausts the seqable,
+# and applies the reducer.
+
+defseq: .def do
+  () :: [self] .defmodule {
+    reduce: (acc, r) :: do
+      (ok, seq\v, xs*) := self.seq\init
+      ok.doreduce(self, seq\v, acc, r, xs)
+    end,
+    map: f :: do
+      self.reduce([] (acc x) :: acc.cons (f.(x)))
+    end
+  }
+end
+```
+
+### Usage
+
+Lets show how to set this up for the builtin `gab\channel`.
+
+```gab
+# Implement seqable
+[Channels.t] .defmodule {
+  seq\init: _ :: do
+    (ok, xs*) := self >!
+    (ok, nil:, xs*)
+  end
+  seq\next: _ :: do
+    (ok, xs*) := self >!
+    (ok, nil:, xs*)
+  end
+}
+# Send defseq
+Channels.t.defseq
+
+# Now we can:
+ch := Channels.make
+
+# Produces some values on the channel, then closes it
+some_producer.(ch)
+
+# Use the `map:` message we defined!
+values := ch.map(v :: v.to\string)
+```

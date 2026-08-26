@@ -12,7 +12,7 @@ sidebar:
 
 {{< cards cols="2">}}
   {{< card link="docs/installation" title="Install gab" icon="download" >}}
-  {{< card link="docs/gabonomicon" title="gabonomicon" icon="book-open" >}}
+  {{< card link="docs/gabonomicon" title="Gabonomicon" icon="book-open" >}}
 {{< /cards >}}
 
 {{< /index/hero >}}
@@ -73,7 +73,7 @@ gab get github.com/gab-language/gwordle@0.1.1 gwordle@0.1.1
 # Run it!
 ./gwordle@0.1.1
 ```
-Packages and apps are automatically separated based on their versions, as well as the *gab* version they depend on. This allows you to have different versions of the same package/app, targeting different versions of cgab, and they all coexist happily.
+Packages and apps are automatically separated based on their versions, as well as the *gab* version they depend on. This allows developers and users to have different versions of the same package/app, targeting different versions of cgab, and they all coexist happily.
 {{< /index/feature-card >}}
 
 {{< index/feature-card title="Batteries Included" icon="battery-100">}}
@@ -102,3 +102,17 @@ events
 {{< /index/feature-card >}}
 
 {{< /index/features >}}
+
+{{< index/hero
+    title=""
+    subtitle="" 
+>}}
+
+{{< cards cols="3">}}
+  {{< card link="docs/installation" title="Install gab" icon="download" >}}
+  {{< card link="docs/gabonomicon" title="Gabonomicon" icon="book-open" >}}
+  {{< card link="docs/gabonomicon/examples" title="Examples" icon="pencil" >}}
+  {{< card link="blog" title="News" icon="mail" >}}
+{{< /cards >}}
+
+{{< /index/hero >}}
