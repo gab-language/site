@@ -15,9 +15,7 @@ check out the blog.
 
 {{< callout type="warning" >}}
 While the language is relatively stable, gab's runtime and libraries are still under construction.
-Expect bugs and the occasional api change as things settle down. I wouldn't consider gab production-ready just yet.
-Additionally, documentation and developer tooling are works-in-progress. The language may be hard to use until these become more
-mature.
+Expect bugs and the occasional api change as things settle down. Additionally, documentation and developer tooling are works-in-progress.
 {{< /callout >}}
 
 ### Installation
@@ -26,11 +24,11 @@ If you haven't installed gab yet, take a look at the [installation](/docs/instal
 
 ## Your First Project
 
-Woohoo! gab is now installed on your system. We can now begin writing our first gab programs!
+Woohoo! gab is now installed on your system. You can now begin writing your first gab programs!
 
 ### Creating a package
 
-First, we need to create what gab calls a 'package'. This is just a folder in your project! Lets call it `hello`, and add a special file `mod.gab`.
+First, you need to create what gab calls a 'package'. This is just a folder in your project! Let's call it `hello`, and add a special file `mod.gab`.
 
 {{< filetree/container >}}
   {{< filetree/folder name="hello" >}}
@@ -38,13 +36,13 @@ First, we need to create what gab calls a 'package'. This is just a folder in yo
   {{< /filetree/folder >}}
 {{< /filetree/container >}}
 
-Lets add some content to `mod.gab`:
+Let's add some content to `mod.gab`:
 
 ```gab
 'Hello, world!'.println
 ```
 
-And we run it with:
+And you run it with:
 
 ```sh
 gab run hello
@@ -79,7 +77,7 @@ ok:
 Use this to tweak and iterate.
 
 >[!NOTE]
->Editor tooling for gab is a WIP. We plan to build both an LSP and an nREPL server for integrating with multiple clients.
+>Editor tooling for gab is a WIP. There are plans to build both an LSP and an nREPL server for integrating with multiple clients.
 
 ## Building a Standalone Executable
 
@@ -95,7 +93,7 @@ gab build -t x86_64-linux-gnu -m my,deps my_project
 
 The resulting binary can be sent to any machine of the target platform and run directly, without installing anything on the host.
 
-For a quick bit of fun, lets compile our `hello` package to an executable. Simply run:
+For a quick bit of fun, let's compile your `hello` package to an executable. Simply run:
 ```bash
 gab build -m github.com/gab-language/cgab@<version> hello
 ```
@@ -114,4 +112,4 @@ That being said, this is an executable you can just run!
 
 Congratulations! You've run some gab code and made your own first package - even compiled a binary for distributing.
 
-Continue in the gabonomicon to learn more deeply about the language.
+Continue in the Gabonomicon to learn more deeply about the language.

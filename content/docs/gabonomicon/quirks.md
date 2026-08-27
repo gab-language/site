@@ -18,7 +18,7 @@ To run code from another file, send the `use:` message to a string literal:
 ```
 
 The string literal receiver here is the *package* name. On the right side of the `.use`, you can optionally include a *module* name. This looks for a specific
-module within the given package. This is how we imported the builtin `Io` module earlier!
+module within the given package. This is how you imported the builtin `Io` module earlier!
 
 gab searches known locations for a matching package folder. If the package is found, gab searches the package for a matching module, loads it, and executes it.
 If no module was specified, gab searches for the default `mod.gab` module, and executes it.
@@ -96,7 +96,7 @@ Channels can be closed with `close:` to cancel current operations and prevent fu
 
 ## Putting It All Together
 
-Let’s combine what we’ve learned into a simple producer-consumer example. This is a common pattern you'll use in gab programs.
+Let’s combine what you’ve learned into a simple producer-consumer example. This is a common pattern you'll use in gab programs.
 
 ```gab
 # Imports excluded for brevity.

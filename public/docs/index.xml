@@ -35,7 +35,7 @@ you should see some similarities and some funny-looking differences. Lets take a
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;The string literal receiver here is the &lt;em&gt;package&lt;/em&gt; name. On the right side of the &lt;code&gt;.use&lt;/code&gt;, you can optionally include a &lt;em&gt;module&lt;/em&gt; name. This looks for a specific
-module within the given package. This is how we imported the builtin &lt;code&gt;Io&lt;/code&gt; module earlier!&lt;/p&gt;
+module within the given package. This is how you imported the builtin &lt;code&gt;Io&lt;/code&gt; module earlier!&lt;/p&gt;
 &lt;p&gt;gab searches known locations for a matching package folder. If the package is found, gab searches the package for a matching module, loads it, and executes it.
 If no module was specified, gab searches for the default &lt;code&gt;mod.gab&lt;/code&gt; module, and executes it.&lt;/p&gt;
 &lt;h2&gt;Messages&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;messages&#34;&gt;&lt;/span&gt;
@@ -105,7 +105,7 @@ msg.println
 &lt;p&gt;Channels are &lt;strong&gt;unbuffered&lt;/strong&gt; and &lt;strong&gt;rendezvous-based&lt;/strong&gt; — both sides must meet for a transfer to occur.&lt;/p&gt;
 &lt;p&gt;Channels can be closed with &lt;code&gt;close:&lt;/code&gt; to cancel current operations and prevent future ones.&lt;/p&gt;
 &lt;h2&gt;Putting It All Together&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;putting-it-all-together&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#putting-it-all-together&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Let’s combine what we’ve learned into a simple producer-consumer example. This is a common pattern you&amp;rsquo;ll use in gab programs.&lt;/p&gt;
+    &lt;a href=&#34;#putting-it-all-together&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Let’s combine what you’ve learned into a simple producer-consumer example. This is a common pattern you&amp;rsquo;ll use in gab programs.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
@@ -2684,14 +2684,54 @@ ch.&gt;! .println    # dot prefix — binds tighter, result chains into .println
     
     <item>
       <title></title>
-      <link>/docs/modules/atoms/</link>
+      <link>/docs/modules/atom/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/modules/atoms/</guid>
+      <guid>/docs/modules/atom/</guid>
       <description>
         
         
-        
+        &lt;h2&gt;atom&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;atom&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#atom&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Channel[predicate\unknown]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;An atom is simply a channel. It holds values over time.&lt;/p&gt;
+&lt;h2&gt;make&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;make&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#make&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+atom.make: () :: atom
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Create an atom&lt;/p&gt;
+&lt;h2&gt;atom\deref&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;atomderef&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#atomderef&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+atom.atom\deref: () :: unknown
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Retrieve the value in the atom.&lt;/p&gt;
+&lt;h2&gt;atom\swap&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;atomswap&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#atomswap&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+atom.atom\swap: unknown :: unknown :: unknown
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Atomically update the value in the atom with an update-block.&lt;/p&gt;
+&lt;h2&gt;atom\reset&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;atomreset&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#atomreset&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+atom.atom\reset: () :: ()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Atomically reset the value in the atom to a given value.&lt;/p&gt;
+
       </description>
     </item>
     
@@ -2864,10 +2904,28 @@ returns &lt;code&gt;none:&lt;/code&gt;.&lt;/p&gt;
     &lt;a href=&#34;#dbrow&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-Box[dbow]
+Box[db\row]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;A connection to a row-based database. This implementation wraps sqlite.&lt;/p&gt;
+&lt;h2&gt;stmt&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;stmt&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#stmt&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+Box[db\row\stmt]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;A compiled sql statement.&lt;/p&gt;
+&lt;p&gt;Implements the seqable protocol.&lt;/p&gt;
+&lt;h2&gt;query&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;query&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#query&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+dbrow.query: string :: (success ok: | failure (status err:, message string))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Compile the input query (really, this can be any statement).&lt;/p&gt;
+&lt;p&gt;Returns an error if compilation fails.&lt;/p&gt;
 &lt;h2&gt;eval&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;eval&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#eval&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
@@ -3701,7 +3759,7 @@ socket.connect: (default (address string, port int) | tls (address string, port 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Connect to an address. This turns a socket into a client socket.&lt;/p&gt;
-&lt;p&gt;For ssl clients, gab bundles a public mozilla client certificate chain, so the &amp;lsquo;certificate&amp;rsquo;
+&lt;p&gt;For ssl clients, Gab bundles a public mozilla client certificate chain, so the &amp;lsquo;certificate&amp;rsquo;
 argument is optional.&lt;/p&gt;
 &lt;h2&gt;stream\send&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;streamsend&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#streamsend&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;

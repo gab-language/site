@@ -56,7 +56,7 @@ socket.connect: (default (address string, port int) | tls (address string, port 
 
   Connect to an address. This turns a socket into a client socket.
 
-  For ssl clients, gab bundles a public mozilla client certificate chain, so the 'certificate'
+  For ssl clients, Gab bundles a public mozilla client certificate chain, so the 'certificate'
   argument is optional.
   
 
