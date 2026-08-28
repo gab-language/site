@@ -14,12 +14,12 @@ Download the archive that matches your platform:
 
 | Platform | Architecture | File |
 |---|---|---|
-| macOS | x86-64 | [gab-x86-64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.5-x86_64-macos-none.exe) |
-| macOS | arm 64 | [gab-aarch64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.5-aarch64-macos-none.exe) |
-| Windows | x86-64 | [gab-x86-64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.5-x86_64-windows-gnu.exe) |
-| Windows | arm 64 | [gab-aarch64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.5-aarch64-windows-gnu.exe) |
-| Linux | x86-64 | [gab-x86-64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.5-x86_64-linux-gnu.exe) |
-| Linux | arm 64 | [gab-aarch64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.5-aarch64-linux-gnu.exe) |
+| macOS | x86-64 | [gab-x86-64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.6-x86_64-macos-none.exe) |
+| macOS | arm 64 | [gab-aarch64-macos](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.6-aarch64-macos-none.exe) |
+| Windows | x86-64 | [gab-x86-64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.6-x86_64-windows-gnu.exe) |
+| Windows | arm 64 | [gab-aarch64-windows](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.6-aarch64-windows-gnu.exe) |
+| Linux | x86-64 | [gab-x86-64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.6-x86_64-linux-gnu.exe) |
+| Linux | arm 64 | [gab-aarch64-linux](https://github.com/gab-language/cgab/releases/latest/download/gab-cgab-0.1.6-aarch64-linux-gnu.exe) |
 
 > [!WARNING]
 > On certain platforms (Linux, macOS), the executable you just downloaded (`gab-<your_target>`) will need to be marked as executable in order to run it.
