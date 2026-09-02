@@ -13,3 +13,13 @@
     <!: .def (Files.t, (line) => self.stream\send(line + '\n'))
   ```
   
+
+## sink
+```gab
+sinkable.<!: datum unknown :: (success (status ok:, value unknown) | error (status err:, message string))
+```
+
+  Perform some side-effecting action to consume a datum.
+  
+  Since a side-effect is performed (which may fail or present no data), this message returns a result.
+  

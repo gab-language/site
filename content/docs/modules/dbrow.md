@@ -18,7 +18,7 @@ Box[db\row\stmt]
 
 ## stmt\source
 ```gab
-dbrow\stmt.>!: () :: (some (status ok:, value unknown) | none none:)
+sourceable.>!: () :: (success (status ok:, value unknown) | error (status err:, message string) | none none:)
 ```
 
   Lazily produce the next row from the query.
@@ -28,7 +28,7 @@ dbrow\stmt.>!: () :: (some (status ok:, value unknown) | none none:)
 
 ## stmt\seq\init
 ```gab
-dbrow\stmt.seq\init: () :: (some (status ok:, value unknown) | none none:)
+seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done none:)
 ```
 
   Begin iterating the result rows of a query. Lazily produces rows as requested.
@@ -40,7 +40,7 @@ dbrow\stmt.seq\init: () :: (some (status ok:, value unknown) | none none:)
 
 ## stmt\seq\next
 ```gab
-dbrow\stmt.seq\next: () :: (some (status ok:, value unknown) | none none:)
+seqable.seq\init: () :: (next (status ok:, key unknown, values *unknown) | done none:)
 ```
 
   Continue iterating the result rows of a query. Lazily produces rows as requested.
@@ -52,7 +52,7 @@ dbrow\stmt.seq\next: () :: (some (status ok:, value unknown) | none none:)
 
 ## query
 ```gab
-dbrow.query: string :: (success ok: | failure (status err:, message string))
+dbrow.query: string :: (success (status ok:, value *unknown) | failure (status err:, message string))
 ```
 
   Compile the input query (really, this can be any statement).

@@ -90,13 +90,13 @@ Ui.run(gui: events app)
 events
   .pipe(
     app,
-    Streams.take_until((e t key) :: do
+    Transducers.take_until((e t key) :: do
       (e == key:) & ((key == "escape") | (key == "q"))
     end)
-    |> Streams.reduce(
+    |> Transducers.reduce(
       model
       (app, args*) :: app.app\controller(args*))
-    |> Streams.map(app :: app.app\view)
+    |> Transducers.map(app :: app.app\view)
   )
 ```
 {{< /index/feature-card >}}

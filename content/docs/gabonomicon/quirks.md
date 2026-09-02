@@ -133,3 +133,5 @@ end
 ```
 
 That’s it — you’ve written your first gab program, used the REPL, spawned fibers, and passed messages through channels.
+
+To learn more about gab, continue with the [language tour](/docs/gabonomicon/tour) in *the gabonomicon*. Otherwise, get hacking and peruse the documentation for gab's builtin [modules](/docs/modules) and [protocols](/docs/protocols). 

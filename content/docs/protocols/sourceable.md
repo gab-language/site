@@ -25,3 +25,14 @@
     }
   ```
   
+
+## source
+```gab
+sourceable.>!: () :: (success (status ok:, value unknown) | error (status err:, message string) | none none:)
+```
+
+  Perform some side-effecting action to obtain a datum.
+  
+  Since a side-effect is performed (which may fail or present no data),
+  this message returns a result or option.
+  

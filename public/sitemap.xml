@@ -81,9 +81,9 @@
   </url><url>
     <loc>/docs/modules/fiber/</loc>
   </url><url>
-    <loc>/docs/modules/file/</loc>
-  </url><url>
     <loc>/docs/modules/http/</loc>
+  </url><url>
+    <loc>/docs/modules/io/</loc>
   </url><url>
     <loc>/docs/modules/json/</loc>
   </url><url>
@@ -92,8 +92,6 @@
     <loc>/docs/modules/record/</loc>
   </url><url>
     <loc>/docs/modules/shape/</loc>
-  </url><url>
-    <loc>/docs/modules/socket/</loc>
   </url><url>
     <loc>/docs/modules/string/</loc>
   </url><url>
