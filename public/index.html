@@ -1130,19 +1130,17 @@
 gab provides the building blocks for the same model which inspires golang, erlang, and many others.</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
-<!--gab--><pre><code>
-ch := Channels.make
-
-Fibers.make () :: do
-    ch <! "Hello"
-    ch <! "world"
-end
-
-msg := Strings.make(ch >!, " ", ch >!)
-
-msg.println
-</code></pre>
-</div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>ch <span style='font-weight: bold;color: #cba6f8'>:=</span> Channels<span style='font-weight: bold;color: #89dcec'>.make</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>Fibers<span style='font-weight: bold;color: #89dcec'>.make</span> <span style='color: #9399b3'>(</span><span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #cba6f8'>::</span> <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
+<span sytle="display:flex"><span>    ch <span style='font-weight: bold;color: #89dcec'>&lt;!</span> <span style='color: #a6e3a2'>&quot;Hello&quot;</span></span></span>
+<span sytle="display:flex"><span>    ch <span style='font-weight: bold;color: #89dcec'>&lt;!</span> <span style='color: #a6e3a2'>&quot;world&quot;</span></span></span>
+<span sytle="display:flex"><span><span style='font-weight: bold;color: #cba6f8'>end</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>msg <span style='font-weight: bold;color: #cba6f8'>:=</span> Strings<span style='font-weight: bold;color: #89dcec'>.make</span><span style='color: #9399b3'>(</span>ch <span style='font-weight: bold;color: #89dcec'>&gt;!</span>, <span style='color: #a6e3a2'>&quot; &quot;</span>, ch <span style='font-weight: bold;color: #89dcec'>&gt;!</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>msg<span style='font-weight: bold;color: #89dcec'>.println</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div></div>
     </dd>
 </div>
 
@@ -1158,16 +1156,14 @@ msg.println
         <p>A builtin, asynchronous <code>Io</code> module means your gab program will <em>never</em> block an os thread waiting on i/o. (And you can forget about that <strong>async</strong> keyword while you&rsquo;re at it)</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
-<!--gab--><pre><code>
-# Launch many fibers to perform some background work.
-launch_workers.()
-
-# Work is done on *this thread* for other fibers while waiting for the write to finish.
-file.write(a_really_long_binary)
-
-'Hurray!'.println
-</code></pre>
-</div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span><span style='font-style: italic;color: #9399b3'># Launch many fibers to perform some background work.</span></span></span>
+<span sytle="display:flex"><span>launch_workers<span style='font-weight: bold;color: #89dcec'>.</span><span style='color: #9399b3'>(</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='font-style: italic;color: #9399b3'># Work is done on *this thread* for other fibers while waiting for the write to finish.</span></span></span>
+<span sytle="display:flex"><span>file<span style='font-weight: bold;color: #89dcec'>.write</span><span style='color: #9399b3'>(</span>a_really_long_binary<span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='color: #a6e3a2'>&#39;Hurray!&#39;</span><span style='font-weight: bold;color: #89dcec'>.println</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div></div>
     </dd>
 </div>
 
@@ -1249,27 +1245,25 @@ file.write(a_really_long_binary)
         <p>The standard library ships with a growing number of useful modules. Beyond those you&rsquo;d expect like <code>Json</code> or <code>Io</code>, gab includes <code>Ui</code>: an elm-inspired module for building cross platform graphical/terminal applications.</p>
 <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
 
-<!--gab--><pre><code>
-Ui := 'github.com/gab-language/cgab@0.1.4' .use 'cui'
-
-(events, app) := (Channels.make, Channels.make)
-
-Ui.run(gui: events app)
-  .unwrap
-
-events
-  .pipe(
-    app,
-    Transducers.take_until((e t key) :: do
-      (e == key:) & ((key == "escape") | (key == "q"))
-    end)
-    |> Transducers.reduce(
-      model
-      (app, args*) :: app.app\controller(args*))
-    |> Transducers.map(app :: app.app\view)
-  )
-</code></pre>
-</div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;padding-left:2rem;"><span sytle="display:flex"><span>Ui <span style='font-weight: bold;color: #cba6f8'>:=</span> <span style='color: #a6e3a2'>&#39;github.com/gab-language/cgab@0.1.4&#39;</span> <span style='font-weight: bold;color: #89dcec'>.use</span> <span style='color: #a6e3a2'>&#39;cui&#39;</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span><span style='color: #9399b3'>(</span>events, app<span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #cba6f8'>:=</span> <span style='color: #9399b3'>(</span>Channels<span style='font-weight: bold;color: #89dcec'>.make</span>, Channels<span style='font-weight: bold;color: #89dcec'>.make</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>Ui<span style='font-weight: bold;color: #89dcec'>.run</span><span style='color: #9399b3'>(</span><span style='color: #f9e2b0'>gui:</span> events app<span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span>  <span style='font-weight: bold;color: #89dcec'>.unwrap</span></span></span>
+<span sytle="display:flex"><span></span></span>
+<span sytle="display:flex"><span>events</span></span>
+<span sytle="display:flex"><span>  <span style='font-weight: bold;color: #89dcec'>.pipe</span><span style='color: #9399b3'>(</span></span></span>
+<span sytle="display:flex"><span>    app,</span></span>
+<span sytle="display:flex"><span>    Transducers<span style='font-weight: bold;color: #89dcec'>.take_until</span><span style='color: #9399b3'>(</span><span style='color: #9399b3'>(</span>e t key<span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #cba6f8'>::</span> <span style='font-weight: bold;color: #cba6f8'>do</span></span></span>
+<span sytle="display:flex"><span>      <span style='color: #9399b3'>(</span>e <span style='font-weight: bold;color: #89dcec'>==</span> <span style='color: #f9e2b0'>key:</span><span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #89dcec'>&amp;</span> <span style='color: #9399b3'>(</span><span style='color: #9399b3'>(</span>key <span style='font-weight: bold;color: #89dcec'>==</span> <span style='color: #a6e3a2'>&quot;escape&quot;</span><span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #89dcec'>|</span> <span style='color: #9399b3'>(</span>key <span style='font-weight: bold;color: #89dcec'>==</span> <span style='color: #a6e3a2'>&quot;q&quot;</span><span style='color: #9399b3'>)</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #cba6f8'>end</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #89dcec'>|&gt;</span> Transducers<span style='font-weight: bold;color: #89dcec'>.reduce</span><span style='color: #9399b3'>(</span></span></span>
+<span sytle="display:flex"><span>      model</span></span>
+<span sytle="display:flex"><span>      <span style='color: #9399b3'>(</span>app, args<span style='font-weight: bold;color: #89dcec'>*</span><span style='color: #9399b3'>)</span> <span style='font-weight: bold;color: #cba6f8'>::</span> app<span style='font-weight: bold;color: #89dcec'>.app\controller</span><span style='color: #9399b3'>(</span>args<span style='font-weight: bold;color: #89dcec'>*</span><span style='color: #9399b3'>)</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span>    <span style='font-weight: bold;color: #89dcec'>|&gt;</span> Transducers<span style='font-weight: bold;color: #89dcec'>.map</span><span style='color: #9399b3'>(</span>app <span style='font-weight: bold;color: #cba6f8'>::</span> app<span style='font-weight: bold;color: #89dcec'>.app\view</span><span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span>  <span style='color: #9399b3'>)</span></span></span>
+<span sytle="display:flex"><span></span></span></pre></div></div>
     </dd>
 </div>
 
