@@ -19,8 +19,8 @@ bob := { name: 'bob', age: 44 }
 Access values using message sends:
 
 ```gab
-bob.name  # :: 'bob'
-bob.age   # :: 44
+bob.name  #  'bob'
+bob.age   #  44
 ```
 
 If the message doesn't exist as a key in the record, gab will panic with `MISSING SPECIALIZATION`. If you're not sure the key exists, try:
@@ -36,7 +36,7 @@ Square-bracket syntax creates **list-style** records, where the keys are implici
 
 ```gab
 colors := ['red', 'green', 'blue']
-colors.at(0).unwrap  # :: 'red'
+colors.at(0).unwrap  #  'red'
 ```
 
 Both *Dictionaries* and *Lists* share the `gab\record` type.
@@ -50,8 +50,8 @@ bob := { name: 'bob', age: 44 }
 
 alice := bob.put(name: 'alice')
 
-bob    # :: { name: 'bob', age: 44 }
-alice  # :: { name: 'alice', age: 44 }
+bob    #  { name: 'bob', age: 44 }
+alice  #  { name: 'alice', age: 44 }
 ```
 
 gab's immutable record is implemented as a Hash-Array-Mapped Trie, a persistent data structure used by many functional languages. `put` operations essentially create **diffs**, which allow records to share the data that didn't change.
@@ -63,24 +63,24 @@ Records are especially unique for their type. Before we can discuss what this me
 Every value in gab has a **type**, which you can inspect with the `?` message. For most values, `?` returns a string describing the type:
 
 ```gab
-'hello' ?  # :: 'gab\string'
-44 ?       # :: 'gab\number'
+'hello' ?  #  'gab\string'
+44 ?       #  'gab\number'
 ```
 
 Message values are their own type — `?` on a message returns the message itself:
 
 ```gab
-ok: ?  # :: ok:
+ok: ?  #  ok:
 ```
 
 A record's type is its **shape**. This is a separate value that describes the record's keys:
 
 ```gab
 { name: 'bob', age: 44 } ?
-# :: <gab\shape name: age:>
+#  <gab\shape name: age:>
 
 ['red', 'green', 'blue'] ?
-# :: <gab\shape 0: 1: 2:>
+#  <gab\shape 0: 1: 2:>
 ```
 
 All records with the same keys in the same order share the same shape. It follows that any two records with the same shape therefore *have the same type*.
@@ -110,9 +110,9 @@ Now any record with the keys `name:` and `age:` responds to `birthday:`:
 ```gab
 bob := { name: 'bob', age: 44 }
 bob := bob.birthday
-# :: Happy Birthday, bob!
+#  Happy Birthday, bob!
 
-bob.age  # :: 45
+bob.age  #  45
 ```
 
 Notice that `birthday` returns a new record (with `age` incremented) — it doesn't mutate `bob` in place. To "update" bob, you simply rebind the name.
@@ -130,5 +130,5 @@ end)
 
 p := { x: 10 y: 10 }
 p := p + (5, 15)
-# :: { x: 15, y: 25 }
+#  { x: 15, y: 25 }
 ```

@@ -1,5 +1,5 @@
 ---
-weight: 1
+weight: 3
 ---
 
 #
@@ -14,17 +14,17 @@ Sending messages to values is the foundation of gab programs. It looks just like
 
 ```gab
 'hello'.println
-# :: hello
+# hello
 
 ['cat', 'dog', 'bird'].len
-# :: 3
+# 3
 ```
 
 The **value** on the left receives the **message** on the right. The message may produce a result, which you can immediately send another message to. This is called **chaining**:
 
 ```gab
 ['Hello', ' ', 'world!'].join.println
-# :: Hello world!
+# Hello world!
 ```
 
 ## Two forms of message send
@@ -41,7 +41,7 @@ A **named send** is a `.` followed by one or more letters, underscores, or numbe
 An **operator send** uses a sequence of operator characters (`+`, `-`, `*`, `/`, `<`, `>`, `!`, `<!`, and others):
 
 ```gab
-10 + 5      # :: 15
+10 + 5      # 15
 channel <! 'value'
 ```
 
@@ -53,7 +53,7 @@ Like the operators above, some messages may take arguments. Arguments are whatev
 
 ```gab
 'Hello, $!' .sprintf 'world' .println
-# :: Hello, world
+# Hello, world
 ```
 
 Here, `sprintf` is a message sent to the string `'Hello, $!'`. It replaces each `$` in the string with the corresponding arguments. The result is then sent the `println` message.
@@ -63,7 +63,7 @@ You can pass multiple arguments by wrapping consecutive expressions in `()`, cal
 ```gab
 result := Strings.make('Hello' ', ' 'world!')
 result.println
-# :: Hello, world!
+# Hello, world!
 ```
 
 ## Tuples
@@ -95,7 +95,7 @@ greet: .def (Strings.t, () :: do
 end)
 
 'Alice'.greet
-# :: Hello, Alice!
+# Hello, Alice!
 ```
 
 `def:` takes two arguments: the **receiver type** and a **block** containing the implementation. Here, `Strings.t` is the conventional way to refer to the string type — it is a message sent to the `Strings` module that returns the type upon which new string messages should be defined. Using `Strings.t` rather than a bare type name is a convention you'll see throughout gab's standard library, and one you should follow in your own modules.

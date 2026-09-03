@@ -26,21 +26,21 @@ List-style records use increasing integer keys starting from zero. They are cons
 
 ```gab
 a_list := [1 2 3]
-a_list   # :: [1, 2, 3]
+a_list   #  [1, 2, 3]
 ```
 
 A list can also be constructed using explicit integer keys in dictionary syntax. gab recognises the shape and still displays it as a list:
 
 ```gab
 a_list := { 0 1, 1 2, 2 3 }
-a_list   # :: [1, 2, 3]
+a_list   #  [1, 2, 3]
 ```
 
 The `is\list:` message is used to determine if a given record is a list.
 
 ```gab
-[1 2].is\list # :: true:
-{ name: 'Rich' }.is\list # :: false:
+[1 2].is\list #  true:
+{ name: 'Rich' }.is\list #  false:
 ```
 
 >[!NOTE]
@@ -53,7 +53,7 @@ Adding an out-of-order or non-integer key to a list transforms it into a diction
 ```gab
 a_list := [1 2 3]
 a_list := a_list.put(name: 'bob')
-# :: { 0: 1, 1: 2, 2: 3, name: 'bob' }
+#  { 0: 1, 1: 2, 2: 3, name: 'bob' }
 ```
 
 Conversely, *removing* such a key transforms the dictionary back into a list (if all the remaining keys are now properly list-like)

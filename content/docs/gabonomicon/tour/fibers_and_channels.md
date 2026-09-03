@@ -147,15 +147,15 @@ Usage:
 ```gab
 counter := Atom.make(0)
 
-counter.deref         # :: 0
+counter.deref         #  0
 
 counter.swap((n) :: n + 1)
 counter.swap((n) :: n + 1)
 
-counter.deref         # :: 2
+counter.deref         #  2
 
 counter.reset(100)
-counter.deref         # :: 100
+counter.deref         #  100
 ```
 
 ### Takeaways

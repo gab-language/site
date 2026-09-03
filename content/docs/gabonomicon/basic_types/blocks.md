@@ -10,7 +10,7 @@ A block is a function that captures its surrounding scope. Blocks are values: th
 
 ```gab
 square := (x) :: x * x
-square.(4)   # :: 16
+square.(4)   #  16
 ```
 
 >[!NOTE]
@@ -33,8 +33,8 @@ first_and_rest := (first, rest*) :: do
 end
 
 first_and_rest.(1, 2, 3, 4)
-# :: First: 1
-# :: Rest: [2, 3, 4]
+#  First: 1
+#  Rest: [2, 3, 4]
 ```
 
 Because position determines what `*` absorbs, it can appear anywhere in the binding list:
@@ -51,7 +51,7 @@ The `*` message inverts this — it splats a list's values back out into a posit
 
 ```gab
 args := [1, 2, 3]
-args*   # :: (1, 2, 3)
+args*   #  (1, 2, 3)
 ```
 
 Together they compose to forward all of a block's arguments, unchanged.
@@ -76,7 +76,7 @@ A `**` suffix collects a run of positional arguments and interprets them as **al
 The `**` operator on a record is the inverse — it splats a record's key-value pairs back out as a positional sequence of alternating keys and values:
 
 ```gab
-{ a: 'b', c: 'd' } **   # :: (a: 'b', c: 'd')
+{ a: 'b', c: 'd' } **   #  (a: 'b', c: 'd')
 ```
 
 >[!NOTE]

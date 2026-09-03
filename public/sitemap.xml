@@ -9,7 +9,7 @@
   </url><url>
     <loc>/docs/gabonomicon/examples/kv_store/</loc>
   </url><url>
-    <loc>/docs/gabonomicon/tour/messages/</loc>
+    <loc>/docs/gabonomicon/tour/blocks/</loc>
   </url><url>
     <loc>/docs/installation/</loc>
   </url><url>
@@ -27,7 +27,7 @@
   </url><url>
     <loc>/docs/gabonomicon/basic_types/records/</loc>
   </url><url>
-    <loc>/docs/gabonomicon/tour/blocks/</loc>
+    <loc>/docs/gabonomicon/tour/messages/</loc>
   </url><url>
     <loc>/docs/gabonomicon/examples/pubsub/</loc>
   </url><url>

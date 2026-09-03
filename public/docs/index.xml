@@ -44,10 +44,10 @@ If no module was specified, gab searches for the default &lt;code&gt;mod.gab&lt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 1 + 2
-# :: 3
+#  3
 
 4 .+ 5
-# :: 20
+#  20
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Even control flow uses messages. You’ll learn more about &lt;code&gt;defcase&lt;/code&gt;, &lt;code&gt;then:&lt;/code&gt;, and &lt;code&gt;else:&lt;/code&gt; later. Until then, here is a peek:&lt;/p&gt;
@@ -57,7 +57,7 @@ If no module was specified, gab searches for the default &lt;code&gt;mod.gab&lt;
 true: .then () :: do
   &#34;It’s true!&#34; .println
 end
-# :: It’s true!
+#  It’s true!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Messages are also &lt;em&gt;values&lt;/em&gt; in gab. The funky syntax you see for &lt;code&gt;true:&lt;/code&gt; above is actually a &lt;em&gt;message value&lt;/em&gt;. This is how gab implements, booleans and nil/null.&lt;/p&gt;
@@ -69,8 +69,8 @@ end
 x := [1 2 3]
 y := x.cons(4)
 
-x.println # :: [1, 2, 3]
-y.println # :: [1, 2, 3, 4]
+x.println #  [1, 2, 3]
+y.println #  [1, 2, 3, 4]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Immutability forces programmers to write code which operates on values instead of state. This actually makes programming easier!&lt;/p&gt;
@@ -99,7 +99,7 @@ end
 
 msg := ch &gt;!
 msg.println
-# :: ping
+#  ping
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Channels are &lt;strong&gt;unbuffered&lt;/strong&gt; and &lt;strong&gt;rendezvous-based&lt;/strong&gt; — both sides must meet for a transfer to occur.&lt;/p&gt;
@@ -168,7 +168,7 @@ end
 1.2e4
 0.2
 
-3.14?   # :: gab\number
+3.14?   #  gab\number
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;blockquote&gt;
@@ -180,11 +180,11 @@ end
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-10 + 3   # :: 13
-10 - 3   # :: 7
-10 * 3   # :: 30
-10 / 3   # :: 3.33333
-10 % 3   # :: 1
+10 + 3   #  13
+10 - 3   #  7
+10 * 3   #  30
+10 / 3   #  3.33333
+10 % 3   #  1
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;Bitwise operations and 53-bit integers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;bitwise-operations-and-53-bit-integers&#34;&gt;&lt;/span&gt;
@@ -192,18 +192,18 @@ end
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-1 &lt;&lt; 52   # :: -4.5036e+15
-1 &lt;&lt; 53   # :: 0
+1 &lt;&lt; 52   #  -4.5036e+15
+1 &lt;&lt; 53   #  0
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;The standard bitwise operators:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-4 &amp; 6    # :: 4   (AND)
-4 | 2    # :: 6   (OR)
-4 &lt;&lt; 1   # :: 8   (left shift)
-4 &gt;&gt; 1   # :: 2   (right shift)
+4 &amp; 6    #  4   (AND)
+4 | 2    #  6   (OR)
+4 &lt;&lt; 1   #  8   (left shift)
+4 &gt;&gt; 1   #  2   (right shift)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;Bit-shifting edge cases&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;bit-shifting-edge-cases&#34;&gt;&lt;/span&gt;
@@ -212,24 +212,24 @@ end
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-4 &gt;&gt; -1   # :: 8
-4 &lt;&lt; -1   # :: 2
+4 &gt;&gt; -1   #  8
+4 &lt;&lt; -1   #  2
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Shifting by more than 52&lt;/strong&gt; returns zero:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-4 &gt;&gt; 65   # :: 0
-4 &lt;&lt; 65   # :: 0
+4 &gt;&gt; 65   #  0
+4 &lt;&lt; 65   #  0
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Shifting negative integers&lt;/strong&gt; follows Lua&amp;rsquo;s semantics: the shift is performed on the unsigned bit representation, then converted back. This means right-shifting a negative number does not preserve the sign bit — it produces a large positive number:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
--4 &gt;&gt; 1   # :: 9223372036854775806
--4 &lt;&lt; 1   # :: -8
+-4 &gt;&gt; 1   #  9223372036854775806
+-4 &lt;&lt; 1   #  -8
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;This is asymmetric but is the most efficient implementation, and shifting negative integers is uncommon enough that the trade-off is worthwhile.&lt;/p&gt;
@@ -374,24 +374,24 @@ store.store\set(&#39;version&#39;, &#39;0.1.1&#39;)
 store.store\get(&#39;name&#39;)
   .then((val) :: &#39;name is: $&#39;.sprintf(val).println)
   .else(()    :: &#39;not found&#39;.println)
-# :: name is: gab
+#  name is: gab
 
 # Overwrite
 store.store\set(&#39;name&#39;, &#39;cgab&#39;)
 store.store\get(&#39;name&#39;)
   .then((val) :: val.println)
-# :: cgab
+#  cgab
 
 # Delete
 store.store\delete(&#39;version&#39;)
 store.store\get(&#39;version&#39;)
   .else(() :: &#39;not found&#39;.println)
-# :: not found
+#  not found
 
 # Missing key
 store.store\get(&#39;missing&#39;)
   .else(() :: &#39;not found&#39;.println)
-# :: not found
+#  not found
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;Parallel access&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;parallel-access&#34;&gt;&lt;/span&gt;
@@ -484,131 +484,148 @@ Stores
     
     <item>
       <title></title>
-      <link>/docs/gabonomicon/tour/messages/</link>
+      <link>/docs/gabonomicon/tour/blocks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/gabonomicon/tour/messages/</guid>
+      <guid>/docs/gabonomicon/tour/blocks/</guid>
       <description>
         
         
-        &lt;h1&gt;&lt;/h1&gt;&lt;p&gt;In most languages, control flow is driven by keywords: &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;, &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;switch&lt;/code&gt;. gab has none of these. Instead, everything is accomplished by &lt;strong&gt;sending messages to values&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;If you&amp;rsquo;ve used Ruby or Smalltalk, this will feel familiar. If you haven&amp;rsquo;t, don&amp;rsquo;t worry — it&amp;rsquo;s a simple idea with surprisingly powerful implications.&lt;/p&gt;
-&lt;h2&gt;Sending a message&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;sending-a-message&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#sending-a-message&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Sending messages to values is the foundation of gab programs. It looks just like a method call:&lt;/p&gt;
+        &lt;h1&gt;&lt;/h1&gt;&lt;p&gt;A &lt;strong&gt;block&lt;/strong&gt; is gab&amp;rsquo;s name for a closure - an anonymous function that can capture values from its surrounding scope. Blocks are values: you can store them in records, pass them as arguments to messages, and call them.&lt;/p&gt;
+&lt;h2&gt;Block syntax&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;block-syntax&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#block-syntax&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The &lt;code&gt;::&lt;/code&gt; operator creates a function. Think of it like the &lt;code&gt;=&amp;gt;&lt;/code&gt; operator in other languages. The left-hand side is the &lt;strong&gt;binding&lt;/strong&gt; (the parameter list), and the right-hand side is the &lt;strong&gt;expression&lt;/strong&gt; that becomes the return value.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-&#39;hello&#39;.println
-# :: hello
+double := (x) :: x * 2
 
-[&#39;cat&#39;, &#39;dog&#39;, &#39;bird&#39;].len
-# :: 3
+double.(5)
+# 10
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;The &lt;strong&gt;value&lt;/strong&gt; on the left receives the &lt;strong&gt;message&lt;/strong&gt; on the right. The message may produce a result, which you can immediately send another message to. This is called &lt;strong&gt;chaining&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-green-200 hx:bg-green-100 hx:text-green-900 hx:dark:border-green-200/30 hx:dark:bg-green-900/30 hx:dark:text-green-200&#34;&gt;
+  &lt;p class=&#34;hx:flex hx:items-center hx:font-medium&#34;&gt;&lt;svg height=16px class=&#34;hx:inline-block hx:align-middle hx:mr-2&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; fill=&#34;none&#34; viewBox=&#34;0 0 24 24&#34; stroke-width=&#34;2&#34; stroke=&#34;currentColor&#34; aria-hidden=&#34;true&#34;&gt;&lt;path stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; d=&#34;M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z&#34;/&gt;&lt;/svg&gt;Tip&lt;/p&gt;
+
+  &lt;div class=&#34;hx:w-full hx:min-w-0 hx:leading-7&#34;&gt;
+    &lt;div class=&#34;hx:mt-6 hx:leading-7 hx:first:mt-0&#34;&gt;&lt;p&gt;Blocks are called with an &lt;strong&gt;empty message send&lt;/strong&gt;. This looks like a bare &lt;code&gt;.&lt;/code&gt; followed by any arguments.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;If you want to spread your block over multiple expressions, use &lt;code&gt;do ... end&lt;/code&gt; on the right-hand side. A &lt;code&gt;do ... end&lt;/code&gt; expression evaluates to the last expression before the &lt;code&gt;end&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-[&#39;Hello&#39;, &#39; &#39;, &#39;world!&#39;].join.println
-# :: Hello world!
+describe := (name, age) :: do
+  line1 := &#39;Name: $!&#39;.sprintf(name)
+  line2 := &#39;Age: $!&#39;.sprintf(age)
+  Strings.make(line1 &#39;\n&#39; line2)
+end
+
+describe.(&#39;Alice&#39;, 30).println
+# Name: Alice
+# Age: 30
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;h2&gt;Two forms of message send&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;two-forms-of-message-send&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#two-forms-of-message-send&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are exactly two kinds of message send in gab.&lt;/p&gt;
-&lt;p&gt;A &lt;strong&gt;named send&lt;/strong&gt; is a &lt;code&gt;.&lt;/code&gt; followed by one or more letters, underscores, or numbers:&lt;/p&gt;
+&lt;h2&gt;Blocks with no parameters&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;blocks-with-no-parameters&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#blocks-with-no-parameters&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;If a block takes no arguments, use an empty tuple as the &lt;strong&gt;binding&lt;/strong&gt;. Call it with an empty message send, using &lt;code&gt;.&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-&#39;hello&#39;.println
-[&#39;cat&#39;, &#39;dog&#39;, &#39;bird&#39;].len
+greet := () :: &#39;Hello!&#39;.println
+
+greet.()
+# Hello!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;An &lt;strong&gt;operator send&lt;/strong&gt; uses a sequence of operator characters (&lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, &lt;code&gt;*&lt;/code&gt;, &lt;code&gt;/&lt;/code&gt;, &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;!&lt;/code&gt;, &lt;code&gt;&amp;lt;!&lt;/code&gt;, and others):&lt;/p&gt;
+&lt;h2&gt;Blocks as arguments&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;blocks-as-arguments&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#blocks-as-arguments&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks are commonly passed as arguments to messages. You&amp;rsquo;ve already seen this with boolean branching:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-10 + 5      # :: 15
-channel &lt;! &#39;value&#39;
+(temperature &gt; 80)
+  .then(() :: &#39;Too hot!&#39;.println)
+  .else(() :: &#39;Just right.&#39;.println)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;That&amp;rsquo;s the complete syntax for invoking behaviour. There is no special function-call form, and no keywords for control flow.&lt;/p&gt;
-&lt;h2&gt;Messages with arguments&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;messages-with-arguments&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#messages-with-arguments&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Like the operators above, some messages may take arguments. Arguments are whatever you put on the right side of the send.&lt;/p&gt;
+&lt;p&gt;Blocks are also useful as arguments to messages like &lt;code&gt;each&lt;/code&gt; and &lt;code&gt;map&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-&#39;Hello, $!&#39; .sprintf &#39;world&#39; .println
-# :: Hello, world
+[&#39;alice&#39;, &#39;bob&#39;, &#39;carol&#39;].each (name) :: do
+  &#39;Hello, $!&#39;.sprintf(name).println
+end
+
+# Hello, alice
+# Hello, bob
+# Hello, carol
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;Here, &lt;code&gt;sprintf&lt;/code&gt; is a message sent to the string &lt;code&gt;&#39;Hello, $!&#39;&lt;/code&gt;. It replaces each &lt;code&gt;$&lt;/code&gt; in the string with the corresponding arguments. The result is then sent the &lt;code&gt;println&lt;/code&gt; message.&lt;/p&gt;
-&lt;p&gt;You can pass multiple arguments by wrapping consecutive expressions in &lt;code&gt;()&lt;/code&gt;, called a &lt;em&gt;tuple&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Multiple return values&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;multiple-return-values&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#multiple-return-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks can return more than one value using a &lt;strong&gt;tuple&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-result := Strings.make(&#39;Hello&#39; &#39;, &#39; &#39;world!&#39;)
-result.println
-# :: Hello, world!
+minmax := (a, b) :: do
+  (a &lt; b)
+    .then(() :: (a, b))
+    .else(() :: (b, a))
+end
+
+(lo, hi) := minmax.(7, 3)
+
+lo  # 3
+hi  # 7
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;h2&gt;Tuples&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tuples&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#tuples&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I&amp;rsquo;ve slightly lied to you! gab actually isn&amp;rsquo;t strict about what &lt;em&gt;side&lt;/em&gt; of the send you put the arguments on. gab implicitly collects the left and right sides into
-a singular &lt;strong&gt;tuple&lt;/strong&gt;, and sends the message to &lt;strong&gt;that tuple&lt;/strong&gt;. Therefore, you could rewrite:&lt;/p&gt;
+&lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200&#34;&gt;
+  &lt;p class=&#34;hx:flex hx:items-center hx:font-medium&#34;&gt;&lt;svg height=16px class=&#34;hx:inline-block hx:align-middle hx:mr-2&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; fill=&#34;none&#34; viewBox=&#34;0 0 24 24&#34; stroke-width=&#34;2&#34; stroke=&#34;currentColor&#34; aria-hidden=&#34;true&#34;&gt;&lt;path stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; d=&#34;M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&#34;/&gt;&lt;/svg&gt;Note&lt;/p&gt;
+
+  &lt;div class=&#34;hx:w-full hx:min-w-0 hx:leading-7&#34;&gt;
+    &lt;div class=&#34;hx:mt-6 hx:leading-7 hx:first:mt-0&#34;&gt;&lt;p&gt;Commas are whitespace in gab. Most of the time they are purely visual, to help us distiguish key-value pairs in a dictionary.
+However, sometimes whitespace &lt;em&gt;does&lt;/em&gt; have syntactic meaning. Take a look at the below example.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-1 + 1
+(1 + 2 3)   # (3, 3)  — `2` is the argument to `+`, `3` is the second element
+(1 +, 2 3)  # Error   — the comma cuts off `+` before it gets an argument
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;as:&lt;/p&gt;
+&lt;p&gt;This doesn&amp;rsquo;t just happen with commas - gab treats commas, semi-colons, and new-lines all identically.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Multiple return values become especially important when combined with message chaining. When you chain a message send, &lt;strong&gt;all return values&lt;/strong&gt; from the left side are forwarded as the receiver and arguments of the next message. Given:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-(1 1) +
+IO.File.make(self).my_message
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;These are semantically identical in gab. Tuples will be important later on, and help to make gab efficient.&lt;/p&gt;
-&lt;h2&gt;Defining new messages&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;defining-new-messages&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#defining-new-messages&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Message values are just the name of the message written with a trailing colon: &lt;code&gt;greet:&lt;/code&gt;, &lt;code&gt;println:&lt;/code&gt;, &lt;code&gt;def:&lt;/code&gt;, &lt;code&gt;+:&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;You can define a new message &lt;em&gt;specialization&lt;/em&gt; by sending the &lt;code&gt;def:&lt;/code&gt; message to a message value:&lt;/p&gt;
+&lt;p&gt;This is exactly equivalent to:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-greet: .def (Strings.t, () :: do
-  &#39;Hello, $!!&#39;.sprintf(self).println
-end)
-
-&#39;Alice&#39;.greet
-# :: Hello, Alice!
+(status, file) := IO.File.make(self)
+status.my_message(file)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;code&gt;def:&lt;/code&gt; takes two arguments: the &lt;strong&gt;receiver type&lt;/strong&gt; and a &lt;strong&gt;block&lt;/strong&gt; containing the implementation. Here, &lt;code&gt;Strings.t&lt;/code&gt; is the conventional way to refer to the string type — it is a message sent to the &lt;code&gt;Strings&lt;/code&gt; module that returns the type upon which new string messages should be defined. Using &lt;code&gt;Strings.t&lt;/code&gt; rather than a bare type name is a convention you&amp;rsquo;ll see throughout gab&amp;rsquo;s standard library, and one you should follow in your own modules.&lt;/p&gt;
-&lt;p&gt;Inside the block, &lt;code&gt;self&lt;/code&gt; refers to the value that received the message.&lt;/p&gt;
-&lt;p&gt;Message definitions are &lt;strong&gt;specializations&lt;/strong&gt; — the same message name can have completely different implementations depending on the type of the receiver.
-This is how gab achieves polymorphism without classes or interfaces.
-More on this in the &lt;a href=&#34;/docs/gabonomicon/tour/records_and_shapes/&#34;&gt;Records &amp;amp; Shapes&lt;/a&gt; section.&lt;/p&gt;
-&lt;h2&gt;Control flow with messages&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;control-flow-with-messages&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#control-flow-with-messages&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Because gab has no &lt;code&gt;if&lt;/code&gt; keyword, conditional branching is done by sending messages. Boolean values respond to messages like &lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;The first return value becomes the receiver; subsequent return values become arguments. This is what makes the error-handling pattern in gab fluid. &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; can each respond differently to the same chained message, routing the remaining values accordingly. You&amp;rsquo;ll see this pattern expanded upon in detail in &lt;a href=&#34;/docs/tour/error_handling&#34;&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Closures&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;closures&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#closures&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks close over their surrounding scope. Any name visible where the block is defined is accessible inside it:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-age := 20
+prefix := &#39;Hello&#39;
 
-(age &gt; 18)
-  .then(() :: &#39;You may enter.&#39;.println)
-  .else(() :: &#39;Come back in a few years.&#39;.println)
+greet := (name) :: do
+  &#39;$!, $!&#39;.sprintf(prefix, name).println
+end
+
+greet.(&#39;world&#39;)
+# Hello, world
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;At first this looks unfamiliar, but it&amp;rsquo;s the same idea: send a message to a value (the boolean result of &lt;code&gt;age &amp;gt; 18&lt;/code&gt;), and pass blocks as arguments for each branch. The boolean decides which block to invoke.&lt;/p&gt;
-&lt;p&gt;This means branching, looping, and every other form of control flow are just messages — there&amp;rsquo;s nothing special about them syntactically.&lt;/p&gt;
-&lt;h2&gt;Why?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;why&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#why&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Constraining the language to a single dispatch mechanism is a deliberate trade-off. You give up some familiarity, and in return you get:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Consistency.&lt;/strong&gt; There&amp;rsquo;s one way to invoke behaviour. No need to distinguish between method calls, function calls, operators, and special forms.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Extensibility.&lt;/strong&gt; You can define new messages for any type, including built-in types, without modifying their source.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Performance.&lt;/strong&gt; With a single dispatch path, the runtime can focus all optimization work on making message sends fast.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Composability.&lt;/strong&gt; The fewer language features exist, the more our code &lt;em&gt;accidently&lt;/em&gt; composes with itself and others.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;The block captures &lt;code&gt;prefix&lt;/code&gt; at the time it is defined. If you rebind &lt;code&gt;prefix&lt;/code&gt; later, the block still holds onto the original value — gab&amp;rsquo;s immutability makes this safe and predictable.&lt;/p&gt;
+&lt;h2&gt;Blocks and fibers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;blocks-and-fibers&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#blocks-and-fibers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs parallel in its own lightweight thread of execution.&lt;/p&gt;
 
       </description>
     </item>
@@ -885,7 +902,7 @@ On Windows, &lt;code&gt;zig cc&lt;/code&gt; should be invoked manually. The foll
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 smiley := &#39;😀&#39;
 
-smiley.len    # :: 1  (one codepoint)
+smiley.len    #  1  (one codepoint)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200&#34;&gt;
@@ -902,7 +919,7 @@ smiley.len    # :: 1  (one codepoint)
 Strings.make(&#39;Ada&#39;, &#39; &#39;, last_name)
 
 &#39;Format a value: $&#39;.sprintf({ name: &#39;bob&#39; })
-# :: &#39;Format a value: { name: bob }&#39;
+#  &#39;Format a value: { name: bob }&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;code&gt;sprintf&lt;/code&gt; replaces each &lt;code&gt;$&lt;/code&gt; in the format string with the corresponding argument, in order.&lt;/p&gt;
@@ -915,8 +932,8 @@ Strings.make(&#39;Ada&#39;, &#39; &#39;, last_name)
 smiley     := &#39;😀&#39;
 smiley_bin := smiley.to\binary
 
-smiley.len      # :: 1  (codepoints)
-smiley_bin.len  # :: 4  (bytes)
+smiley.len      #  1  (codepoints)
+smiley_bin.len  #  4  (bytes)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Slicing a binary is constant-time:&lt;/p&gt;
@@ -948,8 +965,8 @@ smiley_bin.len  # :: 4  (bytes)
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-&#39;true&#39;.to\message   # :: true:   (no allocation)
-true:.to\string    # :: &#39;true&#39;  (no allocation)
+&#39;true&#39;.to\message   #  true:   (no allocation)
+true:.to\string    #  &#39;true&#39;  (no allocation)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;This design means message values are just as efficient as strings in any context where they appear as keys or identifiers.&lt;/p&gt;
@@ -1284,8 +1301,8 @@ bob := { name: &#39;bob&#39;, age: 44 }
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-bob.name  # :: &#39;bob&#39;
-bob.age   # :: 44
+bob.name  #  &#39;bob&#39;
+bob.age   #  44
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;If the message doesn&amp;rsquo;t exist as a key in the record, gab will panic with &lt;code&gt;MISSING SPECIALIZATION&lt;/code&gt;. If you&amp;rsquo;re not sure the key exists, try:&lt;/p&gt;
@@ -1302,7 +1319,7 @@ bob.age   # :: 44
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 colors := [&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]
-colors.at(0).unwrap  # :: &#39;red&#39;
+colors.at(0).unwrap  #  &#39;red&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Both &lt;em&gt;Dictionaries&lt;/em&gt; and &lt;em&gt;Lists&lt;/em&gt; share the &lt;code&gt;gab\record&lt;/code&gt; type.&lt;/p&gt;
@@ -1315,8 +1332,8 @@ bob := { name: &#39;bob&#39;, age: 44 }
 
 alice := bob.put(name: &#39;alice&#39;)
 
-bob    # :: { name: &#39;bob&#39;, age: 44 }
-alice  # :: { name: &#39;alice&#39;, age: 44 }
+bob    #  { name: &#39;bob&#39;, age: 44 }
+alice  #  { name: &#39;alice&#39;, age: 44 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;gab&amp;rsquo;s immutable record is implemented as a Hash-Array-Mapped Trie, a persistent data structure used by many functional languages. &lt;code&gt;put&lt;/code&gt; operations essentially create &lt;strong&gt;diffs&lt;/strong&gt;, which allow records to share the data that didn&amp;rsquo;t change.&lt;/p&gt;
@@ -1326,15 +1343,15 @@ alice  # :: { name: &#39;alice&#39;, age: 44 }
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-&#39;hello&#39; ?  # :: &#39;gab\string&#39;
-44 ?       # :: &#39;gab\number&#39;
+&#39;hello&#39; ?  #  &#39;gab\string&#39;
+44 ?       #  &#39;gab\number&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Message values are their own type — &lt;code&gt;?&lt;/code&gt; on a message returns the message itself:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-ok: ?  # :: ok:
+ok: ?  #  ok:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;A record&amp;rsquo;s type is its &lt;strong&gt;shape&lt;/strong&gt;. This is a separate value that describes the record&amp;rsquo;s keys:&lt;/p&gt;
@@ -1342,10 +1359,10 @@ ok: ?  # :: ok:
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 { name: &#39;bob&#39;, age: 44 } ?
-# :: &lt;gab\shape name: age:&gt;
+#  &lt;gab\shape name: age:&gt;
 
 [&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;] ?
-# :: &lt;gab\shape 0: 1: 2:&gt;
+#  &lt;gab\shape 0: 1: 2:&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;All records with the same keys in the same order share the same shape. It follows that any two records with the same shape therefore &lt;em&gt;have the same type&lt;/em&gt;.&lt;/p&gt;
@@ -1373,9 +1390,9 @@ end)
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 bob := { name: &#39;bob&#39;, age: 44 }
 bob := bob.birthday
-# :: Happy Birthday, bob!
+#  Happy Birthday, bob!
 
-bob.age  # :: 45
+bob.age  #  45
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Notice that &lt;code&gt;birthday&lt;/code&gt; returns a new record (with &lt;code&gt;age&lt;/code&gt; incremented) — it doesn&amp;rsquo;t mutate &lt;code&gt;bob&lt;/code&gt; in place. To &amp;ldquo;update&amp;rdquo; bob, you simply rebind the name.&lt;/p&gt;
@@ -1392,7 +1409,7 @@ end)
 
 p := { x: 10 y: 10 }
 p := p + (5, 15)
-# :: { x: 15, y: 25 }
+#  { x: 15, y: 25 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1418,7 +1435,7 @@ p := p + (5, 15)
 true:
 &lt;=!=&gt;:
 
-ok:?      # :: ok:
+ok:?      #  ok:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are gab&amp;rsquo;s implementation of booleans, nil, and result values - there are no built-in keywords for any of these.&lt;/p&gt;
@@ -1431,7 +1448,7 @@ greet: .def (Strings.t, () :: do
   &#39;Hello, $!&#39;.sprintf(self).println
 end)
 
-&#39;Alice&#39;.greet   # :: Hello, Alice!
+&#39;Alice&#39;.greet   #  Hello, Alice!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200&#34;&gt;
@@ -1452,6 +1469,13 @@ birthday: .def (Person, () :: do
 end)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-green-200 hx:bg-green-100 hx:text-green-900 hx:dark:border-green-200/30 hx:dark:bg-green-900/30 hx:dark:text-green-200&#34;&gt;
+  &lt;p class=&#34;hx:flex hx:items-center hx:font-medium&#34;&gt;&lt;svg height=16px class=&#34;hx:inline-block hx:align-middle hx:mr-2&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; fill=&#34;none&#34; viewBox=&#34;0 0 24 24&#34; stroke-width=&#34;2&#34; stroke=&#34;currentColor&#34; aria-hidden=&#34;true&#34;&gt;&lt;path stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; d=&#34;M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z&#34;/&gt;&lt;/svg&gt;Tip&lt;/p&gt;
+
+  &lt;div class=&#34;hx:w-full hx:min-w-0 hx:leading-7&#34;&gt;
+    &lt;div class=&#34;hx:mt-6 hx:leading-7 hx:first:mt-0&#34;&gt;&lt;p&gt;If the you aren&amp;rsquo;t sure what &lt;code&gt;::&lt;/code&gt; means, check out the &lt;a href=&#34;/docs/gabonomicon/tour/blocks/&#34;&gt;block&lt;/a&gt; section in the language tour.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;If you omit the type, you create a &lt;em&gt;general&lt;/em&gt; specialization. Think of this as a fallback implementation which will run if nothing more specific exists.&lt;/p&gt;
 &lt;h3&gt;&lt;code&gt;defcase:&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;defcase&#34;&gt;&lt;/span&gt;
     &lt;a href=&#34;#defcase&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Defines multiple specializations for one message at once, using a record. Each key-value pair in the record is used to create a new type-specialization.&lt;/p&gt;
@@ -1461,7 +1485,7 @@ end)
 describe: .defcase {
   ok:   result :: &#39;Success: $&#39;.sprintf(result).println
   err:  msg    :: &#39;Error: $&#39;.sprintf(msg).println
-  nil:          :: &#39;Nothing here.&#39;.println
+  nil:         :: &#39;Nothing here.&#39;.println
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1492,9 +1516,9 @@ y: .def &#39;general case&#39;
 
 z: .def (Shapes.make(x:), &#39;shape case&#39;)
 
-{ x: 1 }.y   # :: &#39;general case&#39;  (general)
-{ x: 1 }.z   # :: &#39;shape case&#39;    (super type — the shape &lt;x:&gt;)
-{ x: 1 }.x   # :: 1               (property)
+{ x: 1 }.y   #  &#39;general case&#39;  (general)
+{ x: 1 }.z   #  &#39;shape case&#39;    (super type — the shape &lt;x:&gt;)
+{ x: 1 }.x   #  1               (property)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;&lt;code&gt;and:&lt;/code&gt; &lt;code&gt;or:&lt;/code&gt; &lt;code&gt;then:&lt;/code&gt; &lt;code&gt;else:&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;and-or-then-else&#34;&gt;&lt;/span&gt;
@@ -1503,17 +1527,17 @@ z: .def (Shapes.make(x:), &#39;shape case&#39;)
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-true:  .and 2    # :: 2
-false: .and 2    # :: false:
-false: .or  2    # :: 2
-true:  .or  2    # :: true:
+true:  .and 2    #  2
+false: .and 2    #  false:
+false: .or  2    #  2
+true:  .or  2    #  true:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt; accept &lt;strong&gt;blocks&lt;/strong&gt;. Only the appropriate branch is invoked:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-true: .then  () :: &#39;yes&#39;.println   # :: yes
+true: .then  () :: &#39;yes&#39;.println   #  yes
 true: .else  () :: &#39;no&#39;.println    # (block is never called)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1620,7 +1644,7 @@ another  := { key: &#39;value&#39;, &#39;another_key&#39; 10 }
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 a_list := [1 2 3]
-a_list   # :: [1, 2, 3]
+a_list   #  [1, 2, 3]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;A list can also be constructed using explicit integer keys in dictionary syntax. gab recognises the shape and still displays it as a list:&lt;/p&gt;
@@ -1628,15 +1652,15 @@ a_list   # :: [1, 2, 3]
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 a_list := { 0 1, 1 2, 2 3 }
-a_list   # :: [1, 2, 3]
+a_list   #  [1, 2, 3]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;The &lt;code&gt;is\list:&lt;/code&gt; message is used to determine if a given record is a list.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-[1 2].is\list # :: true:
-{ name: &#39;Rich&#39; }.is\list # :: false:
+[1 2].is\list #  true:
+{ name: &#39;Rich&#39; }.is\list #  false:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200&#34;&gt;
@@ -1653,7 +1677,7 @@ a_list   # :: [1, 2, 3]
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 a_list := [1 2 3]
 a_list := a_list.put(name: &#39;bob&#39;)
-# :: { 0: 1, 1: 2, 2: 3, name: &#39;bob&#39; }
+#  { 0: 1, 1: 2, 2: 3, name: &#39;bob&#39; }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Conversely, &lt;em&gt;removing&lt;/em&gt; such a key transforms the dictionary back into a list (if all the remaining keys are now properly list-like)&lt;/p&gt;
@@ -1671,148 +1695,131 @@ a_list := a_dict.take(name:)
     
     <item>
       <title></title>
-      <link>/docs/gabonomicon/tour/blocks/</link>
+      <link>/docs/gabonomicon/tour/messages/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/gabonomicon/tour/blocks/</guid>
+      <guid>/docs/gabonomicon/tour/messages/</guid>
       <description>
         
         
-        &lt;h1&gt;&lt;/h1&gt;&lt;p&gt;A &lt;strong&gt;block&lt;/strong&gt; is gab&amp;rsquo;s name for a closure - an anonymous function that can capture values from its surrounding scope. Blocks are values: you can store them in records, pass them as arguments to messages, and call them.&lt;/p&gt;
-&lt;h2&gt;Block syntax&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;block-syntax&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#block-syntax&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The &lt;code&gt;::&lt;/code&gt; operator creates a block. The left-hand side is the &lt;strong&gt;binding&lt;/strong&gt; (the parameter list), and the right-hand side is the &lt;strong&gt;expression&lt;/strong&gt; that becomes the return value.&lt;/p&gt;
+        &lt;h1&gt;&lt;/h1&gt;&lt;p&gt;In most languages, control flow is driven by keywords: &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;, &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;switch&lt;/code&gt;. gab has none of these. Instead, everything is accomplished by &lt;strong&gt;sending messages to values&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve used Ruby or Smalltalk, this will feel familiar. If you haven&amp;rsquo;t, don&amp;rsquo;t worry — it&amp;rsquo;s a simple idea with surprisingly powerful implications.&lt;/p&gt;
+&lt;h2&gt;Sending a message&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;sending-a-message&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#sending-a-message&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Sending messages to values is the foundation of gab programs. It looks just like a method call:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-double := (x) :: x * 2
+&#39;hello&#39;.println
+# hello
 
-double.(5)
-# :: 10
+[&#39;cat&#39;, &#39;dog&#39;, &#39;bird&#39;].len
+# 3
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-green-200 hx:bg-green-100 hx:text-green-900 hx:dark:border-green-200/30 hx:dark:bg-green-900/30 hx:dark:text-green-200&#34;&gt;
-  &lt;p class=&#34;hx:flex hx:items-center hx:font-medium&#34;&gt;&lt;svg height=16px class=&#34;hx:inline-block hx:align-middle hx:mr-2&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; fill=&#34;none&#34; viewBox=&#34;0 0 24 24&#34; stroke-width=&#34;2&#34; stroke=&#34;currentColor&#34; aria-hidden=&#34;true&#34;&gt;&lt;path stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; d=&#34;M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z&#34;/&gt;&lt;/svg&gt;Tip&lt;/p&gt;
-
-  &lt;div class=&#34;hx:w-full hx:min-w-0 hx:leading-7&#34;&gt;
-    &lt;div class=&#34;hx:mt-6 hx:leading-7 hx:first:mt-0&#34;&gt;&lt;p&gt;Blocks are called with an &lt;strong&gt;empty message send&lt;/strong&gt;. This looks like a bare &lt;code&gt;.&lt;/code&gt;, followed by any arguments.&lt;/p&gt;&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;If you want to spread your block over multiple expressions, use &lt;code&gt;do ... end&lt;/code&gt; on the right-hand side. A &lt;code&gt;do ... end&lt;/code&gt; expression evaluates to the last expression before the &lt;code&gt;end&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;value&lt;/strong&gt; on the left receives the &lt;strong&gt;message&lt;/strong&gt; on the right. The message may produce a result, which you can immediately send another message to. This is called &lt;strong&gt;chaining&lt;/strong&gt;:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-describe := (name, age) :: do
-  line1 := &#39;Name: $!&#39;.sprintf(name)
-  line2 := &#39;Age: $!&#39;.sprintf(age)
-  Strings.make(line1 &#39;\n&#39; line2)
-end
-
-describe.(&#39;Alice&#39;, 30).println
-# :: Name: Alice
-# :: Age: 30
+[&#39;Hello&#39;, &#39; &#39;, &#39;world!&#39;].join.println
+# Hello world!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;h2&gt;Blocks with no parameters&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;blocks-with-no-parameters&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#blocks-with-no-parameters&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;If a block takes no arguments, use an empty tuple as the &lt;strong&gt;binding&lt;/strong&gt;. Call it with an empty message send, using &lt;code&gt;.&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Two forms of message send&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;two-forms-of-message-send&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#two-forms-of-message-send&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are exactly two kinds of message send in gab.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;named send&lt;/strong&gt; is a &lt;code&gt;.&lt;/code&gt; followed by one or more letters, underscores, or numbers:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-greet := () :: &#39;Hello!&#39;.println
-
-greet.()
-# :: Hello!
+&#39;hello&#39;.println
+[&#39;cat&#39;, &#39;dog&#39;, &#39;bird&#39;].len
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;h2&gt;Blocks as arguments&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;blocks-as-arguments&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#blocks-as-arguments&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks are commonly passed as arguments to messages. You&amp;rsquo;ve already seen this with boolean branching:&lt;/p&gt;
+&lt;p&gt;An &lt;strong&gt;operator send&lt;/strong&gt; uses a sequence of operator characters (&lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, &lt;code&gt;*&lt;/code&gt;, &lt;code&gt;/&lt;/code&gt;, &lt;code&gt;&amp;lt;&lt;/code&gt;, &lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;!&lt;/code&gt;, &lt;code&gt;&amp;lt;!&lt;/code&gt;, and others):&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-(temperature &gt; 80)
-  .then(() :: &#39;Too hot!&#39;.println)
-  .else(() :: &#39;Just right.&#39;.println)
+10 + 5      # 15
+channel &lt;! &#39;value&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;Blocks are also useful as arguments to messages like &lt;code&gt;each&lt;/code&gt; and &lt;code&gt;map&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s the complete syntax for invoking behaviour. There is no special function-call form, and no keywords for control flow.&lt;/p&gt;
+&lt;h2&gt;Messages with arguments&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;messages-with-arguments&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#messages-with-arguments&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Like the operators above, some messages may take arguments. Arguments are whatever you put on the right side of the send.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-[&#39;alice&#39;, &#39;bob&#39;, &#39;carol&#39;].each (name) :: do
-  &#39;Hello, $!&#39;.sprintf(name).println
-end
-
-# :: Hello, alice
-# :: Hello, bob
-# :: Hello, carol
+&#39;Hello, $!&#39; .sprintf &#39;world&#39; .println
+# Hello, world
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;h2&gt;Multiple return values&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;multiple-return-values&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#multiple-return-values&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks can return more than one value using a &lt;strong&gt;tuple&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Here, &lt;code&gt;sprintf&lt;/code&gt; is a message sent to the string &lt;code&gt;&#39;Hello, $!&#39;&lt;/code&gt;. It replaces each &lt;code&gt;$&lt;/code&gt; in the string with the corresponding arguments. The result is then sent the &lt;code&gt;println&lt;/code&gt; message.&lt;/p&gt;
+&lt;p&gt;You can pass multiple arguments by wrapping consecutive expressions in &lt;code&gt;()&lt;/code&gt;, called a &lt;em&gt;tuple&lt;/em&gt;.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-minmax := (a, b) :: do
-  (a &lt; b)
-    .then(() :: (a, b))
-    .else(() :: (b, a))
-end
-
-(lo, hi) := minmax.(7, 3)
-
-lo  # :: 3
-hi  # :: 7
+result := Strings.make(&#39;Hello&#39; &#39;, &#39; &#39;world!&#39;)
+result.println
+# Hello, world!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200&#34;&gt;
-  &lt;p class=&#34;hx:flex hx:items-center hx:font-medium&#34;&gt;&lt;svg height=16px class=&#34;hx:inline-block hx:align-middle hx:mr-2&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; fill=&#34;none&#34; viewBox=&#34;0 0 24 24&#34; stroke-width=&#34;2&#34; stroke=&#34;currentColor&#34; aria-hidden=&#34;true&#34;&gt;&lt;path stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; d=&#34;M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&#34;/&gt;&lt;/svg&gt;Note&lt;/p&gt;
-
-  &lt;div class=&#34;hx:w-full hx:min-w-0 hx:leading-7&#34;&gt;
-    &lt;div class=&#34;hx:mt-6 hx:leading-7 hx:first:mt-0&#34;&gt;&lt;p&gt;Commas are whitespace in gab. Most of the time they are purely visual, to help us distiguish key-value pairs in a dictionary.
-However, sometimes whitespace &lt;em&gt;does&lt;/em&gt; have syntactic meaning. Take a look at the below example.&lt;/p&gt;
+&lt;h2&gt;Tuples&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;tuples&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#tuples&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;I&amp;rsquo;ve slightly lied to you! gab actually isn&amp;rsquo;t strict about what &lt;em&gt;side&lt;/em&gt; of the send you put the arguments on. gab implicitly collects the left and right sides into
+a singular &lt;strong&gt;tuple&lt;/strong&gt;, and sends the message to &lt;strong&gt;that tuple&lt;/strong&gt;. Therefore, you could rewrite:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-(1 + 2 3)   # :: (3, 3)  — `2` is the argument to `+`, `3` is the second element
-(1 +, 2 3)  # :: Error   — the comma cuts off `+` before it gets an argument
+1 + 1
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;This doesn&amp;rsquo;t just happen with commas - gab treats commas, semi-colons, and new-lines all identically.&lt;/p&gt;&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Multiple return values become especially important when combined with message chaining. When you chain a message send, &lt;strong&gt;all return values&lt;/strong&gt; from the left side are forwarded as the receiver and arguments of the next message. Given:&lt;/p&gt;
+&lt;p&gt;as:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-IO.File.make(self).my_message
+(1 1) +
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;This is exactly equivalent to:&lt;/p&gt;
+&lt;p&gt;These are semantically identical in gab. Tuples will be important later on, and help to make gab efficient.&lt;/p&gt;
+&lt;h2&gt;Defining new messages&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;defining-new-messages&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#defining-new-messages&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Message values are just the name of the message written with a trailing colon: &lt;code&gt;greet:&lt;/code&gt;, &lt;code&gt;println:&lt;/code&gt;, &lt;code&gt;def:&lt;/code&gt;, &lt;code&gt;+:&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can define a new message &lt;em&gt;specialization&lt;/em&gt; by sending the &lt;code&gt;def:&lt;/code&gt; message to a message value:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-(status, file) := IO.File.make(self)
-status.my_message(file)
+greet: .def (Strings.t, () :: do
+  &#39;Hello, $!!&#39;.sprintf(self).println
+end)
+
+&#39;Alice&#39;.greet
+# Hello, Alice!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;The first return value becomes the receiver; subsequent return values become arguments. This is what makes the error-handling pattern in gab fluid. &lt;code&gt;ok:&lt;/code&gt; and &lt;code&gt;err:&lt;/code&gt; can each respond differently to the same chained message, routing the remaining values accordingly. You&amp;rsquo;ll see this pattern expanded upon in detail in &lt;a href=&#34;/docs/tour/error_handling&#34;&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;Closures&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;closures&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#closures&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Blocks close over their surrounding scope. Any name visible where the block is defined is accessible inside it:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;def:&lt;/code&gt; takes two arguments: the &lt;strong&gt;receiver type&lt;/strong&gt; and a &lt;strong&gt;block&lt;/strong&gt; containing the implementation. Here, &lt;code&gt;Strings.t&lt;/code&gt; is the conventional way to refer to the string type — it is a message sent to the &lt;code&gt;Strings&lt;/code&gt; module that returns the type upon which new string messages should be defined. Using &lt;code&gt;Strings.t&lt;/code&gt; rather than a bare type name is a convention you&amp;rsquo;ll see throughout gab&amp;rsquo;s standard library, and one you should follow in your own modules.&lt;/p&gt;
+&lt;p&gt;Inside the block, &lt;code&gt;self&lt;/code&gt; refers to the value that received the message.&lt;/p&gt;
+&lt;p&gt;Message definitions are &lt;strong&gt;specializations&lt;/strong&gt; — the same message name can have completely different implementations depending on the type of the receiver.
+This is how gab achieves polymorphism without classes or interfaces.
+More on this in the &lt;a href=&#34;/docs/gabonomicon/tour/records_and_shapes/&#34;&gt;Records &amp;amp; Shapes&lt;/a&gt; section.&lt;/p&gt;
+&lt;h2&gt;Control flow with messages&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;control-flow-with-messages&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#control-flow-with-messages&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Because gab has no &lt;code&gt;if&lt;/code&gt; keyword, conditional branching is done by sending messages. Boolean values respond to messages like &lt;code&gt;then:&lt;/code&gt; and &lt;code&gt;else:&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-prefix := &#39;Hello&#39;
+age := 20
 
-greet := (name) :: do
-  &#39;$!, $!&#39;.sprintf(prefix, name).println
-end
-
-greet.(&#39;world&#39;)
-# :: Hello, world
+(age &gt; 18)
+  .then(() :: &#39;You may enter.&#39;.println)
+  .else(() :: &#39;Come back in a few years.&#39;.println)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;The block captures &lt;code&gt;prefix&lt;/code&gt; at the time it is defined. If you rebind &lt;code&gt;prefix&lt;/code&gt; later, the block still holds onto the original value — gab&amp;rsquo;s immutability makes this safe and predictable.&lt;/p&gt;
-&lt;h2&gt;Blocks and fibers&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;blocks-and-fibers&#34;&gt;&lt;/span&gt;
-    &lt;a href=&#34;#blocks-and-fibers&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;A block is the unit of work you hand to a fiber. When you spawn a fiber, you give it a block to execute. The block runs parallel in its own lightweight thread of execution.&lt;/p&gt;
+&lt;p&gt;At first this looks unfamiliar, but it&amp;rsquo;s the same idea: send a message to a value (the boolean result of &lt;code&gt;age &amp;gt; 18&lt;/code&gt;), and pass blocks as arguments for each branch. The boolean decides which block to invoke.&lt;/p&gt;
+&lt;p&gt;This means branching, looping, and every other form of control flow are just messages — there&amp;rsquo;s nothing special about them syntactically.&lt;/p&gt;
+&lt;h2&gt;Why?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;why&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#why&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Constraining the language to a single dispatch mechanism is a deliberate trade-off. You give up some familiarity, and in return you get:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Consistency.&lt;/strong&gt; There&amp;rsquo;s one way to invoke behaviour. No need to distinguish between method calls, function calls, operators, and special forms.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extensibility.&lt;/strong&gt; You can define new messages for any type, including built-in types, without modifying their source.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Performance.&lt;/strong&gt; With a single dispatch path, the runtime can focus all optimization work on making message sends fast.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Composability.&lt;/strong&gt; The fewer language features exist, the more our code &lt;em&gt;accidently&lt;/em&gt; composes with itself and others.&lt;/li&gt;
+&lt;/ul&gt;
 
       </description>
     </item>
@@ -2193,15 +2200,15 @@ end)
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 counter := Atom.make(0)
 
-counter.deref         # :: 0
+counter.deref         #  0
 
 counter.swap((n) :: n + 1)
 counter.swap((n) :: n + 1)
 
-counter.deref         # :: 2
+counter.deref         #  2
 
 counter.reset(100)
-counter.deref         # :: 100
+counter.deref         #  100
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h3&gt;Takeaways&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;takeaways&#34;&gt;&lt;/span&gt;
@@ -2233,9 +2240,9 @@ counter.deref         # :: 100
 a := { name: &#39;Joe&#39; }
 b := { name: &#39;Rich&#39; }
 
-a?          # :: &lt;gab\shape name:&gt;
-b?          # :: &lt;gab\shape name:&gt;
-(a?) == (b?)  # :: true:
+a?          #  &lt;gab\shape name:&gt;
+b?          #  &lt;gab\shape name:&gt;
+(a?) == (b?)  #  true:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;&lt;code&gt;gab\shape&lt;/code&gt;&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;gabshape&#34;&gt;&lt;/span&gt;
@@ -2245,7 +2252,7 @@ b?          # :: &lt;gab\shape name:&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 Person := { name: &#39;&#39;, age: 0 }?
-# :: &lt;gab\shape name: age:&gt;
+#  &lt;gab\shape name: age:&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Directly&lt;/strong&gt;, using &lt;code&gt;Shapes.make:&lt;/code&gt; with a list of keys, or the shape syntax:&lt;/p&gt;
@@ -2253,9 +2260,9 @@ Person := { name: &#39;&#39;, age: 0 }?
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 Person := Shapes.make(name:, age:)
-# :: &lt;gab\shape name: age:&gt;
+#  &lt;gab\shape name: age:&gt;
 Person := \{ name: age: }
-# :: &lt;gab\shape name: age:&gt;
+#  &lt;gab\shape name: age:&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Both produce the same shape value.&lt;/p&gt;
@@ -2273,9 +2280,9 @@ end)
 
 bob := { name: &#39;bob&#39;, age: 44 }
 bob := bob.birthday
-# :: Happy Birthday, bob!
+#  Happy Birthday, bob!
 
-bob.age   # :: 45
+bob.age   #  45
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;Shapes in dispatch&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;shapes-in-dispatch&#34;&gt;&lt;/span&gt;
@@ -2287,9 +2294,9 @@ foo: .def (\{ x: }, &#39;shape case&#39;)
 foo: .def (Records.t, &#39;record case&#39;)
 foo: .def &#39;general case&#39;
 
-{ x: 1 }.foo          # :: &#39;shape case&#39;   (shape wins over general)
-{ y: 1 }.foo          # :: &#39;record case&#39;
-&#39;something else!&#39;.foo # :: &#39;general case&#39;
+{ x: 1 }.foo          #  &#39;shape case&#39;   (shape wins over general)
+{ y: 1 }.foo          #  &#39;record case&#39;
+&#39;something else!&#39;.foo #  &#39;general case&#39;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;See &lt;a href=&#34;/docs/basic_types/messages#dispatch-resolution-order&#34;&gt;Messages — Dispatch Resolution Order&lt;/a&gt; for the full sequence.&lt;/p&gt;
@@ -2395,7 +2402,7 @@ end)
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 square := (x) :: x * x
-square.(4)   # :: 16
+square.(4)   #  16
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200&#34;&gt;
@@ -2420,8 +2427,8 @@ first_and_rest := (first, rest*) :: do
 end
 
 first_and_rest.(1, 2, 3, 4)
-# :: First: 1
-# :: Rest: [2, 3, 4]
+#  First: 1
+#  Rest: [2, 3, 4]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Because position determines what &lt;code&gt;*&lt;/code&gt; absorbs, it can appear anywhere in the binding list:&lt;/p&gt;
@@ -2440,7 +2447,7 @@ first_and_rest.(1, 2, 3, 4)
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 args := [1, 2, 3]
-args*   # :: (1, 2, 3)
+args*   #  (1, 2, 3)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Together they compose to forward all of a block&amp;rsquo;s arguments, unchanged.&lt;/p&gt;
@@ -2466,7 +2473,7 @@ forward_all := (args*) :: args*
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-{ a: &#39;b&#39;, c: &#39;d&#39; } **   # :: (a: &#39;b&#39;, c: &#39;d&#39;)
+{ a: &#39;b&#39;, c: &#39;d&#39; } **   #  (a: &#39;b&#39;, c: &#39;d&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;hx:overflow-x-auto hx:mt-6 hx:flex hx:flex-col hx:rounded-lg hx:border hx:py-4 hx:px-4 hx:border-gray-200 hx:contrast-more:border-current hx:contrast-more:dark:border-current hx:border-blue-200 hx:bg-blue-100 hx:text-blue-900 hx:dark:border-blue-200/30 hx:dark:bg-blue-900/30 hx:dark:text-blue-200&#34;&gt;
@@ -3594,7 +3601,7 @@ record.len: () :: int
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-[1 2 3].len # :: 3
+[1 2 3].len #  3
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;at&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;at&#34;&gt;&lt;/span&gt;
@@ -3611,13 +3618,13 @@ record.at: unknown :: (some (status ok:, value unknown) | none none:)
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 (ok value) := { name: &#39;John Doe&#39; } .at (name:)
 
-ok    # :: ok:
-value # :: &#39;John Doe&#39;
+ok    #  ok:
+value #  &#39;John Doe&#39;
 
 (ok value) := { name: &#39;John Doe&#39; } .at (age:)
 
-ok    # :: none:
-value # :: nil:
+ok    #  none:
+value #  nil:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;has&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;has&#34;&gt;&lt;/span&gt;
@@ -3654,8 +3661,8 @@ person := { name: &#39;John Doe&#39; }
 
 person := person.put(age: 30)
 
-person.name # :: &#39;John Doe&#39;
-person.age  # :: 30
+person.name #  &#39;John Doe&#39;
+person.age  #  30
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;put_via&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;put_via&#34;&gt;&lt;/span&gt;
@@ -3677,7 +3684,7 @@ person := {
 
 person := person.put_via(mother: age: 60)
 
-person.mother.age # :: 60
+person.mother.age #  60
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;This message will create records along the path where none exist.&lt;/p&gt;
@@ -3686,7 +3693,7 @@ person.mother.age # :: 60
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 {}.put_via(mother: sister: daugher: relation: &#39;cousin&#39;)
 
-# :: { mother: { sister: { daughter: { relation: &#39;cousin&#39; } } } }
+#  { mother: { sister: { daughter: { relation: &#39;cousin&#39; } } } }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;at_via&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;at_via&#34;&gt;&lt;/span&gt;
@@ -3719,7 +3726,7 @@ person := { age: 30 }
 
 person := person.put_by(age: age :: age + 1)
 
-person.age # :: 30
+person.age #  30
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;If the key does not exist in the record, then the argument to the block will be &lt;code&gt;nil:&lt;/code&gt;.&lt;/p&gt;
@@ -3745,7 +3752,7 @@ record.push:  :: record
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 arr := [1 2 3] .cons 4
 
-arr # :: [1 2 3 4]
+arr #  [1 2 3 4]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;pop&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pop&#34;&gt;&lt;/span&gt;
@@ -3762,17 +3769,17 @@ record.pop: () :: (some (status ok:, value (record record, popped_value unknown,
 
 (ok rec val key) := [1 2 3 4].pop
 
-ok  # :: ok:
-rec # :: [1 2 3]
-val # :: 4
-key # :: 3
+ok  #  ok:
+rec #  [1 2 3]
+val #  4
+key #  3
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;If the record was empty, returns &lt;code&gt;none:&lt;/code&gt; and an empty record.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-[].pop # :: none: []
+[].pop #  none: []
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;is\record&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;isrecord&#34;&gt;&lt;/span&gt;
@@ -3845,9 +3852,9 @@ record.: unknown :: unknown
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
 map := { &#39;id&#39; 1234 }
 
-map.(&#39;id&#39;) # :: 1234
+map.(&#39;id&#39;) #  1234
 
-map.(&#39;name&#39;) # :: panic
+map.(&#39;name&#39;) #  panic
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;This allows for records to serve as functions of their keys.&lt;/p&gt;
@@ -4320,8 +4327,8 @@ string.as\uri\encoded: () :: (success (status ok:, value string) | failure (stat
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-&#39;%20&#39;.as\uri\encoded # :: (ok: &#39; &#39;)
-&#39;%zz&#39;.as\uri\encoded # :: (err: &#39;Invalid hexadecimal value&#39;)
+&#39;%20&#39;.as\uri\encoded #  (ok: &#39; &#39;)
+&#39;%zz&#39;.as\uri\encoded #  (err: &#39;Invalid hexadecimal value&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;The &lt;code&gt;z&lt;/code&gt; character cannot represent a hexadecimal value (valid characters are 0-9, a-f, A-F).&lt;/p&gt;
@@ -4633,9 +4640,9 @@ reduceable.reduce\done: accumulator unknown :: accumulator unknown
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
-  ok     # :: ok:
-  next   # :: 1
-  values # :: [&#39;1&#39;, 0] (values collects the tuple into a list)
+  ok     #  ok:
+  next   #  1
+  values #  [&#39;1&#39;, 0] (values collects the tuple into a list)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;The &lt;em&gt;next&lt;/em&gt; value is a key which the user can pass to &lt;code&gt;seq\next:&lt;/code&gt; to receive the &lt;em&gt;next&lt;/em&gt; iteration in the sequence.&lt;/p&gt;
@@ -4645,9 +4652,9 @@ reduceable.reduce\done: accumulator unknown :: accumulator unknown
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
   (ok next values*) := [&#39;1&#39; &#39;2&#39; &#39;3&#39; &#39;4&#39;].seq\next 1
 
-  ok     # :: ok: 
-  next   # :: 2
-  values # :: [&#39;2&#39;, 1]
+  ok     #  ok: 
+  next   #  2
+  values #  [&#39;2&#39;, 1]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h2&gt;seq\init&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;seqinit&#34;&gt;&lt;/span&gt;

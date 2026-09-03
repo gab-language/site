@@ -10,9 +10,9 @@ A shape describes the keys of a record, in order. It *is* the record's type. All
 a := { name: 'Joe' }
 b := { name: 'Rich' }
 
-a?          # :: <gab\shape name:>
-b?          # :: <gab\shape name:>
-(a?) == (b?)  # :: true:
+a?          #  <gab\shape name:>
+b?          #  <gab\shape name:>
+(a?) == (b?)  #  true:
 ```
 
 ## `gab\shape`
@@ -23,16 +23,16 @@ There are multiple ways to construct a shape value.
 
 ```gab
 Person := { name: '', age: 0 }?
-# :: <gab\shape name: age:>
+#  <gab\shape name: age:>
 ```
 
 **Directly**, using `Shapes.make:` with a list of keys, or the shape syntax:
 
 ```gab
 Person := Shapes.make(name:, age:)
-# :: <gab\shape name: age:>
+#  <gab\shape name: age:>
 Person := \{ name: age: }
-# :: <gab\shape name: age:>
+#  <gab\shape name: age:>
 ```
 
 Both produce the same shape value.
@@ -51,9 +51,9 @@ end)
 
 bob := { name: 'bob', age: 44 }
 bob := bob.birthday
-# :: Happy Birthday, bob!
+#  Happy Birthday, bob!
 
-bob.age   # :: 45
+bob.age   #  45
 ```
 
 ## Shapes in dispatch
@@ -65,9 +65,9 @@ foo: .def (\{ x: }, 'shape case')
 foo: .def (Records.t, 'record case')
 foo: .def 'general case'
 
-{ x: 1 }.foo          # :: 'shape case'   (shape wins over general)
-{ y: 1 }.foo          # :: 'record case'
-'something else!'.foo # :: 'general case'
+{ x: 1 }.foo          #  'shape case'   (shape wins over general)
+{ y: 1 }.foo          #  'record case'
+'something else!'.foo #  'general case'
 ```
 
 See [Messages — Dispatch Resolution Order](/docs/basic_types/messages#dispatch-resolution-order) for the full sequence.

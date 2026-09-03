@@ -15,7 +15,7 @@ Messages values are a name or operator ending with a `:`.
 true:
 <=!=>:
 
-ok:?      # :: ok:
+ok:?      #  ok:
 ```
 
 Messages are used as record keys, as sentinel/enum values, and as the mechanism for polymorphism. They are gab's implementation of booleans, nil, and result values - there are no built-in keywords for any of these.
@@ -29,7 +29,7 @@ greet: .def (Strings.t, () :: do
   'Hello, $!'.sprintf(self).println
 end)
 
-'Alice'.greet   # :: Hello, Alice!
+'Alice'.greet   #  Hello, Alice!
 ```
 
 >[!NOTE]
@@ -47,6 +47,9 @@ birthday: .def (Person, () :: do
 end)
 ```
 
+>[!TIP]
+>If the you aren't sure what `::` means, check out the [block](/docs/gabonomicon/tour/blocks) section in the language tour.
+
 If you omit the type, you create a *general* specialization. Think of this as a fallback implementation which will run if nothing more specific exists.
 
 ### `defcase:`
@@ -57,7 +60,7 @@ Defines multiple specializations for one message at once, using a record. Each k
 describe: .defcase {
   ok:   result :: 'Success: $'.sprintf(result).println
   err:  msg    :: 'Error: $'.sprintf(msg).println
-  nil:          :: 'Nothing here.'.println
+  nil:         :: 'Nothing here.'.println
 }
 ```
 
@@ -88,9 +91,9 @@ y: .def 'general case'
 
 z: .def (Shapes.make(x:), 'shape case')
 
-{ x: 1 }.y   # :: 'general case'  (general)
-{ x: 1 }.z   # :: 'shape case'    (super type — the shape <x:>)
-{ x: 1 }.x   # :: 1               (property)
+{ x: 1 }.y   #  'general case'  (general)
+{ x: 1 }.z   #  'shape case'    (super type — the shape <x:>)
+{ x: 1 }.x   #  1               (property)
 ```
 
 ## `and:` `or:` `then:` `else:`
@@ -100,16 +103,16 @@ These messages are defined on `true:` and `false:` in the core library. Their se
 `and:` and `or:` accept **values**. The argument is always evaluated before the message is sent:
 
 ```gab
-true:  .and 2    # :: 2
-false: .and 2    # :: false:
-false: .or  2    # :: 2
-true:  .or  2    # :: true:
+true:  .and 2    #  2
+false: .and 2    #  false:
+false: .or  2    #  2
+true:  .or  2    #  true:
 ```
 
 `then:` and `else:` accept **blocks**. Only the appropriate branch is invoked:
 
 ```gab
-true: .then  () :: 'yes'.println   # :: yes
+true: .then  () :: 'yes'.println   #  yes
 true: .else  () :: 'no'.println    # (block is never called)
 ```
 

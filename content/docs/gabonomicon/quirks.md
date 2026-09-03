@@ -29,10 +29,10 @@ In gab, the only way to *do* anything is to send a message. This looks like a me
 
 ```gab
 1 + 2
-# :: 3
+#  3
 
 4 .+ 5
-# :: 20
+#  20
 ```
 
 Even control flow uses messages. You’ll learn more about `defcase`, `then:`, and `else:` later. Until then, here is a peek:
@@ -41,7 +41,7 @@ Even control flow uses messages. You’ll learn more about `defcase`, `then:`, a
 true: .then () :: do
   "It’s true!" .println
 end
-# :: It’s true!
+#  It’s true!
 ```
 
 Messages are also *values* in gab. The funky syntax you see for `true:` above is actually a *message value*. This is how gab implements, booleans and nil/null.
@@ -54,8 +54,8 @@ gab values are immutable. To update a list value, send a message like `cons:` an
 x := [1 2 3]
 y := x.cons(4)
 
-x.println # :: [1, 2, 3]
-y.println # :: [1, 2, 3, 4]
+x.println #  [1, 2, 3]
+y.println #  [1, 2, 3, 4]
 ```
 
 Immutability forces programmers to write code which operates on values instead of state. This actually makes programming easier!
@@ -87,7 +87,7 @@ end
 
 msg := ch >!
 msg.println
-# :: ping
+#  ping
 ```
 
 Channels are **unbuffered** and **rendezvous-based** — both sides must meet for a transfer to occur.

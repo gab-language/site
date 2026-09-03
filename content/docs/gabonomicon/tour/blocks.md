@@ -1,5 +1,5 @@
 ---
-weight: 3
+weight: 1
 ---
 
 #
@@ -8,17 +8,17 @@ A **block** is gab's name for a closure - an anonymous function that can capture
 
 ## Block syntax
 
-The `::` operator creates a block. The left-hand side is the **binding** (the parameter list), and the right-hand side is the **expression** that becomes the return value.
+The `::` operator creates a function. Think of it like the `=>` operator in other languages. The left-hand side is the **binding** (the parameter list), and the right-hand side is the **expression** that becomes the return value.
 
 ```gab
 double := (x) :: x * 2
 
 double.(5)
-# :: 10
+# 10
 ```
 
 >[!TIP]
->Blocks are called with an **empty message send**. This looks like a bare `.`, followed by any arguments.
+>Blocks are called with an **empty message send**. This looks like a bare `.` followed by any arguments.
 
 If you want to spread your block over multiple expressions, use `do ... end` on the right-hand side. A `do ... end` expression evaluates to the last expression before the `end`:
 
@@ -30,8 +30,8 @@ describe := (name, age) :: do
 end
 
 describe.('Alice', 30).println
-# :: Name: Alice
-# :: Age: 30
+# Name: Alice
+# Age: 30
 ```
 
 ## Blocks with no parameters
@@ -42,7 +42,7 @@ If a block takes no arguments, use an empty tuple as the **binding**. Call it wi
 greet := () :: 'Hello!'.println
 
 greet.()
-# :: Hello!
+# Hello!
 ```
 
 ## Blocks as arguments
@@ -62,9 +62,9 @@ Blocks are also useful as arguments to messages like `each` and `map`:
   'Hello, $!'.sprintf(name).println
 end
 
-# :: Hello, alice
-# :: Hello, bob
-# :: Hello, carol
+# Hello, alice
+# Hello, bob
+# Hello, carol
 ```
 
 ## Multiple return values
@@ -80,8 +80,8 @@ end
 
 (lo, hi) := minmax.(7, 3)
 
-lo  # :: 3
-hi  # :: 7
+lo  # 3
+hi  # 7
 ```
 
 >[!NOTE]
@@ -89,8 +89,8 @@ hi  # :: 7
 >However, sometimes whitespace *does* have syntactic meaning. Take a look at the below example.
 >
 >```gab
->(1 + 2 3)   # :: (3, 3)  — `2` is the argument to `+`, `3` is the second element
->(1 +, 2 3)  # :: Error   — the comma cuts off `+` before it gets an argument
+>(1 + 2 3)   # (3, 3)  — `2` is the argument to `+`, `3` is the second element
+>(1 +, 2 3)  # Error   — the comma cuts off `+` before it gets an argument
 >```
 >
 >This doesn't just happen with commas - gab treats commas, semi-colons, and new-lines all identically.
@@ -122,7 +122,7 @@ greet := (name) :: do
 end
 
 greet.('world')
-# :: Hello, world
+# Hello, world
 ```
 
 The block captures `prefix` at the time it is defined. If you rebind `prefix` later, the block still holds onto the original value — gab's immutability makes this safe and predictable.

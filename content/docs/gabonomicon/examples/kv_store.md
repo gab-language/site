@@ -130,24 +130,24 @@ store.store\set('version', '0.1.1')
 store.store\get('name')
   .then((val) :: 'name is: $'.sprintf(val).println)
   .else(()    :: 'not found'.println)
-# :: name is: gab
+#  name is: gab
 
 # Overwrite
 store.store\set('name', 'cgab')
 store.store\get('name')
   .then((val) :: val.println)
-# :: cgab
+#  cgab
 
 # Delete
 store.store\delete('version')
 store.store\get('version')
   .else(() :: 'not found'.println)
-# :: not found
+#  not found
 
 # Missing key
 store.store\get('missing')
   .else(() :: 'not found'.println)
-# :: not found
+#  not found
 ```
 
 ## Parallel access

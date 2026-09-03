@@ -20,9 +20,9 @@
   The run of values can be any number of values. Records return `(value, key)`, so for the above example:
 
   ```gab
-    ok     # :: ok:
-    next   # :: 1
-    values # :: ['1', 0] (values collects the tuple into a list)
+    ok     #  ok:
+    next   #  1
+    values #  ['1', 0] (values collects the tuple into a list)
   ```
 
   The *next* value is a key which the user can pass to `seq\next:` to receive the *next* iteration in the sequence.
@@ -32,9 +32,9 @@
   ```gab
     (ok next values*) := ['1' '2' '3' '4'].seq\next 1
 
-    ok     # :: ok: 
-    next   # :: 2
-    values # :: ['2', 1]
+    ok     #  ok: 
+    next   #  2
+    values #  ['2', 1]
   ```
   
 
