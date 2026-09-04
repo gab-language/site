@@ -3890,6 +3890,221 @@ seqable.seq\next: key unknown :: (next (status ok:, key unknown, values *unknown
     
     <item>
       <title></title>
+      <link>/docs/modules/seq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/modules/seq/</guid>
+      <description>
+        
+        
+        &lt;h2&gt;defseq&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;defseq&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#defseq&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.defseq: () :: ()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Types that implement the &lt;code&gt;seqable&lt;/code&gt; protocol may use &lt;code&gt;defseq&lt;/code&gt; to implement a slew of useful messages.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+[my_type] .defmodule {
+  seq\init: ...some_impl
+  seq\next: ...some_impl
+}
+
+# Now send defseq to implement the useful messages
+my_type.defseq
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2&gt;reduce&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;reduce&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#reduce&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.reduce: (initial unknown, f predicate\unknown: unknown :: unknown) :: unknown
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Eagerly consume the values in &lt;code&gt;seqable&lt;/code&gt; and reduce applying &lt;code&gt;f&lt;/code&gt;, starting with &lt;code&gt;initial&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+nums := [ 1,2,3,4,5 ]
+
+sum := nums.reduce(0 (x y) :: x + y)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2&gt;transduce&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;transduce&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#transduce&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.transduce: (initial unknown, f predicate\unknown: unknown :: unknown, xf [ transduce\wrap:, transduce\step: ]) :: unknown
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Eagerly consume the values in &lt;code&gt;seqable&lt;/code&gt; like &lt;code&gt;reduce&lt;/code&gt;, but first wrap reducer &lt;code&gt;f&lt;/code&gt; with transducer &lt;code&gt;xf&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+nums := [ 1,2,3,4,5 ]
+
+sum := nums.transduce(0 (x y) :: x + y, Transducers.map(x :: x++))
+# 20 instead of 10
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2&gt;each&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;each&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#each&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.each: f () :: () :: ()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Eagerly consume the tuples in &lt;code&gt;seqable&lt;/code&gt;, calling &lt;code&gt;f&lt;/code&gt; with each tuple.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+nums := [ 1,2,3,4,5 ]
+
+nums.each(x :: x.println)
+# 1
+# 2
+# 3
+# 4
+# 5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2&gt;map&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;map&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#map&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.map: f unknown :: unknown :: List[unknown]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;See Transducers/map&lt;/p&gt;
+&lt;h2&gt;filter&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;filter&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#filter&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.filter: f unknown :: boolean :: List[unknown]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;See Transducers/filter&lt;/p&gt;
+&lt;h2&gt;mapfilter&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;mapfilter&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#mapfilter&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.filter: f unknown :: (should_include boolean, values unknown) :: List[unknown]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;See Transducers/mapfilter&lt;/p&gt;
+&lt;h2&gt;skip&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;skip&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#skip&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.skip: f unknown :: boolean :: List[unknown]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;See Transducers/skip&lt;/p&gt;
+&lt;h2&gt;every&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;every&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#every&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.every: f unknown :: boolean :: boolean
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Eagerly consumes all values in seq until &lt;code&gt;f&lt;/code&gt; returns &lt;code&gt;false:&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Returns &lt;code&gt;true:&lt;/code&gt; if &lt;code&gt;f&lt;/code&gt; returned &lt;code&gt;true:&lt;/code&gt; for all values in the seq, and &lt;code&gt;false:&lt;/code&gt; otherwise.&lt;/p&gt;
+&lt;h2&gt;any&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;any&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#any&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.any: f unknown :: boolean :: boolean
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Eagerly consumes all values in seq until &lt;code&gt;f&lt;/code&gt; returns &lt;code&gt;true:&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Returns &lt;code&gt;true:&lt;/code&gt; if &lt;code&gt;f&lt;/code&gt; returned &lt;code&gt;true:&lt;/code&gt; for any value in the seq, and &lt;code&gt;false:&lt;/code&gt; otherwise.&lt;/p&gt;
+&lt;h2&gt;join&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;join&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#join&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.join: (initial unknown, xf [ transduce\wrap:, transduce\step: ]) :: unknown
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Eagerly consumes all values in seq, appending them to &lt;code&gt;initial&lt;/code&gt; with &lt;code&gt;+:&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+words := [ &#39;hello&#39; &#39;world,&#39; &#39;my&#39; &#39;name&#39; &#39;is&#39; &#39;Joe&#39;]
+
+message := words.join(&#39;&#39;)
+# &#39;helloworld,mynameisJoe&#39;
+
+# Use transducers to interpose a space, making a nice looking sentence!
+message := words.join(&#39;&#39;, Transducers.interpose &#39; &#39;)
+# &#39;hello world, my name is Joe&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2&gt;collect&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;collect&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#collect&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.collect: (initial unknown, xf [ transduce\wrap:, transduce\step: ]) :: unknown
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Eagerly consumes all values in seq, appending them to &lt;code&gt;initial&lt;/code&gt; with &lt;code&gt;cons:&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+word := &#39;helloworld&#39;
+
+letters := word.collect [] 
+# [&#39;h&#39; &#39;e&#39; &#39;l&#39; &#39;l&#39; &#39;o&#39; &#39;w&#39; &#39;o&#39; &#39;r&#39; &#39;l&#39; &#39;d&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2&gt;zip&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;zip&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#zip&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.zip: (initial unknown, xf [ transduce\wrap:, transduce\step: ]) :: unknown
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Eagerly consumes all values in seq, appending them to &lt;code&gt;initial&lt;/code&gt; with &lt;code&gt;put_via:&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+ch := Channels.make
+
+Fibers.make () :: do
+  ch &lt;! (dog: red: &#39;clifford&#39;)
+  ch &lt;! (dog: blue: &#39;bluey&#39;)
+  ch.close
+end
+
+animals := ch.zip {}
+# { dog: { red: &#39;clifford&#39; blue: &#39;bluey } } 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2&gt;pipe&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;pipe&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#pipe&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+seqable.pipe: (initial unknown, xf [ transduce\wrap:, transduce\step: ]) :: unknown
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Eagerly consumes all values in seq, appending them to &lt;code&gt;initial&lt;/code&gt; with &lt;code&gt;&amp;lt;!:&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;
+nums := [ 1 2 3 4 5 ]
+
+# Put nums onto channel, but use a transducer to only bring the even ones across.
+nums.pipe(some_channel, Transducers.filter(x :: x.is\even))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/docs/modules/shape/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -4343,7 +4558,7 @@ three_nums := nums.collect([] xf)
 transducer:.count: () :: transducer [ transduce\wrap:, transduce\step: ]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;Create a transducer which appends the number of seen values so far to the tuple&lt;/p&gt;
+&lt;p&gt;Create a transducer which appends the number of seen values so far to the tuple.&lt;/p&gt;
 &lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
 
 &lt;!--gab--&gt;&lt;pre&gt;&lt;code&gt;

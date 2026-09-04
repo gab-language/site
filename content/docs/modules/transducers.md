@@ -228,7 +228,7 @@ transducer:.drop_while: f unknown :: boolean :: transducer [ transduce\wrap:, tr
 transducer:.count: () :: transducer [ transduce\wrap:, transduce\step: ]
 ```
 
-  Create a transducer which appends the number of seen values so far to the tuple
+  Create a transducer which appends the number of seen values so far to the tuple.
 
   ```gab
   nums := [ 1,2,3 ]
