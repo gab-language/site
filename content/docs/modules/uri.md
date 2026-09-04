@@ -64,8 +64,8 @@ string.as\uri\encoded: () :: (success (status ok:, value string) | failure (stat
   An invalid percent-encoded value is defined as a `%` followed by two non-hexadecimal characters.
 
   ```gab
-  '%20'.as\uri\encoded #  (ok: ' ')
-  '%zz'.as\uri\encoded #  (err: 'Invalid hexadecimal value')
+  '%20'.as\uri\encoded # :: (ok: ' ')
+  '%zz'.as\uri\encoded # :: (err: 'Invalid hexadecimal value')
   ```
 
   The `z` character cannot represent a hexadecimal value (valid characters are 0-9, a-f, A-F).

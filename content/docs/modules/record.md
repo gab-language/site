@@ -16,7 +16,7 @@ record.len: () :: int
   Return the number of key-value pairs in the record.
 
   ```gab
-  [1 2 3].len #  3
+  [1 2 3].len # :: 3
   ```
   
 
@@ -31,13 +31,13 @@ record.at: unknown :: (some (status ok:, value unknown) | none none:)
   ```gab
   (ok value) := { name: 'John Doe' } .at (name:)
 
-  ok    #  ok:
-  value #  'John Doe'
+  ok    # :: ok:
+  value # :: 'John Doe'
 
   (ok value) := { name: 'John Doe' } .at (age:)
 
-  ok    #  none:
-  value #  nil:
+  ok    # :: none:
+  value # :: nil:
   ```
   
 
@@ -62,8 +62,8 @@ record.put: (key unknown, value unknown) :: record
 
   person := person.put(age: 30)
 
-  person.name #  'John Doe'
-  person.age  #  30
+  person.name # :: 'John Doe'
+  person.age  # :: 30
   ```
   
 
@@ -83,7 +83,7 @@ record.put_via: (key_path *unknown, value unknown) :: record
 
   person := person.put_via(mother: age: 60)
 
-  person.mother.age #  60
+  person.mother.age # :: 60
   ```
 
   This message will create records along the path where none exist.
@@ -91,7 +91,7 @@ record.put_via: (key_path *unknown, value unknown) :: record
   ```gab
   {}.put_via(mother: sister: daugher: relation: 'cousin')
 
-  #  { mother: { sister: { daughter: { relation: 'cousin' } } } }
+  # :: { mother: { sister: { daughter: { relation: 'cousin' } } } }
   ```
   
 
@@ -120,7 +120,7 @@ record.put_by: (key unknown, f is\block:) :: record
 
   person := person.put_by(age: age :: age + 1)
 
-  person.age #  30
+  person.age # :: 30
   ```
 
   If the key does not exist in the record, then the argument to the block will be `nil:`.
@@ -146,7 +146,7 @@ record.push:  :: record
   ```gab
   arr := [1 2 3] .cons 4
 
-  arr #  [1 2 3 4]
+  arr # :: [1 2 3 4]
   ```
   
 
@@ -161,15 +161,15 @@ record.pop: () :: (some (status ok:, value (record record, popped_value unknown,
 
   (ok rec val key) := [1 2 3 4].pop
 
-  ok  #  ok:
-  rec #  [1 2 3]
-  val #  4
-  key #  3
+  ok  # :: ok:
+  rec # :: [1 2 3]
+  val # :: 4
+  key # :: 3
   ```
 
   If the record was empty, returns `none:` and an empty record.
   ```gab
-  [].pop #  none: []
+  [].pop # :: none: []
   ```
   
 
@@ -240,9 +240,9 @@ record.: unknown :: unknown
   ```gab
   map := { 'id' 1234 }
 
-  map.('id') #  1234
+  map.('id') # :: 1234
 
-  map.('name') #  panic
+  map.('name') # :: panic
   ```
 
   This allows for records to serve as functions of their keys.
